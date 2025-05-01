@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name" translatable="false">OplusCameraPro</string>
+    <string name="xposeddescription">Enhance camera feature</string>
+</resources>
