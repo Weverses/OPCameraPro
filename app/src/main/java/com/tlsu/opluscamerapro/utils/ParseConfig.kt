@@ -22,16 +22,27 @@ object ParseConfig {
             strategy == MergeStrategy.OVERRIDE -> presetTags[existingIndex] = info
         }
     }
+    
+    /**
+     * 清除之前的预设标签列表
+     * 确保每次parseConfig调用时使用最新配置
+     */
+    private fun clearPresetTags() {
+        presetTags.clear()
+    }
 
     /**
      * 核心处理方法（支持覆盖逻辑）
      * @return 处理后的JSON字符串
      */
     fun parseConfig(originalJson: String): String {
+        // 清除之前的预设标签，确保使用最新配置
+        clearPresetTags()
+        
         val jsonArray = JSONArray(originalJson)
         val tagIndexMap = buildTagIndexMap(jsonArray)
         // 添加Config
-        addConfig()
+        ConfigBasedAddConfig.addConfig()
         presetTags.forEach { newTag ->
             tagIndexMap[newTag.vendorTag]?.let { index ->
                 // 覆盖现有条目

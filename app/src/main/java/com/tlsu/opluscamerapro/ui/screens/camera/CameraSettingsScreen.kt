@@ -1,0 +1,135 @@
+package com.tlsu.opluscamerapro.ui.screens.camera
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.tlsu.opluscamerapro.ui.MainViewModel
+import com.tlsu.opluscamerapro.ui.components.NoRootAccessDialog
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+
+/**
+ * 相机设置屏幕
+ */
+@Composable
+fun CameraSettingsScreen(
+    viewModel: MainViewModel,
+    snackbarHostState: SnackbarHostState,
+    coroutineScope: CoroutineScope
+) {
+    val isLoading = viewModel.isLoading
+    val hasRootAccess = viewModel.hasRootAccess
+    val config by viewModel.config.collectAsState()
+    
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+    ) {
+        if (isLoading) {
+            // 加载状态
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                CircularProgressIndicator()
+                Text(
+                    text = "加载中...",
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.padding(top = 16.dp)
+                )
+            }
+        } else if (!hasRootAccess) {
+            // 无ROOT权限提示
+            NoRootAccessDialog()
+        } else {
+            // 正常显示设置页面
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .padding(16.dp)
+            ) {
+                // VendorTag设置组
+                VendorTagSettingsGroup(
+                    vendorTagSettings = config.vendorTags,
+                    onSettingChanged = { key, value ->
+                        viewModel.updateVendorTagSetting { currentConfig ->
+                            val updatedVendorTags = when (key) {
+                                "enable25MP" -> currentConfig.vendorTags.copy(enable25MP = value)
+                                "enableMasterMode" -> currentConfig.vendorTags.copy(enableMasterMode = value)
+                                "enableMasterRawMax" -> currentConfig.vendorTags.copy(enableMasterRawMax = value)
+                                "enablePortraitZoom" -> currentConfig.vendorTags.copy(enablePortraitZoom = value)
+                                "enable720p60fps" -> currentConfig.vendorTags.copy(enable720p60fps = value)
+                                "enableSlowVideo480fps" -> currentConfig.vendorTags.copy(enableSlowVideo480fps = value)
+                                "enableNewMacroMode" -> currentConfig.vendorTags.copy(enableNewMacroMode = value)
+                                "enableMacroTele" -> currentConfig.vendorTags.copy(enableMacroTele = value)
+                                "enableMacroDepthFusion" -> currentConfig.vendorTags.copy(enableMacroDepthFusion = value)
+                                "enableHeifBlurEdit" -> currentConfig.vendorTags.copy(enableHeifBlurEdit = value)
+                                "enableStyleEffect" -> currentConfig.vendorTags.copy(enableStyleEffect = value)
+                                "enableScaleFocus" -> currentConfig.vendorTags.copy(enableScaleFocus = value)
+                                "enableLivePhotoFovOptimize" -> currentConfig.vendorTags.copy(enableLivePhotoFovOptimize = value)
+                                "enable10bitPhoto" -> currentConfig.vendorTags.copy(enable10bitPhoto = value)
+                                "enableHeifLivePhoto" -> currentConfig.vendorTags.copy(enableHeifLivePhoto = value)
+                                "enable10bitLivePhoto" -> currentConfig.vendorTags.copy(enable10bitLivePhoto = value)
+                                "enableTolStyleFilter" -> currentConfig.vendorTags.copy(enableTolStyleFilter = value)
+                                "enableGrandTourFilter" -> currentConfig.vendorTags.copy(enableGrandTourFilter = value)
+                                "enableDesertFilter" -> currentConfig.vendorTags.copy(enableDesertFilter = value)
+                                "enableVignetteGrainFilter" -> currentConfig.vendorTags.copy(enableVignetteGrainFilter = value)
+                                "enableDirectorFilter" -> currentConfig.vendorTags.copy(enableDirectorFilter = value)
+                                "enableJzkMovieFilter" -> currentConfig.vendorTags.copy(enableJzkMovieFilter = value)
+                                "enableNewBeautyMenu" -> currentConfig.vendorTags.copy(enableNewBeautyMenu = value)
+                                "enableSuperTextScanner" -> currentConfig.vendorTags.copy(enableSuperTextScanner = value)
+                                "enableSoftLightPhotoMode" -> currentConfig.vendorTags.copy(enableSoftLightPhotoMode = value)
+                                "enableSoftLightNightMode" -> currentConfig.vendorTags.copy(enableSoftLightNightMode = value)
+                                "enableSoftLightProMode" -> currentConfig.vendorTags.copy(enableSoftLightProMode = value)
+                                "enableMeisheFilter" -> currentConfig.vendorTags.copy(enableMeisheFilter = value)
+                                "enablePreviewHdr" -> currentConfig.vendorTags.copy(enablePreviewHdr = value)
+                                "enableVideoAutoFps" -> currentConfig.vendorTags.copy(enableVideoAutoFps = value)
+                                "enableQuickLaunch" -> currentConfig.vendorTags.copy(enableQuickLaunch = value)
+                                "enableLivePhotoHighBitrate" -> currentConfig.vendorTags.copy(enableLivePhotoHighBitrate = value)
+                                "enableVideoStopSoundImmediate" -> currentConfig.vendorTags.copy(enableVideoStopSoundImmediate = value)
+                                "enableForcePortraitForThirdParty" -> currentConfig.vendorTags.copy(enableForcePortraitForThirdParty = value)
+                                "enableFrontCameraZoom" -> currentConfig.vendorTags.copy(enableFrontCameraZoom = value)
+                                else -> currentConfig.vendorTags
+                            }
+                            
+                            currentConfig.copy(vendorTags = updatedVendorTags)
+                        }
+                        
+                        // 显示保存成功提示
+                        coroutineScope.launch {
+                            snackbarHostState.showSnackbar("设置已保存")
+                        }
+                    }
+                )
+                
+                // 其他设置组
+                OtherSettingsGroup(
+                    otherSettings = config.otherSettings,
+                    onSettingChanged = { key, value ->
+                        // 目前没有其他设置，可以在后续添加
+                        coroutineScope.launch {
+                            snackbarHostState.showSnackbar("设置已保存")
+                        }
+                    }
+                )
+            }
+        }
+    }
+} 

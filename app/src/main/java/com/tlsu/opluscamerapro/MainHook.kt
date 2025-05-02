@@ -24,6 +24,7 @@ class MainHook : IXposedHookLoadPackage {
             // Init hooks
             when (lpparam.packageName) {
                 "com.oplus.camera" -> {
+                    // 初始化所有Hook
                     initHooks(FilterGroup)
                     initHooks(OplusCameraConfig)
                 }

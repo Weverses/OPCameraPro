@@ -1,4 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">OplusCameraPro</string>
-    <string name="xposeddescription">Enhance camera feature</string>
+    <string name="xposeddescription">增强OPPO/OnePlus相机功能的Xposed模块</string>
 </resources>
