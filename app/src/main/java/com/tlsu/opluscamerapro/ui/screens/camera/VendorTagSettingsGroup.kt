@@ -10,7 +10,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.tlsu.opluscamerapro.R
 import com.tlsu.opluscamerapro.data.VendorTagSettings
 import com.tlsu.opluscamerapro.ui.components.SettingsSwitchItem
 
@@ -28,269 +30,269 @@ fun VendorTagSettingsGroup(
             .padding(vertical = 8.dp)
     ) {
         Text(
-            text = "VendorTag设置",
+            text = stringResource(R.string.vendor_tag_settings_title),
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.padding(bottom = 16.dp, start = 8.dp)
         )
         
         // 高级拍照设置
-        SettingsCard(title = "高级拍照设置") {
+        SettingsCard(title = stringResource(R.string.camera_settings_category_advanced)) {
             SettingsSwitchItem(
-                title = "25MP超高清拍照",
-                description = "启用25MP Turbo RAW增强分辨率",
+                title = stringResource(R.string.camera_settings_25mp_title),
+                description = stringResource(R.string.camera_settings_25mp_desc),
                 checked = vendorTagSettings.enable25MP,
                 onCheckedChange = { onSettingChanged("enable25MP", it) }
             )
             
             SettingsSwitchItem(
-                title = "大师模式",
-                description = "启用大师模式2.0",
+                title = stringResource(R.string.camera_settings_master_mode_title),
+                description = stringResource(R.string.camera_settings_master_mode_desc),
                 checked = vendorTagSettings.enableMasterMode,
                 onCheckedChange = { onSettingChanged("enableMasterMode", it) }
             )
             
             SettingsSwitchItem(
-                title = "大师模式 RAW MAX",
-                description = "启用大师模式RAW MAX格式",
+                title = stringResource(R.string.camera_settings_master_raw_max_title),
+                description = stringResource(R.string.camera_settings_master_raw_max_desc),
                 checked = vendorTagSettings.enableMasterRawMax,
                 onCheckedChange = { onSettingChanged("enableMasterRawMax", it) }
             )
             
             SettingsSwitchItem(
-                title = "人像模式变焦",
-                description = "启用人像模式变焦功能",
+                title = stringResource(R.string.camera_settings_portrait_zoom_title),
+                description = stringResource(R.string.camera_settings_portrait_zoom_desc),
                 checked = vendorTagSettings.enablePortraitZoom,
                 onCheckedChange = { onSettingChanged("enablePortraitZoom", it) }
             )
         }
         
         // 视频设置
-        SettingsCard(title = "视频设置") {
+        SettingsCard(title = stringResource(R.string.camera_settings_category_video)) {
             SettingsSwitchItem(
-                title = "720P 60FPS视频",
-                description = "启用720P 60帧视频录制",
+                title = stringResource(R.string.camera_settings_720p_60fps_title),
+                description = stringResource(R.string.camera_settings_720p_60fps_desc),
                 checked = vendorTagSettings.enable720p60fps,
                 onCheckedChange = { onSettingChanged("enable720p60fps", it) }
             )
             
             SettingsSwitchItem(
-                title = "慢动作视频超广角480FPS",
-                description = "启用慢动作视频超广角480帧录制",
+                title = stringResource(R.string.camera_settings_slow_video_480fps_title),
+                description = stringResource(R.string.camera_settings_slow_video_480fps_desc),
                 checked = vendorTagSettings.enableSlowVideo480fps,
                 onCheckedChange = { onSettingChanged("enableSlowVideo480fps", it) }
             )
             
             SettingsSwitchItem(
-                title = "视频自动帧率",
-                description = "启用视频自动帧率功能",
+                title = stringResource(R.string.camera_settings_video_auto_fps_title),
+                description = stringResource(R.string.camera_settings_video_auto_fps_desc),
                 checked = vendorTagSettings.enableVideoAutoFps,
                 onCheckedChange = { onSettingChanged("enableVideoAutoFps", it) }
             )
             
             SettingsSwitchItem(
-                title = "实况视频高码率",
-                description = "提高实况视频码率",
+                title = stringResource(R.string.camera_settings_live_photo_bitrate_title),
+                description = stringResource(R.string.camera_settings_live_photo_bitrate_desc),
                 checked = vendorTagSettings.enableLivePhotoHighBitrate,
                 onCheckedChange = { onSettingChanged("enableLivePhotoHighBitrate", it) }
             )
             
             SettingsSwitchItem(
-                title = "录制结束立即播放提示音",
-                description = "停止录制时立即播放提示音",
+                title = stringResource(R.string.camera_settings_video_stop_sound_title),
+                description = stringResource(R.string.camera_settings_video_stop_sound_desc),
                 checked = vendorTagSettings.enableVideoStopSoundImmediate,
                 onCheckedChange = { onSettingChanged("enableVideoStopSoundImmediate", it) }
             )
         }
         
         // 微距设置
-        SettingsCard(title = "微距设置") {
+        SettingsCard(title = stringResource(R.string.camera_settings_category_macro)) {
             SettingsSwitchItem(
-                title = "新版微距模式",
-                description = "启用新版微距模式",
+                title = stringResource(R.string.camera_settings_new_macro_mode_title),
+                description = stringResource(R.string.camera_settings_new_macro_mode_desc),
                 checked = vendorTagSettings.enableNewMacroMode,
                 onCheckedChange = { onSettingChanged("enableNewMacroMode", it) }
             )
             
             SettingsSwitchItem(
-                title = "微距模式调用长焦",
-                description = "允许微距模式调用长焦相机",
+                title = stringResource(R.string.camera_settings_macro_tele_title),
+                description = stringResource(R.string.camera_settings_macro_tele_desc),
                 checked = vendorTagSettings.enableMacroTele,
                 onCheckedChange = { onSettingChanged("enableMacroTele", it) }
             )
             
             SettingsSwitchItem(
-                title = "微距景深融合",
-                description = "启用微距景深融合功能",
+                title = stringResource(R.string.camera_settings_macro_depth_fusion_title),
+                description = stringResource(R.string.camera_settings_macro_depth_fusion_desc),
                 checked = vendorTagSettings.enableMacroDepthFusion,
                 onCheckedChange = { onSettingChanged("enableMacroDepthFusion", it) }
             )
         }
         
         // 滤镜设置
-        SettingsCard(title = "滤镜设置") {
+        SettingsCard(title = stringResource(R.string.camera_settings_category_filters)) {
             SettingsSwitchItem(
-                title = "大师模式滤镜参数预设",
-                description = "启用大师模式滤镜参数预设",
+                title = stringResource(R.string.camera_settings_style_effect_title),
+                description = stringResource(R.string.camera_settings_style_effect_desc),
                 checked = vendorTagSettings.enableStyleEffect,
                 onCheckedChange = { onSettingChanged("enableStyleEffect", it) }
             )
             
             SettingsSwitchItem(
-                title = "光影有声滤镜",
-                description = "启用光影有声滤镜",
+                title = stringResource(R.string.camera_settings_tol_style_filter_title),
+                description = stringResource(R.string.camera_settings_tol_style_filter_desc),
                 checked = vendorTagSettings.enableTolStyleFilter,
                 onCheckedChange = { onSettingChanged("enableTolStyleFilter", it) }
             )
             
             SettingsSwitchItem(
-                title = "Grand Tour滤镜",
-                description = "启用Grand Tour系列滤镜",
+                title = stringResource(R.string.camera_settings_grand_tour_filter_title),
+                description = stringResource(R.string.camera_settings_grand_tour_filter_desc),
                 checked = vendorTagSettings.enableGrandTourFilter,
                 onCheckedChange = { onSettingChanged("enableGrandTourFilter", it) }
             )
             
             SettingsSwitchItem(
-                title = "沙漠系列滤镜",
-                description = "启用沙漠系列滤镜",
+                title = stringResource(R.string.camera_settings_desert_filter_title),
+                description = stringResource(R.string.camera_settings_desert_filter_desc),
                 checked = vendorTagSettings.enableDesertFilter,
                 onCheckedChange = { onSettingChanged("enableDesertFilter", it) }
             )
             
             SettingsSwitchItem(
-                title = "Vignette Grain滤镜",
-                description = "启用Vignette Grain滤镜",
+                title = stringResource(R.string.camera_settings_vignette_grain_filter_title),
+                description = stringResource(R.string.camera_settings_vignette_grain_filter_desc),
                 checked = vendorTagSettings.enableVignetteGrainFilter,
                 onCheckedChange = { onSettingChanged("enableVignetteGrainFilter", it) }
             )
             
             SettingsSwitchItem(
-                title = "Director滤镜",
-                description = "启用Director滤镜",
+                title = stringResource(R.string.camera_settings_director_filter_title),
+                description = stringResource(R.string.camera_settings_director_filter_desc),
                 checked = vendorTagSettings.enableDirectorFilter,
                 onCheckedChange = { onSettingChanged("enableDirectorFilter", it) }
             )
             
             SettingsSwitchItem(
-                title = "贾樟柯滤镜",
-                description = "启用贾樟柯滤镜",
+                title = stringResource(R.string.camera_settings_jzk_movie_filter_title),
+                description = stringResource(R.string.camera_settings_jzk_movie_filter_desc),
                 checked = vendorTagSettings.enableJzkMovieFilter,
                 onCheckedChange = { onSettingChanged("enableJzkMovieFilter", it) }
             )
             
             SettingsSwitchItem(
-                title = "Meishe系列滤镜",
-                description = "启用Meishe系列滤镜",
+                title = stringResource(R.string.camera_settings_meishe_filter_title),
+                description = stringResource(R.string.camera_settings_meishe_filter_desc),
                 checked = vendorTagSettings.enableMeisheFilter,
                 onCheckedChange = { onSettingChanged("enableMeisheFilter", it) }
             )
             
             SettingsSwitchItem(
-                title = "柔光滤镜(照片模式)",
-                description = "在照片模式中启用柔光滤镜",
+                title = stringResource(R.string.camera_settings_soft_light_photo_title),
+                description = stringResource(R.string.camera_settings_soft_light_photo_desc),
                 checked = vendorTagSettings.enableSoftLightPhotoMode,
                 onCheckedChange = { onSettingChanged("enableSoftLightPhotoMode", it) }
             )
             
             SettingsSwitchItem(
-                title = "柔光滤镜(夜景模式)",
-                description = "在夜景模式中启用柔光滤镜",
+                title = stringResource(R.string.camera_settings_soft_light_night_title),
+                description = stringResource(R.string.camera_settings_soft_light_night_desc),
                 checked = vendorTagSettings.enableSoftLightNightMode,
                 onCheckedChange = { onSettingChanged("enableSoftLightNightMode", it) }
             )
             
             SettingsSwitchItem(
-                title = "柔光滤镜(大师模式)",
-                description = "在大师模式中启用柔光滤镜",
+                title = stringResource(R.string.camera_settings_soft_light_pro_title),
+                description = stringResource(R.string.camera_settings_soft_light_pro_desc),
                 checked = vendorTagSettings.enableSoftLightProMode,
                 onCheckedChange = { onSettingChanged("enableSoftLightProMode", it) }
             )
         }
         
         // HEIF/HDR设置
-        SettingsCard(title = "HEIF/HDR设置") {
+        SettingsCard(title = stringResource(R.string.camera_settings_category_heif_hdr)) {
             SettingsSwitchItem(
-                title = "HEIF模式编辑背景虚化",
-                description = "在HEIF模式下支持相册编辑背景虚化",
+                title = stringResource(R.string.camera_settings_heif_blur_edit_title),
+                description = stringResource(R.string.camera_settings_heif_blur_edit_desc),
                 checked = vendorTagSettings.enableHeifBlurEdit,
                 onCheckedChange = { onSettingChanged("enableHeifBlurEdit", it) }
             )
             
             SettingsSwitchItem(
-                title = "10bit照片",
-                description = "启用10bit照片拍摄",
+                title = stringResource(R.string.camera_settings_10bit_photo_title),
+                description = stringResource(R.string.camera_settings_10bit_photo_desc),
                 checked = vendorTagSettings.enable10bitPhoto,
                 onCheckedChange = { onSettingChanged("enable10bitPhoto", it) }
             )
             
             SettingsSwitchItem(
-                title = "实况HEIF照片",
-                description = "启用实况HEIF照片格式",
+                title = stringResource(R.string.camera_settings_heif_live_photo_title),
+                description = stringResource(R.string.camera_settings_heif_live_photo_desc),
                 checked = vendorTagSettings.enableHeifLivePhoto,
                 onCheckedChange = { onSettingChanged("enableHeifLivePhoto", it) }
             )
             
             SettingsSwitchItem(
-                title = "实况10bit照片",
-                description = "启用实况10bit照片格式",
+                title = stringResource(R.string.camera_settings_10bit_live_photo_title),
+                description = stringResource(R.string.camera_settings_10bit_live_photo_desc),
                 checked = vendorTagSettings.enable10bitLivePhoto,
                 onCheckedChange = { onSettingChanged("enable10bitLivePhoto", it) }
             )
             
             SettingsSwitchItem(
-                title = "实况照片FOV优化",
-                description = "优化实况照片视场角",
+                title = stringResource(R.string.camera_settings_live_photo_fov_title),
+                description = stringResource(R.string.camera_settings_live_photo_fov_desc),
                 checked = vendorTagSettings.enableLivePhotoFovOptimize,
                 onCheckedChange = { onSettingChanged("enableLivePhotoFovOptimize", it) }
             )
             
             SettingsSwitchItem(
-                title = "预览HDR",
-                description = "启用预览HDR功能",
+                title = stringResource(R.string.camera_settings_preview_hdr_title),
+                description = stringResource(R.string.camera_settings_preview_hdr_desc),
                 checked = vendorTagSettings.enablePreviewHdr,
                 onCheckedChange = { onSettingChanged("enablePreviewHdr", it) }
             )
         }
         
         // 其他功能
-        SettingsCard(title = "其他功能") {
+        SettingsCard(title = stringResource(R.string.camera_settings_category_other)) {
             SettingsSwitchItem(
-                title = "大师模式放大对焦",
-                description = "在大师模式中启用放大对焦功能",
+                title = stringResource(R.string.camera_settings_scale_focus_title),
+                description = stringResource(R.string.camera_settings_scale_focus_desc),
                 checked = vendorTagSettings.enableScaleFocus,
                 onCheckedChange = { onSettingChanged("enableScaleFocus", it) }
             )
             
             SettingsSwitchItem(
-                title = "新版美颜菜单",
-                description = "启用新版美颜菜单",
+                title = stringResource(R.string.camera_settings_new_beauty_menu_title),
+                description = stringResource(R.string.camera_settings_new_beauty_menu_desc),
                 checked = vendorTagSettings.enableNewBeautyMenu,
                 onCheckedChange = { onSettingChanged("enableNewBeautyMenu", it) }
             )
             
             SettingsSwitchItem(
-                title = "超级文本扫描",
-                description = "启用超级文本扫描功能",
+                title = stringResource(R.string.camera_settings_super_text_scanner_title),
+                description = stringResource(R.string.camera_settings_super_text_scanner_desc),
                 checked = vendorTagSettings.enableSuperTextScanner,
                 onCheckedChange = { onSettingChanged("enableSuperTextScanner", it) }
             )
             
             SettingsSwitchItem(
-                title = "双击音量键快捷启动相机",
-                description = "启用双击音量键快捷启动相机功能",
+                title = stringResource(R.string.camera_settings_quick_launch_title),
+                description = stringResource(R.string.camera_settings_quick_launch_desc),
                 checked = vendorTagSettings.enableQuickLaunch,
                 onCheckedChange = { onSettingChanged("enableQuickLaunch", it) }
             )
             
             SettingsSwitchItem(
-                title = "第三方APP调用人像模式",
-                description = "第三方APP调用官方相机时可以选择人像模式",
+                title = stringResource(R.string.camera_settings_force_portrait_title),
+                description = stringResource(R.string.camera_settings_force_portrait_desc),
                 checked = vendorTagSettings.enableForcePortraitForThirdParty,
                 onCheckedChange = { onSettingChanged("enableForcePortraitForThirdParty", it) }
             )
             
             SettingsSwitchItem(
-                title = "前置拍照变焦",
-                description = "启用前置相机变焦功能",
+                title = stringResource(R.string.camera_settings_front_camera_zoom_title),
+                description = stringResource(R.string.camera_settings_front_camera_zoom_desc),
                 checked = vendorTagSettings.enableFrontCameraZoom,
                 onCheckedChange = { onSettingChanged("enableFrontCameraZoom", it) }
             )

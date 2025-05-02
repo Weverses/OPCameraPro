@@ -14,12 +14,12 @@ data class AppConfig(
  * 配置元数据
  */
 data class ConfigMetadata(
-    val message: String = "", // 配置文件留言
-    val exportTime: Long = System.currentTimeMillis(), // 导出时间
-    val oplusRomVersion: String = "", // ColorOS/OriginOS版本
-    val androidVersion: String = "", // Android版本
-    val deviceModel: String = "", // 设备型号
-    val deviceMarketName: String = "" // 设备营销名称
+    val message: String = "", // R.string.config_metadata_message
+    val exportTime: Long = System.currentTimeMillis(), // R.string.config_metadata_export_time
+    val oplusRomVersion: String = "", // R.string.config_metadata_oplus_rom_version
+    val androidVersion: String = "", // R.string.config_metadata_android_version
+    val deviceModel: String = "", // R.string.config_metadata_device_model
+    val deviceMarketName: String = "" // R.string.config_metadata_device_market_name
 )
 
 /**
@@ -27,109 +27,109 @@ data class ConfigMetadata(
  * 基于AddConfig类中的选项
  */
 data class VendorTagSettings(
-    // 25MP Turbo RAW Resolution Enhance
+    // R.string.vendor_tag_enable_25mp
     val enable25MP: Boolean = true,
     
-    // Master Mode (Version 2)
+    // R.string.vendor_tag_enable_master_mode
     val enableMasterMode: Boolean = true,
     
-    // 大师模式 RAW MAX 格式
+    // R.string.vendor_tag_enable_master_raw_max
     val enableMasterRawMax: Boolean = true,
     
-    // 人像模式变焦
+    // R.string.vendor_tag_enable_portrait_zoom
     val enablePortraitZoom: Boolean = true,
     
-    // 720P 60FPS Video
+    // R.string.vendor_tag_enable_720p_60fps
     val enable720p60fps: Boolean = true,
     
-    // 慢动作视频超广角480FPS
+    // R.string.vendor_tag_enable_slow_video_480fps
     val enableSlowVideo480fps: Boolean = true,
     
-    // 新版微距模式
+    // R.string.vendor_tag_enable_new_macro_mode
     val enableNewMacroMode: Boolean = true,
     
-    // 微距模式调用长焦
+    // R.string.vendor_tag_enable_macro_tele
     val enableMacroTele: Boolean = true,
     
-    // 微距景深融合
+    // R.string.vendor_tag_enable_macro_depth_fusion
     val enableMacroDepthFusion: Boolean = true,
     
-    // HEIF模式下相册支持编辑背景虚化
+    // R.string.vendor_tag_enable_heif_blur_edit
     val enableHeifBlurEdit: Boolean = true,
     
-    // 大师模式-滤镜参数预设
+    // R.string.vendor_tag_enable_style_effect
     val enableStyleEffect: Boolean = true,
     
-    // 大师模式-Pro-放大对焦
+    // R.string.vendor_tag_enable_scale_focus
     val enableScaleFocus: Boolean = true,
     
-    // 实况照片fov优化
+    // R.string.vendor_tag_enable_live_photo_fov_optimize
     val enableLivePhotoFovOptimize: Boolean = true,
     
-    // 10bit照片
+    // R.string.vendor_tag_enable_10bit_photo
     val enable10bitPhoto: Boolean = true,
     
-    // 实况HEIF照片
+    // R.string.vendor_tag_enable_heif_live_photo
     val enableHeifLivePhoto: Boolean = false,
     
-    // 实况10bit照片
+    // R.string.vendor_tag_enable_10bit_live_photo
     val enable10bitLivePhoto: Boolean = false,
     
-    // 光影有声滤镜
+    // R.string.vendor_tag_enable_tol_style_filter
     val enableTolStyleFilter: Boolean = true,
     
-    // grand tour系列滤镜
+    // R.string.vendor_tag_enable_grand_tour_filter
     val enableGrandTourFilter: Boolean = true,
     
-    // 沙漠系列滤镜
+    // R.string.vendor_tag_enable_desert_filter
     val enableDesertFilter: Boolean = true,
     
-    // vignette grain 滤镜
+    // R.string.vendor_tag_enable_vignette_grain_filter
     val enableVignetteGrainFilter: Boolean = true,
     
-    // director 滤镜
+    // R.string.vendor_tag_enable_director_filter
     val enableDirectorFilter: Boolean = true,
     
-    // 贾樟柯滤镜
+    // R.string.vendor_tag_enable_jzk_movie_filter
     val enableJzkMovieFilter: Boolean = true,
     
-    // 新版美颜菜单
+    // R.string.vendor_tag_enable_new_beauty_menu
     val enableNewBeautyMenu: Boolean = true,
     
-    // 超级文本扫描
+    // R.string.vendor_tag_enable_super_text_scanner
     val enableSuperTextScanner: Boolean = true,
     
-    // 照片模式柔光滤镜
+    // R.string.vendor_tag_enable_soft_light_photo_mode
     val enableSoftLightPhotoMode: Boolean = true,
     
-    // 夜景模式柔光滤镜
+    // R.string.vendor_tag_enable_soft_light_night_mode
     val enableSoftLightNightMode: Boolean = true,
     
-    // 大师模式柔光滤镜
+    // R.string.vendor_tag_enable_soft_light_pro_mode
     val enableSoftLightProMode: Boolean = true,
     
-    // meishe 系列滤镜
+    // R.string.vendor_tag_enable_meishe_filter
     val enableMeisheFilter: Boolean = true,
     
-    // Preview HDR
+    // R.string.vendor_tag_enable_preview_hdr
     val enablePreviewHdr: Boolean = true,
     
-    // 视频自动帧率
+    // R.string.vendor_tag_enable_video_auto_fps
     val enableVideoAutoFps: Boolean = true,
     
-    // 双击音量键快捷启动相机
+    // R.string.vendor_tag_enable_quick_launch
     val enableQuickLaunch: Boolean = true,
     
-    // 实况视频码率
+    // R.string.vendor_tag_enable_live_photo_high_bitrate
     val enableLivePhotoHighBitrate: Boolean = true,
     
-    // 停止录制立即播放提示音
+    // R.string.vendor_tag_enable_video_stop_sound_immediate
     val enableVideoStopSoundImmediate: Boolean = true,
     
-    // 第三方app调用官方相机时可以选择人像模式
+    // R.string.vendor_tag_enable_force_portrait_for_third_party
     val enableForcePortraitForThirdParty: Boolean = true,
     
-    // 前置拍照变焦
+    // R.string.vendor_tag_enable_front_camera_zoom
     val enableFrontCameraZoom: Boolean = true
 )
 

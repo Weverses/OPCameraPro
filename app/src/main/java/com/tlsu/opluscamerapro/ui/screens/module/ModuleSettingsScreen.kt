@@ -46,7 +46,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.tlsu.opluscamerapro.R
 import com.tlsu.opluscamerapro.data.AppConfig
 import com.tlsu.opluscamerapro.ui.MainViewModel
 import com.tlsu.opluscamerapro.ui.components.NoRootAccessDialog
@@ -125,14 +127,14 @@ fun ModuleSettingsScreen(
                             val date = Date(exportTimestamp)
                             SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(date)
                         } else {
-                            "未知"
+                            context.getString(R.string.unknown)
                         }
                         
                         // 获取设备信息
-                        importOplusRomVersion = metadataObj.optString("oplusRomVersion", "未知")
-                        importAndroidVersion = metadataObj.optString("androidVersion", "未知")
-                        importDeviceModel = metadataObj.optString("deviceModel", "未知")
-                        importDeviceMarketName = metadataObj.optString("deviceMarketName", "未知")
+                        importOplusRomVersion = metadataObj.optString("oplusRomVersion", context.getString(R.string.unknown))
+                        importAndroidVersion = metadataObj.optString("androidVersion", context.getString(R.string.unknown))
+                        importDeviceModel = metadataObj.optString("deviceModel", context.getString(R.string.unknown))
+                        importDeviceMarketName = metadataObj.optString("deviceMarketName", context.getString(R.string.unknown))
                         
                         // 保存导入文件路径
                         importFilePath = tempFile.absolutePath
@@ -165,7 +167,7 @@ fun ModuleSettingsScreen(
             ) {
                 CircularProgressIndicator()
                 Text(
-                    text = "加载中...",
+                    text = stringResource(R.string.loading),
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(top = 16.dp)
                 )
@@ -190,15 +192,15 @@ fun ModuleSettingsScreen(
                             .padding(16.dp)
                     ) {
                         Text(
-                            text = "模块设置",
+                            text = stringResource(R.string.module_settings),
                             style = MaterialTheme.typography.titleLarge,
                             modifier = Modifier.padding(bottom = 16.dp)
                         )
                         
                         // 深色模式开关
                         SettingsSwitchItem(
-                            title = "深色模式",
-                            description = "使用深色主题",
+                            title = stringResource(R.string.dark_mode),
+                            description = stringResource(R.string.dark_mode_description),
                             checked = config.appSettings.darkMode,
                             icon = { Icon(Icons.Filled.DarkMode, contentDescription = null) },
                             onCheckedChange = { viewModel.toggleDarkMode() },
@@ -207,8 +209,8 @@ fun ModuleSettingsScreen(
                         
                         // 深色模式跟随系统
                         SettingsSwitchItem(
-                            title = "跟随系统深色模式",
-                            description = "自动跟随系统深色模式设置",
+                            title = stringResource(R.string.follow_system_dark_mode),
+                            description = stringResource(R.string.follow_system_dark_mode_description),
                             checked = config.appSettings.followSystemDarkMode,
                             icon = { Icon(Icons.Filled.DarkMode, contentDescription = null) },
                             onCheckedChange = { viewModel.toggleFollowSystemDarkMode() }
@@ -216,8 +218,8 @@ fun ModuleSettingsScreen(
                         
                         // 导出配置
                         SettingsClickableItem(
-                            title = "导出配置",
-                            description = "导出当前配置到下载目录",
+                            title = stringResource(R.string.export_config),
+                            description = stringResource(R.string.export_config_description),
                             icon = { Icon(Icons.Filled.FileDownload, contentDescription = null) },
                             onClick = {
                                 if (hasRootAccess) {
@@ -225,7 +227,7 @@ fun ModuleSettingsScreen(
                                     showExportMessageDialog = true
                                 } else {
                                     coroutineScope.launch {
-                                        snackbarHostState.showSnackbar("导出配置需要ROOT权限")
+                                        snackbarHostState.showSnackbar(context.getString(R.string.need_root_for_export))
                                     }
                                 }
                             }
@@ -233,15 +235,15 @@ fun ModuleSettingsScreen(
                         
                         // 导入配置
                         SettingsClickableItem(
-                            title = "导入配置",
-                            description = "从文件导入配置",
+                            title = stringResource(R.string.import_config),
+                            description = stringResource(R.string.import_config_description),
                             icon = { Icon(Icons.Filled.FileUpload, contentDescription = null) },
                             onClick = {
                                 if (hasRootAccess) {
                                     importFileLauncher.launch("application/json")
                                 } else {
                                     coroutineScope.launch {
-                                        snackbarHostState.showSnackbar("导入配置需要ROOT权限")
+                                        snackbarHostState.showSnackbar(context.getString(R.string.need_root_for_import))
                                     }
                                 }
                             }
@@ -249,8 +251,8 @@ fun ModuleSettingsScreen(
                         
                         // 关于
                         SettingsClickableItem(
-                            title = "关于",
-                            description = "查看模块信息和作者",
+                            title = stringResource(R.string.about),
+                            description = stringResource(R.string.about_description),
                             icon = { Icon(Icons.Filled.Info, contentDescription = null) },
                             onClick = { showAboutDialog = true }
                         )
@@ -268,18 +270,18 @@ fun ModuleSettingsScreen(
         if (showAboutDialog) {
             AlertDialog(
                 onDismissRequest = { showAboutDialog = false },
-                title = { Text("关于") },
+                title = { Text(stringResource(R.string.about_dialog_title)) },
                 text = {
                     Column {
-                        Text("OplusCameraPro")
-                        Text("版本: 1.0")
-                        Text("作者: TLSU")
-                        Text("\n这是一个用于增强OPPO/OnePlus相机应用功能的Xposed模块")
+                        Text(stringResource(R.string.app_name))
+                        Text(stringResource(R.string.about_dialog_version))
+                        Text(stringResource(R.string.about_dialog_author))
+                        Text("\n${stringResource(R.string.about_dialog_description)}")
                     }
                 },
                 confirmButton = {
                     TextButton(onClick = { showAboutDialog = false }) {
-                        Text("确定")
+                        Text(stringResource(R.string.confirm))
                     }
                 }
             )
@@ -289,15 +291,15 @@ fun ModuleSettingsScreen(
         if (showExportMessageDialog) {
             AlertDialog(
                 onDismissRequest = { showExportMessageDialog = false },
-                title = { Text("导出配置") },
+                title = { Text(stringResource(R.string.export_dialog_title)) },
                 text = {
                     Column {
-                        Text("您可以为导出的配置添加一段留言：")
+                        Text(stringResource(R.string.export_dialog_message))
                         Spacer(modifier = Modifier.height(8.dp))
                         OutlinedTextField(
                             value = exportMessage,
                             onValueChange = { exportMessage = it },
-                            label = { Text("留言（可选）") },
+                            label = { Text(stringResource(R.string.export_dialog_hint)) },
                             modifier = Modifier.fillMaxWidth()
                         )
                     }
@@ -318,20 +320,20 @@ fun ModuleSettingsScreen(
                                         exportPath = file.absolutePath
                                         showExportDialog = true
                                     } else {
-                                        snackbarHostState.showSnackbar("导出失败，请检查权限")
+                                        snackbarHostState.showSnackbar(context.getString(R.string.export_failed_check_permission))
                                     }
                                 } catch (e: Exception) {
-                                    snackbarHostState.showSnackbar("导出失败：${e.message}")
+                                    snackbarHostState.showSnackbar(context.getString(R.string.export_failed_with_reason, e.message))
                                 }
                             }
                         }
                     ) {
-                        Text("导出")
+                        Text(stringResource(R.string.export))
                     }
                 },
                 dismissButton = {
                     TextButton(onClick = { showExportMessageDialog = false }) {
-                        Text("取消")
+                        Text(stringResource(R.string.cancel))
                     }
                 }
             )
@@ -341,11 +343,11 @@ fun ModuleSettingsScreen(
         if (showExportDialog) {
             AlertDialog(
                 onDismissRequest = { showExportDialog = false },
-                title = { Text("导出成功") },
-                text = { Text("配置已导出到:\n$exportPath") },
+                title = { Text(stringResource(R.string.export_success_title)) },
+                text = { Text(context.getString(R.string.export_success_message, exportPath)) },
                 confirmButton = {
                     TextButton(onClick = { showExportDialog = false }) {
-                        Text("确定")
+                        Text(stringResource(R.string.confirm))
                     }
                 }
             )
@@ -359,7 +361,7 @@ fun ModuleSettingsScreen(
                     // 清理临时文件
                     File(importFilePath).delete()
                 },
-                title = { Text("确认导入") },
+                title = { Text(stringResource(R.string.import_confirm_title)) },
                 text = {
                     Column(
                         modifier = Modifier.verticalScroll(rememberScrollState())
@@ -377,7 +379,7 @@ fun ModuleSettingsScreen(
                             ) {
                                 Column(modifier = Modifier.padding(16.dp)) {
                                     Text(
-                                        text = "配置文件留言",
+                                        text = stringResource(R.string.config_message_card_title),
                                         style = MaterialTheme.typography.titleSmall,
                                         color = MaterialTheme.colorScheme.onSecondaryContainer
                                     )
@@ -403,30 +405,30 @@ fun ModuleSettingsScreen(
                         ) {
                             Column(modifier = Modifier.padding(16.dp)) {
                                 Text(
-                                    text = "源设备信息",
+                                    text = stringResource(R.string.device_info_card_title),
                                     style = MaterialTheme.typography.titleSmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
                                 
                                 DeviceInfoItem(
-                                    label = "设备型号", 
-                                    value = if (importDeviceMarketName.isNotBlank() && importDeviceMarketName != "未知") 
-                                        "$importDeviceModel ($importDeviceMarketName)" 
+                                    label = stringResource(R.string.config_metadata_device_model), 
+                                    value = if (importDeviceMarketName.isNotBlank() && importDeviceMarketName != context.getString(R.string.unknown)) 
+                                        context.getString(R.string.device_model_with_market_name, importDeviceModel, importDeviceMarketName) 
                                     else 
                                         importDeviceModel
                                 )
                                 
-                                DeviceInfoItem(label = "ColorOS版本", value = importOplusRomVersion)
-                                DeviceInfoItem(label = "Android版本", value = importAndroidVersion)
+                                DeviceInfoItem(label = stringResource(R.string.config_metadata_oplus_rom_version), value = importOplusRomVersion)
+                                DeviceInfoItem(label = stringResource(R.string.config_metadata_android_version), value = importAndroidVersion)
                                 
-                                if (importTime.isNotBlank() && importTime != "未知") {
-                                    DeviceInfoItem(label = "导出时间", value = importTime)
+                                if (importTime.isNotBlank() && importTime != context.getString(R.string.unknown)) {
+                                    DeviceInfoItem(label = stringResource(R.string.export_time_label), value = importTime)
                                 }
                             }
                         }
                         
-                        Text("确定要导入此配置文件吗？这将覆盖当前设置。")
+                        Text(stringResource(R.string.import_confirm_message))
                     }
                 },
                 confirmButton = {
@@ -450,7 +452,7 @@ fun ModuleSettingsScreen(
                             }
                         }
                     ) {
-                        Text("确定导入")
+                        Text(stringResource(R.string.import_confirm_button))
                     }
                 },
                 dismissButton = {
@@ -461,7 +463,7 @@ fun ModuleSettingsScreen(
                             File(importFilePath).delete()
                         }
                     ) {
-                        Text("取消")
+                        Text(stringResource(R.string.cancel))
                     }
                 }
             )
@@ -471,11 +473,11 @@ fun ModuleSettingsScreen(
         if (showImportSuccessDialog) {
             AlertDialog(
                 onDismissRequest = { showImportSuccessDialog = false },
-                title = { Text("导入成功") },
-                text = { Text("配置已成功导入并应用") },
+                title = { Text(stringResource(R.string.import_success_title)) },
+                text = { Text(stringResource(R.string.import_success_message)) },
                 confirmButton = {
                     TextButton(onClick = { showImportSuccessDialog = false }) {
-                        Text("确定")
+                        Text(stringResource(R.string.confirm))
                     }
                 }
             )
@@ -485,11 +487,11 @@ fun ModuleSettingsScreen(
         if (showImportFailedDialog) {
             AlertDialog(
                 onDismissRequest = { showImportFailedDialog = false },
-                title = { Text("导入失败") },
-                text = { Text("无法导入配置文件，请确保文件格式正确") },
+                title = { Text(stringResource(R.string.import_failed_title)) },
+                text = { Text(stringResource(R.string.import_failed_message)) },
                 confirmButton = {
                     TextButton(onClick = { showImportFailedDialog = false }) {
-                        Text("确定")
+                        Text(stringResource(R.string.confirm))
                     }
                 }
             )
@@ -506,6 +508,8 @@ private fun DeviceInfoItem(
     value: String,
     icon: ImageVector? = null
 ) {
+    val context = LocalContext.current
+    
     Column(modifier = Modifier.padding(vertical = 4.dp)) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -533,7 +537,7 @@ private fun DeviceInfoItem(
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
         
-        if (label != "导出时间") {
+        if (label != stringResource(R.string.export_time_label)) {
             Divider(
                 modifier = Modifier.padding(top = 8.dp),
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.1f)

@@ -17,7 +17,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.tlsu.opluscamerapro.R
 import com.tlsu.opluscamerapro.ui.MainViewModel
 import com.tlsu.opluscamerapro.ui.components.NoRootAccessDialog
 import kotlinx.coroutines.CoroutineScope
@@ -35,6 +38,7 @@ fun CameraSettingsScreen(
     val isLoading = viewModel.isLoading
     val hasRootAccess = viewModel.hasRootAccess
     val config by viewModel.config.collectAsState()
+    val context = LocalContext.current
     
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -49,7 +53,7 @@ fun CameraSettingsScreen(
             ) {
                 CircularProgressIndicator()
                 Text(
-                    text = "加载中...",
+                    text = stringResource(R.string.loading),
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(top = 16.dp)
                 )
@@ -114,7 +118,7 @@ fun CameraSettingsScreen(
                         
                         // 显示保存成功提示
                         coroutineScope.launch {
-                            snackbarHostState.showSnackbar("设置已保存")
+                            snackbarHostState.showSnackbar(context.getString(R.string.settings_saved))
                         }
                     }
                 )
@@ -125,7 +129,7 @@ fun CameraSettingsScreen(
                     onSettingChanged = { key, value ->
                         // 目前没有其他设置，可以在后续添加
                         coroutineScope.launch {
-                            snackbarHostState.showSnackbar("设置已保存")
+                            snackbarHostState.showSnackbar(context.getString(R.string.settings_saved))
                         }
                     }
                 )

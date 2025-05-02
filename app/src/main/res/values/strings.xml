@@ -2,4 +2,189 @@
 <resources>
     <string name="app_name" translatable="false">OplusCameraPro</string>
     <string name="xposeddescription">增强OPPO/OnePlus相机功能的Xposed模块</string>
+    
+    <!-- 配置元数据 -->
+    <string name="config_metadata_message">配置文件留言</string>
+    <string name="config_metadata_export_time">导出时间</string>
+    <string name="config_metadata_oplus_rom_version">ColorOS版本</string>
+    <string name="config_metadata_android_version">Android版本</string>
+    <string name="config_metadata_device_model">设备型号</string>
+    <string name="config_metadata_device_market_name">设备营销名称</string>
+    
+    <!-- 模块设置屏幕 -->
+    <string name="loading">加载中...</string>
+    <string name="module_settings">模块设置</string>
+    <string name="dark_mode">深色模式</string>
+    <string name="dark_mode_description">使用深色主题</string>
+    <string name="follow_system_dark_mode">跟随系统深色模式</string>
+    <string name="follow_system_dark_mode_description">自动跟随系统深色模式设置</string>
+    <string name="export_config">导出配置</string>
+    <string name="export_config_description">导出当前配置到下载目录</string>
+    <string name="import_config">导入配置</string>
+    <string name="import_config_description">从文件导入配置</string>
+    <string name="about">关于</string>
+    <string name="about_description">查看模块信息和作者</string>
+    
+    <!-- 错误消息 -->
+    <string name="need_root_for_export">导出配置需要ROOT权限</string>
+    <string name="need_root_for_import">导入配置需要ROOT权限</string>
+    <string name="export_failed_check_permission">导出失败，请检查权限</string>
+    <string name="export_failed_with_reason">导出失败：%1$s</string>
+    <string name="settings_saved">设置已保存</string>
+    
+    <!-- 对话框 -->
+    <string name="about_dialog_title">关于</string>
+    <string name="about_dialog_version">版本: 1.0</string>
+    <string name="about_dialog_author">作者: TLSU</string>
+    <string name="about_dialog_description">这是一个用于增强OPPO/OnePlus相机应用功能的Xposed模块</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    
+    <!-- 导出对话框 -->
+    <string name="export_dialog_title">导出配置</string>
+    <string name="export_dialog_message">您可以为导出的配置添加一段留言：</string>
+    <string name="export_dialog_hint">留言（可选）</string>
+    <string name="export">导出</string>
+    <string name="export_success_title">导出成功</string>
+    <string name="export_success_message">配置已导出到:\n%1$s</string>
+    
+    <!-- 导入对话框 -->
+    <string name="import_confirm_title">确认导入</string>
+    <string name="import_confirm_message">确定要导入此配置文件吗？这将覆盖当前设置。</string>
+    <string name="import_confirm_button">确定导入</string>
+    <string name="import_success_title">导入成功</string>
+    <string name="import_success_message">配置已成功导入并应用</string>
+    <string name="import_failed_title">导入失败</string>
+    <string name="import_failed_message">无法导入配置文件，请确保文件格式正确</string>
+    
+    <!-- 设备信息卡片 -->
+    <string name="config_message_card_title">配置文件留言</string>
+    <string name="device_info_card_title">源设备信息</string>
+    <string name="device_model_with_market_name">%1$s (%2$s)</string>
+    <string name="export_time_label">导出时间</string>
+    <string name="unknown">未知</string>
+    
+    <!-- 相机设置 -->
+    <string name="camera_settings_title">相机功能设置</string>
+    <string name="vendor_tag_settings_title">VendorTag设置</string>
+    <string name="vendor_tag_enable_25mp">25MP Turbo RAW分辨率增强</string>
+    <string name="vendor_tag_enable_master_mode">大师模式(Version 2)</string>
+    <string name="vendor_tag_enable_master_raw_max">大师模式 RAW MAX 格式</string>
+    <string name="vendor_tag_enable_portrait_zoom">人像模式变焦</string>
+    <string name="vendor_tag_enable_720p_60fps">720P 60FPS 视频</string>
+    <string name="vendor_tag_enable_slow_video_480fps">慢动作视频超广角480FPS</string>
+    <string name="vendor_tag_enable_new_macro_mode">新版微距模式</string>
+    <string name="vendor_tag_enable_macro_tele">微距模式调用长焦</string>
+    <string name="vendor_tag_enable_macro_depth_fusion">微距景深融合</string>
+    <string name="vendor_tag_enable_heif_blur_edit">HEIF模式下相册支持编辑背景虚化</string>
+    <string name="vendor_tag_enable_style_effect">大师模式-滤镜参数预设</string>
+    <string name="vendor_tag_enable_scale_focus">大师模式-Pro-放大对焦</string>
+    <string name="vendor_tag_enable_live_photo_fov_optimize">实况照片fov优化</string>
+    <string name="vendor_tag_enable_10bit_photo">10bit照片</string>
+    <string name="vendor_tag_enable_heif_live_photo">实况HEIF照片</string>
+    <string name="vendor_tag_enable_10bit_live_photo">实况10bit照片</string>
+    <string name="vendor_tag_enable_tol_style_filter">光影有声滤镜</string>
+    <string name="vendor_tag_enable_grand_tour_filter">grand tour系列滤镜</string>
+    <string name="vendor_tag_enable_desert_filter">沙漠系列滤镜</string>
+    <string name="vendor_tag_enable_vignette_grain_filter">vignette grain 滤镜</string>
+    <string name="vendor_tag_enable_director_filter">director 滤镜</string>
+    <string name="vendor_tag_enable_jzk_movie_filter">贾樟柯滤镜</string>
+    <string name="vendor_tag_enable_new_beauty_menu">新版美颜菜单</string>
+    <string name="vendor_tag_enable_super_text_scanner">超级文本扫描</string>
+    <string name="vendor_tag_enable_soft_light_photo_mode">照片模式柔光滤镜</string>
+    <string name="vendor_tag_enable_soft_light_night_mode">夜景模式柔光滤镜</string>
+    <string name="vendor_tag_enable_soft_light_pro_mode">大师模式柔光滤镜</string>
+    <string name="vendor_tag_enable_meishe_filter">meishe 系列滤镜</string>
+    <string name="vendor_tag_enable_preview_hdr">Preview HDR</string>
+    <string name="vendor_tag_enable_video_auto_fps">视频自动帧率</string>
+    <string name="vendor_tag_enable_quick_launch">双击音量键快捷启动相机</string>
+    <string name="vendor_tag_enable_live_photo_high_bitrate">实况视频码率</string>
+    <string name="vendor_tag_enable_video_stop_sound_immediate">停止录制立即播放提示音</string>
+    <string name="vendor_tag_enable_force_portrait_for_third_party">第三方app调用官方相机时可以选择人像模式</string>
+    <string name="vendor_tag_enable_front_camera_zoom">前置拍照变焦</string>
+    
+    <!-- 相机设置分类 -->
+    <string name="camera_settings_category_advanced">高级拍照设置</string>
+    <string name="camera_settings_category_video">视频设置</string>
+    <string name="camera_settings_category_macro">微距设置</string>
+    <string name="camera_settings_category_filters">滤镜设置</string>
+    <string name="camera_settings_category_heif_hdr">HEIF/HDR设置</string>
+    <string name="camera_settings_category_other">其他功能</string>
+    
+    <!-- 相机设置项目 -->
+    <string name="camera_settings_25mp_title">25MP超高清拍照</string>
+    <string name="camera_settings_25mp_desc">启用25MP Turbo RAW增强分辨率</string>
+    <string name="camera_settings_master_mode_title">大师模式</string>
+    <string name="camera_settings_master_mode_desc">启用大师模式2.0</string>
+    <string name="camera_settings_master_raw_max_title">大师模式 RAW MAX</string>
+    <string name="camera_settings_master_raw_max_desc">启用大师模式RAW MAX格式</string>
+    <string name="camera_settings_portrait_zoom_title">人像模式变焦</string>
+    <string name="camera_settings_portrait_zoom_desc">启用人像模式变焦功能</string>
+    <string name="camera_settings_720p_60fps_title">720P 60FPS视频</string>
+    <string name="camera_settings_720p_60fps_desc">启用720P 60帧视频录制</string>
+    <string name="camera_settings_slow_video_480fps_title">慢动作视频超广角480FPS</string>
+    <string name="camera_settings_slow_video_480fps_desc">启用慢动作视频超广角480帧录制</string>
+    <string name="camera_settings_video_auto_fps_title">视频自动帧率</string>
+    <string name="camera_settings_video_auto_fps_desc">启用视频自动帧率功能</string>
+    <string name="camera_settings_live_photo_bitrate_title">实况视频高码率</string>
+    <string name="camera_settings_live_photo_bitrate_desc">提高实况视频码率</string>
+    <string name="camera_settings_video_stop_sound_title">录制结束立即播放提示音</string>
+    <string name="camera_settings_video_stop_sound_desc">停止录制时立即播放提示音</string>
+    <string name="camera_settings_new_macro_mode_title">新版微距模式</string>
+    <string name="camera_settings_new_macro_mode_desc">启用新版微距模式</string>
+    <string name="camera_settings_macro_tele_title">微距模式调用长焦</string>
+    <string name="camera_settings_macro_tele_desc">允许微距模式调用长焦相机</string>
+    <string name="camera_settings_macro_depth_fusion_title">微距景深融合</string>
+    <string name="camera_settings_macro_depth_fusion_desc">启用微距景深融合功能</string>
+    <string name="camera_settings_style_effect_title">大师模式滤镜参数预设</string>
+    <string name="camera_settings_style_effect_desc">启用大师模式滤镜参数预设</string>
+    <string name="camera_settings_tol_style_filter_title">光影有声滤镜</string>
+    <string name="camera_settings_tol_style_filter_desc">启用光影有声滤镜</string>
+    <string name="camera_settings_grand_tour_filter_title">Grand Tour滤镜</string>
+    <string name="camera_settings_grand_tour_filter_desc">启用Grand Tour系列滤镜</string>
+    <string name="camera_settings_desert_filter_title">沙漠系列滤镜</string>
+    <string name="camera_settings_desert_filter_desc">启用沙漠系列滤镜</string>
+    <string name="camera_settings_vignette_grain_filter_title">Vignette Grain滤镜</string>
+    <string name="camera_settings_vignette_grain_filter_desc">启用Vignette Grain滤镜</string>
+    <string name="camera_settings_director_filter_title">Director滤镜</string>
+    <string name="camera_settings_director_filter_desc">启用Director滤镜</string>
+    <string name="camera_settings_jzk_movie_filter_title">贾樟柯滤镜</string>
+    <string name="camera_settings_jzk_movie_filter_desc">启用贾樟柯滤镜</string>
+    <string name="camera_settings_meishe_filter_title">Meishe系列滤镜</string>
+    <string name="camera_settings_meishe_filter_desc">启用Meishe系列滤镜</string>
+    <string name="camera_settings_soft_light_photo_title">柔光滤镜(照片模式)</string>
+    <string name="camera_settings_soft_light_photo_desc">在照片模式中启用柔光滤镜</string>
+    <string name="camera_settings_soft_light_night_title">柔光滤镜(夜景模式)</string>
+    <string name="camera_settings_soft_light_night_desc">在夜景模式中启用柔光滤镜</string>
+    <string name="camera_settings_soft_light_pro_title">柔光滤镜(大师模式)</string>
+    <string name="camera_settings_soft_light_pro_desc">在大师模式中启用柔光滤镜</string>
+    <string name="camera_settings_heif_blur_edit_title">HEIF模式编辑背景虚化</string>
+    <string name="camera_settings_heif_blur_edit_desc">在HEIF模式下支持相册编辑背景虚化</string>
+    <string name="camera_settings_10bit_photo_title">10bit照片</string>
+    <string name="camera_settings_10bit_photo_desc">启用10bit照片拍摄</string>
+    <string name="camera_settings_heif_live_photo_title">实况HEIF照片</string>
+    <string name="camera_settings_heif_live_photo_desc">启用实况HEIF照片格式</string>
+    <string name="camera_settings_10bit_live_photo_title">实况10bit照片</string>
+    <string name="camera_settings_10bit_live_photo_desc">启用实况10bit照片格式</string>
+    <string name="camera_settings_live_photo_fov_title">实况照片FOV优化</string>
+    <string name="camera_settings_live_photo_fov_desc">优化实况照片视场角</string>
+    <string name="camera_settings_preview_hdr_title">预览HDR</string>
+    <string name="camera_settings_preview_hdr_desc">启用预览HDR功能</string>
+    <string name="camera_settings_scale_focus_title">大师模式放大对焦</string>
+    <string name="camera_settings_scale_focus_desc">在大师模式中启用放大对焦功能</string>
+    <string name="camera_settings_new_beauty_menu_title">新版美颜菜单</string>
+    <string name="camera_settings_new_beauty_menu_desc">启用新版美颜菜单</string>
+    <string name="camera_settings_super_text_scanner_title">超级文本扫描</string>
+    <string name="camera_settings_super_text_scanner_desc">启用超级文本扫描功能</string>
+    <string name="camera_settings_quick_launch_title">双击音量键快捷启动相机</string>
+    <string name="camera_settings_quick_launch_desc">启用双击音量键快捷启动相机功能</string>
+    <string name="camera_settings_force_portrait_title">第三方APP调用人像模式</string>
+    <string name="camera_settings_force_portrait_desc">第三方APP调用官方相机时可以选择人像模式</string>
+    <string name="camera_settings_front_camera_zoom_title">前置拍照变焦</string>
+    <string name="camera_settings_front_camera_zoom_desc">启用前置相机变焦功能</string>
+    
+    <!-- 其他设置 -->
+    <string name="other_settings_title">其他设置</string>
+    <string name="other_settings_category_other">其他功能</string>
+    <string name="other_settings_no_settings">暂无其他设置</string>
 </resources>
