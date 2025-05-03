@@ -13,8 +13,8 @@ android {
         applicationId = "com.tlsu.opluscamerapro"
         minSdk = 33
         targetSdk = 35
-        versionCode = 10
-        versionName = "1.0"
+        versionCode = 200
+        versionName = "Lake 2.0.0"
     }
 
     val properties = Properties()

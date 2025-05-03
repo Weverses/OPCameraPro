@@ -149,10 +149,22 @@ object ConfigBasedAddConfig {
                 enableVideoAutoFps = vendorTagsObj.optBoolean("enableVideoAutoFps", true),
                 enableQuickLaunch = vendorTagsObj.optBoolean("enableQuickLaunch", true),
                 enableLivePhotoHighBitrate = vendorTagsObj.optBoolean("enableLivePhotoHighBitrate", true),
+                livePhotoBitrate = vendorTagsObj.optInt("livePhotoBitrate", 45),
                 enableVideoStopSoundImmediate = vendorTagsObj.optBoolean("enableVideoStopSoundImmediate", true),
                 enableForcePortraitForThirdParty = vendorTagsObj.optBoolean("enableForcePortraitForThirdParty", true),
                 enableFrontCameraZoom = vendorTagsObj.optBoolean("enableFrontCameraZoom", true),
-                livePhotoBitrate = vendorTagsObj.optInt("livePhotoBitrate", 45)
+                enablePortraitRearFlash = vendorTagsObj.optBoolean("enablePortraitRearFlash", true),
+                enableAiHdSwitch = vendorTagsObj.optBoolean("enableAiHdSwitch", true),
+                aiHdZoomValue = vendorTagsObj.optInt("aiHdZoomValue", 60),
+                enableTeleSdsr = vendorTagsObj.optBoolean("enableTeleSdsr", true),
+                teleSdsrZoomValue = vendorTagsObj.optInt("teleSdsrZoomValue", 20),
+                enableDolbyVideo = vendorTagsObj.optBoolean("enableDolbyVideo", true),
+                enableDolbyVideo60fps = vendorTagsObj.optBoolean("enableDolbyVideo60fps", true),
+                enableDolbyVideoSat = vendorTagsObj.optBoolean("enableDolbyVideoSat", true),
+                enableFrontDolbyVideo = vendorTagsObj.optBoolean("enableFrontDolbyVideo", true),
+                enableVideoLockLens = vendorTagsObj.optBoolean("enableVideoLockLens", true),
+                enableVideoLockWb = vendorTagsObj.optBoolean("enableVideoLockWb", true),
+                enableMicStatusCheck = vendorTagsObj.optBoolean("enableMicStatusCheck", true)
             )
             
             AppConfig(
@@ -227,15 +239,15 @@ object ConfigBasedAddConfig {
                     ),
                     MergeStrategy.OVERRIDE
                 )
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.portrait.photo.ratio.support",
-                        "Byte",
-                        "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
+                // addPresetTag(
+                //     VendorTagInfo(
+                //         "com.oplus.portrait.photo.ratio.support",
+                //         "Byte",
+                //         "1",
+                //         "1"
+                //     ),
+                //     MergeStrategy.OVERRIDE
+                // )
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.save.portrait.zoom.value",
@@ -680,25 +692,25 @@ object ConfigBasedAddConfig {
                     MergeStrategy.OVERRIDE
                 )
 
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.camera.preview.hdr.transform.support",
-                        "Byte",
-                        "1",
-                        "0"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.camera.preview.hdr.transform.lut.video.support",
-                        "Byte",
-                        "1",
-                        "0"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.camera.preview.hdr.transform.support",
+//                        "Byte",
+//                        "1",
+//                        "0"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+//
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.camera.preview.hdr.transform.lut.video.support",
+//                        "Byte",
+//                        "1",
+//                        "0"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
 
                 addPresetTag(
                     VendorTagInfo(
@@ -820,146 +832,169 @@ object ConfigBasedAddConfig {
             }
 
             // 人像模式后置闪光灯
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.portrait.rear.flash.support",
-                    "Byte",
-                    "1",
-                    "1"
-                ),
-                MergeStrategy.OVERRIDE
-            )
+            if (vendorTags.enablePortraitRearFlash) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.portrait.rear.flash.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
 
-            // AI 超清望远算法介入倍率
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.ai.hd.zoom.value.default",
-                    "Float",
-                    "1",
-                    "60"
-                ),
-                MergeStrategy.OVERRIDE
-            )
+            // AI 超清望远算法相关功能
+            if (vendorTags.enableAiHdSwitch) {
+                // AI 超清望远算法介入倍率
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.ai.hd.zoom.value.default",
+                        "Float",
+                        "1",
+                        vendorTags.aiHdZoomValue.toString()
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // AI 超清望远算法
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.ai.hd.switch.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
 
-            // 超清长焦算法介入倍率
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.ai.hd.gan.zoom.value",
-                    "float",
-                    "1",
-                    "20"
-                ),
-                MergeStrategy.OVERRIDE
-            )
-
-            // 超清长焦算法
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.tele.sdsr.support",
-                    "Byte",
-                    "1",
-                    "1"
-                ),
-                MergeStrategy.OVERRIDE
-            )
-
-            // AI 超清望远算法
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.ai.hd.switch.support",
-                    "Byte",
-                    "1",
-                    "1"
-                ),
-                MergeStrategy.OVERRIDE
-            )
+            // 超清长焦算法相关功能
+            if (vendorTags.enableTeleSdsr) {
+                // 超清长焦算法介入倍率
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.ai.hd.gan.zoom.value",
+                        "float",
+                        "1",
+                        vendorTags.teleSdsrZoomValue.toString()
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 超清长焦算法
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.tele.sdsr.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
 
             // 杜比视频60fps
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.feature.video.dv.60fps.support",
-                    "Byte",
-                    "1",
-                    "1"
-                ),
-                MergeStrategy.OVERRIDE
-            )
+            if (vendorTags.enableDolbyVideo60fps) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.video.dv.60fps.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
 
             // 长焦杜比视频
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.feature.video.dv.sat.support",
-                    "Byte",
-                    "1",
-                    "1"
-                ),
-                MergeStrategy.OVERRIDE
-            )
+            if (vendorTags.enableDolbyVideoSat) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.video.dv.sat.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
 
             // 前置杜比视频
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.feature.video.front.dv.support",
-                    "Byte",
-                    "1",
-                    "1"
-                ),
-                MergeStrategy.OVERRIDE
-            )
+            if (vendorTags.enableFrontDolbyVideo) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.video.front.dv.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
 
             // 杜比视频支持
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.feature.video.dv.support",
-                    "Byte",
-                    "1",
-                    "1"
-                ),
-                MergeStrategy.OVERRIDE
-            )
+            if (vendorTags.enableDolbyVideo) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.video.dv.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
 
             // 视频录制支持锁定镜头
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.video.lock.lens.support",
-                    "Byte",
-                    "1",
-                    "1"
-                ),
-                MergeStrategy.OVERRIDE
-            )
-            // 和上面“视频录制支持锁定镜头”一起的
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.video.lock.lens.zoom.range",
-                    "Float",
-                    "8",
-                    "0.6, 4, 1, 6, 3, 18, 6, 18"
-                ),
-                MergeStrategy.OVERRIDE
-            )
+            if (vendorTags.enableVideoLockLens) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.video.lock.lens.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 锁定镜头变焦范围配置
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.video.lock.lens.zoom.range",
+                        "Float",
+                        "8",
+                        "0.6, 4, 1, 6, 3, 18, 6, 18"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
 
             // 视频录制锁定白平衡
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.video.lock.wb.support",
-                    "Byte",
-                    "1",
-                    "1"
-                ),
-                MergeStrategy.OVERRIDE
-            )
+            if (vendorTags.enableVideoLockWb) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.video.lock.wb.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
 
             // 视频录制检测麦克风状态
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.feature.mic.status.check.support",
-                    "Byte",
-                    "1",
-                    "1"
-                ),
-                MergeStrategy.OVERRIDE
-            )
+            if (vendorTags.enableMicStatusCheck) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.mic.status.check.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
         } catch (e: Exception) {
             XposedBridge.log("OplusCameraPro: Error in addConfig: ${e.message}")
         }

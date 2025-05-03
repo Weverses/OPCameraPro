@@ -110,6 +110,16 @@ fun CameraSettingsScreen(
                                 "enableVideoStopSoundImmediate" -> currentConfig.vendorTags.copy(enableVideoStopSoundImmediate = value)
                                 "enableForcePortraitForThirdParty" -> currentConfig.vendorTags.copy(enableForcePortraitForThirdParty = value)
                                 "enableFrontCameraZoom" -> currentConfig.vendorTags.copy(enableFrontCameraZoom = value)
+                                "enablePortraitRearFlash" -> currentConfig.vendorTags.copy(enablePortraitRearFlash = value)
+                                "enableAiHdSwitch" -> currentConfig.vendorTags.copy(enableAiHdSwitch = value)
+                                "enableTeleSdsr" -> currentConfig.vendorTags.copy(enableTeleSdsr = value)
+                                "enableDolbyVideo" -> currentConfig.vendorTags.copy(enableDolbyVideo = value)
+                                "enableDolbyVideo60fps" -> currentConfig.vendorTags.copy(enableDolbyVideo60fps = value)
+                                "enableDolbyVideoSat" -> currentConfig.vendorTags.copy(enableDolbyVideoSat = value)
+                                "enableFrontDolbyVideo" -> currentConfig.vendorTags.copy(enableFrontDolbyVideo = value)
+                                "enableVideoLockLens" -> currentConfig.vendorTags.copy(enableVideoLockLens = value)
+                                "enableVideoLockWb" -> currentConfig.vendorTags.copy(enableVideoLockWb = value)
+                                "enableMicStatusCheck" -> currentConfig.vendorTags.copy(enableMicStatusCheck = value)
                                 else -> currentConfig.vendorTags
                             }
                             
@@ -133,6 +143,34 @@ fun CameraSettingsScreen(
                         // 显示保存成功提示
                         coroutineScope.launch {
                             snackbarHostState.showSnackbar("实况视频码率已更新为 ${newBitrate}Mbps")
+                        }
+                    },
+                    onAiHdZoomValueChanged = { newValue ->
+                        // 处理AI超清望远算法倍率变更
+                        viewModel.updateVendorTagSetting { currentConfig ->
+                            val updatedVendorTags = currentConfig.vendorTags.copy(
+                                aiHdZoomValue = newValue
+                            )
+                            currentConfig.copy(vendorTags = updatedVendorTags)
+                        }
+                        
+                        // 显示保存成功提示
+                        coroutineScope.launch {
+                            snackbarHostState.showSnackbar("AI超清望远算法介入倍率已更新为 ${newValue}倍")
+                        }
+                    },
+                    onTeleSdsrZoomValueChanged = { newValue ->
+                        // 处理超清长焦算法倍率变更
+                        viewModel.updateVendorTagSetting { currentConfig ->
+                            val updatedVendorTags = currentConfig.vendorTags.copy(
+                                teleSdsrZoomValue = newValue
+                            )
+                            currentConfig.copy(vendorTags = updatedVendorTags)
+                        }
+                        
+                        // 显示保存成功提示
+                        coroutineScope.launch {
+                            snackbarHostState.showSnackbar("超清长焦算法介入倍率已更新为 ${newValue}倍")
                         }
                     }
                 )

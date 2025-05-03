@@ -133,7 +133,43 @@ data class VendorTagSettings(
     val enableForcePortraitForThirdParty: Boolean = true,
     
     // R.string.vendor_tag_enable_front_camera_zoom
-    val enableFrontCameraZoom: Boolean = true
+    val enableFrontCameraZoom: Boolean = true,
+    
+    // 人像模式后置闪光灯
+    val enablePortraitRearFlash: Boolean = true,
+    
+    // AI 超清望远算法
+    val enableAiHdSwitch: Boolean = true,
+    
+    // 超清长焦算法
+    val enableTeleSdsr: Boolean = true,
+    
+    // 杜比视频支持
+    val enableDolbyVideo: Boolean = true,
+    
+    // 杜比视频60fps
+    val enableDolbyVideo60fps: Boolean = true,
+    
+    // 长焦杜比视频
+    val enableDolbyVideoSat: Boolean = true,
+    
+    // 前置杜比视频
+    val enableFrontDolbyVideo: Boolean = true,
+    
+    // 视频录制支持锁定镜头
+    val enableVideoLockLens: Boolean = true,
+    
+    // 视频录制锁定白平衡
+    val enableVideoLockWb: Boolean = true,
+    
+    // 视频录制检测麦克风状态
+    val enableMicStatusCheck: Boolean = true,
+    
+    // AI超清望远算法介入倍率值
+    val aiHdZoomValue: Int = 60,
+    
+    // 超清长焦算法介入倍率值
+    val teleSdsrZoomValue: Int = 20
 )
 
 /**

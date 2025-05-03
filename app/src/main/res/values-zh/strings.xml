@@ -31,9 +31,9 @@
 
     <!-- 对话框 -->
     <string name="about_dialog_title">关于</string>
-    <string name="about_dialog_version">版本: 1.0</string>
-    <string name="about_dialog_author">作者: TLSU</string>
-    <string name="about_dialog_description">这是一个用于增强OPPO/OnePlus相机应用功能的Xposed模块</string>
+    <string name="about_dialog_version">版本: Lake 2.0.0</string>
+    <string name="about_dialog_author">作者: TimelessU</string>
+    <string name="about_dialog_description">Oplus 相机功能补全</string>
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
 

@@ -142,7 +142,19 @@ object ConfigManager {
                 livePhotoBitrate = vendorTagsObj.optInt("livePhotoBitrate", 45),
                 enableVideoStopSoundImmediate = vendorTagsObj.optBoolean("enableVideoStopSoundImmediate", true),
                 enableForcePortraitForThirdParty = vendorTagsObj.optBoolean("enableForcePortraitForThirdParty", true),
-                enableFrontCameraZoom = vendorTagsObj.optBoolean("enableFrontCameraZoom", true)
+                enableFrontCameraZoom = vendorTagsObj.optBoolean("enableFrontCameraZoom", true),
+                enablePortraitRearFlash = vendorTagsObj.optBoolean("enablePortraitRearFlash", true),
+                enableAiHdSwitch = vendorTagsObj.optBoolean("enableAiHdSwitch", true),
+                enableTeleSdsr = vendorTagsObj.optBoolean("enableTeleSdsr", true),
+                enableDolbyVideo = vendorTagsObj.optBoolean("enableDolbyVideo", true),
+                enableDolbyVideo60fps = vendorTagsObj.optBoolean("enableDolbyVideo60fps", true),
+                enableDolbyVideoSat = vendorTagsObj.optBoolean("enableDolbyVideoSat", true),
+                enableFrontDolbyVideo = vendorTagsObj.optBoolean("enableFrontDolbyVideo", true),
+                enableVideoLockLens = vendorTagsObj.optBoolean("enableVideoLockLens", true),
+                enableVideoLockWb = vendorTagsObj.optBoolean("enableVideoLockWb", true),
+                enableMicStatusCheck = vendorTagsObj.optBoolean("enableMicStatusCheck", true),
+                aiHdZoomValue = vendorTagsObj.optInt("aiHdZoomValue", 60),
+                teleSdsrZoomValue = vendorTagsObj.optInt("teleSdsrZoomValue", 20)
             )
             
             // 解析其他设置
@@ -223,6 +235,18 @@ object ConfigManager {
                     put("enableVideoStopSoundImmediate", config.vendorTags.enableVideoStopSoundImmediate)
                     put("enableForcePortraitForThirdParty", config.vendorTags.enableForcePortraitForThirdParty)
                     put("enableFrontCameraZoom", config.vendorTags.enableFrontCameraZoom)
+                    put("enablePortraitRearFlash", config.vendorTags.enablePortraitRearFlash)
+                    put("enableAiHdSwitch", config.vendorTags.enableAiHdSwitch)
+                    put("enableTeleSdsr", config.vendorTags.enableTeleSdsr)
+                    put("enableDolbyVideo", config.vendorTags.enableDolbyVideo)
+                    put("enableDolbyVideo60fps", config.vendorTags.enableDolbyVideo60fps)
+                    put("enableDolbyVideoSat", config.vendorTags.enableDolbyVideoSat)
+                    put("enableFrontDolbyVideo", config.vendorTags.enableFrontDolbyVideo)
+                    put("enableVideoLockLens", config.vendorTags.enableVideoLockLens)
+                    put("enableVideoLockWb", config.vendorTags.enableVideoLockWb)
+                    put("enableMicStatusCheck", config.vendorTags.enableMicStatusCheck)
+                    put("aiHdZoomValue", config.vendorTags.aiHdZoomValue)
+                    put("teleSdsrZoomValue", config.vendorTags.teleSdsrZoomValue)
                 })
                 
                 // 保存其他设置

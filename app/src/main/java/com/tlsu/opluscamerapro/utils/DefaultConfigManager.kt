@@ -63,7 +63,17 @@ object DefaultConfigManager {
         "com.oplus.camera.livephoto.video.bitrate" to "enableLivePhotoHighBitrate",
         "com.oplus.video.stop.record.sound.play.immediate" to "enableVideoStopSoundImmediate",
         "com.oplus.force.portrait.when.parse.intent" to "enableForcePortraitForThirdParty",
-        "com.oplus.feature.front.camera.wide.zoom.support" to "enableFrontCameraZoom"
+        "com.oplus.feature.front.camera.wide.zoom.support" to "enableFrontCameraZoom",
+        "com.oplus.portrait.rear.flash.support" to "enablePortraitRearFlash",
+        "com.oplus.ai.hd.switch.support" to "enableAiHdSwitch",
+        "com.oplus.tele.sdsr.support" to "enableTeleSdsr",
+        "com.oplus.feature.video.dv.support" to "enableDolbyVideo",
+        "com.oplus.feature.video.dv.60fps.support" to "enableDolbyVideo60fps",
+        "com.oplus.feature.video.dv.sat.support" to "enableDolbyVideoSat",
+        "com.oplus.feature.video.front.dv.support" to "enableFrontDolbyVideo",
+        "com.oplus.video.lock.lens.support" to "enableVideoLockLens",
+        "com.oplus.video.lock.wb.support" to "enableVideoLockWb",
+        "com.oplus.feature.mic.status.check.support" to "enableMicStatusCheck"
     )
     
     // 保存功能名称到VendorTag的反向映射

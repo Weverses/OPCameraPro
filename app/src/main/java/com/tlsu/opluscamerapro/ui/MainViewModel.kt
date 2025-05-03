@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tlsu.opluscamerapro.data.AppConfig
 import com.tlsu.opluscamerapro.data.ConfigManager
+import com.tlsu.opluscamerapro.utils.DeviceCheck.exec
+import com.tlsu.opluscamerapro.utils.ZipExtractor
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
@@ -40,6 +42,17 @@ class MainViewModel : ViewModel() {
             
             // 初始化配置
             ConfigManager.initialize(context)
+            
+            // 如果有ROOT权限，尝试解压子模块文件并安装到Magisk
+            if (hasRootAccess) {
+                try {
+                    // 处理模块文件：解压和安装到Magisk
+                    ZipExtractor.processModuleFiles(context)
+                } catch (e: Exception) {
+                    // 处理失败也不影响应用主功能
+                    android.util.Log.e("MainViewModel", "Failed to process module files: ${e.message}")
+                }
+            }
             
             isLoading = false
         }
@@ -96,5 +109,16 @@ class MainViewModel : ViewModel() {
     // 导入配置
     suspend fun importConfig(sourcePath: String): Boolean {
         return ConfigManager.importConfig(sourcePath)
+    }
+    
+    // 重启相机应用
+    fun restartCameraApp(): Boolean {
+        return try {
+            exec("su -c killall com.android.camera")
+            true
+        } catch (e: Exception) {
+            android.util.Log.e("MainViewModel", "Failed to restart camera app: ${e.message}")
+            false
+        }
     }
 } 

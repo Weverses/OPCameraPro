@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">OplusCameraPro</string>
-    <string name="xposeddescription">增强OPPO/OnePlus相机功能的Xposed模块</string>
+    <string name="app_name" translatable="false">OPCameraPro</string>
+    <string name="xposeddescription">相机功能补全</string>
     
     <!-- 配置元数据 -->
     <string name="config_metadata_message">配置文件留言</string>
@@ -34,9 +34,9 @@
     
     <!-- 对话框 -->
     <string name="about_dialog_title">关于</string>
-    <string name="about_dialog_version">版本: 1.0</string>
-    <string name="about_dialog_author">作者: TLSU</string>
-    <string name="about_dialog_description">这是一个用于增强OPPO/OnePlus相机应用功能的Xposed模块</string>
+    <string name="about_dialog_version">版本: Lake 2.0.0</string>
+    <string name="about_dialog_author">作者: TimelessU</string>
+    <string name="about_dialog_description">Oplus 相机功能补全</string>
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
     
@@ -102,13 +102,23 @@
     <string name="vendor_tag_enable_video_stop_sound_immediate">停止录制立即播放提示音</string>
     <string name="vendor_tag_enable_force_portrait_for_third_party">第三方app调用官方相机时可以选择人像模式</string>
     <string name="vendor_tag_enable_front_camera_zoom">前置拍照变焦</string>
+    <string name="vendor_tag_enable_portrait_rear_flash">人像模式后置闪光灯</string>
+    <string name="vendor_tag_enable_ai_hd_switch">AI 超清望远算法</string>
+    <string name="vendor_tag_enable_tele_sdsr">超清长焦算法</string>
+    <string name="vendor_tag_enable_dolby_video">杜比视频支持</string>
+    <string name="vendor_tag_enable_dolby_video_60fps">杜比视频60fps</string>
+    <string name="vendor_tag_enable_dolby_video_sat">长焦杜比视频</string>
+    <string name="vendor_tag_enable_front_dolby_video">前置杜比视频</string>
+    <string name="vendor_tag_enable_video_lock_lens">视频录制锁定镜头</string>
+    <string name="vendor_tag_enable_video_lock_wb">视频录制锁定白平衡</string>
+    <string name="vendor_tag_enable_mic_status_check">视频录制检测麦克风状态</string>
     
     <!-- 相机设置分类 -->
     <string name="camera_settings_category_advanced">拍照设置</string>
     <string name="camera_settings_category_video">视频设置</string>
     <string name="camera_settings_category_macro">微距设置</string>
     <string name="camera_settings_category_filters">滤镜设置</string>
-    <string name="camera_settings_category_heif_hdr">HEIF/HDR设置</string>
+    <string name="camera_settings_category_heif_hdr">杂项设置</string>
     <string name="camera_settings_category_other">实况照片设置</string>
 
     <!-- 相机设置项目 -->
@@ -182,6 +192,26 @@
     <string name="camera_settings_force_portrait_desc">第三方APP调用官方相机时可以选择人像模式</string>
     <string name="camera_settings_front_camera_zoom_title">前置拍照变焦</string>
     <string name="camera_settings_front_camera_zoom_desc">启用前置相机变焦功能</string>
+    <string name="camera_settings_portrait_rear_flash_title">人像模式后置闪光灯</string>
+    <string name="camera_settings_portrait_rear_flash_desc">在人像模式中启用后置闪光灯功能</string>
+    <string name="camera_settings_ai_hd_switch_title">AI 超清望远算法</string>
+    <string name="camera_settings_ai_hd_switch_desc">启用AI增强的超清望远算法功能</string>
+    <string name="camera_settings_tele_sdsr_title">超清长焦算法</string>
+    <string name="camera_settings_tele_sdsr_desc">启用超清长焦算法增强图像质量</string>
+    <string name="camera_settings_dolby_video_title">杜比视频支持</string>
+    <string name="camera_settings_dolby_video_desc">启用杜比视觉HDR视频录制功能</string>
+    <string name="camera_settings_dolby_video_60fps_title">杜比视频60fps</string>
+    <string name="camera_settings_dolby_video_60fps_desc">支持以60fps录制杜比视觉HDR视频</string>
+    <string name="camera_settings_dolby_video_sat_title">长焦杜比视频</string>
+    <string name="camera_settings_dolby_video_sat_desc">支持使用长焦镜头录制杜比视觉HDR视频</string>
+    <string name="camera_settings_front_dolby_video_title">前置杜比视频</string>
+    <string name="camera_settings_front_dolby_video_desc">支持使用前置摄像头录制杜比视觉HDR视频</string>
+    <string name="camera_settings_video_lock_lens_title">视频录制锁定镜头</string>
+    <string name="camera_settings_video_lock_lens_desc">允许在视频录制过程中锁定当前镜头，防止切换</string>
+    <string name="camera_settings_video_lock_wb_title">视频录制锁定白平衡</string>
+    <string name="camera_settings_video_lock_wb_desc">允许在视频录制过程中锁定白平衡设置</string>
+    <string name="camera_settings_mic_status_check_title">视频录制检测麦克风状态</string>
+    <string name="camera_settings_mic_status_check_desc">启用对麦克风状态的检测功能，提示麦克风异常</string>
 
     <!-- 其他设置 -->
     <string name="other_settings_title">其他设置</string>
@@ -189,7 +219,7 @@
     <string name="other_settings_no_settings">暂无其他设置</string>
     
     <!-- 默认值设置 -->
-    <string name="default_value_enabled">默认值：开</string>
-    <string name="default_value_disabled">默认值：关</string>
-    <string name="default_value_unknown">默认值：未知</string>
+    <string name="default_value_enabled">设备默认值：开</string>
+    <string name="default_value_disabled">设备默认值：关</string>
+    <string name="default_value_unknown">设备默认值：未知，等待Hook更新</string>
 </resources>

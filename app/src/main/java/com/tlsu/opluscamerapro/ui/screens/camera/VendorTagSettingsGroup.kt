@@ -33,7 +33,9 @@ import com.tlsu.opluscamerapro.utils.DefaultConfigManager
 fun VendorTagSettingsGroup(
     vendorTagSettings: VendorTagSettings,
     onSettingChanged: (String, Boolean) -> Unit,
-    onBitrateChanged: (Int) -> Unit = {}
+    onBitrateChanged: (Int) -> Unit = {},
+    onAiHdZoomValueChanged: (Int) -> Unit = {},
+    onTeleSdsrZoomValueChanged: (Int) -> Unit = {}
 ) {
     val context = LocalContext.current
     
@@ -41,6 +43,16 @@ fun VendorTagSettingsGroup(
     var showBitrateDialog by remember { mutableStateOf(false) }
     var bitrateValue by remember { mutableStateOf(vendorTagSettings.livePhotoBitrate.toString()) }
     var bitrateError by remember { mutableStateOf<String?>(null) }
+    
+    // 状态变量控制AI超清望远算法倍率输入对话框
+    var showAiHdZoomDialog by remember { mutableStateOf(false) }
+    var aiHdZoomValue by remember { mutableStateOf(vendorTagSettings.aiHdZoomValue.toString()) }
+    var aiHdZoomError by remember { mutableStateOf<String?>(null) }
+    
+    // 状态变量控制超清长焦算法倍率输入对话框
+    var showTeleSdsrZoomDialog by remember { mutableStateOf(false) }
+    var teleSdsrZoomValue by remember { mutableStateOf(vendorTagSettings.teleSdsrZoomValue.toString()) }
+    var teleSdsrZoomError by remember { mutableStateOf<String?>(null) }
     
     if (showBitrateDialog) {
         AlertDialog(
@@ -118,6 +130,160 @@ fun VendorTagSettingsGroup(
         )
     }
     
+    // AI超清望远算法倍率对话框
+    if (showAiHdZoomDialog) {
+        AlertDialog(
+            onDismissRequest = { showAiHdZoomDialog = false },
+            title = { Text("设置AI超清望远算法介入倍率") },
+            text = {
+                Column {
+                    Text("请输入AI超清望远算法介入倍率值：")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    OutlinedTextField(
+                        value = aiHdZoomValue,
+                        onValueChange = { 
+                            aiHdZoomValue = it
+                            // 验证输入
+                            aiHdZoomError = try {
+                                val value = it.toInt()
+                                if (value < 10) {
+                                    "倍率不能小于10"
+                                } else if (value > 100) {
+                                    "倍率不能大于100"
+                                } else {
+                                    null
+                                }
+                            } catch (e: NumberFormatException) {
+                                "请输入有效的数字"
+                            }
+                        },
+                        isError = aiHdZoomError != null,
+                        modifier = Modifier.fillMaxWidth(),
+                        label = { Text("倍率") },
+                        singleLine = true
+                    )
+                    if (aiHdZoomError != null) {
+                        Text(
+                            text = aiHdZoomError!!,
+                            color = MaterialTheme.colorScheme.error,
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        "当前值: ${vendorTagSettings.aiHdZoomValue}倍",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Text(
+                        "提示: 该值表示AI超清望远算法在多少倍率下开始介入，建议值为60",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        try {
+                            val newValue = aiHdZoomValue.toInt()
+                            if (aiHdZoomError == null && newValue != vendorTagSettings.aiHdZoomValue) {
+                                onAiHdZoomValueChanged(newValue)
+                            }
+                            showAiHdZoomDialog = false
+                        } catch (e: NumberFormatException) {
+                            aiHdZoomError = "请输入有效的数字"
+                        }
+                    },
+                    enabled = aiHdZoomError == null
+                ) {
+                    Text("确定")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showAiHdZoomDialog = false }) {
+                    Text("取消")
+                }
+            }
+        )
+    }
+    
+    // 超清长焦算法倍率对话框
+    if (showTeleSdsrZoomDialog) {
+        AlertDialog(
+            onDismissRequest = { showTeleSdsrZoomDialog = false },
+            title = { Text("设置超清长焦算法介入倍率") },
+            text = {
+                Column {
+                    Text("请输入超清长焦算法介入倍率值：")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    OutlinedTextField(
+                        value = teleSdsrZoomValue,
+                        onValueChange = { 
+                            teleSdsrZoomValue = it
+                            // 验证输入
+                            teleSdsrZoomError = try {
+                                val value = it.toInt()
+                                if (value < 5) {
+                                    "倍率不能小于5"
+                                } else if (value > 60) {
+                                    "倍率不能大于60"
+                                } else {
+                                    null
+                                }
+                            } catch (e: NumberFormatException) {
+                                "请输入有效的数字"
+                            }
+                        },
+                        isError = teleSdsrZoomError != null,
+                        modifier = Modifier.fillMaxWidth(),
+                        label = { Text("倍率") },
+                        singleLine = true
+                    )
+                    if (teleSdsrZoomError != null) {
+                        Text(
+                            text = teleSdsrZoomError!!,
+                            color = MaterialTheme.colorScheme.error,
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        "当前值: ${vendorTagSettings.teleSdsrZoomValue}倍",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Text(
+                        "提示: 该值表示超清长焦算法在多少倍率下开始介入，建议值为20",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        try {
+                            val newValue = teleSdsrZoomValue.toInt()
+                            if (teleSdsrZoomError == null && newValue != vendorTagSettings.teleSdsrZoomValue) {
+                                onTeleSdsrZoomValueChanged(newValue)
+                            }
+                            showTeleSdsrZoomDialog = false
+                        } catch (e: NumberFormatException) {
+                            teleSdsrZoomError = "请输入有效的数字"
+                        }
+                    },
+                    enabled = teleSdsrZoomError == null
+                ) {
+                    Text("确定")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showTeleSdsrZoomDialog = false }) {
+                    Text("取消")
+                }
+            }
+        )
+    }
+    
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -146,7 +312,15 @@ fun VendorTagSettingsGroup(
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMasterMode"),
                 onCheckedChange = { onSettingChanged("enableMasterMode", it) }
             )
-            
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_preview_hdr_title),
+                description = stringResource(R.string.camera_settings_preview_hdr_desc),
+                checked = vendorTagSettings.enablePreviewHdr,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enablePreviewHdr"),
+                onCheckedChange = { onSettingChanged("enablePreviewHdr", it) }
+            )
+
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_master_raw_max_title),
                 description = stringResource(R.string.camera_settings_master_raw_max_desc),
@@ -154,7 +328,7 @@ fun VendorTagSettingsGroup(
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMasterRawMax"),
                 onCheckedChange = { onSettingChanged("enableMasterRawMax", it) }
             )
-            
+
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_portrait_zoom_title),
                 description = stringResource(R.string.camera_settings_portrait_zoom_desc),
@@ -162,6 +336,15 @@ fun VendorTagSettingsGroup(
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enablePortraitZoom"),
                 onCheckedChange = { onSettingChanged("enablePortraitZoom", it) }
             )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_portrait_rear_flash_title),
+                description = stringResource(R.string.camera_settings_portrait_rear_flash_desc),
+                checked = vendorTagSettings.enablePortraitRearFlash,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enablePortraitRearFlash"),
+                onCheckedChange = { onSettingChanged("enablePortraitRearFlash", it) }
+            )
+
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_scale_focus_title),
                 description = stringResource(R.string.camera_settings_scale_focus_desc),
@@ -210,6 +393,37 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableFrontCameraZoom", it) }
             )
 
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_ai_hd_switch_title),
+                description = "${stringResource(R.string.camera_settings_ai_hd_switch_desc)} (当前介入倍率: ${vendorTagSettings.aiHdZoomValue}倍)",
+                checked = vendorTagSettings.enableAiHdSwitch,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableAiHdSwitch"),
+                onCheckedChange = { newState -> 
+                    onSettingChanged("enableAiHdSwitch", newState)
+                    if (newState) {
+                        // 如果开启了AI超清望远算法，显示倍率设置对话框
+                        aiHdZoomValue = vendorTagSettings.aiHdZoomValue.toString()
+                        aiHdZoomError = null
+                        showAiHdZoomDialog = true
+                    }
+                }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_tele_sdsr_title),
+                description = "${stringResource(R.string.camera_settings_tele_sdsr_desc)} (当前介入倍率: ${vendorTagSettings.teleSdsrZoomValue}倍)",
+                checked = vendorTagSettings.enableTeleSdsr,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableTeleSdsr"),
+                onCheckedChange = { newState -> 
+                    onSettingChanged("enableTeleSdsr", newState)
+                    if (newState) {
+                        // 如果开启了超清长焦算法，显示倍率设置对话框
+                        teleSdsrZoomValue = vendorTagSettings.teleSdsrZoomValue.toString()
+                        teleSdsrZoomError = null
+                        showTeleSdsrZoomDialog = true
+                    }
+                }
+            )
         }
         
         // 视频设置
@@ -253,13 +467,69 @@ fun VendorTagSettingsGroup(
                     }
                 }
             )
-            
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_dolby_video_title),
+                description = stringResource(R.string.camera_settings_dolby_video_desc),
+                checked = vendorTagSettings.enableDolbyVideo,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableDolbyVideo"),
+                onCheckedChange = { onSettingChanged("enableDolbyVideo", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_dolby_video_60fps_title),
+                description = stringResource(R.string.camera_settings_dolby_video_60fps_desc),
+                checked = vendorTagSettings.enableDolbyVideo60fps,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableDolbyVideo60fps"),
+                onCheckedChange = { onSettingChanged("enableDolbyVideo60fps", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_dolby_video_sat_title),
+                description = stringResource(R.string.camera_settings_dolby_video_sat_desc),
+                checked = vendorTagSettings.enableDolbyVideoSat,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableDolbyVideoSat"),
+                onCheckedChange = { onSettingChanged("enableDolbyVideoSat", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_front_dolby_video_title),
+                description = stringResource(R.string.camera_settings_front_dolby_video_desc),
+                checked = vendorTagSettings.enableFrontDolbyVideo,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableFrontDolbyVideo"),
+                onCheckedChange = { onSettingChanged("enableFrontDolbyVideo", it) }
+            )
+
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_video_stop_sound_title),
                 description = stringResource(R.string.camera_settings_video_stop_sound_desc),
                 checked = vendorTagSettings.enableVideoStopSoundImmediate,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoStopSoundImmediate"),
                 onCheckedChange = { onSettingChanged("enableVideoStopSoundImmediate", it) }
+            )
+            
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_video_lock_lens_title),
+                description = stringResource(R.string.camera_settings_video_lock_lens_desc),
+                checked = vendorTagSettings.enableVideoLockLens,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoLockLens"),
+                onCheckedChange = { onSettingChanged("enableVideoLockLens", it) }
+            )
+            
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_video_lock_wb_title),
+                description = stringResource(R.string.camera_settings_video_lock_wb_desc),
+                checked = vendorTagSettings.enableVideoLockWb,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoLockWb"),
+                onCheckedChange = { onSettingChanged("enableVideoLockWb", it) }
+            )
+            
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_mic_status_check_title),
+                description = stringResource(R.string.camera_settings_mic_status_check_desc),
+                checked = vendorTagSettings.enableMicStatusCheck,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMicStatusCheck"),
+                onCheckedChange = { onSettingChanged("enableMicStatusCheck", it) }
             )
         }
         
@@ -380,34 +650,7 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableSoftLightProMode", it) }
             )
         }
-        
-        // HEIF/HDR设置
-        SettingsCard(title = stringResource(R.string.camera_settings_category_heif_hdr)) {
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_heif_blur_edit_title),
-                description = stringResource(R.string.camera_settings_heif_blur_edit_desc),
-                checked = vendorTagSettings.enableHeifBlurEdit,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHeifBlurEdit"),
-                onCheckedChange = { onSettingChanged("enableHeifBlurEdit", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_10bit_photo_title),
-                description = stringResource(R.string.camera_settings_10bit_photo_desc),
-                checked = vendorTagSettings.enable10bitPhoto,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enable10bitPhoto"),
-                onCheckedChange = { onSettingChanged("enable10bitPhoto", it) }
-            )
 
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_preview_hdr_title),
-                description = stringResource(R.string.camera_settings_preview_hdr_desc),
-                checked = vendorTagSettings.enablePreviewHdr,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enablePreviewHdr"),
-                onCheckedChange = { onSettingChanged("enablePreviewHdr", it) }
-            )
-        }
-        
         // 其他功能
         SettingsCard(title = stringResource(R.string.camera_settings_category_other)) {
             SettingsSwitchItem(
@@ -435,6 +678,27 @@ fun VendorTagSettingsGroup(
             )
 
         }
+
+        // HEIF/HDR设置
+        SettingsCard(title = stringResource(R.string.camera_settings_category_heif_hdr)) {
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_heif_blur_edit_title),
+                description = stringResource(R.string.camera_settings_heif_blur_edit_desc),
+                checked = vendorTagSettings.enableHeifBlurEdit,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHeifBlurEdit"),
+                onCheckedChange = { onSettingChanged("enableHeifBlurEdit", it) }
+            )
+            
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_10bit_photo_title),
+                description = stringResource(R.string.camera_settings_10bit_photo_desc),
+                checked = vendorTagSettings.enable10bitPhoto,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enable10bitPhoto"),
+                onCheckedChange = { onSettingChanged("enable10bitPhoto", it) }
+            )
+        }
+        
+
         
         Spacer(modifier = Modifier.height(8.dp))
     }
