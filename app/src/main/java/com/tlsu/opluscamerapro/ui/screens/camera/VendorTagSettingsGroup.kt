@@ -64,6 +64,48 @@ fun VendorTagSettingsGroup(
                 checked = vendorTagSettings.enablePortraitZoom,
                 onCheckedChange = { onSettingChanged("enablePortraitZoom", it) }
             )
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_scale_focus_title),
+                description = stringResource(R.string.camera_settings_scale_focus_desc),
+                checked = vendorTagSettings.enableScaleFocus,
+                onCheckedChange = { onSettingChanged("enableScaleFocus", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_new_beauty_menu_title),
+                description = stringResource(R.string.camera_settings_new_beauty_menu_desc),
+                checked = vendorTagSettings.enableNewBeautyMenu,
+                onCheckedChange = { onSettingChanged("enableNewBeautyMenu", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_super_text_scanner_title),
+                description = stringResource(R.string.camera_settings_super_text_scanner_desc),
+                checked = vendorTagSettings.enableSuperTextScanner,
+                onCheckedChange = { onSettingChanged("enableSuperTextScanner", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_quick_launch_title),
+                description = stringResource(R.string.camera_settings_quick_launch_desc),
+                checked = vendorTagSettings.enableQuickLaunch,
+                onCheckedChange = { onSettingChanged("enableQuickLaunch", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_force_portrait_title),
+                description = stringResource(R.string.camera_settings_force_portrait_desc),
+                checked = vendorTagSettings.enableForcePortraitForThirdParty,
+                onCheckedChange = { onSettingChanged("enableForcePortraitForThirdParty", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_front_camera_zoom_title),
+                description = stringResource(R.string.camera_settings_front_camera_zoom_desc),
+                checked = vendorTagSettings.enableFrontCameraZoom,
+                onCheckedChange = { onSettingChanged("enableFrontCameraZoom", it) }
+            )
+
         }
         
         // 视频设置
@@ -223,28 +265,7 @@ fun VendorTagSettingsGroup(
                 checked = vendorTagSettings.enable10bitPhoto,
                 onCheckedChange = { onSettingChanged("enable10bitPhoto", it) }
             )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_heif_live_photo_title),
-                description = stringResource(R.string.camera_settings_heif_live_photo_desc),
-                checked = vendorTagSettings.enableHeifLivePhoto,
-                onCheckedChange = { onSettingChanged("enableHeifLivePhoto", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_10bit_live_photo_title),
-                description = stringResource(R.string.camera_settings_10bit_live_photo_desc),
-                checked = vendorTagSettings.enable10bitLivePhoto,
-                onCheckedChange = { onSettingChanged("enable10bitLivePhoto", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_live_photo_fov_title),
-                description = stringResource(R.string.camera_settings_live_photo_fov_desc),
-                checked = vendorTagSettings.enableLivePhotoFovOptimize,
-                onCheckedChange = { onSettingChanged("enableLivePhotoFovOptimize", it) }
-            )
-            
+
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_preview_hdr_title),
                 description = stringResource(R.string.camera_settings_preview_hdr_desc),
@@ -256,46 +277,26 @@ fun VendorTagSettingsGroup(
         // 其他功能
         SettingsCard(title = stringResource(R.string.camera_settings_category_other)) {
             SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_scale_focus_title),
-                description = stringResource(R.string.camera_settings_scale_focus_desc),
-                checked = vendorTagSettings.enableScaleFocus,
-                onCheckedChange = { onSettingChanged("enableScaleFocus", it) }
+                title = stringResource(R.string.camera_settings_heif_live_photo_title),
+                description = stringResource(R.string.camera_settings_heif_live_photo_desc),
+                checked = vendorTagSettings.enableHeifLivePhoto,
+                onCheckedChange = { onSettingChanged("enableHeifLivePhoto", it) }
             )
-            
+
             SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_new_beauty_menu_title),
-                description = stringResource(R.string.camera_settings_new_beauty_menu_desc),
-                checked = vendorTagSettings.enableNewBeautyMenu,
-                onCheckedChange = { onSettingChanged("enableNewBeautyMenu", it) }
+                title = stringResource(R.string.camera_settings_10bit_live_photo_title),
+                description = stringResource(R.string.camera_settings_10bit_live_photo_desc),
+                checked = vendorTagSettings.enable10bitLivePhoto,
+                onCheckedChange = { onSettingChanged("enable10bitLivePhoto", it) }
             )
-            
+
             SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_super_text_scanner_title),
-                description = stringResource(R.string.camera_settings_super_text_scanner_desc),
-                checked = vendorTagSettings.enableSuperTextScanner,
-                onCheckedChange = { onSettingChanged("enableSuperTextScanner", it) }
+                title = stringResource(R.string.camera_settings_live_photo_fov_title),
+                description = stringResource(R.string.camera_settings_live_photo_fov_desc),
+                checked = vendorTagSettings.enableLivePhotoFovOptimize,
+                onCheckedChange = { onSettingChanged("enableLivePhotoFovOptimize", it) }
             )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_quick_launch_title),
-                description = stringResource(R.string.camera_settings_quick_launch_desc),
-                checked = vendorTagSettings.enableQuickLaunch,
-                onCheckedChange = { onSettingChanged("enableQuickLaunch", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_force_portrait_title),
-                description = stringResource(R.string.camera_settings_force_portrait_desc),
-                checked = vendorTagSettings.enableForcePortraitForThirdParty,
-                onCheckedChange = { onSettingChanged("enableForcePortraitForThirdParty", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_front_camera_zoom_title),
-                description = stringResource(R.string.camera_settings_front_camera_zoom_desc),
-                checked = vendorTagSettings.enableFrontCameraZoom,
-                onCheckedChange = { onSettingChanged("enableFrontCameraZoom", it) }
-            )
+
         }
         
         Spacer(modifier = Modifier.height(8.dp))

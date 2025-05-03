@@ -101,17 +101,17 @@
     <string name="vendor_tag_enable_front_camera_zoom">前置拍照变焦</string>
 
     <!-- 相机设置分类 -->
-    <string name="camera_settings_category_advanced">高级拍照设置</string>
+    <string name="camera_settings_category_advanced">拍照设置</string>
     <string name="camera_settings_category_video">视频设置</string>
     <string name="camera_settings_category_macro">微距设置</string>
     <string name="camera_settings_category_filters">滤镜设置</string>
     <string name="camera_settings_category_heif_hdr">HEIF/HDR设置</string>
-    <string name="camera_settings_category_other">其他功能</string>
+    <string name="camera_settings_category_other">实况照片设置</string>
 
     <!-- 相机设置项目 -->
-    <string name="camera_settings_25mp_title">25MP超高清拍照</string>
-    <string name="camera_settings_25mp_desc">启用25MP Turbo RAW增强分辨率</string>
-    <string name="camera_settings_master_mode_title">大师模式</string>
+    <string name="camera_settings_25mp_title">25MP</string>
+    <string name="camera_settings_25mp_desc">启用25MP Turbo RAW Enhance Resolution</string>
+    <string name="camera_settings_master_mode_title">新版大师模式</string>
     <string name="camera_settings_master_mode_desc">启用大师模式2.0</string>
     <string name="camera_settings_master_raw_max_title">大师模式 RAW MAX</string>
     <string name="camera_settings_master_raw_max_desc">启用大师模式RAW MAX格式</string>
