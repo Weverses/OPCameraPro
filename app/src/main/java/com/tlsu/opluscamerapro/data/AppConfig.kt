@@ -123,6 +123,9 @@ data class VendorTagSettings(
     // R.string.vendor_tag_enable_live_photo_high_bitrate
     val enableLivePhotoHighBitrate: Boolean = true,
     
+    // 实况视频自定义码率值
+    val livePhotoBitrate: Int = 45,
+    
     // R.string.vendor_tag_enable_video_stop_sound_immediate
     val enableVideoStopSoundImmediate: Boolean = true,
     
@@ -147,4 +150,22 @@ data class OtherSettings(
 data class AppSettings(
     val darkMode: Boolean = false,
     val followSystemDarkMode: Boolean = false  // 深色模式跟随系统
+)
+
+/**
+ * 默认值配置
+ * 保存从设备原始配置中提取的默认值信息
+ */
+data class DefaultValueConfig(
+    val vendorTags: Map<String, DefaultTagInfo> = mapOf()
+)
+
+/**
+ * 默认标签信息
+ */
+data class DefaultTagInfo(
+    val vendorTag: String,    // VendorTag名称
+    val type: String,         // 类型
+    val value: String,        // 值
+    val isEnabled: Boolean    // 是否启用
 ) 

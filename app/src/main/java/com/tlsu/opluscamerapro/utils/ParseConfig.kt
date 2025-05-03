@@ -1,5 +1,6 @@
 package com.tlsu.opluscamerapro.utils
-import com.tlsu.opluscamerapro.utils.AddConfig.addConfig
+
+import de.robv.android.xposed.XposedBridge
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -36,24 +37,40 @@ object ParseConfig {
      * @return 处理后的JSON字符串
      */
     fun parseConfig(originalJson: String): String {
-        // 清除之前的预设标签，确保使用最新配置
-        clearPresetTags()
-        
-        val jsonArray = JSONArray(originalJson)
-        val tagIndexMap = buildTagIndexMap(jsonArray)
-        // 添加Config
-        ConfigBasedAddConfig.addConfig()
-        presetTags.forEach { newTag ->
-            tagIndexMap[newTag.vendorTag]?.let { index ->
-                // 覆盖现有条目
-                jsonArray.put(index, createJsonObject(newTag))
-            } ?: run {
-                // 添加新条目
-                jsonArray.put(createJsonObject(newTag))
+        try {
+            // 保存原始配置并解析默认值信息
+            DefaultConfigManager.parseAndSaveDefaultConfig(originalJson)
+            
+            // 清除之前的预设标签，确保使用最新配置
+            clearPresetTags()
+            
+            val jsonArray = JSONArray(originalJson)
+            val tagIndexMap = buildTagIndexMap(jsonArray)
+            
+            try {
+                // 添加Config
+                ConfigBasedAddConfig.addConfig()
+            } catch (e: Exception) {
+                XposedBridge.log("ParseConfig: Error adding config: ${e.message}")
             }
-        }
+            
+            presetTags.forEach { newTag ->
+                tagIndexMap[newTag.vendorTag]?.let { index ->
+                    // 覆盖现有条目
+                    jsonArray.put(index, createJsonObject(newTag))
+                } ?: run {
+                    // 添加新条目
+                    jsonArray.put(createJsonObject(newTag))
+                }
+            }
 
-        return jsonArray.toString(4)
+            return jsonArray.toString(4)
+        } catch (e: Exception) {
+            XposedBridge.log("ParseConfig: Error in parseConfig: ${e.message}")
+            e.printStackTrace()
+            // 返回原始配置，避免破坏相机功能
+            return originalJson
+        }
     }
 
 

@@ -139,6 +139,7 @@ object ConfigManager {
                 enableVideoAutoFps = vendorTagsObj.optBoolean("enableVideoAutoFps", true),
                 enableQuickLaunch = vendorTagsObj.optBoolean("enableQuickLaunch", true),
                 enableLivePhotoHighBitrate = vendorTagsObj.optBoolean("enableLivePhotoHighBitrate", true),
+                livePhotoBitrate = vendorTagsObj.optInt("livePhotoBitrate", 45),
                 enableVideoStopSoundImmediate = vendorTagsObj.optBoolean("enableVideoStopSoundImmediate", true),
                 enableForcePortraitForThirdParty = vendorTagsObj.optBoolean("enableForcePortraitForThirdParty", true),
                 enableFrontCameraZoom = vendorTagsObj.optBoolean("enableFrontCameraZoom", true)
@@ -218,6 +219,7 @@ object ConfigManager {
                     put("enableVideoAutoFps", config.vendorTags.enableVideoAutoFps)
                     put("enableQuickLaunch", config.vendorTags.enableQuickLaunch)
                     put("enableLivePhotoHighBitrate", config.vendorTags.enableLivePhotoHighBitrate)
+                    put("livePhotoBitrate", config.vendorTags.livePhotoBitrate)
                     put("enableVideoStopSoundImmediate", config.vendorTags.enableVideoStopSoundImmediate)
                     put("enableForcePortraitForThirdParty", config.vendorTags.enableForcePortraitForThirdParty)
                     put("enableFrontCameraZoom", config.vendorTags.enableFrontCameraZoom)

@@ -187,4 +187,9 @@
     <string name="other_settings_title">其他设置</string>
     <string name="other_settings_category_other">其他功能</string>
     <string name="other_settings_no_settings">暂无其他设置</string>
+    
+    <!-- 默认值设置 -->
+    <string name="default_value_enabled">默认值：开</string>
+    <string name="default_value_disabled">默认值：关</string>
+    <string name="default_value_unknown">默认值：未知</string>
 </resources>

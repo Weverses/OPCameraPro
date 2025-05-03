@@ -120,6 +120,20 @@ fun CameraSettingsScreen(
                         coroutineScope.launch {
                             snackbarHostState.showSnackbar(context.getString(R.string.settings_saved))
                         }
+                    },
+                    onBitrateChanged = { newBitrate ->
+                        // 处理码率变更
+                        viewModel.updateVendorTagSetting { currentConfig ->
+                            val updatedVendorTags = currentConfig.vendorTags.copy(
+                                livePhotoBitrate = newBitrate
+                            )
+                            currentConfig.copy(vendorTags = updatedVendorTags)
+                        }
+                        
+                        // 显示保存成功提示
+                        coroutineScope.launch {
+                            snackbarHostState.showSnackbar("实况视频码率已更新为 ${newBitrate}Mbps")
+                        }
                     }
                 )
                 
