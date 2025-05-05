@@ -122,6 +122,11 @@ fun CameraSettingsScreen(
                                 "enableMicStatusCheck" -> currentConfig.vendorTags.copy(enableMicStatusCheck = value)
                                 "enableMasterFilter" -> currentConfig.vendorTags.copy(enableMasterFilter = value)
                                 "enableJiangWenFilter" -> currentConfig.vendorTags.copy(enableJiangWenFilter = value)
+                                "enableHasselbladWatermark" -> currentConfig.vendorTags.copy(
+                                    enableHasselbladWatermark = value,
+                                    enableHasselbladWatermarkGuide = value,
+                                    enableHasselbladWatermarkDefault = value
+                                )
                                 else -> currentConfig.vendorTags
                             }
                             

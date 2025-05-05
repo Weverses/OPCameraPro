@@ -214,6 +214,14 @@
     <string name="camera_settings_mic_status_check_title">视频录制检测麦克风状态</string>
     <string name="camera_settings_mic_status_check_desc">启用对麦克风状态的检测功能，提示麦克风异常</string>
 
+    <string name="camera_settings_hasselblad_watermark_guide_title">哈苏水印指导</string>
+    <string name="camera_settings_hasselblad_watermark_guide_desc">启用哈苏水印引导功能</string>
+    <string name="camera_settings_hasselblad_watermark_title">自定义哈苏水印</string>
+    <string name="camera_settings_hasselblad_watermark_desc">启用自定义哈苏水印功能</string>
+    <string name="camera_settings_hasselblad_watermark_default_title">哈苏水印默认开启</string>
+    <string name="camera_settings_hasselblad_watermark_default_desc">设置哈苏水印是否默认开启</string>
+    <string name="camera_settings_category_hasselblad">哈苏相关设置</string>
+
     <!-- 其他设置 -->
     <string name="other_settings_title">其他设置</string>
     <string name="other_settings_category_other">其他功能</string>

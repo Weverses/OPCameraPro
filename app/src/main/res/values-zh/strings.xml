@@ -179,9 +179,9 @@
     <string name="camera_settings_master_filter_title">大师滤镜</string>
     <string name="camera_settings_master_filter_desc">启用大师滤镜</string>
     <string name="camera_settings_hasselblad_watermark_guide_title">哈苏水印指导</string>
-    <string name="camera_settings_hasselblad_watermark_guide_desc">启用哈苏水印指导功能</string>
-    <string name="camera_settings_hasselblad_watermark_title">自定义哈苏水印</string>
-    <string name="camera_settings_hasselblad_watermark_desc">启用自定义哈苏水印功能</string>
+    <string name="camera_settings_hasselblad_watermark_guide_desc">启用哈苏水印引导功能</string>
+    <string name="camera_settings_hasselblad_watermark_title">哈苏水印</string>
+    <string name="camera_settings_hasselblad_watermark_desc">启用哈苏水印及相关功能</string>
     <string name="camera_settings_hasselblad_watermark_default_title">哈苏水印默认开启</string>
     <string name="camera_settings_hasselblad_watermark_default_desc">设置哈苏水印是否默认开启</string>
     <string name="camera_settings_category_hasselblad">哈苏相关设置</string>

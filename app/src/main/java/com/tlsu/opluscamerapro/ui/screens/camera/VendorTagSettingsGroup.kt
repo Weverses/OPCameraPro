@@ -718,27 +718,11 @@ fun VendorTagSettingsGroup(
             )
             
             SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_hasselblad_watermark_guide_title),
-                description = stringResource(R.string.camera_settings_hasselblad_watermark_guide_desc),
-                checked = vendorTagSettings.enableHasselbladWatermarkGuide,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHasselbladWatermarkGuide"),
-                onCheckedChange = { onSettingChanged("enableHasselbladWatermarkGuide", it) }
-            )
-            
-            SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_hasselblad_watermark_title),
                 description = stringResource(R.string.camera_settings_hasselblad_watermark_desc),
                 checked = vendorTagSettings.enableHasselbladWatermark,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHasselbladWatermark"),
                 onCheckedChange = { onSettingChanged("enableHasselbladWatermark", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_hasselblad_watermark_default_title),
-                description = stringResource(R.string.camera_settings_hasselblad_watermark_default_desc),
-                checked = vendorTagSettings.enableHasselbladWatermarkDefault,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHasselbladWatermarkDefault"),
-                onCheckedChange = { onSettingChanged("enableHasselbladWatermarkDefault", it) }
             )
         }
         

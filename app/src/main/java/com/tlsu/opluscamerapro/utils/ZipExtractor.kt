@@ -53,6 +53,10 @@ object ZipExtractor {
                 exec("su -c unzip -o ${tempFile.absolutePath} -d $MAGISK_MODULE_PATH")
                 // 设置正确的权限
                 exec("su -c chmod -R 755 $MAGISK_MODULE_PATH")
+                if (isV1501()) {
+                    exec("su -c cp -rf $MAGISK_MODULE_PATH/HDR/* $MAGISK_MODULE_PATH/Common")
+                    exec("su -c rm -rf $MAGISK_MODULE_PATH/HDR")
+                }
                 Log.d(TAG, "Successfully extracted module files")
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to extract zip file: ${e.message}")

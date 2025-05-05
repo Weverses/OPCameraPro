@@ -1012,8 +1012,9 @@ object ConfigBasedAddConfig {
                 )
             }
             
-            // 哈苏水印指导支持
-            if (vendorTags.enableHasselbladWatermarkGuide) {
+            // 哈苏水印相关功能
+            if (vendorTags.enableHasselbladWatermark) {
+                // 哈苏水印指导支持
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.hasselblad.watermark.guide.support",
@@ -1023,10 +1024,8 @@ object ConfigBasedAddConfig {
                     ),
                     MergeStrategy.OVERRIDE
                 )
-            }
-            
-            // 启用哈苏风格
-            if (vendorTags.enableMasterFilter) {
+                
+                // 启用哈苏风格
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.use.hasselblad.style.support",
@@ -1036,10 +1035,8 @@ object ConfigBasedAddConfig {
                     ),
                     MergeStrategy.OVERRIDE
                 )
-            }
-            
-            // 自定义哈苏水印
-            if (vendorTags.enableHasselbladWatermark) {
+                
+                // 自定义哈苏水印
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.camera.support.custom.hasselblad.watermark",
@@ -1049,10 +1046,8 @@ object ConfigBasedAddConfig {
                     ),
                     MergeStrategy.OVERRIDE
                 )
-            }
-            
-            // 哈苏水印默认开启
-            if (vendorTags.enableHasselbladWatermarkDefault) {
+                
+                // 哈苏水印默认开启
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.camera.support.custom.hasselblad.watermark.sellmode.default.open",
