@@ -28,46 +28,46 @@ data class ConfigMetadata(
  */
 data class VendorTagSettings(
     // R.string.vendor_tag_enable_25mp
-    val enable25MP: Boolean = true,
+    val enable25MP: Boolean = false,
     
     // R.string.vendor_tag_enable_master_mode
-    val enableMasterMode: Boolean = true,
+    val enableMasterMode: Boolean = false,
     
     // R.string.vendor_tag_enable_master_raw_max
-    val enableMasterRawMax: Boolean = true,
+    val enableMasterRawMax: Boolean = false,
     
     // R.string.vendor_tag_enable_portrait_zoom
-    val enablePortraitZoom: Boolean = true,
+    val enablePortraitZoom: Boolean = false,
     
     // R.string.vendor_tag_enable_720p_60fps
-    val enable720p60fps: Boolean = true,
+    val enable720p60fps: Boolean = false,
     
     // R.string.vendor_tag_enable_slow_video_480fps
-    val enableSlowVideo480fps: Boolean = true,
+    val enableSlowVideo480fps: Boolean = false,
     
     // R.string.vendor_tag_enable_new_macro_mode
-    val enableNewMacroMode: Boolean = true,
+    val enableNewMacroMode: Boolean = false,
     
     // R.string.vendor_tag_enable_macro_tele
-    val enableMacroTele: Boolean = true,
+    val enableMacroTele: Boolean = false,
     
     // R.string.vendor_tag_enable_macro_depth_fusion
-    val enableMacroDepthFusion: Boolean = true,
+    val enableMacroDepthFusion: Boolean = false,
     
     // R.string.vendor_tag_enable_heif_blur_edit
-    val enableHeifBlurEdit: Boolean = true,
+    val enableHeifBlurEdit: Boolean = false,
     
     // R.string.vendor_tag_enable_style_effect
-    val enableStyleEffect: Boolean = true,
+    val enableStyleEffect: Boolean = false,
     
     // R.string.vendor_tag_enable_scale_focus
-    val enableScaleFocus: Boolean = true,
+    val enableScaleFocus: Boolean = false,
     
     // R.string.vendor_tag_enable_live_photo_fov_optimize
-    val enableLivePhotoFovOptimize: Boolean = true,
+    val enableLivePhotoFovOptimize: Boolean = false,
     
     // R.string.vendor_tag_enable_10bit_photo
-    val enable10bitPhoto: Boolean = true,
+    val enable10bitPhoto: Boolean = false,
     
     // R.string.vendor_tag_enable_heif_live_photo
     val enableHeifLivePhoto: Boolean = false,
@@ -76,94 +76,94 @@ data class VendorTagSettings(
     val enable10bitLivePhoto: Boolean = false,
     
     // R.string.vendor_tag_enable_tol_style_filter
-    val enableTolStyleFilter: Boolean = true,
+    val enableTolStyleFilter: Boolean = false,
     
     // R.string.vendor_tag_enable_grand_tour_filter
-    val enableGrandTourFilter: Boolean = true,
+    val enableGrandTourFilter: Boolean = false,
     
     // R.string.vendor_tag_enable_desert_filter
-    val enableDesertFilter: Boolean = true,
+    val enableDesertFilter: Boolean = false,
     
     // R.string.vendor_tag_enable_vignette_grain_filter
-    val enableVignetteGrainFilter: Boolean = true,
+    val enableVignetteGrainFilter: Boolean = false,
     
     // R.string.vendor_tag_enable_director_filter
-    val enableDirectorFilter: Boolean = true,
+    val enableDirectorFilter: Boolean = false,
     
     // R.string.vendor_tag_enable_jzk_movie_filter
-    val enableJzkMovieFilter: Boolean = true,
+    val enableJzkMovieFilter: Boolean = false,
     
     // R.string.vendor_tag_enable_new_beauty_menu
-    val enableNewBeautyMenu: Boolean = true,
+    val enableNewBeautyMenu: Boolean = false,
     
     // R.string.vendor_tag_enable_super_text_scanner
-    val enableSuperTextScanner: Boolean = true,
+    val enableSuperTextScanner: Boolean = false,
     
     // R.string.vendor_tag_enable_soft_light_photo_mode
-    val enableSoftLightPhotoMode: Boolean = true,
+    val enableSoftLightPhotoMode: Boolean = false,
     
     // R.string.vendor_tag_enable_soft_light_night_mode
-    val enableSoftLightNightMode: Boolean = true,
+    val enableSoftLightNightMode: Boolean = false,
     
     // R.string.vendor_tag_enable_soft_light_pro_mode
-    val enableSoftLightProMode: Boolean = true,
+    val enableSoftLightProMode: Boolean = false,
     
     // R.string.vendor_tag_enable_meishe_filter
-    val enableMeisheFilter: Boolean = true,
+    val enableMeisheFilter: Boolean = false,
     
     // R.string.vendor_tag_enable_preview_hdr
-    val enablePreviewHdr: Boolean = true,
+    val enablePreviewHdr: Boolean = false,
     
     // R.string.vendor_tag_enable_video_auto_fps
-    val enableVideoAutoFps: Boolean = true,
+    val enableVideoAutoFps: Boolean = false,
     
     // R.string.vendor_tag_enable_quick_launch
-    val enableQuickLaunch: Boolean = true,
+    val enableQuickLaunch: Boolean = false,
     
     // R.string.vendor_tag_enable_live_photo_high_bitrate
-    val enableLivePhotoHighBitrate: Boolean = true,
+    val enableLivePhotoHighBitrate: Boolean = false,
     
     // 实况视频自定义码率值
     val livePhotoBitrate: Int = 45,
     
     // R.string.vendor_tag_enable_video_stop_sound_immediate
-    val enableVideoStopSoundImmediate: Boolean = true,
+    val enableVideoStopSoundImmediate: Boolean = false,
     
     // R.string.vendor_tag_enable_force_portrait_for_third_party
-    val enableForcePortraitForThirdParty: Boolean = true,
+    val enableForcePortraitForThirdParty: Boolean = false,
     
     // R.string.vendor_tag_enable_front_camera_zoom
-    val enableFrontCameraZoom: Boolean = true,
+    val enableFrontCameraZoom: Boolean = false,
     
     // 人像模式后置闪光灯
-    val enablePortraitRearFlash: Boolean = true,
+    val enablePortraitRearFlash: Boolean = false,
     
     // AI 超清望远算法
-    val enableAiHdSwitch: Boolean = true,
+    val enableAiHdSwitch: Boolean = false,
     
     // 超清长焦算法
-    val enableTeleSdsr: Boolean = true,
+    val enableTeleSdsr: Boolean = false,
     
     // 杜比视频支持
-    val enableDolbyVideo: Boolean = true,
+    val enableDolbyVideo: Boolean = false,
     
     // 杜比视频60fps
-    val enableDolbyVideo60fps: Boolean = true,
+    val enableDolbyVideo60fps: Boolean = false,
     
     // 长焦杜比视频
-    val enableDolbyVideoSat: Boolean = true,
+    val enableDolbyVideoSat: Boolean = false,
     
     // 前置杜比视频
-    val enableFrontDolbyVideo: Boolean = true,
+    val enableFrontDolbyVideo: Boolean = false,
     
     // 视频录制支持锁定镜头
-    val enableVideoLockLens: Boolean = true,
+    val enableVideoLockLens: Boolean = false,
     
     // 视频录制锁定白平衡
-    val enableVideoLockWb: Boolean = true,
+    val enableVideoLockWb: Boolean = false,
     
     // 视频录制检测麦克风状态
-    val enableMicStatusCheck: Boolean = true,
+    val enableMicStatusCheck: Boolean = false,
     
     // AI超清望远算法介入倍率值
     val aiHdZoomValue: Int = 60,

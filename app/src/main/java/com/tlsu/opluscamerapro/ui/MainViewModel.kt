@@ -114,7 +114,7 @@ class MainViewModel : ViewModel() {
     // 重启相机应用
     fun restartCameraApp(): Boolean {
         return try {
-            exec("su -c killall com.android.camera")
+            exec("su -c killall com.oplus.camera")
             true
         } catch (e: Exception) {
             android.util.Log.e("MainViewModel", "Failed to restart camera app: ${e.message}")
