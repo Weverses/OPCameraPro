@@ -49,6 +49,18 @@ object ConfigBasedAddConfig {
     }
     
     /**
+     * 获取当前的VendorTag设置
+     * @return 当前的VendorTag设置，如果配置未加载则返回默认设置
+     */
+    fun getVendorTagSettings(): VendorTagSettings {
+        // 确保配置已加载
+        if (config == null) {
+            reloadConfig()
+        }
+        return config?.vendorTags ?: VendorTagSettings()
+    }
+    
+    /**
      * 加载配置文件
      */
     private fun loadConfig() {
@@ -134,10 +146,10 @@ object ConfigBasedAddConfig {
                 enableHeifLivePhoto = vendorTagsObj.optBoolean("enableHeifLivePhoto", false),
                 enable10bitLivePhoto = vendorTagsObj.optBoolean("enable10bitLivePhoto", false),
                 enableTolStyleFilter = vendorTagsObj.optBoolean("enableTolStyleFilter", false),
+                enableMasterFilter = vendorTagsObj.optBoolean("enableMasterFilter", false),
                 enableGrandTourFilter = vendorTagsObj.optBoolean("enableGrandTourFilter", false),
                 enableDesertFilter = vendorTagsObj.optBoolean("enableDesertFilter", false),
                 enableVignetteGrainFilter = vendorTagsObj.optBoolean("enableVignetteGrainFilter", false),
-                enableDirectorFilter = vendorTagsObj.optBoolean("enableDirectorFilter", false),
                 enableJzkMovieFilter = vendorTagsObj.optBoolean("enableJzkMovieFilter", false),
                 enableNewBeautyMenu = vendorTagsObj.optBoolean("enableNewBeautyMenu", false),
                 enableSuperTextScanner = vendorTagsObj.optBoolean("enableSuperTextScanner", false),
@@ -164,7 +176,11 @@ object ConfigBasedAddConfig {
                 enableFrontDolbyVideo = vendorTagsObj.optBoolean("enableFrontDolbyVideo", false),
                 enableVideoLockLens = vendorTagsObj.optBoolean("enableVideoLockLens", false),
                 enableVideoLockWb = vendorTagsObj.optBoolean("enableVideoLockWb", false),
-                enableMicStatusCheck = vendorTagsObj.optBoolean("enableMicStatusCheck", false)
+                enableMicStatusCheck = vendorTagsObj.optBoolean("enableMicStatusCheck", false),
+                enableJiangWenFilter = vendorTagsObj.optBoolean("enableJiangWenFilter", false),
+                enableHasselbladWatermarkGuide = vendorTagsObj.optBoolean("enableHasselbladWatermarkGuide", false),
+                enableHasselbladWatermark = vendorTagsObj.optBoolean("enableHasselbladWatermark", false),
+                enableHasselbladWatermarkDefault = vendorTagsObj.optBoolean("enableHasselbladWatermarkDefault", false)
             )
             
             AppConfig(
@@ -507,11 +523,11 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            // director 滤镜
-            if (vendorTags.enableDirectorFilter) {
+            // 姜文滤镜
+            if (vendorTags.enableJiangWenFilter) {
                 addPresetTag(
                     VendorTagInfo(
-                        "com.oplus.director.filter.upgrade.support",
+                        "com.oplus.director.filter.support",
                         "Byte",
                         "1",
                         "1"
@@ -988,6 +1004,58 @@ object ConfigBasedAddConfig {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.feature.mic.status.check.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // 哈苏水印指导支持
+            if (vendorTags.enableHasselbladWatermarkGuide) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.hasselblad.watermark.guide.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // 启用哈苏风格
+            if (vendorTags.enableMasterFilter) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.use.hasselblad.style.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // 自定义哈苏水印
+            if (vendorTags.enableHasselbladWatermark) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.support.custom.hasselblad.watermark",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // 哈苏水印默认开启
+            if (vendorTags.enableHasselbladWatermarkDefault) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.support.custom.hasselblad.watermark.sellmode.default.open",
                         "Byte",
                         "1",
                         "1"

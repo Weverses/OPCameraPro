@@ -92,10 +92,10 @@ fun CameraSettingsScreen(
                                 "enableHeifLivePhoto" -> currentConfig.vendorTags.copy(enableHeifLivePhoto = value)
                                 "enable10bitLivePhoto" -> currentConfig.vendorTags.copy(enable10bitLivePhoto = value)
                                 "enableTolStyleFilter" -> currentConfig.vendorTags.copy(enableTolStyleFilter = value)
+
                                 "enableGrandTourFilter" -> currentConfig.vendorTags.copy(enableGrandTourFilter = value)
                                 "enableDesertFilter" -> currentConfig.vendorTags.copy(enableDesertFilter = value)
                                 "enableVignetteGrainFilter" -> currentConfig.vendorTags.copy(enableVignetteGrainFilter = value)
-                                "enableDirectorFilter" -> currentConfig.vendorTags.copy(enableDirectorFilter = value)
                                 "enableJzkMovieFilter" -> currentConfig.vendorTags.copy(enableJzkMovieFilter = value)
                                 "enableNewBeautyMenu" -> currentConfig.vendorTags.copy(enableNewBeautyMenu = value)
                                 "enableSuperTextScanner" -> currentConfig.vendorTags.copy(enableSuperTextScanner = value)
@@ -120,6 +120,8 @@ fun CameraSettingsScreen(
                                 "enableVideoLockLens" -> currentConfig.vendorTags.copy(enableVideoLockLens = value)
                                 "enableVideoLockWb" -> currentConfig.vendorTags.copy(enableVideoLockWb = value)
                                 "enableMicStatusCheck" -> currentConfig.vendorTags.copy(enableMicStatusCheck = value)
+                                "enableMasterFilter" -> currentConfig.vendorTags.copy(enableMasterFilter = value)
+                                "enableJiangWenFilter" -> currentConfig.vendorTags.copy(enableJiangWenFilter = value)
                                 else -> currentConfig.vendorTags
                             }
                             

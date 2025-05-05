@@ -87,7 +87,6 @@
     <string name="vendor_tag_enable_grand_tour_filter">grand tour系列滤镜</string>
     <string name="vendor_tag_enable_desert_filter">沙漠系列滤镜</string>
     <string name="vendor_tag_enable_vignette_grain_filter">vignette grain 滤镜</string>
-    <string name="vendor_tag_enable_director_filter">director 滤镜</string>
     <string name="vendor_tag_enable_jzk_movie_filter">贾樟柯滤镜</string>
     <string name="vendor_tag_enable_new_beauty_menu">新版美颜菜单</string>
     <string name="vendor_tag_enable_super_text_scanner">超级文本扫描</string>
@@ -117,7 +116,7 @@
     <string name="camera_settings_category_advanced">拍照设置</string>
     <string name="camera_settings_category_video">视频设置</string>
     <string name="camera_settings_category_macro">微距设置</string>
-    <string name="camera_settings_category_filters">滤镜设置</string>
+    <string name="camera_settings_category_filter">滤镜设置</string>
     <string name="camera_settings_category_heif_hdr">杂项设置</string>
     <string name="camera_settings_category_other">实况照片设置</string>
 
@@ -148,6 +147,8 @@
     <string name="camera_settings_macro_depth_fusion_desc">启用微距景深融合功能</string>
     <string name="camera_settings_style_effect_title">大师模式滤镜参数预设</string>
     <string name="camera_settings_style_effect_desc">启用大师模式滤镜参数预设</string>
+    <string name="camera_settings_master_filter_title">大师滤镜</string>
+    <string name="camera_settings_master_filter_desc">启用大师滤镜</string>
     <string name="camera_settings_tol_style_filter_title">光影有声滤镜</string>
     <string name="camera_settings_tol_style_filter_desc">启用光影有声滤镜</string>
     <string name="camera_settings_grand_tour_filter_title">Grand Tour滤镜</string>
@@ -156,8 +157,8 @@
     <string name="camera_settings_desert_filter_desc">启用沙漠系列滤镜</string>
     <string name="camera_settings_vignette_grain_filter_title">Vignette Grain滤镜</string>
     <string name="camera_settings_vignette_grain_filter_desc">启用Vignette Grain滤镜</string>
-    <string name="camera_settings_director_filter_title">Director滤镜</string>
-    <string name="camera_settings_director_filter_desc">启用Director滤镜</string>
+    <string name="camera_settings_jiang_wen_filter_title">姜文滤镜</string>
+    <string name="camera_settings_jiang_wen_filter_desc">启用姜文滤镜效果</string>
     <string name="camera_settings_jzk_movie_filter_title">贾樟柯滤镜</string>
     <string name="camera_settings_jzk_movie_filter_desc">启用贾樟柯滤镜</string>
     <string name="camera_settings_meishe_filter_title">Meishe系列滤镜</string>
@@ -222,4 +223,18 @@
     <string name="default_value_enabled">设备默认值：开</string>
     <string name="default_value_disabled">设备默认值：关</string>
     <string name="default_value_unknown">设备默认值：未知，等待Hook更新</string>
+
+    <!-- 相机滤镜名称 -->
+    <string name="camera_filter_oplus_qing_xin">清新</string>
+    <string name="camera_filter_oplus_fu_gu">复古</string>
+    <string name="camera_filter_oplus_tong_tou">通透</string>
+    <string name="camera_filter_oplus_master_serenity">静谧</string>
+    <string name="camera_filter_oplus_master_radiance">灿烂</string>
+    <string name="camera_filter_oplus_master_emerald">翠绿</string>
+    <string name="camera_filter_gt_blue_wave">蓝调</string>
+    <string name="camera_filter_gt_clean">清爽</string>
+    <string name="camera_filter_gt_classic">经典</string>
+    <string name="camera_filter_gt_rosy">玫瑰</string>
+    <string name="camera_filter_jiang_wen">姜氏风格</string>
+    <string name="camera_filter_jzk_movie">光阴</string>
 </resources>

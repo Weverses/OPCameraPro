@@ -77,7 +77,10 @@ data class VendorTagSettings(
     
     // R.string.vendor_tag_enable_tol_style_filter
     val enableTolStyleFilter: Boolean = false,
-    
+
+    // Master Filter
+    val enableMasterFilter: Boolean = false,
+
     // R.string.vendor_tag_enable_grand_tour_filter
     val enableGrandTourFilter: Boolean = false,
     
@@ -86,9 +89,6 @@ data class VendorTagSettings(
     
     // R.string.vendor_tag_enable_vignette_grain_filter
     val enableVignetteGrainFilter: Boolean = false,
-    
-    // R.string.vendor_tag_enable_director_filter
-    val enableDirectorFilter: Boolean = false,
     
     // R.string.vendor_tag_enable_jzk_movie_filter
     val enableJzkMovieFilter: Boolean = false,
@@ -165,11 +165,23 @@ data class VendorTagSettings(
     // 视频录制检测麦克风状态
     val enableMicStatusCheck: Boolean = false,
     
+    // 姜文滤镜
+    val enableJiangWenFilter: Boolean = false,
+    
     // AI超清望远算法介入倍率值
     val aiHdZoomValue: Int = 60,
     
     // 超清长焦算法介入倍率值
-    val teleSdsrZoomValue: Int = 20
+    val teleSdsrZoomValue: Int = 20,
+    
+    // 哈苏水印指导支持
+    val enableHasselbladWatermarkGuide: Boolean = false,
+    
+    // 自定义哈苏水印支持
+    val enableHasselbladWatermark: Boolean = false,
+    
+    // 哈苏水印默认开启
+    val enableHasselbladWatermarkDefault: Boolean = false
 )
 
 /**

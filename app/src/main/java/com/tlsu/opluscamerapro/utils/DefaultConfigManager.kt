@@ -73,7 +73,11 @@ object DefaultConfigManager {
         "com.oplus.feature.video.front.dv.support" to "enableFrontDolbyVideo",
         "com.oplus.video.lock.lens.support" to "enableVideoLockLens",
         "com.oplus.video.lock.wb.support" to "enableVideoLockWb",
-        "com.oplus.feature.mic.status.check.support" to "enableMicStatusCheck"
+        "com.oplus.feature.mic.status.check.support" to "enableMicStatusCheck",
+        "com.oplus.use.hasselblad.style.support" to "enableMasterFilter",
+        "com.oplus.hasselblad.watermark.guide.support" to "enableHasselbladWatermarkGuide",
+        "com.oplus.camera.support.custom.hasselblad.watermark" to "enableHasselbladWatermark",
+        "com.oplus.camera.support.custom.hasselblad.watermark.sellmode.default.open" to "enableHasselbladWatermarkDefault"
     )
     
     // 保存功能名称到VendorTag的反向映射
@@ -129,8 +133,27 @@ object DefaultConfigManager {
             // 保存原始配置
             saveOriginConfig(originalJson)
             
-            // 解析原始配置
-            val jsonArray = JSONArray(originalJson)
+            // 解析原始配置 - 适配两种不同的JSON格式
+            val jsonArray = try {
+                // 尝试直接解析为JSONArray（格式1: 直接的数组）
+                if (originalJson.trim().startsWith("[")) {
+                    JSONArray(originalJson)
+                } else {
+                    // 尝试解析为JSONObject，然后获取file_data字段（格式2: {file_version:x, file_data:[...]}）
+                    val jsonObject = JSONObject(originalJson)
+                    if (jsonObject.has("file_data")) {
+                        jsonObject.getJSONArray("file_data")
+                    } else {
+                        // 如果既不是数组开头，也没有file_data字段，记录错误并创建空数组
+                        XposedBridge.log("$TAG: Unrecognized JSON format, neither direct array nor object with file_data")
+                        JSONArray()
+                    }
+                }
+            } catch (e: Exception) {
+                XposedBridge.log("$TAG: Error parsing JSON: ${e.message}")
+                JSONArray() // 出错时返回空数组
+            }
+            
             val defaultTags = mutableMapOf<String, DefaultTagInfo>()
             
             // 创建一个集合来跟踪已处理的标签

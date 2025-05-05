@@ -4,6 +4,7 @@ import com.github.kyuubiran.ezxhelper.ClassUtils.loadClass
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinder
 import com.tlsu.opluscamerapro.hook.BaseHook
+import com.tlsu.opluscamerapro.utils.ConfigBasedAddConfig
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
 import com.tlsu.opluscamerapro.utils.ParseConfig.isOplusCameraConfig
 import com.tlsu.opluscamerapro.utils.ParseConfig.parseConfig
@@ -20,34 +21,22 @@ object FilterGroup : BaseHook() {
 
             XposedHelpers.setStaticBooleanField(
                 clazz,
-                "sbIsSupportJzkMovieFilter",
-                true
-            )
-            XposedHelpers.setStaticBooleanField(
-                clazz,
                 "sbIsBrandOplusR",
                 true
             )
             XposedHelpers.setStaticBooleanField(
                 clazz,
                 "sbIsExport",
-                true
+                false
             )
 
-            loadClass("com.oplus.ocs.camera.ipusdk.processunit.filter.list.SystemUtil")
-                .methodFinder()
-                .filterByName("isMarketNameContainSeriesNum")
-                .single()
-                .createHook {
-                    returnConstant(true)
-            }
-            clazz
-                .methodFinder()
-                .filterByName("isDirectorEnableByRUS")
-                .single()
-                .createHook {
-                    returnConstant(true)
-            }
+//            loadClass("com.oplus.ocs.camera.ipusdk.processunit.filter.list.SystemUtil")
+//                .methodFinder()
+//                .filterByName("isMarketNameContainSeriesNum")
+//                .single()
+//                .createHook {
+//                    returnConstant(true)
+//            }
 
 
             XposedHelpers.findAndHookMethod(
@@ -57,6 +46,9 @@ object FilterGroup : BaseHook() {
                 object : XC_MethodReplacement() {
                     @Throws(Throwable::class)
                     override fun replaceHookedMethod(param: MethodHookParam) {
+                        // 获取VendorTag设置
+                        val vendorTags = ConfigBasedAddConfig.getVendorTagSettings()
+                        
                         // 获得对应的filterGroup
                         val filterGroup = param.args[0]
                         // 保留原有的滤镜
@@ -75,48 +67,56 @@ object FilterGroup : BaseHook() {
                             "fuji-proNegHi.bin",
                             "R.string.camera_filter_oplus_tong_tou"
                         )
-                        // 增加大师滤镜
-                        invokeAddFrontAndBack(
-                            filterGroup,
-                            "Serenity.cube.rgb.bin",
-                            "R.string.camera_filter_oplus_master_serenity"
-                        )
-                        invokeAddFrontAndBack(
-                            filterGroup,
-                            "Radiance.cube.rgb.bin",
-                            "R.string.camera_filter_oplus_master_radiance"
-                        )
-                        invokeAddFrontAndBack(
-                            filterGroup,
-                            "Emerald.cube.rgb.bin",
-                            "R.string.camera_filter_oplus_master_emerald"
-                        )
+                        
+                        // 根据开关控制是否增加大师滤镜
+                        if (vendorTags.enableMasterFilter) {
+                            // 增加大师滤镜
+                            invokeAddFrontAndBack(
+                                filterGroup,
+                                "Serenity.cube.rgb.bin",
+                                "R.string.camera_filter_oplus_master_serenity"
+                            )
+                            invokeAddFrontAndBack(
+                                filterGroup,
+                                "Radiance.cube.rgb.bin",
+                                "R.string.camera_filter_oplus_master_radiance"
+                            )
+                            invokeAddFrontAndBack(
+                                filterGroup,
+                                "Emerald.cube.rgb.bin",
+                                "R.string.camera_filter_oplus_master_emerald"
+                            )
+                            XposedHelpers.setStaticIntField(clazz, "sMasterFilterSize", 3)
+                        }
+                        
                         // V15.0.1后才有sFujiFilterSize
                         if (isV1501()) {
                             XposedHelpers.setStaticIntField(clazz, "sFujiFilterSize", 3)
                         }
-                        XposedHelpers.setStaticIntField(clazz, "sMasterFilterSize", 3)
-                        // 4个国际版专属的滤镜
-                        invokeAddFrontAndBack(
-                            filterGroup,
-                            "gt-lake.cube.rgb.bin",
-                            "R.string.camera_filter_gt_blue_wave"
-                        )
-                        invokeAddFrontAndBack(
-                            filterGroup,
-                            "gt-japan.cube.rgb.bin",
-                            "R.string.camera_filter_gt_clean"
-                        )
-                        invokeAddFrontAndBack(
-                            filterGroup,
-                            "gt-earth.cube.rgb.bin",
-                            "R.string.camera_filter_gt_classic"
-                        )
-                        invokeAddFrontAndBack(
-                            filterGroup,
-                            "gt-rosy.cube.rgb.bin",
-                            "R.string.camera_filter_gt_rosy"
-                        )
+//                        // 根据开关控制是否增加Grand Tour滤镜
+//                        if (vendorTags.enableGrandTourFilter) {
+//                            // 4个国际版专属的滤镜
+//                            invokeAddFrontAndBack(
+//                                filterGroup,
+//                                "gt-lake.cube.rgb.bin",
+//                                "R.string.camera_filter_gt_blue_wave"
+//                            )
+//                            invokeAddFrontAndBack(
+//                                filterGroup,
+//                                "gt-japan.cube.rgb.bin",
+//                                "R.string.camera_filter_gt_clean"
+//                            )
+//                            invokeAddFrontAndBack(
+//                                filterGroup,
+//                                "gt-earth.cube.rgb.bin",
+//                                "R.string.camera_filter_gt_classic"
+//                            )
+//                            invokeAddFrontAndBack(
+//                                filterGroup,
+//                                "gt-rosy.cube.rgb.bin",
+//                                "R.string.camera_filter_gt_rosy"
+//                            )
+//                        }
                     }
                 }
             )
@@ -146,6 +146,9 @@ object FilterGroup : BaseHook() {
                 .single()
                 .createHook {
                     before { param ->
+                        // 每次执行hook前重新加载配置
+                        ConfigBasedAddConfig.reloadConfig()
+                        
                         configName = param.args[1] as String
                         XposedBridge.log("OplusTest: configName: $configName")
                     }

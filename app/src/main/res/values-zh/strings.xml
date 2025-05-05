@@ -84,7 +84,6 @@
     <string name="vendor_tag_enable_grand_tour_filter">grand tour系列滤镜</string>
     <string name="vendor_tag_enable_desert_filter">沙漠系列滤镜</string>
     <string name="vendor_tag_enable_vignette_grain_filter">vignette grain 滤镜</string>
-    <string name="vendor_tag_enable_director_filter">director 滤镜</string>
     <string name="vendor_tag_enable_jzk_movie_filter">贾樟柯滤镜</string>
     <string name="vendor_tag_enable_new_beauty_menu">新版美颜菜单</string>
     <string name="vendor_tag_enable_super_text_scanner">超级文本扫描</string>
@@ -143,8 +142,6 @@
     <string name="camera_settings_desert_filter_desc">启用沙漠系列滤镜</string>
     <string name="camera_settings_vignette_grain_filter_title">Vignette Grain滤镜</string>
     <string name="camera_settings_vignette_grain_filter_desc">启用Vignette Grain滤镜</string>
-    <string name="camera_settings_director_filter_title">Director滤镜</string>
-    <string name="camera_settings_director_filter_desc">启用Director滤镜</string>
     <string name="camera_settings_jzk_movie_filter_title">贾樟柯滤镜</string>
     <string name="camera_settings_jzk_movie_filter_desc">启用贾樟柯滤镜</string>
     <string name="camera_settings_meishe_filter_title">Meishe系列滤镜</string>
@@ -179,6 +176,15 @@
     <string name="camera_settings_force_portrait_desc">第三方APP调用官方相机时可以选择人像模式</string>
     <string name="camera_settings_front_camera_zoom_title">前置拍照变焦</string>
     <string name="camera_settings_front_camera_zoom_desc">启用前置相机变焦功能</string>
+    <string name="camera_settings_master_filter_title">大师滤镜</string>
+    <string name="camera_settings_master_filter_desc">启用大师滤镜</string>
+    <string name="camera_settings_hasselblad_watermark_guide_title">哈苏水印指导</string>
+    <string name="camera_settings_hasselblad_watermark_guide_desc">启用哈苏水印指导功能</string>
+    <string name="camera_settings_hasselblad_watermark_title">自定义哈苏水印</string>
+    <string name="camera_settings_hasselblad_watermark_desc">启用自定义哈苏水印功能</string>
+    <string name="camera_settings_hasselblad_watermark_default_title">哈苏水印默认开启</string>
+    <string name="camera_settings_hasselblad_watermark_default_desc">设置哈苏水印是否默认开启</string>
+    <string name="camera_settings_category_hasselblad">哈苏相关设置</string>
 
     <!-- 其他设置 -->
     <string name="other_settings_title">其他设置</string>

@@ -123,11 +123,11 @@ object ConfigManager {
                 enable10bitPhoto = vendorTagsObj.optBoolean("enable10bitPhoto", false),
                 enableHeifLivePhoto = vendorTagsObj.optBoolean("enableHeifLivePhoto", false),
                 enable10bitLivePhoto = vendorTagsObj.optBoolean("enable10bitLivePhoto", false),
+                enableMasterFilter = vendorTagsObj.optBoolean("enableMasterFilter", false),
                 enableTolStyleFilter = vendorTagsObj.optBoolean("enableTolStyleFilter", false),
                 enableGrandTourFilter = vendorTagsObj.optBoolean("enableGrandTourFilter", false),
                 enableDesertFilter = vendorTagsObj.optBoolean("enableDesertFilter", false),
                 enableVignetteGrainFilter = vendorTagsObj.optBoolean("enableVignetteGrainFilter", false),
-                enableDirectorFilter = vendorTagsObj.optBoolean("enableDirectorFilter", false),
                 enableJzkMovieFilter = vendorTagsObj.optBoolean("enableJzkMovieFilter", false),
                 enableNewBeautyMenu = vendorTagsObj.optBoolean("enableNewBeautyMenu", false),
                 enableSuperTextScanner = vendorTagsObj.optBoolean("enableSuperTextScanner", false),
@@ -154,7 +154,11 @@ object ConfigManager {
                 enableVideoLockWb = vendorTagsObj.optBoolean("enableVideoLockWb", false),
                 enableMicStatusCheck = vendorTagsObj.optBoolean("enableMicStatusCheck", false),
                 aiHdZoomValue = vendorTagsObj.optInt("aiHdZoomValue", 60),
-                teleSdsrZoomValue = vendorTagsObj.optInt("teleSdsrZoomValue", 20)
+                teleSdsrZoomValue = vendorTagsObj.optInt("teleSdsrZoomValue", 20),
+                enableJiangWenFilter = vendorTagsObj.optBoolean("enableJiangWenFilter", false),
+                enableHasselbladWatermarkGuide = vendorTagsObj.optBoolean("enableHasselbladWatermarkGuide", false),
+                enableHasselbladWatermark = vendorTagsObj.optBoolean("enableHasselbladWatermark", false),
+                enableHasselbladWatermarkDefault = vendorTagsObj.optBoolean("enableHasselbladWatermarkDefault", false)
             )
             
             // 解析其他设置
@@ -219,7 +223,6 @@ object ConfigManager {
                     put("enableGrandTourFilter", config.vendorTags.enableGrandTourFilter)
                     put("enableDesertFilter", config.vendorTags.enableDesertFilter)
                     put("enableVignetteGrainFilter", config.vendorTags.enableVignetteGrainFilter)
-                    put("enableDirectorFilter", config.vendorTags.enableDirectorFilter)
                     put("enableJzkMovieFilter", config.vendorTags.enableJzkMovieFilter)
                     put("enableNewBeautyMenu", config.vendorTags.enableNewBeautyMenu)
                     put("enableSuperTextScanner", config.vendorTags.enableSuperTextScanner)
@@ -247,6 +250,11 @@ object ConfigManager {
                     put("enableMicStatusCheck", config.vendorTags.enableMicStatusCheck)
                     put("aiHdZoomValue", config.vendorTags.aiHdZoomValue)
                     put("teleSdsrZoomValue", config.vendorTags.teleSdsrZoomValue)
+                    put("enableMasterFilter", config.vendorTags.enableMasterFilter)
+                    put("enableJiangWenFilter", config.vendorTags.enableJiangWenFilter)
+                    put("enableHasselbladWatermarkGuide", config.vendorTags.enableHasselbladWatermarkGuide)
+                    put("enableHasselbladWatermark", config.vendorTags.enableHasselbladWatermark)
+                    put("enableHasselbladWatermarkDefault", config.vendorTags.enableHasselbladWatermarkDefault)
                 })
                 
                 // 保存其他设置

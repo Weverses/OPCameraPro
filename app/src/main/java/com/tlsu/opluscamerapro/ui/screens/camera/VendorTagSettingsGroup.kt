@@ -561,13 +561,22 @@ fun VendorTagSettingsGroup(
         }
         
         // 滤镜设置
-        SettingsCard(title = stringResource(R.string.camera_settings_category_filters)) {
+        SettingsCard(title = stringResource(R.string.camera_settings_category_filter)) {
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_style_effect_title),
                 description = stringResource(R.string.camera_settings_style_effect_desc),
                 checked = vendorTagSettings.enableStyleEffect,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableStyleEffect"),
                 onCheckedChange = { onSettingChanged("enableStyleEffect", it) }
+            )
+
+            // 大师滤镜
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_master_filter_title),
+                description = stringResource(R.string.camera_settings_master_filter_desc),
+                checked = vendorTagSettings.enableMasterFilter,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMasterFilter"),
+                onCheckedChange = { onSettingChanged("enableMasterFilter", it) }
             )
             
             SettingsSwitchItem(
@@ -603,11 +612,11 @@ fun VendorTagSettingsGroup(
             )
             
             SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_director_filter_title),
-                description = stringResource(R.string.camera_settings_director_filter_desc),
-                checked = vendorTagSettings.enableDirectorFilter,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableDirectorFilter"),
-                onCheckedChange = { onSettingChanged("enableDirectorFilter", it) }
+                title = stringResource(R.string.camera_settings_jiang_wen_filter_title),
+                description = stringResource(R.string.camera_settings_jiang_wen_filter_desc),
+                checked = vendorTagSettings.enableJiangWenFilter,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableJiangWenFilter"),
+                onCheckedChange = { onSettingChanged("enableJiangWenFilter", it) }
             )
             
             SettingsSwitchItem(
@@ -698,7 +707,40 @@ fun VendorTagSettingsGroup(
             )
         }
         
-
+        // 哈苏相关设置
+        SettingsCard(title = stringResource(R.string.camera_settings_category_hasselblad)) {
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_master_filter_title),
+                description = stringResource(R.string.camera_settings_master_filter_desc),
+                checked = vendorTagSettings.enableMasterFilter,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMasterFilter"),
+                onCheckedChange = { onSettingChanged("enableMasterFilter", it) }
+            )
+            
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_hasselblad_watermark_guide_title),
+                description = stringResource(R.string.camera_settings_hasselblad_watermark_guide_desc),
+                checked = vendorTagSettings.enableHasselbladWatermarkGuide,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHasselbladWatermarkGuide"),
+                onCheckedChange = { onSettingChanged("enableHasselbladWatermarkGuide", it) }
+            )
+            
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_hasselblad_watermark_title),
+                description = stringResource(R.string.camera_settings_hasselblad_watermark_desc),
+                checked = vendorTagSettings.enableHasselbladWatermark,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHasselbladWatermark"),
+                onCheckedChange = { onSettingChanged("enableHasselbladWatermark", it) }
+            )
+            
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_hasselblad_watermark_default_title),
+                description = stringResource(R.string.camera_settings_hasselblad_watermark_default_desc),
+                checked = vendorTagSettings.enableHasselbladWatermarkDefault,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHasselbladWatermarkDefault"),
+                onCheckedChange = { onSettingChanged("enableHasselbladWatermarkDefault", it) }
+            )
+        }
         
         Spacer(modifier = Modifier.height(8.dp))
     }

@@ -44,7 +44,23 @@ object ParseConfig {
             // 清除之前的预设标签，确保使用最新配置
             clearPresetTags()
             
-            val jsonArray = JSONArray(originalJson)
+            // 判断原始JSON格式
+            val isObjectWithFileData = !originalJson.trim().startsWith("[") && 
+                                      originalJson.contains("\"file_data\"")
+            
+            // 解析JSON
+            val jsonArray: JSONArray
+            var jsonObject: JSONObject? = null
+            
+            if (isObjectWithFileData) {
+                // 格式2: {file_version:x, file_data:[...]}
+                jsonObject = JSONObject(originalJson)
+                jsonArray = jsonObject.getJSONArray("file_data")
+            } else {
+                // 格式1: 直接的数组
+                jsonArray = JSONArray(originalJson)
+            }
+            
             val tagIndexMap = buildTagIndexMap(jsonArray)
             
             try {
@@ -64,7 +80,15 @@ object ParseConfig {
                 }
             }
 
-            return jsonArray.toString(4)
+            // 根据原始格式返回
+            return if (isObjectWithFileData && jsonObject != null) {
+                // 将修改后的jsonArray放回原始对象结构中
+                jsonObject.put("file_data", jsonArray)
+                jsonObject.toString(4)
+            } else {
+                // 直接返回数组格式
+                jsonArray.toString(4)
+            }
         } catch (e: Exception) {
             XposedBridge.log("ParseConfig: Error in parseConfig: ${e.message}")
             e.printStackTrace()
