@@ -140,6 +140,8 @@ object ConfigManager {
                 enableQuickLaunch = vendorTagsObj.optBoolean("enableQuickLaunch", false),
                 enableLivePhotoHighBitrate = vendorTagsObj.optBoolean("enableLivePhotoHighBitrate", false),
                 livePhotoBitrate = vendorTagsObj.optInt("livePhotoBitrate", 45),
+                livePhotoMaxDuration = vendorTagsObj.optInt("livePhotoMaxDuration", 3200),
+                livePhotoMinDuration = vendorTagsObj.optInt("livePhotoMinDuration", 500),
                 enableVideoStopSoundImmediate = vendorTagsObj.optBoolean("enableVideoStopSoundImmediate", false),
                 enableForcePortraitForThirdParty = vendorTagsObj.optBoolean("enableForcePortraitForThirdParty", false),
                 enableFrontCameraZoom = vendorTagsObj.optBoolean("enableFrontCameraZoom", false),
@@ -158,7 +160,16 @@ object ConfigManager {
                 enableJiangWenFilter = vendorTagsObj.optBoolean("enableJiangWenFilter", false),
                 enableHasselbladWatermarkGuide = vendorTagsObj.optBoolean("enableHasselbladWatermarkGuide", false),
                 enableHasselbladWatermark = vendorTagsObj.optBoolean("enableHasselbladWatermark", false),
-                enableHasselbladWatermarkDefault = vendorTagsObj.optBoolean("enableHasselbladWatermarkDefault", false)
+                enableHasselbladWatermarkDefault = vendorTagsObj.optBoolean("enableHasselbladWatermarkDefault", false),
+                enableGlobalEv = vendorTagsObj.optBoolean("enableGlobalEv", false),
+                enableOs15NewFilter = vendorTagsObj.optBoolean("enableOs15NewFilter", false),
+                enableSwitchLensFocalLength = vendorTagsObj.optBoolean("enableSwitchLensFocalLength", false),
+                enableMotionCapture = vendorTagsObj.optBoolean("enableMotionCapture", false),
+                enable4K120fpsVideo = vendorTagsObj.optBoolean("enable4K120fpsVideo", false),
+                enable1080p120fpsVideo = vendorTagsObj.optBoolean("enable1080p120fpsVideo", false),
+                enableDolbyVideo120fps = vendorTagsObj.optBoolean("enableDolbyVideo120fps", false),
+                enableMultiFrameBurstShot = vendorTagsObj.optBoolean("enableMultiFrameBurstShot", false),
+                enableVideoSoundFocus = vendorTagsObj.optBoolean("enableVideoSoundFocus", false)
             )
             
             // 解析其他设置
@@ -235,6 +246,8 @@ object ConfigManager {
                     put("enableQuickLaunch", config.vendorTags.enableQuickLaunch)
                     put("enableLivePhotoHighBitrate", config.vendorTags.enableLivePhotoHighBitrate)
                     put("livePhotoBitrate", config.vendorTags.livePhotoBitrate)
+                    put("livePhotoMaxDuration", config.vendorTags.livePhotoMaxDuration)
+                    put("livePhotoMinDuration", config.vendorTags.livePhotoMinDuration)
                     put("enableVideoStopSoundImmediate", config.vendorTags.enableVideoStopSoundImmediate)
                     put("enableForcePortraitForThirdParty", config.vendorTags.enableForcePortraitForThirdParty)
                     put("enableFrontCameraZoom", config.vendorTags.enableFrontCameraZoom)
@@ -255,6 +268,15 @@ object ConfigManager {
                     put("enableHasselbladWatermarkGuide", config.vendorTags.enableHasselbladWatermarkGuide)
                     put("enableHasselbladWatermark", config.vendorTags.enableHasselbladWatermark)
                     put("enableHasselbladWatermarkDefault", config.vendorTags.enableHasselbladWatermarkDefault)
+                    put("enableGlobalEv", config.vendorTags.enableGlobalEv)
+                    put("enableOs15NewFilter", config.vendorTags.enableOs15NewFilter)
+                    put("enableSwitchLensFocalLength", config.vendorTags.enableSwitchLensFocalLength)
+                    put("enableMotionCapture", config.vendorTags.enableMotionCapture)
+                    put("enable4K120fpsVideo", config.vendorTags.enable4K120fpsVideo)
+                    put("enable1080p120fpsVideo", config.vendorTags.enable1080p120fpsVideo)
+                    put("enableDolbyVideo120fps", config.vendorTags.enableDolbyVideo120fps)
+                    put("enableMultiFrameBurstShot", config.vendorTags.enableMultiFrameBurstShot)
+                    put("enableVideoSoundFocus", config.vendorTags.enableVideoSoundFocus)
                 })
                 
                 // 保存其他设置

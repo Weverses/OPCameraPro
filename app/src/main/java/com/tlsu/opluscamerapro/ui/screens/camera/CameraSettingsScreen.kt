@@ -127,6 +127,15 @@ fun CameraSettingsScreen(
                                     enableHasselbladWatermarkGuide = value,
                                     enableHasselbladWatermarkDefault = value
                                 )
+                                "enableGlobalEv" -> currentConfig.vendorTags.copy(enableGlobalEv = value)
+                                "enableOs15NewFilter" -> currentConfig.vendorTags.copy(enableOs15NewFilter = value)
+                                "enableSwitchLensFocalLength" -> currentConfig.vendorTags.copy(enableSwitchLensFocalLength = value)
+                                "enableMotionCapture" -> currentConfig.vendorTags.copy(enableMotionCapture = value)
+                                "enable4K120fpsVideo" -> currentConfig.vendorTags.copy(enable4K120fpsVideo = value)
+                                "enable1080p120fpsVideo" -> currentConfig.vendorTags.copy(enable1080p120fpsVideo = value)
+                                "enableDolbyVideo120fps" -> currentConfig.vendorTags.copy(enableDolbyVideo120fps = value)
+                                "enableMultiFrameBurstShot" -> currentConfig.vendorTags.copy(enableMultiFrameBurstShot = value)
+                                "enableVideoSoundFocus" -> currentConfig.vendorTags.copy(enableVideoSoundFocus = value)
                                 else -> currentConfig.vendorTags
                             }
                             
@@ -178,6 +187,21 @@ fun CameraSettingsScreen(
                         // 显示保存成功提示
                         coroutineScope.launch {
                             snackbarHostState.showSnackbar("超清长焦算法介入倍率已更新为 ${newValue}倍")
+                        }
+                    },
+                    onDurationChanged = { maxDuration, minDuration ->
+                        // 处理实况照片时长变更
+                        viewModel.updateVendorTagSetting { currentConfig ->
+                            val updatedVendorTags = currentConfig.vendorTags.copy(
+                                livePhotoMaxDuration = maxDuration,
+                                livePhotoMinDuration = minDuration
+                            )
+                            currentConfig.copy(vendorTags = updatedVendorTags)
+                        }
+                        
+                        // 显示保存成功提示
+                        coroutineScope.launch {
+                            snackbarHostState.showSnackbar("实况照片时长已更新为：最大${maxDuration}毫秒，最小${minDuration}毫秒")
                         }
                     }
                 )

@@ -32,6 +32,7 @@ object OplusCameraConfig : BaseHook() {
                             XposedBridge.log("OplusTest: original config saved successfully")
                             
                             val modifyConfig = parseConfig(originalConfig)
+                            DefaultConfigManager.saveModifyConfig(modifyConfig)
                             XposedBridge.log("OplusTest: get originalConfig successfully")
                             it.result = modifyConfig
                             XposedBridge.log("OplusTest: return modifyConfig successfully")

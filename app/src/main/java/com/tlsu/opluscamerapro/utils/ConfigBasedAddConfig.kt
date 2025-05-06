@@ -162,6 +162,8 @@ object ConfigBasedAddConfig {
                 enableQuickLaunch = vendorTagsObj.optBoolean("enableQuickLaunch", false),
                 enableLivePhotoHighBitrate = vendorTagsObj.optBoolean("enableLivePhotoHighBitrate", false),
                 livePhotoBitrate = vendorTagsObj.optInt("livePhotoBitrate", 45),
+                livePhotoMaxDuration = vendorTagsObj.optInt("livePhotoMaxDuration", 3200),
+                livePhotoMinDuration = vendorTagsObj.optInt("livePhotoMinDuration", 500),
                 enableVideoStopSoundImmediate = vendorTagsObj.optBoolean("enableVideoStopSoundImmediate", false),
                 enableForcePortraitForThirdParty = vendorTagsObj.optBoolean("enableForcePortraitForThirdParty", false),
                 enableFrontCameraZoom = vendorTagsObj.optBoolean("enableFrontCameraZoom", false),
@@ -180,7 +182,16 @@ object ConfigBasedAddConfig {
                 enableJiangWenFilter = vendorTagsObj.optBoolean("enableJiangWenFilter", false),
                 enableHasselbladWatermarkGuide = vendorTagsObj.optBoolean("enableHasselbladWatermarkGuide", false),
                 enableHasselbladWatermark = vendorTagsObj.optBoolean("enableHasselbladWatermark", false),
-                enableHasselbladWatermarkDefault = vendorTagsObj.optBoolean("enableHasselbladWatermarkDefault", false)
+                enableHasselbladWatermarkDefault = vendorTagsObj.optBoolean("enableHasselbladWatermarkDefault", false),
+                enableGlobalEv = vendorTagsObj.optBoolean("enableGlobalEv", false),
+                enableOs15NewFilter = vendorTagsObj.optBoolean("enableOs15NewFilter", false),
+                enableSwitchLensFocalLength = vendorTagsObj.optBoolean("enableSwitchLensFocalLength", false),
+                enableMotionCapture = vendorTagsObj.optBoolean("enableMotionCapture", false),
+                enable4K120fpsVideo = vendorTagsObj.optBoolean("enable4K120fpsVideo", false),
+                enable1080p120fpsVideo = vendorTagsObj.optBoolean("enable1080p120fpsVideo", false),
+                enableDolbyVideo120fps = vendorTagsObj.optBoolean("enableDolbyVideo120fps", false),
+                enableMultiFrameBurstShot = vendorTagsObj.optBoolean("enableMultiFrameBurstShot", false),
+                enableVideoSoundFocus = vendorTagsObj.optBoolean("enableVideoSoundFocus", false)
             )
             
             AppConfig(
@@ -309,6 +320,15 @@ object ConfigBasedAddConfig {
                         "Float",
                         "1",
                         "30.0" // 提高变焦倍率至30x
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.tilt.shift.macro.support",
+                        "Byte",
+                        "1",
+                        "1"
                     ),
                     MergeStrategy.OVERRIDE
                 )
@@ -571,10 +591,19 @@ object ConfigBasedAddConfig {
             if (vendorTags.enableNewBeautyMenu) {
                 addPresetTag(
                     VendorTagInfo(
-                        "com.oplus.feature.face.beauty.custom.menu.version",
+                        "com.ocs.camera.ipu.face.beauty.support",
                         "Byte",
                         "1",
                         "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.facebeauty.version",
+                        "Int32",
+                        "1",
+                        "7"
                     ),
                     MergeStrategy.OVERRIDE
                 )
@@ -807,6 +836,27 @@ object ConfigBasedAddConfig {
                     MergeStrategy.OVERRIDE
                 )
             }
+            
+            // 实况照片时长
+            addPresetTag(
+                VendorTagInfo(
+                    "com.oplus.camera.livephoto.video.max.duration",
+                    "Int32",
+                    "1",
+                    vendorTags.livePhotoMaxDuration.toString()
+                ),
+                MergeStrategy.OVERRIDE
+            )
+            
+            addPresetTag(
+                VendorTagInfo(
+                    "com.oplus.camera.livephoto.video.min.duration",
+                    "Int32",
+                    "1",
+                    vendorTags.livePhotoMinDuration.toString()
+                ),
+                MergeStrategy.OVERRIDE
+            )
 
             // 停止录制立即播放提示音
             if (vendorTags.enableVideoStopSoundImmediate) {
@@ -1051,6 +1101,295 @@ object ConfigBasedAddConfig {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.camera.support.custom.hasselblad.watermark.sellmode.default.open",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // EV调节功能
+            if (vendorTags.enableGlobalEv) {
+                // 照片EV调节
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.global.ev.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 视频EV调节
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.video.global.ev.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 人像EV调节
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.portrait.global.ev.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // ColorOS15新机滤镜
+            if (vendorTags.enableOs15NewFilter) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.os15.new.filter.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // 点击变焦倍率切换焦距
+            if (vendorTags.enableSwitchLensFocalLength) {
+                // 启用点击变焦倍率切换焦距
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.switch.lens.focal.length.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 通用焦距定义
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.available.more.lens.focal.length",
+                        "String",
+                        "5",
+                        "1.22(28),1.52(35),3.7(85),13.43(300),30(668)"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // SAT模式焦距定义
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.available.sat.more.lens.focal.length",
+                        "String",
+                        "5",
+                        "1.22(28),1.52(35),3.7(85),13.43(300),30(668)"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 非SAT模式焦距定义
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.available.none.sat.more.lens.focal.length",
+                        "String",
+                        "5",
+                        "1.22(28),1.52(35),3.7(85),13.43(300),30(668)"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 人像模式非SAT焦距定义
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.available.none.sat.portrait.lens.focal.length",
+                        "String",
+                        "2",
+                        "1.52(35),3.7(85)"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 人像模式35mm焦距点
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.portrait.zoom.point.focal.length.35mm.value",
+                        "Float",
+                        "1",
+                        "1.52"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // 运动模式
+            if (vendorTags.enableMotionCapture) {
+                // 启用运动模式
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.motion.capture.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 启用运动模式SAT
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.motion.capture.sat.support",
+//                        "Byte",
+//                        "1",
+//                        "1"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+                
+                // 运动模式最大变焦值
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.motion.capture.max.zoom.value",
+                        "Float",
+                        "1",
+                        "30.0"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // 4K 120FPS视频
+            if (vendorTags.enable4K120fpsVideo) {
+                // 启用4K 120FPS视频
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.video.4k.120fps.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 启用120FPS指导
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.120fps.guide.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 4K 120FPS视频变焦范围
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.video.4k.120fps.zoom.range",
+                        "Float",
+                        "2",
+                        "1,10"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 4K 120FPS视频最大变焦列表
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.video.4k120fps.max.zoom.list",
+                        "Float",
+                        "3",
+                        "1,2.9,10"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // 1080P 120FPS视频
+            if (vendorTags.enable1080p120fpsVideo) {
+                // 启用1080P 120FPS视频
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.video.1080p.120fps.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 1080P 120FPS视频变焦范围
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.video.1080p.120fps.zoom.range",
+                        "Float",
+                        "2",
+                        "1,10"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 1080P 120FPS视频最大变焦列表
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.video.1080p120fps.max.zoom.list",
+                        "Float",
+                        "3",
+                        "1,2.9,10"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // 杜比视界120FPS视频
+            if (vendorTags.enableDolbyVideo120fps) {
+                // 启用杜比视界120FPS视频
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.video.dv.120fps.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // 无影抓拍
+            if (vendorTags.enableMultiFrameBurstShot) {
+                // 启用无影抓拍
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.support.multi.frame.burst.shot",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                // 启用无影抓拍集群
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.support.multi.frame.burst.shot.cluster",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // 声音聚焦
+            if (vendorTags.enableVideoSoundFocus) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.video.sound.focus.support",
                         "Byte",
                         "1",
                         "1"

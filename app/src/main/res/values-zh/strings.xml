@@ -31,7 +31,7 @@
 
     <!-- 对话框 -->
     <string name="about_dialog_title">关于</string>
-    <string name="about_dialog_version">版本: Lake 2.0.0</string>
+    <string name="about_dialog_version">版本: Lake 2.1.0</string>
     <string name="about_dialog_author">作者: TimelessU</string>
     <string name="about_dialog_description">Oplus 相机功能补全</string>
     <string name="confirm">确定</string>
@@ -103,9 +103,12 @@
     <string name="camera_settings_category_advanced">拍照设置</string>
     <string name="camera_settings_category_video">视频设置</string>
     <string name="camera_settings_category_macro">微距设置</string>
-    <string name="camera_settings_category_filters">滤镜设置</string>
+    <string name="camera_settings_category_filter">滤镜设置</string>
     <string name="camera_settings_category_heif_hdr">HEIF/HDR设置</string>
     <string name="camera_settings_category_other">实况照片设置</string>
+    <string name="camera_settings_category_master">大师模式设置</string>
+    <string name="camera_settings_category_portrait">人像模式设置</string>
+    <string name="camera_settings_category_dolby">杜比视频设置</string>
 
     <!-- 相机设置项目 -->
     <string name="camera_settings_25mp_title">25MP</string>
@@ -124,6 +127,8 @@
     <string name="camera_settings_video_auto_fps_desc">启用视频自动帧率功能</string>
     <string name="camera_settings_live_photo_bitrate_title">实况视频高码率</string>
     <string name="camera_settings_live_photo_bitrate_desc">提高实况视频码率</string>
+    <string name="camera_settings_live_photo_duration_title">实况照片时长</string>
+    <string name="camera_settings_live_photo_duration_desc">调整实况照片视频时长</string>
     <string name="camera_settings_video_stop_sound_title">录制结束立即播放提示音</string>
     <string name="camera_settings_video_stop_sound_desc">停止录制时立即播放提示音</string>
     <string name="camera_settings_new_macro_mode_title">新版微距模式</string>
@@ -185,9 +190,64 @@
     <string name="camera_settings_hasselblad_watermark_default_title">哈苏水印默认开启</string>
     <string name="camera_settings_hasselblad_watermark_default_desc">设置哈苏水印是否默认开启</string>
     <string name="camera_settings_category_hasselblad">哈苏相关设置</string>
+    <string name="camera_settings_portrait_rear_flash_title">人像模式后置闪光灯</string>
+    <string name="camera_settings_portrait_rear_flash_desc">开启人像模式后置闪光灯</string>
+    <string name="camera_settings_ai_hd_switch_title">AI超清望远算法</string>
+    <string name="camera_settings_ai_hd_switch_desc">启用AI超清望远算法，支持超高倍数变焦</string>
+    <string name="camera_settings_tele_sdsr_title">超清长焦算法</string>
+    <string name="camera_settings_tele_sdsr_desc">启用超清长焦算法，支持更清晰的长焦拍摄</string>
+    <string name="camera_settings_dolby_video_title">杜比视频</string>
+    <string name="camera_settings_dolby_video_desc">启用杜比视频录制</string>
+    <string name="camera_settings_dolby_video_60fps_title">杜比视频60FPS</string>
+    <string name="camera_settings_dolby_video_60fps_desc">启用60FPS杜比视频录制</string>
+    <string name="camera_settings_dolby_video_sat_title">长焦杜比视频</string>
+    <string name="camera_settings_dolby_video_sat_desc">启用长焦镜头杜比视频录制</string>
+    <string name="camera_settings_front_dolby_video_title">前置杜比视频</string>
+    <string name="camera_settings_front_dolby_video_desc">启用前置摄像头杜比视频录制</string>
+    <string name="camera_settings_video_lock_lens_title">视频锁定镜头</string>
+    <string name="camera_settings_video_lock_lens_desc">视频录制时锁定当前镜头，避免镜头自动切换</string>
+    <string name="camera_settings_video_lock_wb_title">视频锁定白平衡</string>
+    <string name="camera_settings_video_lock_wb_desc">视频录制时锁定白平衡</string>
+    <string name="camera_settings_mic_status_check_title">麦克风状态检测</string>
+    <string name="camera_settings_mic_status_check_desc">检测麦克风使用状态并提示</string>
+    <string name="camera_settings_jiang_wen_filter_title">姜文滤镜</string>
+    <string name="camera_settings_jiang_wen_filter_desc">启用姜文风格电影滤镜</string>
+    <string name="camera_settings_global_ev_title">EV调节功能</string>
+    <string name="camera_settings_global_ev_desc">启用全局曝光补偿调节功能</string>
+    <string name="camera_settings_os15_new_filter_title">ColorOS15滤镜</string>
+    <string name="camera_settings_os15_new_filter_desc">启用ColorOS15新机专属滤镜</string>
+    <string name="camera_settings_switch_lens_focal_length_title">点击变焦切换焦距</string>
+    <string name="camera_settings_switch_lens_focal_length_desc">支持点击变焦倍率直接切换到对应焦距</string>
+    <string name="camera_settings_motion_capture_title">运动模式</string>
+    <string name="camera_settings_motion_capture_desc">启用运动模式捕捉快速移动的物体</string>
+    <string name="camera_settings_4k_120fps_video_title">4K 120FPS视频</string>
+    <string name="camera_settings_4k_120fps_video_desc">启用4K分辨率120帧视频录制</string>
+    <string name="camera_settings_1080p_120fps_video_title">1080P 120FPS视频</string>
+    <string name="camera_settings_1080p_120fps_video_desc">启用1080P分辨率120帧视频录制</string>
+    <string name="camera_settings_dolby_video_120fps_title">杜比视界120FPS视频</string>
+    <string name="camera_settings_dolby_video_120fps_desc">启用120帧杜比视界视频录制</string>
+    <string name="camera_settings_multi_frame_burst_shot_title">无影抓拍</string>
+    <string name="camera_settings_multi_frame_burst_shot_desc">启用无影抓拍功能，捕捉运动中的清晰画面</string>
+    <string name="camera_settings_video_sound_focus_title">声音聚焦</string>
+    <string name="camera_settings_video_sound_focus_desc">视频录制时聚焦捕捉特定方向的声音</string>
+    <string name="vendor_tag_enable_portrait_rear_flash">人像模式后置闪光灯</string>
+    <string name="vendor_tag_enable_ai_hd_switch">AI 超清望远算法</string>
+    <string name="vendor_tag_enable_tele_sdsr">超清长焦算法</string>
+    <string name="vendor_tag_enable_dolby_video">杜比视频支持</string>
+    <string name="vendor_tag_enable_dolby_video_60fps">杜比视频60fps</string>
+    <string name="vendor_tag_enable_dolby_video_sat">长焦杜比视频</string>
+    <string name="vendor_tag_enable_front_dolby_video">前置杜比视频</string>
+    <string name="vendor_tag_enable_video_lock_lens">视频录制锁定镜头</string>
+    <string name="vendor_tag_enable_video_lock_wb">视频录制锁定白平衡</string>
+    <string name="vendor_tag_enable_mic_status_check">视频录制检测麦克风状态</string>
 
     <!-- 其他设置 -->
     <string name="other_settings_title">其他设置</string>
     <string name="other_settings_category_other">其他功能</string>
     <string name="other_settings_no_settings">暂无其他设置</string>
+    <!-- 默认值设置 -->
+    <string name="default_value_enabled">设备默认值：开</string>
+    <string name="default_value_disabled">设备默认值：关</string>
+    <string name="default_value_unknown">设备默认值：未知，等待Hook更新</string>
+    <string name="settings_saved">设置已保存</string>
 </resources>

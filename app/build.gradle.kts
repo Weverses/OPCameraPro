@@ -11,10 +11,10 @@ android {
 
     defaultConfig {
         applicationId = "com.tlsu.opluscamerapro"
-        minSdk = 33
+        minSdk = 34
         targetSdk = 35
-        versionCode = 200
-        versionName = "Lake 2.0.0"
+        versionCode = 210
+        versionName = "Lake 2.1.0"
     }
 
     val properties = Properties()

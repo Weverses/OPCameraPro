@@ -34,7 +34,7 @@
     
     <!-- 对话框 -->
     <string name="about_dialog_title">关于</string>
-    <string name="about_dialog_version">版本: Lake 2.0.0</string>
+    <string name="about_dialog_version">版本: Lake 2.1.0</string>
     <string name="about_dialog_author">作者: TimelessU</string>
     <string name="about_dialog_description">Oplus 相机功能补全</string>
     <string name="confirm">确定</string>
@@ -226,23 +226,33 @@
     <string name="other_settings_title">其他设置</string>
     <string name="other_settings_category_other">其他功能</string>
     <string name="other_settings_no_settings">暂无其他设置</string>
-    
+
+    <string name="camera_settings_category_master">大师模式设置</string>
+    <string name="camera_settings_category_portrait">人像模式设置</string>
+    <string name="camera_settings_category_dolby">杜比视频设置</string>
+    <string name="camera_settings_global_ev_title">EV调节功能</string>
+    <string name="camera_settings_global_ev_desc">启用全局曝光补偿调节功能</string>
+    <string name="camera_settings_os15_new_filter_title">ColorOS15滤镜</string>
+    <string name="camera_settings_os15_new_filter_desc">启用ColorOS15新机专属滤镜</string>
+    <string name="camera_settings_switch_lens_focal_length_title">点击变焦切换焦距</string>
+    <string name="camera_settings_switch_lens_focal_length_desc">支持点击变焦倍率直接切换到对应焦距</string>
+    <string name="camera_settings_motion_capture_title">运动模式</string>
+    <string name="camera_settings_motion_capture_desc">启用运动模式捕捉快速移动的物体</string>
+    <string name="camera_settings_4k_120fps_video_title">4K 120FPS视频</string>
+    <string name="camera_settings_4k_120fps_video_desc">启用4K分辨率120帧视频录制</string>
+    <string name="camera_settings_1080p_120fps_video_title">1080P 120FPS视频</string>
+    <string name="camera_settings_1080p_120fps_video_desc">启用1080P分辨率120帧视频录制</string>
+    <string name="camera_settings_dolby_video_120fps_title">杜比视界120FPS视频</string>
+    <string name="camera_settings_dolby_video_120fps_desc">启用120帧杜比视界视频录制</string>
+    <string name="camera_settings_multi_frame_burst_shot_title">无影抓拍</string>
+    <string name="camera_settings_multi_frame_burst_shot_desc">启用无影抓拍功能，捕捉运动中的清晰画面</string>
+    <string name="camera_settings_video_sound_focus_title">声音聚焦</string>
+    <string name="camera_settings_video_sound_focus_desc">视频录制时聚焦捕捉特定方向的声音</string>
+    <string name="camera_settings_live_photo_duration_title">实况照片时长</string>
+    <string name="camera_settings_live_photo_duration_desc">调整实况照片视频时长</string>
     <!-- 默认值设置 -->
     <string name="default_value_enabled">设备默认值：开</string>
     <string name="default_value_disabled">设备默认值：关</string>
     <string name="default_value_unknown">设备默认值：未知，等待Hook更新</string>
 
-    <!-- 相机滤镜名称 -->
-    <string name="camera_filter_oplus_qing_xin">清新</string>
-    <string name="camera_filter_oplus_fu_gu">复古</string>
-    <string name="camera_filter_oplus_tong_tou">通透</string>
-    <string name="camera_filter_oplus_master_serenity">静谧</string>
-    <string name="camera_filter_oplus_master_radiance">灿烂</string>
-    <string name="camera_filter_oplus_master_emerald">翠绿</string>
-    <string name="camera_filter_gt_blue_wave">蓝调</string>
-    <string name="camera_filter_gt_clean">清爽</string>
-    <string name="camera_filter_gt_classic">经典</string>
-    <string name="camera_filter_gt_rosy">玫瑰</string>
-    <string name="camera_filter_jiang_wen">姜氏风格</string>
-    <string name="camera_filter_jzk_movie">光阴</string>
 </resources>

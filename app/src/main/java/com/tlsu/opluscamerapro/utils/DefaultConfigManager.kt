@@ -20,6 +20,9 @@ object DefaultConfigManager {
     
     @SuppressLint("SdCardPath")
     private const val ORIGIN_CONFIG_FILE = "/sdcard/Android/OplusCameraPro/oplus_camera_config_origin.json"
+
+    @SuppressLint("SdCardPath")
+    private const val MODIFY_CONFIG_FILE = "/sdcard/Android/OplusCameraPro/oplus_camera_config_modify.json"
     
     @SuppressLint("SdCardPath")
     private const val DEFAULT_CONFIG_FILE = "/sdcard/Android/OplusCameraPro/configDefault.json"
@@ -77,7 +80,16 @@ object DefaultConfigManager {
         "com.oplus.use.hasselblad.style.support" to "enableMasterFilter",
         "com.oplus.hasselblad.watermark.guide.support" to "enableHasselbladWatermarkGuide",
         "com.oplus.camera.support.custom.hasselblad.watermark" to "enableHasselbladWatermark",
-        "com.oplus.camera.support.custom.hasselblad.watermark.sellmode.default.open" to "enableHasselbladWatermarkDefault"
+        "com.oplus.camera.support.custom.hasselblad.watermark.sellmode.default.open" to "enableHasselbladWatermarkDefault",
+        "com.oplus.portrait.global.ev.support" to "enableGlobalEv",
+        "com.oplus.feature.os15.new.filter.support" to "enableOs15NewFilter",
+        "com.oplus.switch.lens.focal.length.support" to "enableSwitchLensFocalLength",
+        "com.oplus.motion.capture.support" to "enableMotionCapture",
+        "com.oplus.feature.video.4k.120fps.support" to "enable4K120fpsVideo",
+        "com.oplus.feature.video.1080p.120fps.support" to "enable1080p120fpsVideo",
+        "com.oplus.feature.video.dv.120fps.support" to "enableDolbyVideo120fps",
+        "com.oplus.support.multi.frame.burst.shot" to "enableMultiFrameBurstShot",
+        "com.oplus.video.sound.focus.support" to "enableVideoSoundFocus"
     )
     
     // 保存功能名称到VendorTag的反向映射
@@ -247,7 +259,25 @@ object DefaultConfigManager {
             XposedBridge.log("$TAG: Error saving original config: ${e.message}")
         }
     }
-    
+
+    /**
+     * 保存原始配置文件
+     */
+    fun saveModifyConfig(modifyJson: String) {
+        try {
+            // 创建目录
+            Shell.cmd("mkdir -p /sdcard/Android/OplusCameraPro").exec()
+
+            // 写入文件
+            val file = File(MODIFY_CONFIG_FILE)
+            file.writeText(modifyJson)
+
+            XposedBridge.log("$TAG: Modified config saved successfully")
+        } catch (e: Exception) {
+            XposedBridge.log("$TAG: Error saving modified config: ${e.message}")
+        }
+    }
+
     /**
      * 保存默认配置文件
      */

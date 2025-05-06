@@ -222,7 +222,7 @@ fun ModuleSettingsScreen(
                         SettingsClickableItem(
                             title = stringResource(R.string.export_config),
                             description = stringResource(R.string.export_config_description),
-                            icon = { Icon(Icons.Filled.FileDownload, contentDescription = null) },
+                            icon = { Icon(Icons.Filled.FileUpload, contentDescription = null) },
                             onClick = {
                                 if (hasRootAccess) {
                                     exportMessage = ""
@@ -239,7 +239,7 @@ fun ModuleSettingsScreen(
                         SettingsClickableItem(
                             title = stringResource(R.string.import_config),
                             description = stringResource(R.string.import_config_description),
-                            icon = { Icon(Icons.Filled.FileUpload, contentDescription = null) },
+                            icon = { Icon(Icons.Filled.FileDownload, contentDescription = null) },
                             onClick = {
                                 if (hasRootAccess) {
                                     importFileLauncher.launch("application/json")

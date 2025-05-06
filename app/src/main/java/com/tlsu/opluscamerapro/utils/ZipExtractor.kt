@@ -1,11 +1,10 @@
 package com.tlsu.opluscamerapro.utils
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import com.tlsu.opluscamerapro.utils.DeviceCheck.exec
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isV15
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
-import com.topjohnwu.superuser.Shell
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -20,7 +19,7 @@ object ZipExtractor {
     private const val MAGISK_MODULE_PATH = "/data/adb/modules/OPCameraPro"
     private const val ZIP_ASSET_NAME = "OPCameraPro.zip"
     private const val VERSION_FILE = "version.txt"
-    private const val CURRENT_VERSION = "2.0.10"
+    private const val CURRENT_VERSION = "2.1.00"
     
     /**
      * 检查并解压模块文件到Magisk模块目录
@@ -55,8 +54,12 @@ object ZipExtractor {
                 exec("su -c chmod -R 755 $MAGISK_MODULE_PATH")
                 if (isV1501()) {
                     exec("su -c cp -rf $MAGISK_MODULE_PATH/HDR/* $MAGISK_MODULE_PATH/Common")
-                    exec("su -c rm -rf $MAGISK_MODULE_PATH/HDR")
                 }
+                if (isV15() && !isV1501()) {
+                    exec("su -c cp -rf $MAGISK_MODULE_PATH/Framework/* $MAGISK_MODULE_PATH/Common")
+                }
+                exec("su -c rm -rf $MAGISK_MODULE_PATH/HDR")
+                exec("su -c rm -rf $MAGISK_MODULE_PATH/Framework")
                 Log.d(TAG, "Successfully extracted module files")
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to extract zip file: ${e.message}")

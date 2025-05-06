@@ -126,6 +126,12 @@ data class VendorTagSettings(
     // 实况视频自定义码率值
     val livePhotoBitrate: Int = 45,
     
+    // 实况照片最大时长（毫秒）
+    val livePhotoMaxDuration: Int = 3200,
+    
+    // 实况照片最小时长（毫秒）
+    val livePhotoMinDuration: Int = 500,
+    
     // R.string.vendor_tag_enable_video_stop_sound_immediate
     val enableVideoStopSoundImmediate: Boolean = false,
     
@@ -181,7 +187,34 @@ data class VendorTagSettings(
     val enableHasselbladWatermark: Boolean = false,
     
     // 哈苏水印默认开启
-    val enableHasselbladWatermarkDefault: Boolean = false
+    val enableHasselbladWatermarkDefault: Boolean = false,
+    
+    // EV调节功能
+    val enableGlobalEv: Boolean = false,
+    
+    // ColorOS15新机滤镜
+    val enableOs15NewFilter: Boolean = false,
+    
+    // 点击变焦倍率切换焦距
+    val enableSwitchLensFocalLength: Boolean = false,
+    
+    // 运动模式
+    val enableMotionCapture: Boolean = false,
+    
+    // 4K 120FPS视频
+    val enable4K120fpsVideo: Boolean = false,
+    
+    // 1080P 120FPS视频
+    val enable1080p120fpsVideo: Boolean = false,
+    
+    // 杜比视界120FPS视频
+    val enableDolbyVideo120fps: Boolean = false,
+    
+    // 无影抓拍
+    val enableMultiFrameBurstShot: Boolean = false,
+    
+    // 声音聚焦
+    val enableVideoSoundFocus: Boolean = false
 )
 
 /**
