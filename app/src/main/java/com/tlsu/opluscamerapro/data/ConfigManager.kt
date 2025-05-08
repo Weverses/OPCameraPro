@@ -185,6 +185,12 @@ object ConfigManager {
                 followSystemDarkMode = appSettingsObj.optBoolean("followSystemDarkMode", false)
             )
             
+            // 解析相册设置
+            val gallerySettingsObj = json.optJSONObject("gallerySettings") ?: JSONObject()
+            val gallerySettings = GallerySettings(
+                enableAIComposition = gallerySettingsObj.optBoolean("enableAIComposition", false)
+            )
+            
             // 解析元数据
             val metadataObj = json.optJSONObject("metadata") ?: JSONObject()
             val metadata = ConfigMetadata(
@@ -200,6 +206,7 @@ object ConfigManager {
                 vendorTags = vendorTags,
                 otherSettings = otherSettings,
                 appSettings = appSettings,
+                gallerySettings = gallerySettings,
                 metadata = metadata
             )
         } catch (e: Exception) {
@@ -286,6 +293,11 @@ object ConfigManager {
                 put("appSettings", JSONObject().apply {
                     put("darkMode", config.appSettings.darkMode)
                     put("followSystemDarkMode", config.appSettings.followSystemDarkMode)
+                })
+                
+                // 保存相册设置
+                put("gallerySettings", JSONObject().apply {
+                    put("enableAIComposition", config.gallerySettings.enableAIComposition)
                 })
                 
                 // 保存元数据
@@ -388,6 +400,27 @@ object ConfigManager {
         } catch (e: Exception) {
             Log.e(TAG, "Error importing config", e)
             false
+        }
+    }
+
+    // 获取当前配置
+    fun getConfig(): AppConfig {
+        return _configState.value
+    }
+    
+    // 重新加载配置
+    fun reloadConfig() {
+        Shell.getShell().newJob().add("cat $CONFIG_FILE").to(
+            ArrayList<String>(), ArrayList<String>()
+        ).exec().let { result ->
+            if (result.isSuccess) {
+                val jsonStr = result.out.joinToString("\n")
+                if (jsonStr.isNotBlank()) {
+                    val config = parseConfig(jsonStr)
+                    _configState.update { config }
+                    Log.d(TAG, "Config reloaded successfully, AI Composition = ${config.gallerySettings.enableAIComposition}")
+                }
+            }
         }
     }
 } 

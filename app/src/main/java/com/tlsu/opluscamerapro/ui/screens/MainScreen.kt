@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Camera
+import androidx.compose.material.icons.filled.Photo
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -25,6 +26,7 @@ import com.tlsu.opluscamerapro.R
 import com.tlsu.opluscamerapro.ui.MainViewModel
 import com.tlsu.opluscamerapro.ui.screens.camera.CameraSettingsScreen
 import com.tlsu.opluscamerapro.ui.screens.module.ModuleSettingsScreen
+import com.tlsu.opluscamerapro.ui.screens.gallery.GallerySettingsScreen
 
 /**
  * 主屏幕
@@ -49,10 +51,16 @@ fun MainScreen(viewModel: MainViewModel) {
                     onClick = { currentPage = 0 }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Filled.Settings, contentDescription = "模块设置") },
-                    label = { Text("模块设置") },
+                    icon = { Icon(Icons.Filled.Photo, contentDescription = "相册设置") },
+                    label = { Text("相册设置") },
                     selected = currentPage == 1,
                     onClick = { currentPage = 1 }
+                )
+                NavigationBarItem(
+                    icon = { Icon(Icons.Filled.Settings, contentDescription = "模块设置") },
+                    label = { Text("模块设置") },
+                    selected = currentPage == 2,
+                    onClick = { currentPage = 2 }
                 )
             }
         }
@@ -64,7 +72,12 @@ fun MainScreen(viewModel: MainViewModel) {
                     snackbarHostState = snackbarHostState,
                     coroutineScope = coroutineScope
                 )
-                1 -> ModuleSettingsScreen(
+                1 -> GallerySettingsScreen(
+                    viewModel = viewModel,
+                    snackbarHostState = snackbarHostState,
+                    coroutineScope = coroutineScope
+                )
+                2 -> ModuleSettingsScreen(
                     viewModel = viewModel,
                     snackbarHostState = snackbarHostState,
                     coroutineScope = coroutineScope

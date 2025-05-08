@@ -22,13 +22,14 @@ object FilterGroup : BaseHook() {
             XposedHelpers.setStaticBooleanField(
                 clazz,
                 "sbIsBrandOplusR",
-                true
+                false
             )
             XposedHelpers.setStaticBooleanField(
                 clazz,
                 "sbIsExport",
                 false
             )
+
 
 //            loadClass("com.oplus.ocs.camera.ipusdk.processunit.filter.list.SystemUtil")
 //                .methodFinder()
@@ -88,7 +89,21 @@ object FilterGroup : BaseHook() {
                             )
                             XposedHelpers.setStaticIntField(clazz, "sMasterFilterSize", 3)
                         }
-                        
+
+                        if (vendorTags.enableJzkMovieFilter) {
+                            invokeAddFrontAndBack(
+                                filterGroup,
+                                "jzk-movie.cube.rgb.bin",
+                                "R.string.camera_filter_type_director_joint_filter_JZK"
+                            )
+                        }
+                        if (vendorTags.enableTolStyleFilter) {
+                            invokeAddFrontAndBack(
+                                filterGroup,
+                                "tone-of-light.cube.rgb.bin",
+                                "R.string.tol_filter_type"
+                            )
+                        }
                         // V15.0.1后才有sFujiFilterSize
                         if (isV1501()) {
                             XposedHelpers.setStaticIntField(clazz, "sFujiFilterSize", 3)

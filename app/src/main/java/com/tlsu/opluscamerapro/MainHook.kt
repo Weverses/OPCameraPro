@@ -6,12 +6,15 @@ import com.github.kyuubiran.ezxhelper.LogExtensions.logexIfThrow
 import com.tlsu.opluscamerapro.hook.BaseHook
 import com.tlsu.opluscamerapro.hook.camera.FilterGroup
 import com.tlsu.opluscamerapro.hook.camera.OplusCameraConfig
+import com.tlsu.opluscamerapro.hook.gallery.GalleryHook
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 
-private const val TAG = "OplusPro"
+private const val TAG = "OplusCameraPro"
+
 private val PACKAGE_NAME_HOOKED = setOf(
-    "com.oplus.camera"
+    "com.oplus.camera",
+    "com.coloros.gallery3d"
 )
 
 class MainHook : IXposedHookLoadPackage {
@@ -27,6 +30,10 @@ class MainHook : IXposedHookLoadPackage {
                     // 初始化所有Hook
                     initHooks(FilterGroup)
                     initHooks(OplusCameraConfig)
+                }
+                "com.coloros.gallery3d" -> {
+                    GalleryHook.handleLoadPackage(lpparam)
+                    initHooks(FilterGroup)
                 }
             }
         }

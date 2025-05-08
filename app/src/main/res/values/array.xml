@@ -2,5 +2,6 @@
 <resources>
     <string-array name="xposed_scope">
         <item>com.oplus.camera</item>
+        <item>com.coloros.gallery3d</item>
     </string-array>
 </resources>

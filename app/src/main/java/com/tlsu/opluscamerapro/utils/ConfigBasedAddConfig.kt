@@ -3,6 +3,7 @@ package com.tlsu.opluscamerapro.utils
 import android.annotation.SuppressLint
 import com.github.kyuubiran.ezxhelper.Log
 import com.tlsu.opluscamerapro.data.AppConfig
+import com.tlsu.opluscamerapro.data.GallerySettings
 import com.tlsu.opluscamerapro.data.VendorTagSettings
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
 import com.tlsu.opluscamerapro.utils.ParseConfig.addPresetTag
@@ -59,7 +60,15 @@ object ConfigBasedAddConfig {
         }
         return config?.vendorTags ?: VendorTagSettings()
     }
-    
+
+    fun getGallerySettings(): GallerySettings {
+        // 确保配置已加载
+        if (config == null) {
+            reloadConfig()
+        }
+        return config?.gallerySettings ?: GallerySettings()
+    }
+
     /**
      * 加载配置文件
      */
@@ -314,15 +323,15 @@ object ConfigBasedAddConfig {
 
             // 新版微距模式
             if (vendorTags.enableNewMacroMode) {
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.feature.macro.closeup.max.zoom.value",
-                        "Float",
-                        "1",
-                        "30.0" // 提高变焦倍率至30x
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.feature.macro.closeup.max.zoom.value",
+//                        "Float",
+//                        "1",
+//                        "30.0" // 提高变焦倍率至30x
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.feature.tilt.shift.macro.support",

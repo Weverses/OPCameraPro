@@ -33,7 +33,7 @@ object DefaultConfigManager {
     // VendorTag到ConfigBasedAddConfig中功能的映射关系
     private val vendorTagToFeature = mapOf(
         "com.oplus.turboraw.re.support" to "enable25MP",
-        "com.oplus.feature.master.mode.version" to "enableMasterMode",
+        "com.oplus.feature.effect.style.support" to "enableMasterMode",
         "com.oplus.feature.master.hq.raw.support" to "enableMasterRawMax",
         "com.oplus.rear.portrait.zoom.support" to "enablePortraitZoom",
         "com.oplus.feature.video.720p.60fps.support" to "enable720p60fps",

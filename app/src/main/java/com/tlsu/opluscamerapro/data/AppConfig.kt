@@ -7,7 +7,8 @@ data class AppConfig(
     val vendorTags: VendorTagSettings = VendorTagSettings(),
     val otherSettings: OtherSettings = OtherSettings(),
     val appSettings: AppSettings = AppSettings(),
-    val metadata: ConfigMetadata = ConfigMetadata()
+    val metadata: ConfigMetadata = ConfigMetadata(),
+    val gallerySettings: GallerySettings = GallerySettings()
 )
 
 /**
@@ -231,6 +232,14 @@ data class OtherSettings(
 data class AppSettings(
     val darkMode: Boolean = false,
     val followSystemDarkMode: Boolean = false  // 深色模式跟随系统
+)
+
+/**
+ * 相册设置
+ */
+data class GallerySettings(
+    // AI 灵感成片
+    val enableAIComposition: Boolean = false
 )
 
 /**

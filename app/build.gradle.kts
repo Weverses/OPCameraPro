@@ -13,8 +13,8 @@ android {
         applicationId = "com.tlsu.opluscamerapro"
         minSdk = 34
         targetSdk = 35
-        versionCode = 210
-        versionName = "Lake 2.1.0"
+        versionCode = 2110
+        versionName = "Lake 2.1.10"
     }
 
     val properties = Properties()
@@ -125,4 +125,5 @@ dependencies {
     // 调试工具
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation("org.luckypray:dexkit:2.0.0")
 }

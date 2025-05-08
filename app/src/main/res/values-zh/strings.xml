@@ -250,4 +250,10 @@
     <string name="default_value_disabled">设备默认值：关</string>
     <string name="default_value_unknown">设备默认值：未知，等待Hook更新</string>
     <string name="settings_saved">设置已保存</string>
+
+    <!-- 相册设置 -->
+    <string name="gallery_settings_title">相册设置</string>
+    <string name="gallery_settings_category_ai">AI功能</string>
+    <string name="gallery_settings_ai_composition_title">AI 灵感成片</string>
+    <string name="gallery_settings_ai_composition_desc">启用智能构图功能，提供AI创作灵感</string>
 </resources>
