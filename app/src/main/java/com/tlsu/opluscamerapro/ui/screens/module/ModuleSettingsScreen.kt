@@ -56,6 +56,9 @@ import com.tlsu.opluscamerapro.ui.MainViewModel
 import com.tlsu.opluscamerapro.ui.components.NoRootAccessDialog
 import com.tlsu.opluscamerapro.ui.components.SettingsClickableItem
 import com.tlsu.opluscamerapro.ui.components.SettingsSwitchItem
+import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
+import com.tlsu.opluscamerapro.utils.ZipExtractor.MAGISK_MODULE_PATH
+import com.tlsu.opluscamerapro.utils.ZipExtractor.deleteFrameworkAndLibs
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.json.JSONObject
@@ -253,17 +256,17 @@ fun ModuleSettingsScreen(
                         
                         // 重启相机
                         SettingsClickableItem(
-                            title = "重启相机",
-                            description = "杀死相机进程，使设置更改立即生效",
+                            title = "重启相机及相册",
+                            description = "杀死相机和相册进程，使设置更改立即生效",
                             icon = { Icon(Icons.Filled.PhotoCamera, contentDescription = null) },
                             onClick = {
                                 if (hasRootAccess) {
                                     coroutineScope.launch {
                                         val result = viewModel.restartCameraApp()
                                         if (result) {
-                                            snackbarHostState.showSnackbar("相机已重启")
+                                            snackbarHostState.showSnackbar("相机及相册已重启")
                                         } else {
-                                            snackbarHostState.showSnackbar("重启相机失败")
+                                            snackbarHostState.showSnackbar("重启失败")
                                         }
                                     }
                                 } else {
@@ -273,7 +276,34 @@ fun ModuleSettingsScreen(
                                 }
                             }
                         )
-                        
+
+                        if(execWithResult("test -f $MAGISK_MODULE_PATH/odm/lib64/libAlgoInterface.so && echo true || echo false")
+                            .out.joinToString("").contains("true")) {
+                            // 删除HDR依赖
+                            SettingsClickableItem(
+                                title = stringResource(R.string.delete_libs_and_framework),
+                                description = stringResource(R.string.delete_libs_and_framework_desc),
+                                icon = { Icon(Icons.Filled.PhotoCamera, contentDescription = null) },
+                                onClick = {
+                                    if (hasRootAccess) {
+                                        coroutineScope.launch {
+                                            val result = deleteFrameworkAndLibs()
+                                            if (result) {
+                                                snackbarHostState.showSnackbar(context.getString(R.string.delete_success))
+                                            } else {
+                                                snackbarHostState.showSnackbar(context.getString(R.string.delete_failed))
+                                            }
+                                        }
+                                    } else {
+                                        coroutineScope.launch {
+                                            snackbarHostState.showSnackbar("无root权限")
+                                        }
+                                    }
+                                }
+                            )
+                        }
+
+
                         // 关于
                         SettingsClickableItem(
                             title = stringResource(R.string.about),

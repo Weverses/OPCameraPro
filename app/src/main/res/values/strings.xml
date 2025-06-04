@@ -24,6 +24,10 @@
     <string name="import_config_description">从文件导入配置</string>
     <string name="about">关于</string>
     <string name="about_description">查看模块信息和作者</string>
+    <string name="delete_libs_and_framework">修复相机闪退</string>">
+    <string name="delete_libs_and_framework_desc">通过删除一些依赖，解决在部分机型上的闪退问题</string>">
+    <string name="delete_success">删除成功, 请重启手机</string>
+    <string name="delete_failed">删除失败</string>
     
     <!-- 错误消息 -->
     <string name="need_root_for_export">导出配置需要ROOT权限</string>
@@ -34,7 +38,7 @@
     
     <!-- 对话框 -->
     <string name="about_dialog_title">关于</string>
-    <string name="about_dialog_version">版本: Lake 2.1.0</string>
+    <string name="about_dialog_version">版本: Lake 2.1.20</string>
     <string name="about_dialog_author">作者: TimelessU</string>
     <string name="about_dialog_description">Oplus 相机功能补全</string>
     <string name="confirm">确定</string>
@@ -259,5 +263,28 @@
     <string name="gallery_settings_title">相册设置</string>
     <string name="gallery_settings_category_ai">AI功能</string>
     <string name="gallery_settings_ai_composition_title">AI 灵感成片</string>
+    <string name="gallery_settings_ai_eliminate_title">AI 消除</string>
+    <string name="gallery_settings_ai_deblur_title">AI 去拖影</string>
+    <string name="gallery_settings_ai_quality_enhance_title">AI 画质增强</string>
+    <string name="gallery_settings_ai_dereflection_title">AI 去反光</string>
     <string name="gallery_settings_ai_composition_desc">启用智能构图功能，提供AI创作灵感</string>
+    <string name="gallery_settings_ai_eliminate_desc">启用AI消除功能，智能去除照片中的干扰元素</string>
+    <string name="gallery_settings_ai_deblur_desc">启用AI去拖影功能，提升照片清晰度</string>
+    <string name="gallery_settings_ai_quality_enhance_desc">启用AI画质增强功能，优化照片细节</string>
+    <string name="gallery_settings_ai_dereflection_desc">启用AI去反光功能，改善照片反光问题</string>
+    <string name="gallery_settings_ai_besttake_title">AI 最佳表情</string>
+    <string name="gallery_settings_ai_besttake_desc">启用AI最佳表情功能，检测人脸然后替换表情</string>
+    <string name="module_update_checking">正在检查模块更新...</string>
+    <string name="module_update_failed">调用二进制安装模块更新失败,可能原因为你不是官方的Magisk/KernelSU. 已尝试直接解压附属模块并使用post-of-data.sh挂载模块, 若依旧无效请换官方的Magisk/KernelSU, 其他管理器不受理任何Bug反馈</string>
+    <string name="module_update_ignore">检测到你的Root方式无法调用自动安装附属模块。已尝试直接解压附属模块并使用post-of-data.sh挂载模块, 若依旧无效请换官方的Magisk/KernelSU, 其他管理器不受理任何Bug反馈</string>
+    <string name="module_update_installing">正在尝试自动安装附属模块...</string>
+    <string name="module_update_reboot_message">是否立即重启手机以应用更新？</string>
+    <string name="module_update_success">模块更新成功</string>
+    <string name="module_update_title">附属模块更新</string>
+    <string name="reboot_now">现在重启</string>
+    <string name="reboot_delay">稍后重启</string>
+    <string name="camera_settings_enable_front_4k_video">前置4K视频</string>
+    <string name="camera_settings_enable_front_4k_video_desc">支持使用前置摄像头录制4K视频</string>
+    <string name="camera_settings_enable_ai_scene_preset">AI场景预设</string>
+    <string name="camera_settings_enable_ai_scene_preset_desc">开启AI自动场景识别与预设，优化照片拍摄效果</string>
 </resources>

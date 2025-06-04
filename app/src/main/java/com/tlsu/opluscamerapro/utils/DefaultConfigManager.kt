@@ -21,6 +21,8 @@ object DefaultConfigManager {
     @SuppressLint("SdCardPath")
     private const val ORIGIN_CONFIG_FILE = "/sdcard/Android/OplusCameraPro/oplus_camera_config_origin.json"
 
+    private const val ORIGIN_CONFIG_PATH = "/sdcard/Android/OplusCameraPro"
+
     @SuppressLint("SdCardPath")
     private const val MODIFY_CONFIG_FILE = "/sdcard/Android/OplusCameraPro/oplus_camera_config_modify.json"
     
@@ -89,7 +91,9 @@ object DefaultConfigManager {
         "com.oplus.feature.video.1080p.120fps.support" to "enable1080p120fpsVideo",
         "com.oplus.feature.video.dv.120fps.support" to "enableDolbyVideo120fps",
         "com.oplus.support.multi.frame.burst.shot" to "enableMultiFrameBurstShot",
-        "com.oplus.video.sound.focus.support" to "enableVideoSoundFocus"
+        "com.oplus.video.sound.focus.support" to "enableVideoSoundFocus",
+        "com.oplus.feature.front.video.4k.support" to "enableFront4KVideo",
+        "com.oplus.ai.scene.preset.support" to "enableAiScenePreset"
     )
     
     // 保存功能名称到VendorTag的反向映射
@@ -254,6 +258,21 @@ object DefaultConfigManager {
             val file = File(ORIGIN_CONFIG_FILE)
             file.writeText(originalJson)
             
+            XposedBridge.log("$TAG: Original config saved successfully")
+        } catch (e: Exception) {
+            XposedBridge.log("$TAG: Error saving original config: ${e.message}")
+        }
+    }
+
+    fun saveOriginOtherConfig(originalJsonName: String, originalJson: String) {
+        try {
+            // 创建目录
+            Shell.cmd("mkdir -p /sdcard/Android/OplusCameraPro").exec()
+
+            // 写入文件
+            val file = File("ORIGIN_CONFIG_PATH/originalJsonName")
+            file.writeText(originalJson)
+
             XposedBridge.log("$TAG: Original config saved successfully")
         } catch (e: Exception) {
             XposedBridge.log("$TAG: Error saving original config: ${e.message}")

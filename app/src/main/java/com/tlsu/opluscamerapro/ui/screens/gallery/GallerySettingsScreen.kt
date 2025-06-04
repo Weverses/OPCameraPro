@@ -80,6 +80,31 @@ fun GallerySettingsScreen(
                                         enableAIComposition = value
                                     )
                                 )
+                                "enableAIEliminate" -> currentConfig.copy(
+                                    gallerySettings = currentConfig.gallerySettings.copy(
+                                        enableAIEliminate = value
+                                    )
+                                )
+                                "enableAIDeblur" -> currentConfig.copy(
+                                    gallerySettings = currentConfig.gallerySettings.copy(
+                                        enableAIDeblur = value
+                                    )
+                                )
+                                "enableAIQualityEnhance" -> currentConfig.copy(
+                                    gallerySettings = currentConfig.gallerySettings.copy(
+                                        enableAIQualityEnhance = value
+                                    )
+                                )
+                                "enableAIDeReflection" -> currentConfig.copy(
+                                    gallerySettings = currentConfig.gallerySettings.copy(
+                                        enableAIDeReflection = value
+                                    )
+                                )
+                                "enableAIBestTake" -> currentConfig.copy(
+                                    gallerySettings = currentConfig.gallerySettings.copy(
+                                        enableAIBestTake = value
+                                    )
+                                )
                                 else -> currentConfig
                             }
                         }

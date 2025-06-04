@@ -26,6 +26,11 @@ object FeatureHook : BaseHook() {
             ConfigManager.reloadConfig()
             val config = ConfigManager.getConfig()
             val enableAI = config.gallerySettings.enableAIComposition
+            val enableAIEliminate = config.gallerySettings.enableAIEliminate
+            val enableAIDeblur = config.gallerySettings.enableAIDeblur
+            val enableAIQualityEnhance = config.gallerySettings.enableAIQualityEnhance
+            val enableAIDeReflection = config.gallerySettings.enableAIDeReflection
+            val enableAIBestTake = config.gallerySettings.enableAIBestTake
             val enableHasselblad = config.vendorTags.enableHasselbladWatermark
 
             XposedBridge.log("OplusGalleryPro: GallerySettings loaded, enableAIComposition = ${enableAI}")
@@ -64,13 +69,62 @@ object FeatureHook : BaseHook() {
                                 XposedBridge.log("OplusGalleryPro: AI Composition disabled by user settings (current value = $enableAI)")
                             }
                         }
-                        
+                        if (it.args[0] == "feature_is_support_ai_eliminate") {
+                            if (enableAIEliminate) {
+                                it.args[0] = "feature_is_support_olive"
+                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_ai_eliminate success")
+                            } else {
+                                XposedBridge.log("OplusGalleryPro: AI Eliminate disabled by user settings (current value = $enableAIEliminate)")
+                            }
+                        }
+                        if (it.args[0] == "feature_is_support_ai_deblur") {
+                            if (enableAIDeblur) {
+                                it.args[0] = "feature_is_support_olive"
+                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_ai_deblur success")
+                            } else {
+                                XposedBridge.log("OplusGalleryPro: AI Deblur disabled by user settings (current value = $enableAIDeblur)")
+                            }
+                        }
+                        if (it.args[0] == "feature_is_support_image_quality_enhance") {
+                            if (enableAIQualityEnhance) {
+                                it.args[0] = "feature_is_support_olive"
+                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_image_quality_enhance success")
+                            } else {
+                                XposedBridge.log("OplusGalleryPro: AI Quality Enhance disabled by user settings (current value = $enableAIQualityEnhance)")
+                            }
+                        }
+                        if (it.args[0] == "feature_is_support_ai_dereflection") {
+                            if (enableAIDeReflection) {
+                                it.args[0] = "feature_is_support_olive"
+                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_ai_dereflection success")
+                            } else {
+                                XposedBridge.log("OplusGalleryPro: AI Dereflection disabled by user settings (current value = $enableAIDeReflection)")
+                            }
+                        }
                         if (it.args[0] == "feature_is_support_hassel_watermark") {
                             if (enableHasselblad) {
                                 it.args[0] = "feature_is_support_olive"
                                 XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_hassel_watermark success")
                             }
                         }
+                        if (it.args[0] == "feature_is_support_ai_best_take") {
+                            if (enableAIBestTake) {
+                                it.args[0] = "feature_is_support_olive"
+                                XposedBridge.log("OplusGalleryPro: AI BestTake disabled by user settings (current value = $enableAIBestTake)")
+                            }
+                        }
+//                        if (it.args[0] == "feature_is_support_ai_filter") {
+//                            if (enableAI) {
+//                                it.args[0] = "feature_is_support_olive"
+//                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_hassel_watermark success")
+//                            }
+//                        }
+//                        if (it.args[0] == "feature_is_support_ai_face_hd") {
+//                            if (enableAI) {
+//                                it.args[0] = "feature_is_support_olive"
+//                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_hassel_watermark success")
+//                            }
+//                        }
                     }
                 }
             

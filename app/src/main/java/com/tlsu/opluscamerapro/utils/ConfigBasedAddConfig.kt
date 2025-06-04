@@ -200,7 +200,9 @@ object ConfigBasedAddConfig {
                 enable1080p120fpsVideo = vendorTagsObj.optBoolean("enable1080p120fpsVideo", false),
                 enableDolbyVideo120fps = vendorTagsObj.optBoolean("enableDolbyVideo120fps", false),
                 enableMultiFrameBurstShot = vendorTagsObj.optBoolean("enableMultiFrameBurstShot", false),
-                enableVideoSoundFocus = vendorTagsObj.optBoolean("enableVideoSoundFocus", false)
+                enableVideoSoundFocus = vendorTagsObj.optBoolean("enableVideoSoundFocus", false),
+                enableFront4KVideo = vendorTagsObj.optBoolean("enableFront4KVideo", false),
+                enableAiScenePreset = vendorTagsObj.optBoolean("enableAiScenePreset", false)
             )
             
             AppConfig(
@@ -249,6 +251,60 @@ object ConfigBasedAddConfig {
                     ),
                     MergeStrategy.OVERRIDE
                 )
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.camera.feature.super_text_two",
+//                        "Byte",
+//                        "1",
+//                        "1"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.camera.feature.super_text",
+//                        "Byte",
+//                        "1",
+//                        "1"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.camera.livephoto.mastermode.support",
+//                        "Byte",
+//                        "1",
+//                        "1"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.camera.master.video.type",
+//                        "int32",
+//                        "1",
+//                        "1"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.feature.none.sat.rear.mode",
+//                        "String",
+//                        "1",
+//                        "underWater"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.feature.under.water.mode.support",
+//                        "String",
+//                        "8",
+//                        "1,120,187,259,1,0,-1,515"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
             }
 
             // 大师模式 RAW MAX 格式
@@ -290,6 +346,24 @@ object ConfigBasedAddConfig {
                         "Byte",
                         "1",
                         "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.portrait.preview.rear.sizes",
+                        "Int32",
+                        "8",
+                        "1280x960x960x960x1664x936x2112x960"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.rear.sub.portrait.previewsize",
+                        "Int32",
+                        "8",
+                        "320x240x240x240x416x234x528x240"
                     ),
                     MergeStrategy.OVERRIDE
                 )
@@ -383,24 +457,7 @@ object ConfigBasedAddConfig {
             }
 
             // 后置人像模式预览大小
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.portrait.preview.rear.sizes",
-                    "Int32",
-                    "8",
-                    "1280x960x960x960x1664x936x2112x960"
-                ),
-                MergeStrategy.OVERRIDE
-            )
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.rear.sub.portrait.previewsize",
-                    "Int32",
-                    "8",
-                    "320x240x240x240x416x234x528x240"
-                ),
-                MergeStrategy.OVERRIDE
-            )
+
 
             // 大师模式-滤镜参数预设
             if (vendorTags.enableStyleEffect) {
@@ -616,6 +673,15 @@ object ConfigBasedAddConfig {
                     ),
                     MergeStrategy.OVERRIDE
                 )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.face.beauty.custom.menu.version",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
             }
 
             // 超级文本扫描
@@ -806,6 +872,7 @@ object ConfigBasedAddConfig {
                     MergeStrategy.OVERRIDE
                 )
             }
+
 
             // 视频自动帧率
             if (vendorTags.enableVideoAutoFps) {
@@ -1399,6 +1466,42 @@ object ConfigBasedAddConfig {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.video.sound.focus.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // 前置4K视频
+            if (vendorTags.enableFront4KVideo) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.front.video.4k.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            
+            // AI场景预设
+            if (vendorTags.enableAiScenePreset) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.ai.scene.preset.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.preset.scene.detect.support",
                         "Byte",
                         "1",
                         "1"

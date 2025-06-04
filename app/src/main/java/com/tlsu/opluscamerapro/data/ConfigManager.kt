@@ -169,7 +169,9 @@ object ConfigManager {
                 enable1080p120fpsVideo = vendorTagsObj.optBoolean("enable1080p120fpsVideo", false),
                 enableDolbyVideo120fps = vendorTagsObj.optBoolean("enableDolbyVideo120fps", false),
                 enableMultiFrameBurstShot = vendorTagsObj.optBoolean("enableMultiFrameBurstShot", false),
-                enableVideoSoundFocus = vendorTagsObj.optBoolean("enableVideoSoundFocus", false)
+                enableVideoSoundFocus = vendorTagsObj.optBoolean("enableVideoSoundFocus", false),
+                enableFront4KVideo = vendorTagsObj.optBoolean("enableFront4KVideo", false),
+                enableAiScenePreset = vendorTagsObj.optBoolean("enableAiScenePreset", false)
             )
             
             // 解析其他设置
@@ -188,7 +190,12 @@ object ConfigManager {
             // 解析相册设置
             val gallerySettingsObj = json.optJSONObject("gallerySettings") ?: JSONObject()
             val gallerySettings = GallerySettings(
-                enableAIComposition = gallerySettingsObj.optBoolean("enableAIComposition", false)
+                enableAIComposition = gallerySettingsObj.optBoolean("enableAIComposition", false),
+                enableAIEliminate = gallerySettingsObj.optBoolean("enableAIEliminate", false),
+                enableAIDeblur = gallerySettingsObj.optBoolean("enableAIDeblur", false),
+                enableAIQualityEnhance = gallerySettingsObj.optBoolean("enableAIQualityEnhance", false),
+                enableAIDeReflection = gallerySettingsObj.optBoolean("enableAIDeReflection", false),
+                enableAIBestTake = gallerySettingsObj.optBoolean("enableAIBestTake", false)
             )
             
             // 解析元数据
@@ -284,6 +291,8 @@ object ConfigManager {
                     put("enableDolbyVideo120fps", config.vendorTags.enableDolbyVideo120fps)
                     put("enableMultiFrameBurstShot", config.vendorTags.enableMultiFrameBurstShot)
                     put("enableVideoSoundFocus", config.vendorTags.enableVideoSoundFocus)
+                    put("enableFront4KVideo", config.vendorTags.enableFront4KVideo)
+                    put("enableAiScenePreset", config.vendorTags.enableAiScenePreset)
                 })
                 
                 // 保存其他设置
@@ -298,6 +307,11 @@ object ConfigManager {
                 // 保存相册设置
                 put("gallerySettings", JSONObject().apply {
                     put("enableAIComposition", config.gallerySettings.enableAIComposition)
+                    put("enableAIEliminate", config.gallerySettings.enableAIEliminate)
+                    put("enableAIDeblur", config.gallerySettings.enableAIDeblur)
+                    put("enableAIQualityEnhance", config.gallerySettings.enableAIQualityEnhance)
+                    put("enableAIDeReflection", config.gallerySettings.enableAIDeReflection)
+                    put("enableAIBestTake", config.gallerySettings.enableAIBestTake)
                 })
                 
                 // 保存元数据

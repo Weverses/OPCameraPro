@@ -136,6 +136,8 @@ fun CameraSettingsScreen(
                                 "enableDolbyVideo120fps" -> currentConfig.vendorTags.copy(enableDolbyVideo120fps = value)
                                 "enableMultiFrameBurstShot" -> currentConfig.vendorTags.copy(enableMultiFrameBurstShot = value)
                                 "enableVideoSoundFocus" -> currentConfig.vendorTags.copy(enableVideoSoundFocus = value)
+                                "enableFront4KVideo" -> currentConfig.vendorTags.copy(enableFront4KVideo = value)
+                                "enableAiScenePreset" -> currentConfig.vendorTags.copy(enableAiScenePreset = value)
                                 else -> currentConfig.vendorTags
                             }
                             

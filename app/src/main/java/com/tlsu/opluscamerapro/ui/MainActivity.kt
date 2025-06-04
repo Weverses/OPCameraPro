@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
                 // 使用应用设置
                 config.appSettings.darkMode
             }
-            
+
             OplusTheme(
                 darkTheme = isDarkMode
             ) {

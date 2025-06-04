@@ -215,7 +215,13 @@ data class VendorTagSettings(
     val enableMultiFrameBurstShot: Boolean = false,
     
     // 声音聚焦
-    val enableVideoSoundFocus: Boolean = false
+    val enableVideoSoundFocus: Boolean = false,
+    
+    // 前置4K视频
+    val enableFront4KVideo: Boolean = false,
+    
+    // AI场景预设
+    val enableAiScenePreset: Boolean = false
 )
 
 /**
@@ -239,7 +245,17 @@ data class AppSettings(
  */
 data class GallerySettings(
     // AI 灵感成片
-    val enableAIComposition: Boolean = false
+    val enableAIComposition: Boolean = false,
+    // AI 消除
+    val enableAIEliminate: Boolean = false,
+    // AI 去拖影
+    val enableAIDeblur: Boolean = false,
+    // AI 画质增强
+    val enableAIQualityEnhance: Boolean = false,
+    // AI 去反光
+    val enableAIDeReflection: Boolean = false,
+    // AI 最佳表情
+    val enableAIBestTake: Boolean = false
 )
 
 /**

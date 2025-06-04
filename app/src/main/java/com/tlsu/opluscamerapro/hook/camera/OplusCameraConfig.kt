@@ -5,6 +5,7 @@ import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinder
 import com.tlsu.opluscamerapro.hook.BaseHook
 import com.tlsu.opluscamerapro.utils.DefaultConfigManager
+import com.tlsu.opluscamerapro.utils.DefaultConfigManager.saveOriginOtherConfig
 import com.tlsu.opluscamerapro.utils.ParseConfig.isOplusCameraConfig
 import com.tlsu.opluscamerapro.utils.ParseConfig.parseConfig
 import de.robv.android.xposed.XposedBridge
@@ -37,6 +38,7 @@ object OplusCameraConfig : BaseHook() {
                             it.result = modifyConfig
                             XposedBridge.log("OplusTest: return modifyConfig successfully")
                         } else {
+                            saveOriginOtherConfig(configName, originalConfig)
                             XposedBridge.log("OplusTest: configName: $configName! isn't OplusCameraConfig")
                         }
                     }

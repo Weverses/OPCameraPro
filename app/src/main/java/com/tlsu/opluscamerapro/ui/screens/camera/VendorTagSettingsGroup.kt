@@ -25,6 +25,8 @@ import com.tlsu.opluscamerapro.R
 import com.tlsu.opluscamerapro.data.VendorTagSettings
 import com.tlsu.opluscamerapro.ui.components.SettingsSwitchItem
 import com.tlsu.opluscamerapro.utils.DefaultConfigManager
+import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
+import com.tlsu.opluscamerapro.utils.ZipExtractor.MAGISK_MODULE_PATH
 
 /**
  * VendorTag设置组
@@ -442,12 +444,26 @@ fun VendorTagSettingsGroup(
             )
 
             SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_preview_hdr_title),
-                description = stringResource(R.string.camera_settings_preview_hdr_desc),
-                checked = vendorTagSettings.enablePreviewHdr,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enablePreviewHdr"),
-                onCheckedChange = { onSettingChanged("enablePreviewHdr", it) }
+                title = stringResource(R.string.camera_settings_enable_ai_scene_preset),
+                description = stringResource(R.string.camera_settings_enable_ai_scene_preset_desc),
+                checked = vendorTagSettings.enableAiScenePreset,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableAiScenePreset"),
+                onCheckedChange = { onSettingChanged("enableAiScenePreset", it) }
             )
+
+            if(execWithResult("test -f $MAGISK_MODULE_PATH/odm/lib64/libAlgoInterface.so && echo true || echo false")
+                    .out.joinToString("").contains("true")) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_settings_preview_hdr_title),
+                    description = stringResource(R.string.camera_settings_preview_hdr_desc),
+                    checked = vendorTagSettings.enablePreviewHdr,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                        context,
+                        "enablePreviewHdr"
+                    ),
+                    onCheckedChange = { onSettingChanged("enablePreviewHdr", it) }
+                )
+            }
 
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_new_beauty_menu_title),
@@ -552,7 +568,7 @@ fun VendorTagSettingsGroup(
                 title = stringResource(R.string.camera_settings_master_mode_title),
                 description = stringResource(R.string.camera_settings_master_mode_desc),
                 checked = vendorTagSettings.enableMasterMode,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMasterMode"),
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableStyleEffect"),
                 onCheckedChange = { onSettingChanged("enableMasterMode", it) }
             )
             
@@ -632,6 +648,14 @@ fun VendorTagSettingsGroup(
                 checked = vendorTagSettings.enable720p60fps,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enable720p60fps"),
                 onCheckedChange = { onSettingChanged("enable720p60fps", it) }
+            )
+            
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_enable_front_4k_video),
+                description = stringResource(R.string.camera_settings_enable_front_4k_video_desc),
+                checked = vendorTagSettings.enableFront4KVideo,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableFront4KVideo"),
+                onCheckedChange = { onSettingChanged("enableFront4KVideo", it) }
             )
             
             SettingsSwitchItem(
