@@ -44,42 +44,42 @@ fun GallerySettingsGroup(
                 title = stringResource(R.string.gallery_settings_ai_composition_title),
                 description = stringResource(R.string.gallery_settings_ai_composition_desc),
                 checked = gallerySettings.enableAIComposition,
-                defaultValueDescription = "相册无法获取设备默认值",
+                defaultValueDescription = stringResource(R.string.gallery_settings_no_defalut_keys),
                 onCheckedChange = { onSettingChanged("enableAIComposition", it) }
             )
             SettingsSwitchItem(
                 title = stringResource(R.string.gallery_settings_ai_eliminate_title),
                 description = stringResource(R.string.gallery_settings_ai_eliminate_desc),
                 checked = gallerySettings.enableAIEliminate,
-                defaultValueDescription = "相册无法获取设备默认值",
+                defaultValueDescription = stringResource(R.string.gallery_settings_no_defalut_keys),
                 onCheckedChange = { onSettingChanged("enableAIEliminate", it) }
             )
             SettingsSwitchItem(
                 title = stringResource(R.string.gallery_settings_ai_deblur_title),
                 description = stringResource(R.string.gallery_settings_ai_deblur_desc),
                 checked = gallerySettings.enableAIDeblur,
-                defaultValueDescription = "相册无法获取设备默认值",
+                defaultValueDescription = stringResource(R.string.gallery_settings_no_defalut_keys),
                 onCheckedChange = { onSettingChanged("enableAIDeblur", it) }
             )
             SettingsSwitchItem(
                 title = stringResource(R.string.gallery_settings_ai_quality_enhance_title),
                 description = stringResource(R.string.gallery_settings_ai_quality_enhance_desc),
                 checked = gallerySettings.enableAIQualityEnhance,
-                defaultValueDescription = "相册无法获取设备默认值",
+                defaultValueDescription = stringResource(R.string.gallery_settings_no_defalut_keys),
                 onCheckedChange = { onSettingChanged("enableAIQualityEnhance", it) }
             )
             SettingsSwitchItem(
                 title = stringResource(R.string.gallery_settings_ai_dereflection_title),
                 description = stringResource(R.string.gallery_settings_ai_dereflection_desc),
                 checked = gallerySettings.enableAIDeReflection,
-                defaultValueDescription = "相册无法获取设备默认值",
+                defaultValueDescription = stringResource(R.string.gallery_settings_no_defalut_keys),
                 onCheckedChange = { onSettingChanged("enableAIDeReflection", it) }
             )
             SettingsSwitchItem(
                 title = stringResource(R.string.gallery_settings_ai_besttake_title),
                 description = stringResource(R.string.gallery_settings_ai_besttake_desc),
                 checked = gallerySettings.enableAIBestTake,
-                defaultValueDescription = "相册无法获取设备默认值",
+                defaultValueDescription = stringResource(R.string.gallery_settings_no_defalut_keys),
                 onCheckedChange = { onSettingChanged("enableAIBestTake", it) }
             )
         }

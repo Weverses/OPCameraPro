@@ -59,20 +59,20 @@ fun MainScreen(viewModel: MainViewModel) {
         bottomBar = {
             NavigationBar {
                 NavigationBarItem(
-                    icon = { Icon(Icons.Filled.Camera, contentDescription = "相机设置") },
-                    label = { Text("相机设置") },
+                    icon = { Icon(Icons.Filled.Camera, contentDescription = stringResource(R.string.vendor_tag_settings_title)) },
+                    label = { Text(stringResource(R.string.vendor_tag_settings_title)) },
                     selected = currentPage == 0,
                     onClick = { currentPage = 0 }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Filled.Photo, contentDescription = "相册设置") },
-                    label = { Text("相册设置") },
+                    icon = { Icon(Icons.Filled.Photo, contentDescription = stringResource(R.string.gallery_settings_title)) },
+                    label = { Text(stringResource(R.string.gallery_settings_title)) },
                     selected = currentPage == 1,
                     onClick = { currentPage = 1 }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Filled.Settings, contentDescription = "模块设置") },
-                    label = { Text("模块设置") },
+                    icon = { Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.module_settings)) },
+                    label = { Text(stringResource(R.string.module_settings)) },
                     selected = currentPage == 2,
                     onClick = { currentPage = 2 }
                 )

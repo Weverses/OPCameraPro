@@ -16,8 +16,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.tlsu.opluscamerapro.R
 
 /**
  * 无ROOT权限提示对话框
@@ -44,7 +46,7 @@ fun NoRootAccessDialog() {
             )
             
             Text(
-                text = "无ROOT权限",
+                text = stringResource(R.string.no_root_access_title),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.error
             )
@@ -52,10 +54,10 @@ fun NoRootAccessDialog() {
             Spacer(modifier = Modifier.height(16.dp))
             
             Text(
-                text = "本模块需要ROOT权限才能正常工作。请授予ROOT权限后重启应用。",
+                text = stringResource(R.string.no_root_access_message),
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Center
             )
         }
     }
-} 
+}

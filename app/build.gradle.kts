@@ -7,14 +7,14 @@ plugins {
 
 android {
     //noinspection GradleDependency
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.tlsu.opluscamerapro"
         minSdk = 34
         targetSdk = 35
-        versionCode = 2130
-        versionName = "Penicillin 2.1.30"
+        versionCode = 2140
+        versionName = "Penicillin 2.1.40"
     }
 
     val properties = Properties()

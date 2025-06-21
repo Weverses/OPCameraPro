@@ -267,22 +267,22 @@ fun ModuleSettingsScreen(
                         
                         // 重启相机
                         SettingsClickableItem(
-                            title = "重启相机及相册",
-                            description = "杀死相机和相册进程，使设置更改立即生效",
+                            title = stringResource(R.string.restart_camera_and_gallery),
+                            description = stringResource(R.string.restart_camera_and_gallery_desc),
                             icon = { Icon(Icons.Filled.PhotoCamera, contentDescription = null) },
                             onClick = {
                                 if (hasRootAccess) {
                                     coroutineScope.launch {
                                         val result = viewModel.restartCameraApp()
                                         if (result) {
-                                            snackbarHostState.showSnackbar("相机及相册已重启")
+                                            snackbarHostState.showSnackbar(context.getString(R.string.camera_and_gallery_restarted))
                                         } else {
-                                            snackbarHostState.showSnackbar("重启失败")
+                                            snackbarHostState.showSnackbar(context.getString(R.string.restart_failed))
                                         }
                                     }
                                 } else {
                                     coroutineScope.launch {
-                                        snackbarHostState.showSnackbar("无root权限")
+                                        snackbarHostState.showSnackbar(context.getString(R.string.no_root_permission))
                                     }
                                 }
                             }
@@ -328,7 +328,7 @@ fun ModuleSettingsScreen(
                                     }
                                 } else {
                                     coroutineScope.launch {
-                                        snackbarHostState.showSnackbar("无root权限")
+                                        snackbarHostState.showSnackbar(context.getString(R.string.no_root_permission))
                                     }
                                 }
                             }
@@ -377,7 +377,7 @@ fun ModuleSettingsScreen(
                         ) {
                             Column(modifier = Modifier.padding(16.dp)) {
                                 Text(
-                                    text = "版本",
+                                    text = stringResource(R.string.version_label),
                                     style = MaterialTheme.typography.titleSmall,
                                     color = MaterialTheme.colorScheme.primary
                                 )
@@ -402,7 +402,7 @@ fun ModuleSettingsScreen(
                         ) {
                             Column(modifier = Modifier.padding(16.dp)) {
                                 Text(
-                                    text = "作者",
+                                    text = stringResource(R.string.author_label),
                                     style = MaterialTheme.typography.titleSmall,
                                     color = MaterialTheme.colorScheme.primary
                                 )
@@ -433,7 +433,7 @@ fun ModuleSettingsScreen(
                                 )
                                 Spacer(modifier = Modifier.height(4.dp))
                                 Text(
-                                    text = "OPlusCameraPro 官方频道",
+                                    text = stringResource(R.string.telegram_channel_desc),
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
@@ -448,7 +448,7 @@ fun ModuleSettingsScreen(
                         ) {
                             Column(modifier = Modifier.padding(16.dp)) {
                                 Text(
-                                    text = "模块介绍",
+                                    text = stringResource(R.string.module_introduction_label),
                                     style = MaterialTheme.typography.titleSmall,
                                     color = MaterialTheme.colorScheme.primary
                                 )
@@ -686,14 +686,13 @@ fun ModuleSettingsScreen(
                 title = { Text(stringResource(R.string.submodule_title)) },
                 text = {
                     Column {
-                        // 选项一：效果风格
                         Card(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(bottom = 8.dp)
                                 .clickable {
                                     showSubmoduleDialog = false
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://bugme7.lanzouu.com/iyexR2y8k1pg"))
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://bugme7.lanzouu.com/b02f7iqzbg"))
                                     context.startActivity(intent)
                                 },
                             shape = RoundedCornerShape(8.dp)
@@ -719,7 +718,7 @@ fun ModuleSettingsScreen(
                                 .padding(bottom = 8.dp)
                                 .clickable {
                                     showSubmoduleDialog = false
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://bugme7.lanzouu.com/iCNx42y8k1hi"))
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://bugme7.lanzouu.com/b02f7iqzbg"))
                                     context.startActivity(intent)
                                 },
                             shape = RoundedCornerShape(8.dp)

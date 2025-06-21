@@ -33,9 +33,9 @@
     <string name="submodule_effectstyle_title">仅安装精简版</string>
     <string name="submodule_effectstyle_desc">仅包含大师模式滤镜、参数预设的必要文件</string>
     <string name="submodule_hdr_title">安装完整版</string>
-    <string name="submodule_hdr_desc">包含参数预设滤镜以及预览HDR\n需要ColorOS15.0.1及以上版本才能安装，且安装后可能会导致相机闪退等一系列问题，请谨慎安装</string>
+    <string name="submodule_hdr_desc">包含参数预设滤镜以及预览HDR\n需要ColorOS15.0.1及以上版本才能安装，且安装后可能会导致相机闪退等一系列问题，请谨慎安装\n目前只在一加13上可用，其他机型请勿安装</string>
     <string name="submodule_install_title">安装说明</string>
-    <string name="submodule_install_desc">点击上方的选项后将会跳转网盘, 请下载后自行到Root管理器中安装模块\n安装后请:\n1. KSU及第三方版本关闭默认卸载模块选项\n2. Magisk关闭Hide/Sulist模式Magisk\n3. Shamiko白名单模式切换成黑名单模式\n4. 给予相机、相册Root权限</string>
+    <string name="submodule_install_desc">密码: 63q4\n点击上方的选项后将会跳转网盘, 请下载后自行到Root管理器中安装模块\n安装后请:\n1. KSU及第三方版本关闭默认卸载模块选项\n2. Magisk关闭Hide/Sulist模式Magisk\n3. Shamiko白名单模式切换成黑名单模式\n4. 给予相机、相册Root权限</string>
     <string name="submodule_switch_mount_title">切换附属模块挂载方式</string>
     <string name="submodule_switch_mount_desc">点击自由切换附属模块的挂载方式, 以解决在部分管理器中无法正确挂载的问题</string>
     <string name="submodule_default_title">管理器默认挂载方式</string>
@@ -167,7 +167,7 @@
     <string name="camera_settings_macro_depth_fusion_title">微距景深融合</string>
     <string name="camera_settings_macro_depth_fusion_desc">启用微距景深融合功能</string>
     <string name="camera_settings_style_effect_title">大师模式滤镜与参数预设</string>
-    <string name="camera_settings_style_effect_desc">启用大师模式滤镜参数预设,\n*提醒: 该功能需要安装任意版本的附属模块方可使用</string>
+    <string name="camera_settings_style_effect_desc">启用大师模式滤镜参数预设,\n*提示: 该功能需要安装任意版本的附属模块方可使用</string>
     <string name="camera_settings_master_filter_title">大师滤镜</string>
     <string name="camera_settings_master_filter_desc">启用大师滤镜</string>
     <string name="camera_settings_tol_style_filter_title">光影有声滤镜</string>
@@ -291,6 +291,7 @@
     <string name="gallery_settings_ai_dereflection_desc">启用AI去反光功能，改善照片反光问题</string>
     <string name="gallery_settings_ai_besttake_title">AI 最佳表情</string>
     <string name="gallery_settings_ai_besttake_desc">启用AI最佳表情功能，检测人脸然后替换表情</string>
+    <string name="gallery_settings_no_defalut_keys">模块无法获取相册的设备默认值, 你可自行查看默认支持情况</string>
     <string name="module_update_checking">正在检查模块更新...</string>
     <string name="module_update_failed">调用二进制安装模块更新失败,可能原因为你不是官方的Magisk/KernelSU. 已尝试直接解压附属模块并使用post-of-data.sh挂载模块, 若依旧无效请换官方的Magisk/KernelSU, 其他管理器不受理任何Bug反馈</string>
     <string name="module_update_ignore">检测到你的Root方式无法调用自动安装附属模块。已尝试直接解压附属模块并使用post-of-data.sh挂载模块, 若依旧无效请换官方的Magisk/KernelSU, 其他管理器不受理任何Bug反馈</string>
@@ -304,4 +305,16 @@
     <string name="camera_settings_enable_front_4k_video_desc">支持使用前置摄像头录制4K视频</string>
     <string name="camera_settings_enable_ai_scene_preset">AI场景预设</string>
     <string name="camera_settings_enable_ai_scene_preset_desc">开启AI自动场景识别与预设，优化照片拍摄效果</string>
+
+    <string name="restart_camera_and_gallery">重启相机及相册</string>
+    <string name="restart_camera_and_gallery_desc">杀死相机和相册进程，使设置更改立即生效</string>
+    <string name="camera_and_gallery_restarted">相机及相册已重启</string>
+    <string name="restart_failed">重启失败</string>
+    <string name="no_root_permission">无root权限</string>
+    <string name="version_label">版本</string>
+    <string name="author_label">作者</string>
+    <string name="telegram_channel_desc">OPlusCameraPro 官方频道</string>
+    <string name="module_introduction_label">模块介绍</string>
+    <string name="no_root_access_title">无ROOT权限</string>
+    <string name="no_root_access_message">本模块需要ROOT权限才能正常工作。请授予ROOT权限后重启应用。</string>
 </resources>
