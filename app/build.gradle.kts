@@ -13,8 +13,8 @@ android {
         applicationId = "com.tlsu.opluscamerapro"
         minSdk = 34
         targetSdk = 35
-        versionCode = 2121
-        versionName = "Lake 2.1.21"
+        versionCode = 2130
+        versionName = "Penicillin 2.1.30"
     }
 
     val properties = Properties()
@@ -82,7 +82,23 @@ android {
         kotlinCompilerExtensionVersion = "1.5.8"
 
     }
-
+    bundle {
+        language {
+            enableSplit = true
+        }
+        density {
+            enableSplit = true
+        }
+        abi {
+            enableSplit = true
+        }
+    }
+    
+    // 移除未使用的资源
+    buildFeatures {
+        buildConfig = false  // 如果不使用 BuildConfig
+        resValues = false    // 如果不使用 resValue
+    }
 }
 
 dependencies {

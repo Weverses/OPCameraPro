@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name" translatable="false">OPCameraPro</string>
     <string name="xposeddescription">相机功能补全</string>
+
     <!-- 配置元数据 -->
     <string name="config_metadata_message">配置文件留言</string>
     <string name="config_metadata_export_time">导出时间</string>
@@ -22,22 +24,40 @@
     <string name="import_config_description">从文件导入配置</string>
     <string name="about">关于</string>
     <string name="about_description">查看模块信息和作者</string>
-    <string name="delete_libs_and_framework">修复相机闪退</string>">
-    <string name="delete_libs_and_framework_desc">通过删除一些依赖，解决在部分机型上的闪退问题</string>">
-    <string name="delete_success">删除成功, 请重启手机</string>
-    <string name="delete_failed">删除失败</string>
+    <string name="delete_libs_and_framework">修复闪退</string>">
+    <string name="delete_libs_and_framework_desc">如果遇到了闪退问题, 点击此处将清除模块内保存的相机、相册设置数据、卸载附属模块并清除相机数据以修复问题</string>">
+    <string name="delete_success">修复成功, 请重启手机</string>
+    <string name="delete_failed">修复失败</string>
+    <string name="submodule_title">安装附属模块</string>
+    <string name="submodule_desc">安装附属模块后, 才能开启大师模式滤镜、参数预设以及预览HDR功能</string>
+    <string name="submodule_effectstyle_title">仅安装精简版</string>
+    <string name="submodule_effectstyle_desc">仅包含大师模式滤镜、参数预设的必要文件</string>
+    <string name="submodule_hdr_title">安装完整版</string>
+    <string name="submodule_hdr_desc">包含参数预设滤镜以及预览HDR\n需要ColorOS15.0.1及以上版本才能安装，且安装后可能会导致相机闪退等一系列问题，请谨慎安装</string>
+    <string name="submodule_install_title">安装说明</string>
+    <string name="submodule_install_desc">点击上方的选项后将会跳转网盘, 请下载后自行到Root管理器中安装模块\n安装后请:\n1. KSU及第三方版本关闭默认卸载模块选项\n2. Magisk关闭Hide/Sulist模式Magisk\n3. Shamiko白名单模式切换成黑名单模式\n4. 给予相机、相册Root权限</string>
+    <string name="submodule_switch_mount_title">切换附属模块挂载方式</string>
+    <string name="submodule_switch_mount_desc">点击自由切换附属模块的挂载方式, 以解决在部分管理器中无法正确挂载的问题</string>
+    <string name="submodule_default_title">管理器默认挂载方式</string>
+    <string name="submodule_default_desc">将使用管理器默认的挂载方式进行挂载\n(如KSU OverlayFS、MKSU Magic Mount), 模块不干涉挂载</string>
+    <string name="submodule_overlayfs_title">OverlayFS</string>
+    <string name="submodule_overlayfs_desc">模块将自行使用`post-of-data.sh`构建OverlayFS进行附属模块的挂载,\n可能与部分模块造成冲突</string>
+    <string name="submodule_mountbind_title">Mount --bind</string>
+    <string name="submodule_mountbind_desc">模块将自行使用`post-of-data.sh`使用Mount --bind进行附属模块的挂载,\n该挂载方式对于系统内原本没有的文件无法挂载替换</string>
+    <string name="submodule_mount_current">当前挂载方式</string>
 
     <!-- 错误消息 -->
     <string name="need_root_for_export">导出配置需要ROOT权限</string>
     <string name="need_root_for_import">导入配置需要ROOT权限</string>
     <string name="export_failed_check_permission">导出失败，请检查权限</string>
     <string name="export_failed_with_reason">导出失败：%1$s</string>
+    <string name="settings_saved">设置已保存</string>
 
     <!-- 对话框 -->
     <string name="about_dialog_title">关于</string>
-    <string name="about_dialog_version">版本: Lake 2.1.20</string>
+    <string name="about_dialog_version">版本: Penicillin 2.1.30</string>
     <string name="about_dialog_author">作者: TimelessU</string>
-    <string name="about_dialog_description">Oplus 相机功能补全</string>
+    <string name="about_dialog_description">OPCameraPro 相机功能补全, 一个适用于ColorOS/realmeUI的相机增强型模块\n该模块完全免费, 请勿上当受骗</string>
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
 
@@ -67,7 +87,7 @@
 
     <!-- 相机设置 -->
     <string name="camera_settings_title">相机功能设置</string>
-    <string name="vendor_tag_settings_title">VendorTag设置</string>
+    <string name="vendor_tag_settings_title">相机设置</string>
     <string name="vendor_tag_enable_25mp">25MP Turbo RAW分辨率增强</string>
     <string name="vendor_tag_enable_master_mode">大师模式(Version 2)</string>
     <string name="vendor_tag_enable_master_raw_max">大师模式 RAW MAX 格式</string>
@@ -102,17 +122,24 @@
     <string name="vendor_tag_enable_video_stop_sound_immediate">停止录制立即播放提示音</string>
     <string name="vendor_tag_enable_force_portrait_for_third_party">第三方app调用官方相机时可以选择人像模式</string>
     <string name="vendor_tag_enable_front_camera_zoom">前置拍照变焦</string>
+    <string name="vendor_tag_enable_portrait_rear_flash">人像模式后置闪光灯</string>
+    <string name="vendor_tag_enable_ai_hd_switch">AI 超清望远算法</string>
+    <string name="vendor_tag_enable_tele_sdsr">超清长焦算法</string>
+    <string name="vendor_tag_enable_dolby_video">杜比视频支持</string>
+    <string name="vendor_tag_enable_dolby_video_60fps">杜比视频60fps</string>
+    <string name="vendor_tag_enable_dolby_video_sat">长焦杜比视频</string>
+    <string name="vendor_tag_enable_front_dolby_video">前置杜比视频</string>
+    <string name="vendor_tag_enable_video_lock_lens">视频录制锁定镜头</string>
+    <string name="vendor_tag_enable_video_lock_wb">视频录制锁定白平衡</string>
+    <string name="vendor_tag_enable_mic_status_check">视频录制检测麦克风状态</string>
 
     <!-- 相机设置分类 -->
     <string name="camera_settings_category_advanced">拍照设置</string>
     <string name="camera_settings_category_video">视频设置</string>
     <string name="camera_settings_category_macro">微距设置</string>
     <string name="camera_settings_category_filter">滤镜设置</string>
-    <string name="camera_settings_category_heif_hdr">HEIF/HDR设置</string>
+    <string name="camera_settings_category_heif_hdr">杂项设置</string>
     <string name="camera_settings_category_other">实况照片设置</string>
-    <string name="camera_settings_category_master">大师模式设置</string>
-    <string name="camera_settings_category_portrait">人像模式设置</string>
-    <string name="camera_settings_category_dolby">杜比视频设置</string>
 
     <!-- 相机设置项目 -->
     <string name="camera_settings_25mp_title">25MP</string>
@@ -131,8 +158,6 @@
     <string name="camera_settings_video_auto_fps_desc">启用视频自动帧率功能</string>
     <string name="camera_settings_live_photo_bitrate_title">实况视频高码率</string>
     <string name="camera_settings_live_photo_bitrate_desc">提高实况视频码率</string>
-    <string name="camera_settings_live_photo_duration_title">实况照片时长</string>
-    <string name="camera_settings_live_photo_duration_desc">调整实况照片视频时长</string>
     <string name="camera_settings_video_stop_sound_title">录制结束立即播放提示音</string>
     <string name="camera_settings_video_stop_sound_desc">停止录制时立即播放提示音</string>
     <string name="camera_settings_new_macro_mode_title">新版微距模式</string>
@@ -141,8 +166,10 @@
     <string name="camera_settings_macro_tele_desc">允许微距模式调用长焦相机</string>
     <string name="camera_settings_macro_depth_fusion_title">微距景深融合</string>
     <string name="camera_settings_macro_depth_fusion_desc">启用微距景深融合功能</string>
-    <string name="camera_settings_style_effect_title">大师模式滤镜参数预设</string>
-    <string name="camera_settings_style_effect_desc">启用大师模式滤镜参数预设</string>
+    <string name="camera_settings_style_effect_title">大师模式滤镜与参数预设</string>
+    <string name="camera_settings_style_effect_desc">启用大师模式滤镜参数预设,\n*提醒: 该功能需要安装任意版本的附属模块方可使用</string>
+    <string name="camera_settings_master_filter_title">大师滤镜</string>
+    <string name="camera_settings_master_filter_desc">启用大师滤镜</string>
     <string name="camera_settings_tol_style_filter_title">光影有声滤镜</string>
     <string name="camera_settings_tol_style_filter_desc">启用光影有声滤镜</string>
     <string name="camera_settings_grand_tour_filter_title">Grand Tour滤镜</string>
@@ -151,6 +178,8 @@
     <string name="camera_settings_desert_filter_desc">启用沙漠系列滤镜</string>
     <string name="camera_settings_vignette_grain_filter_title">Vignette Grain滤镜</string>
     <string name="camera_settings_vignette_grain_filter_desc">启用Vignette Grain滤镜</string>
+    <string name="camera_settings_jiang_wen_filter_title">姜文滤镜</string>
+    <string name="camera_settings_jiang_wen_filter_desc">启用姜文滤镜效果</string>
     <string name="camera_settings_jzk_movie_filter_title">贾樟柯滤镜</string>
     <string name="camera_settings_jzk_movie_filter_desc">启用贾樟柯滤镜</string>
     <string name="camera_settings_meishe_filter_title">Meishe系列滤镜</string>
@@ -172,7 +201,7 @@
     <string name="camera_settings_live_photo_fov_title">实况照片FOV优化</string>
     <string name="camera_settings_live_photo_fov_desc">优化实况照片视场角</string>
     <string name="camera_settings_preview_hdr_title">预览HDR</string>
-    <string name="camera_settings_preview_hdr_desc">启用预览HDR功能</string>
+    <string name="camera_settings_preview_hdr_desc">启用预览HDR功能,\n*风险提示: 此功能需要安装完整版的附属模块方可正常使用, 否则会遇到闪退问题</string>
     <string name="camera_settings_scale_focus_title">大师模式放大对焦</string>
     <string name="camera_settings_scale_focus_desc">在大师模式中启用放大对焦功能</string>
     <string name="camera_settings_new_beauty_menu_title">新版美颜菜单</string>
@@ -185,37 +214,43 @@
     <string name="camera_settings_force_portrait_desc">第三方APP调用官方相机时可以选择人像模式</string>
     <string name="camera_settings_front_camera_zoom_title">前置拍照变焦</string>
     <string name="camera_settings_front_camera_zoom_desc">启用前置相机变焦功能</string>
-    <string name="camera_settings_master_filter_title">大师滤镜</string>
-    <string name="camera_settings_master_filter_desc">启用大师滤镜</string>
+    <string name="camera_settings_portrait_rear_flash_title">人像模式后置闪光灯</string>
+    <string name="camera_settings_portrait_rear_flash_desc">在人像模式中启用后置闪光灯功能</string>
+    <string name="camera_settings_ai_hd_switch_title">AI 超清望远算法</string>
+    <string name="camera_settings_ai_hd_switch_desc">启用AI增强的超清望远算法功能</string>
+    <string name="camera_settings_tele_sdsr_title">超清长焦算法</string>
+    <string name="camera_settings_tele_sdsr_desc">启用超清长焦算法增强图像质量</string>
+    <string name="camera_settings_dolby_video_title">杜比视频支持</string>
+    <string name="camera_settings_dolby_video_desc">启用杜比视觉HDR视频录制功能</string>
+    <string name="camera_settings_dolby_video_60fps_title">杜比视频60fps</string>
+    <string name="camera_settings_dolby_video_60fps_desc">支持以60fps录制杜比视觉HDR视频</string>
+    <string name="camera_settings_dolby_video_sat_title">长焦杜比视频</string>
+    <string name="camera_settings_dolby_video_sat_desc">支持使用长焦镜头录制杜比视觉HDR视频</string>
+    <string name="camera_settings_front_dolby_video_title">前置杜比视频</string>
+    <string name="camera_settings_front_dolby_video_desc">支持使用前置摄像头录制杜比视觉HDR视频</string>
+    <string name="camera_settings_video_lock_lens_title">视频录制锁定镜头</string>
+    <string name="camera_settings_video_lock_lens_desc">允许在视频录制过程中锁定当前镜头，防止切换</string>
+    <string name="camera_settings_video_lock_wb_title">视频录制锁定白平衡</string>
+    <string name="camera_settings_video_lock_wb_desc">允许在视频录制过程中锁定白平衡设置</string>
+    <string name="camera_settings_mic_status_check_title">视频录制检测麦克风状态</string>
+    <string name="camera_settings_mic_status_check_desc">启用对麦克风状态的检测功能，提示麦克风异常</string>
+
     <string name="camera_settings_hasselblad_watermark_guide_title">哈苏水印指导</string>
     <string name="camera_settings_hasselblad_watermark_guide_desc">启用哈苏水印引导功能</string>
-    <string name="camera_settings_hasselblad_watermark_title">哈苏水印</string>
-    <string name="camera_settings_hasselblad_watermark_desc">启用哈苏水印及相关功能</string>
+    <string name="camera_settings_hasselblad_watermark_title">自定义哈苏水印</string>
+    <string name="camera_settings_hasselblad_watermark_desc">启用自定义哈苏水印功能</string>
     <string name="camera_settings_hasselblad_watermark_default_title">哈苏水印默认开启</string>
     <string name="camera_settings_hasselblad_watermark_default_desc">设置哈苏水印是否默认开启</string>
     <string name="camera_settings_category_hasselblad">哈苏相关设置</string>
-    <string name="camera_settings_portrait_rear_flash_title">人像模式后置闪光灯</string>
-    <string name="camera_settings_portrait_rear_flash_desc">开启人像模式后置闪光灯</string>
-    <string name="camera_settings_ai_hd_switch_title">AI超清望远算法</string>
-    <string name="camera_settings_ai_hd_switch_desc">启用AI超清望远算法，支持超高倍数变焦</string>
-    <string name="camera_settings_tele_sdsr_title">超清长焦算法</string>
-    <string name="camera_settings_tele_sdsr_desc">启用超清长焦算法，支持更清晰的长焦拍摄</string>
-    <string name="camera_settings_dolby_video_title">杜比视频</string>
-    <string name="camera_settings_dolby_video_desc">启用杜比视频录制</string>
-    <string name="camera_settings_dolby_video_60fps_title">杜比视频60FPS</string>
-    <string name="camera_settings_dolby_video_60fps_desc">启用60FPS杜比视频录制</string>
-    <string name="camera_settings_dolby_video_sat_title">长焦杜比视频</string>
-    <string name="camera_settings_dolby_video_sat_desc">启用长焦镜头杜比视频录制</string>
-    <string name="camera_settings_front_dolby_video_title">前置杜比视频</string>
-    <string name="camera_settings_front_dolby_video_desc">启用前置摄像头杜比视频录制</string>
-    <string name="camera_settings_video_lock_lens_title">视频锁定镜头</string>
-    <string name="camera_settings_video_lock_lens_desc">视频录制时锁定当前镜头，避免镜头自动切换</string>
-    <string name="camera_settings_video_lock_wb_title">视频锁定白平衡</string>
-    <string name="camera_settings_video_lock_wb_desc">视频录制时锁定白平衡</string>
-    <string name="camera_settings_mic_status_check_title">麦克风状态检测</string>
-    <string name="camera_settings_mic_status_check_desc">检测麦克风使用状态并提示</string>
-    <string name="camera_settings_jiang_wen_filter_title">姜文滤镜</string>
-    <string name="camera_settings_jiang_wen_filter_desc">启用姜文风格电影滤镜</string>
+
+    <!-- 其他设置 -->
+    <string name="other_settings_title">其他设置</string>
+    <string name="other_settings_category_other">其他功能</string>
+    <string name="other_settings_no_settings">暂无其他设置</string>
+
+    <string name="camera_settings_category_master">大师模式设置</string>
+    <string name="camera_settings_category_portrait">人像模式设置</string>
+    <string name="camera_settings_category_dolby">杜比视频设置</string>
     <string name="camera_settings_global_ev_title">EV调节功能</string>
     <string name="camera_settings_global_ev_desc">启用全局曝光补偿调节功能</string>
     <string name="camera_settings_os15_new_filter_title">ColorOS15滤镜</string>
@@ -234,26 +269,12 @@
     <string name="camera_settings_multi_frame_burst_shot_desc">启用无影抓拍功能，捕捉运动中的清晰画面</string>
     <string name="camera_settings_video_sound_focus_title">声音聚焦</string>
     <string name="camera_settings_video_sound_focus_desc">视频录制时聚焦捕捉特定方向的声音</string>
-    <string name="vendor_tag_enable_portrait_rear_flash">人像模式后置闪光灯</string>
-    <string name="vendor_tag_enable_ai_hd_switch">AI 超清望远算法</string>
-    <string name="vendor_tag_enable_tele_sdsr">超清长焦算法</string>
-    <string name="vendor_tag_enable_dolby_video">杜比视频支持</string>
-    <string name="vendor_tag_enable_dolby_video_60fps">杜比视频60fps</string>
-    <string name="vendor_tag_enable_dolby_video_sat">长焦杜比视频</string>
-    <string name="vendor_tag_enable_front_dolby_video">前置杜比视频</string>
-    <string name="vendor_tag_enable_video_lock_lens">视频录制锁定镜头</string>
-    <string name="vendor_tag_enable_video_lock_wb">视频录制锁定白平衡</string>
-    <string name="vendor_tag_enable_mic_status_check">视频录制检测麦克风状态</string>
-
-    <!-- 其他设置 -->
-    <string name="other_settings_title">其他设置</string>
-    <string name="other_settings_category_other">其他功能</string>
-    <string name="other_settings_no_settings">暂无其他设置</string>
+    <string name="camera_settings_live_photo_duration_title">实况照片时长</string>
+    <string name="camera_settings_live_photo_duration_desc">调整实况照片视频时长</string>
     <!-- 默认值设置 -->
     <string name="default_value_enabled">设备默认值：开</string>
     <string name="default_value_disabled">设备默认值：关</string>
     <string name="default_value_unknown">设备默认值：未知，等待Hook更新</string>
-    <string name="settings_saved">设置已保存</string>
 
     <!-- 相册设置 -->
     <string name="gallery_settings_title">相册设置</string>
@@ -272,10 +293,11 @@
     <string name="gallery_settings_ai_besttake_desc">启用AI最佳表情功能，检测人脸然后替换表情</string>
     <string name="module_update_checking">正在检查模块更新...</string>
     <string name="module_update_failed">调用二进制安装模块更新失败,可能原因为你不是官方的Magisk/KernelSU. 已尝试直接解压附属模块并使用post-of-data.sh挂载模块, 若依旧无效请换官方的Magisk/KernelSU, 其他管理器不受理任何Bug反馈</string>
-    <string name="module_update_ignore">检测到你的Root方式无法调用自动安装附属模块。已尝试直接解压附属模块并使用post-of-data.sh挂载模块, 若依旧无效请换官方的Magisk/KernelSU, 其他管理器不受理任何Bug反馈</string>    <string name="module_update_installing">正在安装模块更新...</string>
+    <string name="module_update_ignore">检测到你的Root方式无法调用自动安装附属模块。已尝试直接解压附属模块并使用post-of-data.sh挂载模块, 若依旧无效请换官方的Magisk/KernelSU, 其他管理器不受理任何Bug反馈</string>
+    <string name="module_update_installing">正在尝试自动安装附属模块...</string>
     <string name="module_update_reboot_message">是否立即重启手机以应用更新？</string>
     <string name="module_update_success">模块更新成功</string>
-    <string name="module_update_title">模块更新</string>
+    <string name="module_update_title">附属模块更新</string>
     <string name="reboot_now">现在重启</string>
     <string name="reboot_delay">稍后重启</string>
     <string name="camera_settings_enable_front_4k_video">前置4K视频</string>

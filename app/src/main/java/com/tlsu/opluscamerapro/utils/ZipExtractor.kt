@@ -5,8 +5,6 @@ import android.content.Context
 import android.util.Log
 import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isOP13
-import com.tlsu.opluscamerapro.utils.DeviceCheck.isV15
-import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1502
 import java.io.File
 import java.io.FileOutputStream
@@ -274,19 +272,20 @@ object ZipExtractor {
      * @return 是否需要更新
      */
     fun shouldInstallSubModule(): Boolean {
-        val isVersionTxtExist = execWithResult("test -f $MAGISK_MODULE_PATH/$VERSION_FILE").isSuccess
-        if (isVersionTxtExist) {
-            val versionResult = execWithResult("cat $MAGISK_MODULE_PATH/$VERSION_FILE")
-            val version = if (versionResult.isSuccess && versionResult.out.isNotEmpty()) {
-                versionResult.out[0].trim()
-            } else {
-                ""
-            }
-            Log.d(TAG, "当前版本: $version, 目标版本: $CURRENT_VERSION")
-            return version != CURRENT_VERSION
-        }
-        Log.d(TAG, "版本文件不存在，需要安装")
-        return true
+//        val isVersionTxtExist = execWithResult("test -f $MAGISK_MODULE_PATH/$VERSION_FILE").isSuccess
+//        if (isVersionTxtExist) {
+//            val versionResult = execWithResult("cat $MAGISK_MODULE_PATH/$VERSION_FILE")
+//            val version = if (versionResult.isSuccess && versionResult.out.isNotEmpty()) {
+//                versionResult.out[0].trim()
+//            } else {
+//                ""
+//            }
+//            Log.d(TAG, "当前版本: $version, 目标版本: $CURRENT_VERSION")
+//            return version != CURRENT_VERSION
+//        }
+//        Log.d(TAG, "版本文件不存在，需要安装")
+//        return true
+        return false
     }
 
     private fun copyModuleToSdacrd() {
@@ -368,17 +367,20 @@ object ZipExtractor {
 
     fun deleteFrameworkAndLibs(): Boolean {
         return try {
-            execWithResult("mkdir -p $MAGISK_MODULE_PATH/tmp")
-            execWithResult("cp -rf $MAGISK_MODULE_PATH/odm/etc/camera/config $MAGISK_MODULE_PATH/tmp")
-            execWithResult("cp -rf $MAGISK_MODULE_PATH/odm/etc/camera/meishe_lut $MAGISK_MODULE_PATH/tmp")
-            execWithResult("cp -rf $MAGISK_MODULE_PATH/odm/etc/camera/filters_lut $MAGISK_MODULE_PATH/tmp")
-            execWithResult("rm -rf $MAGISK_MODULE_PATH/odm/")
-            execWithResult("rm -rf $MAGISK_MODULE_PATH/product/")
-            execWithResult("mkdir -p $MAGISK_MODULE_PATH/odm/etc/camera")
-            execWithResult("cp -rf $MAGISK_MODULE_PATH/tmp/config $MAGISK_MODULE_PATH/odm/etc/camera")
-            execWithResult("cp -rf $MAGISK_MODULE_PATH/tmp/meishe_lut $MAGISK_MODULE_PATH/odm/etc/camera")
-            execWithResult("cp -rf $MAGISK_MODULE_PATH/tmp/filters_lut $MAGISK_MODULE_PATH/odm/etc/camera")
-            execWithResult("rm -rf $MAGISK_MODULE_PATH/tmp")
+//            execWithResult("mkdir -p $MAGISK_MODULE_PATH/tmp")
+//            execWithResult("cp -rf $MAGISK_MODULE_PATH/odm/etc/camera/config $MAGISK_MODULE_PATH/tmp")
+//            execWithResult("cp -rf $MAGISK_MODULE_PATH/odm/etc/camera/meishe_lut $MAGISK_MODULE_PATH/tmp")
+//            execWithResult("cp -rf $MAGISK_MODULE_PATH/odm/etc/camera/filters_lut $MAGISK_MODULE_PATH/tmp")
+//            execWithResult("rm -rf $MAGISK_MODULE_PATH/odm/")
+//            execWithResult("rm -rf $MAGISK_MODULE_PATH/product/")
+//            execWithResult("mkdir -p $MAGISK_MODULE_PATH/odm/etc/camera")
+//            execWithResult("cp -rf $MAGISK_MODULE_PATH/tmp/config $MAGISK_MODULE_PATH/odm/etc/camera")
+//            execWithResult("cp -rf $MAGISK_MODULE_PATH/tmp/meishe_lut $MAGISK_MODULE_PATH/odm/etc/camera")
+//            execWithResult("cp -rf $MAGISK_MODULE_PATH/tmp/filters_lut $MAGISK_MODULE_PATH/odm/etc/camera")
+//            execWithResult("rm -rf $MAGISK_MODULE_PATH/tmp")
+            execWithResult("rm -rf $MAGISK_MODULE_PATH")
+            deleteCameraData()
+            deleteModuleData()
             true
         } catch (e: Exception) {
             android.util.Log.e("MainViewModel", "Failed to delete libs ${e.message}")
@@ -386,14 +388,93 @@ object ZipExtractor {
         }
     }
 
-    fun deleteCameraData() :Boolean {
-        return try {
-            execWithResult("rm -rf /data/user/0/com.oplus.camera")
-            execWithResult("killall com.oplus.camera")
-            true
-        } catch (e: Exception) {
-            android.util.Log.e("MainViewModel", "Failed to delete libs ${e.message}")
-            false
+    fun deleteCameraData() {
+        execWithResult("rm -rf /data/user/0/com.oplus.camera/*")
+        execWithResult("killall com.oplus.camera")
+    }
+
+    fun deleteModuleData() {
+        execWithResult("rm -rf /sdcard/Android/OplusCameraPro/*")
+    }
+
+    fun switchToDefaultMount() {
+        if (execWithResult("test -f $MAGISK_MODULE_PATH/is_mountbind && echo true || echo false")
+                .out.joinToString("").contains("true")) {
+
+            execWithResult("rm -rf $MAGISK_MODULE_PATH/is_mountbind")
+            execWithResult("cp -rf $MAGISK_MODULE_PATH/Common/* $MAGISK_MODULE_PATH/")
+            execWithResult("rm -rf $MAGISK_MODULE_PATH/Common")
+
+            execWithResult("mv -f $MAGISK_MODULE_PATH/post-fs-data.sh $MAGISK_MODULE_PATH/post-fs-data-mountbind.sh")
+            execWithResult("touch $MAGISK_MODULE_PATH/is_default")
+
+        } else if (execWithResult("test -f $MAGISK_MODULE_PATH/is_overlayfs && echo true || echo false")
+                .out.joinToString("").contains("true")){
+            execWithResult("rm -rf $MAGISK_MODULE_PATH/is_overlayfs")
+            execWithResult("mv -f $MAGISK_MODULE_PATH/post-fs-data.sh $MAGISK_MODULE_PATH/post-fs-data-overlayfs.sh")
+            execWithResult("touch $MAGISK_MODULE_PATH/is_default")
+        }
+    }
+
+    fun switchToOverlayFS() {
+        if (execWithResult("test -f $MAGISK_MODULE_PATH/is_mountbind && echo true || echo false")
+                .out.joinToString("").contains("true")){
+            // 此时代表肯定有post-fs-data.sh为mount bind, 故需要将目录已有的overlayfs重命名即可
+            execWithResult("rm -rf $MAGISK_MODULE_PATH/is_mountbind")
+
+            execWithResult("cp -rf $MAGISK_MODULE_PATH/Common/* $MAGISK_MODULE_PATH/")
+            execWithResult("rm -rf $MAGISK_MODULE_PATH/Common")
+
+            execWithResult("mv -f $MAGISK_MODULE_PATH/post-fs-data.sh $MAGISK_MODULE_PATH/post-fs-data-mountbind.sh")
+            execWithResult("mv -f $MAGISK_MODULE_PATH/post-fs-data-overlayfs.sh $MAGISK_MODULE_PATH/post-fs-data.sh")
+
+            execWithResult("touch $MAGISK_MODULE_PATH/is_overlayfs")
+
+        } else if (execWithResult("test -f $MAGISK_MODULE_PATH/is_default && echo true || echo false")
+                .out.joinToString("").contains("true")){
+            execWithResult("rm -rf $MAGISK_MODULE_PATH/is_default")
+            execWithResult("mv -f $MAGISK_MODULE_PATH/post-fs-data-overlayfs.sh $MAGISK_MODULE_PATH/post-fs-data.sh")
+            execWithResult("touch $MAGISK_MODULE_PATH/is_overlayfs")
+        }
+    }
+
+    fun switchToMountBind() {
+        if (execWithResult("test -f $MAGISK_MODULE_PATH/is_default && echo true || echo false")
+                .out.joinToString("").contains("true")) {
+
+            execWithResult("rm -rf $MAGISK_MODULE_PATH/is_default")
+            execWithResult("mkdir -p $MAGISK_MODULE_PATH/Common")
+            execWithResult("mv -f $MAGISK_MODULE_PATH/odm $MAGISK_MODULE_PATH/Common")
+            execWithResult("mv -f $MAGISK_MODULE_PATH/product $MAGISK_MODULE_PATH/Common")
+
+            execWithResult("mv -f $MAGISK_MODULE_PATH/post-fs-data-mountbind.sh $MAGISK_MODULE_PATH/post-fs-data.sh")
+
+            execWithResult("touch $MAGISK_MODULE_PATH/is_mountbind")
+
+        } else if (execWithResult("test -f $MAGISK_MODULE_PATH/is_overlayfs && echo true || echo false")
+                .out.joinToString("").contains("true")){
+            execWithResult("rm -rf $MAGISK_MODULE_PATH/is_overlayfs")
+            execWithResult("mkdir -p $MAGISK_MODULE_PATH/Common")
+            execWithResult("mv -f $MAGISK_MODULE_PATH/odm $MAGISK_MODULE_PATH/Common")
+            execWithResult("mv -f $MAGISK_MODULE_PATH/product $MAGISK_MODULE_PATH/Common")
+
+            execWithResult("mv -f $MAGISK_MODULE_PATH/post-fs-data.sh $MAGISK_MODULE_PATH/post-fs-data-overlayfs.sh")
+            execWithResult("mv -f $MAGISK_MODULE_PATH/post-fs-data-mountbind.sh $MAGISK_MODULE_PATH/post-fs-data.sh")
+
+            execWithResult("touch $MAGISK_MODULE_PATH/is_mountbind")
+
+        }
+    }
+
+    fun getCurrentMountMethod(): String {
+        if (execWithResult("test -f $MAGISK_MODULE_PATH/is_mountbind && echo true || echo false")
+                .out.joinToString("").contains("true")) {
+            return "Mount --bind"
+        } else if (execWithResult("test -f $MAGISK_MODULE_PATH/is_overlayfs && echo true || echo false")
+                .out.joinToString("").contains("true")) {
+            return "OverlayFS"
+        } else {
+            return "default"
         }
     }
 

@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name" translatable="false">OPCameraPro</string>
     <string name="xposeddescription">相机功能补全</string>
-    
+
     <!-- 配置元数据 -->
     <string name="config_metadata_message">配置文件留言</string>
     <string name="config_metadata_export_time">导出时间</string>
@@ -10,7 +10,7 @@
     <string name="config_metadata_android_version">Android版本</string>
     <string name="config_metadata_device_model">设备型号</string>
     <string name="config_metadata_device_market_name">设备营销名称</string>
-    
+
     <!-- 模块设置屏幕 -->
     <string name="loading">加载中...</string>
     <string name="module_settings">模块设置</string>
@@ -24,26 +24,43 @@
     <string name="import_config_description">从文件导入配置</string>
     <string name="about">关于</string>
     <string name="about_description">查看模块信息和作者</string>
-    <string name="delete_libs_and_framework">修复相机闪退</string>">
-    <string name="delete_libs_and_framework_desc">通过删除一些依赖，解决在部分机型上的闪退问题</string>">
-    <string name="delete_success">删除成功, 请重启手机</string>
-    <string name="delete_failed">删除失败</string>
-    
+    <string name="delete_libs_and_framework">修复闪退</string>">
+    <string name="delete_libs_and_framework_desc">如果遇到了闪退问题, 点击此处将清除模块内保存的相机、相册设置数据、卸载附属模块并清除相机数据以修复问题</string>">
+    <string name="delete_success">修复成功, 请重启手机</string>
+    <string name="delete_failed">修复失败</string>
+    <string name="submodule_title">安装附属模块</string>
+    <string name="submodule_desc">安装附属模块后, 才能开启大师模式滤镜、参数预设以及预览HDR功能</string>
+    <string name="submodule_effectstyle_title">仅安装精简版</string>
+    <string name="submodule_effectstyle_desc">仅包含大师模式滤镜、参数预设的必要文件</string>
+    <string name="submodule_hdr_title">安装完整版</string>
+    <string name="submodule_hdr_desc">包含参数预设滤镜以及预览HDR\n需要ColorOS15.0.1及以上版本才能安装，且安装后可能会导致相机闪退等一系列问题，请谨慎安装</string>
+    <string name="submodule_install_title">安装说明</string>
+    <string name="submodule_install_desc">点击上方的选项后将会跳转网盘, 请下载后自行到Root管理器中安装模块\n安装后请:\n1. KSU及第三方版本关闭默认卸载模块选项\n2. Magisk关闭Hide/Sulist模式Magisk\n3. Shamiko白名单模式切换成黑名单模式\n4. 给予相机、相册Root权限</string>
+    <string name="submodule_switch_mount_title">切换附属模块挂载方式</string>
+    <string name="submodule_switch_mount_desc">点击自由切换附属模块的挂载方式, 以解决在部分管理器中无法正确挂载的问题</string>
+    <string name="submodule_default_title">管理器默认挂载方式</string>
+    <string name="submodule_default_desc">将使用管理器默认的挂载方式进行挂载\n(如KSU OverlayFS、MKSU Magic Mount), 模块不干涉挂载</string>
+    <string name="submodule_overlayfs_title">OverlayFS</string>
+    <string name="submodule_overlayfs_desc">模块将自行使用`post-of-data.sh`构建OverlayFS进行附属模块的挂载,\n可能与部分模块造成冲突</string>
+    <string name="submodule_mountbind_title">Mount --bind</string>
+    <string name="submodule_mountbind_desc">模块将自行使用`post-of-data.sh`使用Mount --bind进行附属模块的挂载,\n该挂载方式对于系统内原本没有的文件无法挂载替换</string>
+    <string name="submodule_mount_current">当前挂载方式</string>
+
     <!-- 错误消息 -->
     <string name="need_root_for_export">导出配置需要ROOT权限</string>
     <string name="need_root_for_import">导入配置需要ROOT权限</string>
     <string name="export_failed_check_permission">导出失败，请检查权限</string>
     <string name="export_failed_with_reason">导出失败：%1$s</string>
     <string name="settings_saved">设置已保存</string>
-    
+
     <!-- 对话框 -->
     <string name="about_dialog_title">关于</string>
-    <string name="about_dialog_version">版本: Lake 2.1.20</string>
+    <string name="about_dialog_version">版本: Penicillin 2.1.30</string>
     <string name="about_dialog_author">作者: TimelessU</string>
-    <string name="about_dialog_description">Oplus 相机功能补全</string>
+    <string name="about_dialog_description">OPCameraPro 相机功能补全, 一个适用于ColorOS/realmeUI的相机增强型模块\n该模块完全免费, 请勿上当受骗</string>
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
-    
+
     <!-- 导出对话框 -->
     <string name="export_dialog_title">导出配置</string>
     <string name="export_dialog_message">您可以为导出的配置添加一段留言：</string>
@@ -51,7 +68,7 @@
     <string name="export">导出</string>
     <string name="export_success_title">导出成功</string>
     <string name="export_success_message">配置已导出到:\n%1$s</string>
-    
+
     <!-- 导入对话框 -->
     <string name="import_confirm_title">确认导入</string>
     <string name="import_confirm_message">确定要导入此配置文件吗？这将覆盖当前设置。</string>
@@ -60,17 +77,17 @@
     <string name="import_success_message">配置已成功导入并应用</string>
     <string name="import_failed_title">导入失败</string>
     <string name="import_failed_message">无法导入配置文件，请确保文件格式正确</string>
-    
+
     <!-- 设备信息卡片 -->
     <string name="config_message_card_title">配置文件留言</string>
     <string name="device_info_card_title">源设备信息</string>
     <string name="device_model_with_market_name">%1$s (%2$s)</string>
     <string name="export_time_label">导出时间</string>
     <string name="unknown">未知</string>
-    
+
     <!-- 相机设置 -->
     <string name="camera_settings_title">相机功能设置</string>
-    <string name="vendor_tag_settings_title">VendorTag设置</string>
+    <string name="vendor_tag_settings_title">相机设置</string>
     <string name="vendor_tag_enable_25mp">25MP Turbo RAW分辨率增强</string>
     <string name="vendor_tag_enable_master_mode">大师模式(Version 2)</string>
     <string name="vendor_tag_enable_master_raw_max">大师模式 RAW MAX 格式</string>
@@ -115,7 +132,7 @@
     <string name="vendor_tag_enable_video_lock_lens">视频录制锁定镜头</string>
     <string name="vendor_tag_enable_video_lock_wb">视频录制锁定白平衡</string>
     <string name="vendor_tag_enable_mic_status_check">视频录制检测麦克风状态</string>
-    
+
     <!-- 相机设置分类 -->
     <string name="camera_settings_category_advanced">拍照设置</string>
     <string name="camera_settings_category_video">视频设置</string>
@@ -149,8 +166,8 @@
     <string name="camera_settings_macro_tele_desc">允许微距模式调用长焦相机</string>
     <string name="camera_settings_macro_depth_fusion_title">微距景深融合</string>
     <string name="camera_settings_macro_depth_fusion_desc">启用微距景深融合功能</string>
-    <string name="camera_settings_style_effect_title">大师模式滤镜参数预设</string>
-    <string name="camera_settings_style_effect_desc">启用大师模式滤镜参数预设</string>
+    <string name="camera_settings_style_effect_title">大师模式滤镜与参数预设</string>
+    <string name="camera_settings_style_effect_desc">启用大师模式滤镜参数预设,\n*提示: 该功能需要安装任意版本的附属模块方可使用</string>
     <string name="camera_settings_master_filter_title">大师滤镜</string>
     <string name="camera_settings_master_filter_desc">启用大师滤镜</string>
     <string name="camera_settings_tol_style_filter_title">光影有声滤镜</string>
@@ -184,7 +201,7 @@
     <string name="camera_settings_live_photo_fov_title">实况照片FOV优化</string>
     <string name="camera_settings_live_photo_fov_desc">优化实况照片视场角</string>
     <string name="camera_settings_preview_hdr_title">预览HDR</string>
-    <string name="camera_settings_preview_hdr_desc">启用预览HDR功能</string>
+    <string name="camera_settings_preview_hdr_desc">启用预览HDR功能,\n*风险提示: 此功能需要安装完整版的附属模块方可正常使用, 否则会遇到闪退问题</string>
     <string name="camera_settings_scale_focus_title">大师模式放大对焦</string>
     <string name="camera_settings_scale_focus_desc">在大师模式中启用放大对焦功能</string>
     <string name="camera_settings_new_beauty_menu_title">新版美颜菜单</string>

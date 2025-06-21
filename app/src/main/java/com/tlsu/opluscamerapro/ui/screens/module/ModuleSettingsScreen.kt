@@ -18,10 +18,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.clickable
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Autorenew
+import androidx.compose.material.icons.filled.Construction
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.FileDownload
 import androidx.compose.material.icons.filled.FileUpload
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.InstallMobile
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material3.AlertDialog
@@ -59,6 +62,10 @@ import com.tlsu.opluscamerapro.ui.components.SettingsSwitchItem
 import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
 import com.tlsu.opluscamerapro.utils.ZipExtractor.MAGISK_MODULE_PATH
 import com.tlsu.opluscamerapro.utils.ZipExtractor.deleteFrameworkAndLibs
+import com.tlsu.opluscamerapro.utils.ZipExtractor.getCurrentMountMethod
+import com.tlsu.opluscamerapro.utils.ZipExtractor.switchToDefaultMount
+import com.tlsu.opluscamerapro.utils.ZipExtractor.switchToMountBind
+import com.tlsu.opluscamerapro.utils.ZipExtractor.switchToOverlayFS
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.json.JSONObject
@@ -80,7 +87,9 @@ fun ModuleSettingsScreen(
     val hasRootAccess = viewModel.hasRootAccess
     val config by viewModel.config.collectAsState()
     val context = LocalContext.current
-    
+
+    var mountCurrent by remember { mutableStateOf("") }
+
     // 对话框状态
     var showAboutDialog by remember { mutableStateOf(false) }
     var showExportDialog by remember { mutableStateOf(false) }
@@ -88,6 +97,8 @@ fun ModuleSettingsScreen(
     var showImportConfirmDialog by remember { mutableStateOf(false) }
     var showImportSuccessDialog by remember { mutableStateOf(false) }
     var showImportFailedDialog by remember { mutableStateOf(false) }
+    var showSubmoduleDialog by remember { mutableStateOf(false) }
+    var showSwitchMountDialog by remember { mutableStateOf(false) }
     var exportPath by remember { mutableStateOf("") }
     var exportMessage by remember { mutableStateOf("") }
     
@@ -277,32 +288,51 @@ fun ModuleSettingsScreen(
                             }
                         )
 
-                        if(execWithResult("test -f $MAGISK_MODULE_PATH/odm/lib64/libAlgoInterface.so && echo true || echo false")
-                            .out.joinToString("").contains("true")) {
-                            // 删除HDR依赖
+                        // 子模块设置
+                        SettingsClickableItem(
+                            title = stringResource(R.string.submodule_title),
+                            description = stringResource(R.string.submodule_desc),
+                            icon = { Icon(Icons.Default.InstallMobile, contentDescription = null) },
+                            onClick = { showSubmoduleDialog = true }
+                        )
+
+                        // 子模块挂载切换
+                        if(execWithResult("test -f $MAGISK_MODULE_PATH/version.txt && echo true || echo false")
+                                .out.joinToString("").contains("true")) {
                             SettingsClickableItem(
-                                title = stringResource(R.string.delete_libs_and_framework),
-                                description = stringResource(R.string.delete_libs_and_framework_desc),
-                                icon = { Icon(Icons.Filled.PhotoCamera, contentDescription = null) },
-                                onClick = {
-                                    if (hasRootAccess) {
-                                        coroutineScope.launch {
-                                            val result = deleteFrameworkAndLibs()
-                                            if (result) {
-                                                snackbarHostState.showSnackbar(context.getString(R.string.delete_success))
-                                            } else {
-                                                snackbarHostState.showSnackbar(context.getString(R.string.delete_failed))
-                                            }
-                                        }
-                                    } else {
-                                        coroutineScope.launch {
-                                            snackbarHostState.showSnackbar("无root权限")
-                                        }
-                                    }
-                                }
+                                title = stringResource(R.string.submodule_switch_mount_title),
+                                description = stringResource(R.string.submodule_switch_mount_desc),
+                                icon = {
+                                    Icon(
+                                        Icons.Default.Autorenew,
+                                        contentDescription = null
+                                    )
+                                },
+                                onClick = { showSwitchMountDialog = true }
                             )
                         }
 
+                        SettingsClickableItem(
+                            title = stringResource(R.string.delete_libs_and_framework),
+                            description = stringResource(R.string.delete_libs_and_framework_desc),
+                            icon = { Icon(Icons.Filled.Construction, contentDescription = null) },
+                            onClick = {
+                                if (hasRootAccess) {
+                                    coroutineScope.launch {
+                                        val result = deleteFrameworkAndLibs()
+                                        if (result) {
+                                            snackbarHostState.showSnackbar(context.getString(R.string.delete_success))
+                                        } else {
+                                            snackbarHostState.showSnackbar(context.getString(R.string.delete_failed))
+                                        }
+                                    }
+                                } else {
+                                    coroutineScope.launch {
+                                        snackbarHostState.showSnackbar("无root权限")
+                                    }
+                                }
+                            }
+                        )
 
                         // 关于
                         SettingsClickableItem(
@@ -390,7 +420,7 @@ fun ModuleSettingsScreen(
                                 .fillMaxWidth()
                                 .padding(bottom = 8.dp)
                                 .clickable {
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://t.me/OplusCameraPro"))
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://t.me/+awg-7X5Ggrs5NzZl"))
                                     context.startActivity(intent)
                                 },
                             shape = RoundedCornerShape(8.dp)
@@ -403,7 +433,7 @@ fun ModuleSettingsScreen(
                                 )
                                 Spacer(modifier = Modifier.height(4.dp))
                                 Text(
-                                    text = "OplusCameraPro 官方频道",
+                                    text = "OPlusCameraPro 官方频道",
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
@@ -648,6 +678,208 @@ fun ModuleSettingsScreen(
                 }
             )
         }
+        
+        // 子模块选择对话框
+        if (showSubmoduleDialog) {
+            AlertDialog(
+                onDismissRequest = { showSubmoduleDialog = false },
+                title = { Text(stringResource(R.string.submodule_title)) },
+                text = {
+                    Column {
+                        // 选项一：效果风格
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp)
+                                .clickable {
+                                    showSubmoduleDialog = false
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://bugme7.lanzouu.com/iyexR2y8k1pg"))
+                                    context.startActivity(intent)
+                                },
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Column(modifier = Modifier.padding(16.dp)) {
+                                Text(
+                                    text = stringResource(R.string.submodule_effectstyle_title),
+                                    style = MaterialTheme.typography.titleSmall,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = stringResource(R.string.submodule_effectstyle_desc),
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
+                        }
+                        
+                        // 选项二：HDR设置
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp)
+                                .clickable {
+                                    showSubmoduleDialog = false
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://bugme7.lanzouu.com/iCNx42y8k1hi"))
+                                    context.startActivity(intent)
+                                },
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Column(modifier = Modifier.padding(16.dp)) {
+                                Text(
+                                    text = stringResource(R.string.submodule_hdr_title),
+                                    style = MaterialTheme.typography.titleSmall,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = stringResource(R.string.submodule_hdr_desc),
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
+                        }
+
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp),
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Column(modifier = Modifier.padding(16.dp)) {
+                                Text(
+                                    text = stringResource(R.string.submodule_install_title),
+                                    style = MaterialTheme.typography.titleSmall,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = stringResource(R.string.submodule_install_desc),
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
+                        }
+                    }
+                },
+                confirmButton = {
+                    TextButton(onClick = { showSubmoduleDialog = false }) {
+                        Text(stringResource(R.string.cancel))
+                    }
+                }
+            )
+        }
+
+        // 子模块挂载切换对话框
+        if (showSwitchMountDialog) {
+            var currentMountMehod = getCurrentMountMethod()
+            AlertDialog(
+                onDismissRequest = { showSwitchMountDialog = false },
+                title = { Text(stringResource(R.string.submodule_switch_mount_title)) },
+                text = {
+                    Column {
+                        // 卡片1
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp)
+                                .clickable {
+                                    showSwitchMountDialog = false
+                                    switchToDefaultMount()
+                                },
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Column(modifier = Modifier.padding(16.dp)) {
+                                Text(
+                                    text = stringResource(R.string.submodule_default_title),
+                                    style = MaterialTheme.typography.titleSmall,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = stringResource(R.string.submodule_default_desc),
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
+                        }
+                        
+                        // 卡片2
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp)
+                                .clickable {
+                                    showSwitchMountDialog = false
+                                    switchToOverlayFS()
+                                },
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Column(modifier = Modifier.padding(16.dp)) {
+                                Text(
+                                    text = stringResource(R.string.submodule_overlayfs_title),
+                                    style = MaterialTheme.typography.titleSmall,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = stringResource(R.string.submodule_overlayfs_desc),
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
+                        }
+                        
+                        // 卡片3
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp)
+                                .clickable {
+                                    showSwitchMountDialog = false
+                                    switchToMountBind()
+                                },
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Column(modifier = Modifier.padding(16.dp)) {
+                                Text(
+                                    text = stringResource(R.string.submodule_mountbind_title),
+                                    style = MaterialTheme.typography.titleSmall,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = stringResource(R.string.submodule_mountbind_desc),
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
+                        }
+
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp),
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Column(modifier = Modifier.padding(16.dp)) {
+                                Text(
+                                    text = stringResource(R.string.submodule_mount_current),
+                                    style = MaterialTheme.typography.titleSmall,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = currentMountMehod,
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
+                        }
+                    }
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = { showSwitchMountDialog = false }
+                    ) {
+                        Text(stringResource(R.string.cancel))
+                    }
+                }
+            )
+        }
     }
 }
 
@@ -696,4 +928,4 @@ private fun DeviceInfoItem(
             )
         }
     }
-} 
+}

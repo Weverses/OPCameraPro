@@ -451,8 +451,8 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableAiScenePreset", it) }
             )
 
-            if(execWithResult("test -f $MAGISK_MODULE_PATH/odm/lib64/libAlgoInterface.so && echo true || echo false")
-                    .out.joinToString("").contains("true")) {
+            if (execWithResult("md5sum /odm/lib64/libAlgoInterface.so")
+                        .out.joinToString("").contains("f723969a47ac1806769d1e90de77124b")) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_preview_hdr_title),
                     description = stringResource(R.string.camera_settings_preview_hdr_desc),
@@ -461,6 +461,7 @@ fun VendorTagSettingsGroup(
                         context,
                         "enablePreviewHdr"
                     ),
+
                     onCheckedChange = { onSettingChanged("enablePreviewHdr", it) }
                 )
             }
@@ -706,13 +707,13 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableVideoLockLens", it) }
             )
             
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_video_lock_wb_title),
-                description = stringResource(R.string.camera_settings_video_lock_wb_desc),
-                checked = vendorTagSettings.enableVideoLockWb,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoLockWb"),
-                onCheckedChange = { onSettingChanged("enableVideoLockWb", it) }
-            )
+//            SettingsSwitchItem(
+//                title = stringResource(R.string.camera_settings_video_lock_wb_title),
+//                description = stringResource(R.string.camera_settings_video_lock_wb_desc),
+//                checked = vendorTagSettings.enableVideoLockWb,
+//                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoLockWb"),
+//                onCheckedChange = { onSettingChanged("enableVideoLockWb", it) }
+//            )
             
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_video_sound_focus_title),
