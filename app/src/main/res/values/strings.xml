@@ -13,7 +13,7 @@
 
     <!-- Module Settings Screen -->
     <string name="loading">Loading...</string>
-    <string name="module_settings">Module Settings</string>
+    <string name="module_settings">Module</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="dark_mode_description">Use dark theme</string>
     <string name="follow_system_dark_mode">Follow System Dark Mode</string>
@@ -87,7 +87,7 @@
 
     <!-- Camera Settings -->
     <string name="camera_settings_title">Camera Feature Settings</string>
-    <string name="vendor_tag_settings_title">Camera Settings</string>
+    <string name="vendor_tag_settings_title">Camera</string>
     <string name="vendor_tag_enable_25mp">25MP Turbo RAW Resolution Enhancement</string>
     <string name="vendor_tag_enable_master_mode">Master Mode (Version 2)</string>
     <string name="vendor_tag_enable_master_raw_max">Master Mode RAW MAX Format</string>
@@ -278,7 +278,7 @@
     <string name="default_value_unknown">Device Default: Unknown, waiting for Hook update</string>
 
     <!-- Gallery Settings -->
-    <string name="gallery_settings_title">Gallery Settings</string>
+    <string name="gallery_settings_title">Gallery</string>
     <string name="gallery_settings_category_ai">AI Features</string>
     <string name="gallery_settings_ai_composition_title">AI Inspiration Creation</string>
     <string name="gallery_settings_ai_eliminate_title">AI Elimination</string>
