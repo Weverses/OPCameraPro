@@ -12,9 +12,9 @@ android {
     defaultConfig {
         applicationId = "com.tlsu.opluscamerapro"
         minSdk = 34
-        targetSdk = 35
-        versionCode = 2140
-        versionName = "Penicillin 2.1.40"
+        targetSdk = 36
+        versionCode = 2150
+        versionName = "Penicillin 2.1.50"
     }
 
     val properties = Properties()

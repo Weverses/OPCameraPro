@@ -604,14 +604,6 @@ fun VendorTagSettingsGroup(
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSoftLightProMode"),
                 onCheckedChange = { onSettingChanged("enableSoftLightProMode", it) }
             )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_master_filter_title),
-                description = stringResource(R.string.camera_settings_master_filter_desc),
-                checked = vendorTagSettings.enableMasterFilter,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMasterFilter"),
-                onCheckedChange = { onSettingChanged("enableMasterFilter", it) }
-            )
         }
         
         // 人像模式设置
@@ -640,7 +632,98 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableForcePortraitForThirdParty", it) }
             )
         }
-        
+
+        // 滤镜设置
+        SettingsCard(title = stringResource(R.string.camera_settings_category_filter)) {
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_master_filter_title),
+                description = stringResource(R.string.camera_settings_master_filter_desc),
+                checked = vendorTagSettings.enableMasterFilter,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMasterFilter"),
+                onCheckedChange = { onSettingChanged("enableMasterFilter", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_tol_style_filter_title),
+                description = stringResource(R.string.camera_settings_tol_style_filter_desc),
+                checked = vendorTagSettings.enableTolStyleFilter,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableTolStyleFilter"),
+                onCheckedChange = { onSettingChanged("enableTolStyleFilter", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_grand_tour_filter_title),
+                description = stringResource(R.string.camera_settings_grand_tour_filter_desc),
+                checked = vendorTagSettings.enableGrandTourFilter,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableGrandTourFilter"),
+                onCheckedChange = { onSettingChanged("enableGrandTourFilter", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_desert_filter_title),
+                description = stringResource(R.string.camera_settings_desert_filter_desc),
+                checked = vendorTagSettings.enableDesertFilter,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableDesertFilter"),
+                onCheckedChange = { onSettingChanged("enableDesertFilter", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_vignette_grain_filter_title),
+                description = stringResource(R.string.camera_settings_vignette_grain_filter_desc),
+                checked = vendorTagSettings.enableVignetteGrainFilter,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVignetteGrainFilter"),
+                onCheckedChange = { onSettingChanged("enableVignetteGrainFilter", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_jiang_wen_filter_title),
+                description = stringResource(R.string.camera_settings_jiang_wen_filter_desc),
+                checked = vendorTagSettings.enableJiangWenFilter,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableJiangWenFilter"),
+                onCheckedChange = { onSettingChanged("enableJiangWenFilter", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_jzk_movie_filter_title),
+                description = stringResource(R.string.camera_settings_jzk_movie_filter_desc),
+                checked = vendorTagSettings.enableJzkMovieFilter,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableJzkMovieFilter"),
+                onCheckedChange = { onSettingChanged("enableJzkMovieFilter", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_meishe_filter_title),
+                description = stringResource(R.string.camera_settings_meishe_filter_desc),
+                checked = vendorTagSettings.enableMeisheFilter,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMeisheFilter"),
+                onCheckedChange = { onSettingChanged("enableMeisheFilter", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_os15_new_filter_title),
+                description = stringResource(R.string.camera_settings_os15_new_filter_desc),
+                checked = vendorTagSettings.enableOs15NewFilter,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableOs15NewFilter"),
+                onCheckedChange = { onSettingChanged("enableOs15NewFilter", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_soft_light_photo_title),
+                description = stringResource(R.string.camera_settings_soft_light_photo_desc),
+                checked = vendorTagSettings.enableSoftLightPhotoMode,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSoftLightPhotoMode"),
+                onCheckedChange = { onSettingChanged("enableSoftLightPhotoMode", it) }
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_soft_light_night_title),
+                description = stringResource(R.string.camera_settings_soft_light_night_desc),
+                checked = vendorTagSettings.enableSoftLightNightMode,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSoftLightNightMode"),
+                onCheckedChange = { onSettingChanged("enableSoftLightNightMode", it) }
+            )
+        }
+
         // 视频设置
         SettingsCard(title = stringResource(R.string.camera_settings_category_video)) {
             SettingsSwitchItem(
@@ -799,89 +882,6 @@ fun VendorTagSettingsGroup(
                 checked = vendorTagSettings.enableMacroDepthFusion,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMacroDepthFusion"),
                 onCheckedChange = { onSettingChanged("enableMacroDepthFusion", it) }
-            )
-        }
-        
-        // 滤镜设置
-        SettingsCard(title = stringResource(R.string.camera_settings_category_filter)) {
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_tol_style_filter_title),
-                description = stringResource(R.string.camera_settings_tol_style_filter_desc),
-                checked = vendorTagSettings.enableTolStyleFilter,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableTolStyleFilter"),
-                onCheckedChange = { onSettingChanged("enableTolStyleFilter", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_grand_tour_filter_title),
-                description = stringResource(R.string.camera_settings_grand_tour_filter_desc),
-                checked = vendorTagSettings.enableGrandTourFilter,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableGrandTourFilter"),
-                onCheckedChange = { onSettingChanged("enableGrandTourFilter", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_desert_filter_title),
-                description = stringResource(R.string.camera_settings_desert_filter_desc),
-                checked = vendorTagSettings.enableDesertFilter,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableDesertFilter"),
-                onCheckedChange = { onSettingChanged("enableDesertFilter", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_vignette_grain_filter_title),
-                description = stringResource(R.string.camera_settings_vignette_grain_filter_desc),
-                checked = vendorTagSettings.enableVignetteGrainFilter,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVignetteGrainFilter"),
-                onCheckedChange = { onSettingChanged("enableVignetteGrainFilter", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_jiang_wen_filter_title),
-                description = stringResource(R.string.camera_settings_jiang_wen_filter_desc),
-                checked = vendorTagSettings.enableJiangWenFilter,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableJiangWenFilter"),
-                onCheckedChange = { onSettingChanged("enableJiangWenFilter", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_jzk_movie_filter_title),
-                description = stringResource(R.string.camera_settings_jzk_movie_filter_desc),
-                checked = vendorTagSettings.enableJzkMovieFilter,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableJzkMovieFilter"),
-                onCheckedChange = { onSettingChanged("enableJzkMovieFilter", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_meishe_filter_title),
-                description = stringResource(R.string.camera_settings_meishe_filter_desc),
-                checked = vendorTagSettings.enableMeisheFilter,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMeisheFilter"),
-                onCheckedChange = { onSettingChanged("enableMeisheFilter", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_os15_new_filter_title),
-                description = stringResource(R.string.camera_settings_os15_new_filter_desc),
-                checked = vendorTagSettings.enableOs15NewFilter,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableOs15NewFilter"),
-                onCheckedChange = { onSettingChanged("enableOs15NewFilter", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_soft_light_photo_title),
-                description = stringResource(R.string.camera_settings_soft_light_photo_desc),
-                checked = vendorTagSettings.enableSoftLightPhotoMode,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSoftLightPhotoMode"),
-                onCheckedChange = { onSettingChanged("enableSoftLightPhotoMode", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_soft_light_night_title),
-                description = stringResource(R.string.camera_settings_soft_light_night_desc),
-                checked = vendorTagSettings.enableSoftLightNightMode,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSoftLightNightMode"),
-                onCheckedChange = { onSettingChanged("enableSoftLightNightMode", it) }
             )
         }
 

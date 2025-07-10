@@ -33,7 +33,7 @@
     <string name="submodule_effectstyle_title">仅安装精简版</string>
     <string name="submodule_effectstyle_desc">仅包含大师模式滤镜、参数预设的必要文件</string>
     <string name="submodule_hdr_title">安装完整版</string>
-    <string name="submodule_hdr_desc">包含参数预设滤镜以及预览HDR\n需要ColorOS15.0.1及以上版本才能安装，且安装后可能会导致相机闪退等一系列问题，请谨慎安装\n目前只在一加13上可用，其他机型请勿安装</string>
+    <string name="submodule_hdr_desc">包含参数预设滤镜以及预览HDR\n安装后可能会导致相机闪退等一系列问题，请谨慎安装\n目前只在一加13上可用，其他机型请勿安装</string>
     <string name="submodule_install_title">安装说明</string>
     <string name="submodule_install_desc">密码: 63q4\n点击上方的选项后将会跳转网盘, 请下载后自行到Root管理器中安装模块\n安装后请:\n1. KSU及第三方版本关闭默认卸载模块选项\n2. Magisk关闭Hide/Sulist模式Magisk\n3. Shamiko白名单模式切换成黑名单模式\n4. 给予相机、相册Root权限</string>
     <string name="submodule_switch_mount_title">切换附属模块挂载方式</string>
@@ -41,9 +41,9 @@
     <string name="submodule_default_title">管理器默认挂载方式</string>
     <string name="submodule_default_desc">将使用管理器默认的挂载方式进行挂载\n(如KSU OverlayFS、MKSU Magic Mount), 模块不干涉挂载</string>
     <string name="submodule_overlayfs_title">OverlayFS</string>
-    <string name="submodule_overlayfs_desc">模块将自行使用`post-of-data.sh`构建OverlayFS进行附属模块的挂载,\n可能与部分模块造成冲突</string>
+    <string name="submodule_overlayfs_desc">模块将自行使用`post-fs-data.sh`构建OverlayFS进行附属模块的挂载,\n可能与部分模块造成冲突</string>
     <string name="submodule_mountbind_title">Mount --bind</string>
-    <string name="submodule_mountbind_desc">模块将自行使用`post-of-data.sh`使用Mount --bind进行附属模块的挂载,\n该挂载方式对于系统内原本没有的文件无法挂载替换</string>
+    <string name="submodule_mountbind_desc">模块将自行使用`post-fs-data.sh`使用Mount --bind进行附属模块的挂载,\n该挂载方式对于系统内原本没有的文件无法挂载替换</string>
     <string name="submodule_mount_current">当前挂载方式</string>
 
     <!-- 错误消息 -->
@@ -55,7 +55,7 @@
 
     <!-- 对话框 -->
     <string name="about_dialog_title">关于</string>
-    <string name="about_dialog_version">版本: Penicillin 2.1.30</string>
+    <string name="about_dialog_version">版本: Penicillin 2.1.50</string>
     <string name="about_dialog_author">作者: TimelessU</string>
     <string name="about_dialog_description">OPCameraPro 相机功能补全, 一个适用于ColorOS/realmeUI的相机增强型模块\n该模块完全免费, 请勿上当受骗</string>
     <string name="confirm">确定</string>
@@ -293,8 +293,8 @@
     <string name="gallery_settings_ai_besttake_desc">启用AI最佳表情功能，检测人脸然后替换表情</string>
     <string name="gallery_settings_no_defalut_keys">模块无法获取相册的设备默认值, 你可自行查看默认支持情况</string>
     <string name="module_update_checking">正在检查模块更新...</string>
-    <string name="module_update_failed">调用二进制安装模块更新失败,可能原因为你不是官方的Magisk/KernelSU. 已尝试直接解压附属模块并使用post-of-data.sh挂载模块, 若依旧无效请换官方的Magisk/KernelSU, 其他管理器不受理任何Bug反馈</string>
-    <string name="module_update_ignore">检测到你的Root方式无法调用自动安装附属模块。已尝试直接解压附属模块并使用post-of-data.sh挂载模块, 若依旧无效请换官方的Magisk/KernelSU, 其他管理器不受理任何Bug反馈</string>
+    <string name="module_update_failed">调用二进制安装模块更新失败,可能原因为你不是官方的Magisk/KernelSU. 已尝试直接解压附属模块并使用post-fs-data.sh挂载模块, 若依旧无效请换官方的Magisk/KernelSU, 其他管理器不受理任何Bug反馈</string>
+    <string name="module_update_ignore">检测到你的Root方式无法调用自动安装附属模块。已尝试直接解压附属模块并使用post-fs-data.sh挂载模块, 若依旧无效请换官方的Magisk/KernelSU, 其他管理器不受理任何Bug反馈</string>
     <string name="module_update_installing">正在尝试自动安装附属模块...</string>
     <string name="module_update_reboot_message">是否立即重启手机以应用更新？</string>
     <string name="module_update_success">模块更新成功</string>

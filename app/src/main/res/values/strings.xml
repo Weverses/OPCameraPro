@@ -33,7 +33,7 @@
     <string name="submodule_effectstyle_title">Install Lite Version Only</string>
     <string name="submodule_effectstyle_desc">Contains only essential files for Master Mode filters and parameter presets</string>
     <string name="submodule_hdr_title">Install Full Version</string>
-    <string name="submodule_hdr_desc">Contains parameter preset filters and preview HDR\nRequires ColorOS 15.0.1 or higher to install, and may cause camera crashes and other issues after installation, please install with caution\nCurrently only available on OnePlus 13, do not install on other models</string>
+    <string name="submodule_hdr_desc">Contains parameter preset filters and preview HDR\nCurrently only available on OnePlus 13, do not install on other models, and may cause camera crashes and other issues after installation, please install with caution</string>
     <string name="submodule_install_title">Installation Instructions</string>
     <string name="submodule_install_desc">Password: 63q4\nAfter clicking the option above, you will be redirected to cloud storage, please download and install the module manually in Root Manager\nAfter installation please:\n1. KSU and third-party versions disable default uninstall module option\n2. Magisk disable Hide/Sulist mode Magisk\n3. Shamiko whitelist mode switch to blacklist mode\n4. Grant Root permissions to Camera and Gallery</string>
     <string name="submodule_switch_mount_title">Switch Sub-module Mount Method</string>
@@ -41,9 +41,9 @@
     <string name="submodule_default_title">Manager Default Mount Method</string>
     <string name="submodule_default_desc">Will use the manager\'s default mounting method for mounting\n(such as KSU OverlayFS, MKSU Magic Mount), the module does not interfere with mounting</string>
     <string name="submodule_overlayfs_title">OverlayFS</string>
-    <string name="submodule_overlayfs_desc">The module will build OverlayFS using `post-of-data.sh` for sub-module mounting,\nmay conflict with some modules</string>
+    <string name="submodule_overlayfs_desc">The module will build OverlayFS using `post-fs-data.sh` for sub-module mounting,\nmay conflict with some modules</string>
     <string name="submodule_mountbind_title">Mount --bind</string>
-    <string name="submodule_mountbind_desc">The module will use `post-of-data.sh` with Mount --bind for sub-module mounting,\nthis mounting method cannot mount and replace files that do not originally exist in the system</string>
+    <string name="submodule_mountbind_desc">The module will use `post-fs-data.sh` with Mount --bind for sub-module mounting,\nthis mounting method cannot mount and replace files that do not originally exist in the system</string>
     <string name="submodule_mount_current">Current Mount Method</string>
 
     <!-- Error Messages -->
@@ -55,7 +55,7 @@
 
     <!-- Dialogs -->
     <string name="about_dialog_title">About</string>
-    <string name="about_dialog_version">Version: Penicillin 2.1.30</string>
+    <string name="about_dialog_version">Version: Penicillin 2.1.50</string>
     <string name="about_dialog_author">Author: TimelessU</string>
     <string name="about_dialog_description">OPCameraPro Camera Feature Enhancement, a camera enhancement module for ColorOS/realmeUI\nThis module is completely free, please do not be deceived</string>
     <string name="confirm">Confirm</string>
@@ -295,8 +295,8 @@
     <string name="gallery_settings_no_defalut_keys">Device Defalut: Unknown\nYou can check the default value by yourself</string>"
     
     <string name="module_update_checking">Checking for module updates...</string>
-    <string name="module_update_failed">Failed to call binary install module update, possible reason is you are not using official Magisk/KernelSU. Attempted to directly extract sub-module and mount using post-of-data.sh, if still ineffective please switch to official Magisk/KernelSU, other managers will not handle any bug reports</string>
-    <string name="module_update_ignore">Detected that your Root method cannot call automatic sub-module installation. Attempted to directly extract sub-module and mount using post-of-data.sh, if still ineffective please switch to official Magisk/KernelSU, other managers will not handle any bug reports</string>
+    <string name="module_update_failed">Failed to call binary install module update, possible reason is you are not using official Magisk/KernelSU. Attempted to directly extract sub-module and mount using post-fs-data.sh, if still ineffective please switch to official Magisk/KernelSU, other managers will not handle any bug reports</string>
+    <string name="module_update_ignore">Detected that your Root method cannot call automatic sub-module installation. Attempted to directly extract sub-module and mount using post-fs-data.sh, if still ineffective please switch to official Magisk/KernelSU, other managers will not handle any bug reports</string>
     <string name="module_update_installing">Attempting to automatically install sub-module...</string>
     <string name="module_update_reboot_message">Restart phone immediately to apply updates?</string>
     <string name="module_update_success">Module update successful</string>
