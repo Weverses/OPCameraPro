@@ -326,37 +326,7 @@ object DefaultConfigManager {
             XposedBridge.log("$TAG: Error saving default config: ${e.message}")
         }
     }
-    
-    /**
-     * 检查是否存在默认配置文件
-     */
-    fun hasDefaultConfig(): Boolean {
-        return File(DEFAULT_CONFIG_FILE).exists()
-    }
-    
-    /**
-     * 获取功能的默认值描述
-     * @param featureName 功能名称
-     * @return 默认值描述文本 (例如："默认值：开")
-     */
-    fun getDefaultValueDescription(featureName: String): String {
-        val config = loadDefaultConfig()
-        val defaultTag = config.vendorTags[featureName]
-        
-        return if (defaultTag != null) {
-            if (defaultTag.isEnabled) {
-                // 使用字符串资源，保持UI一致性
-                return "默认值：开"
-            } else {
-                // 使用字符串资源，保持UI一致性
-                return "默认值：关"
-            }
-        } else {
-            // 如果没有找到对应的默认值
-            return "默认值：未知"
-        }
-    }
-    
+
     /**
      * 获取功能的默认值描述（使用字符串资源）
      * @param context 上下文

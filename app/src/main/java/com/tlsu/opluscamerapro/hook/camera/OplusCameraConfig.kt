@@ -10,7 +10,6 @@ import com.tlsu.opluscamerapro.utils.ParseConfig.isOplusCameraConfig
 import com.tlsu.opluscamerapro.utils.ParseConfig.parseConfig
 import de.robv.android.xposed.XposedBridge
 
-
 object OplusCameraConfig : BaseHook() {
     override fun init() {
         try {
