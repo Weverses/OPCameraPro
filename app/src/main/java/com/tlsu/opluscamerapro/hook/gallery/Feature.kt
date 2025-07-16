@@ -5,10 +5,8 @@ import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinde
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.tlsu.opluscamerapro.hook.BaseHook
 import com.tlsu.opluscamerapro.data.ConfigManager
-import com.tlsu.opluscamerapro.utils.ConfigBasedAddConfig.getGallerySettings
+import com.tlsu.opluscamerapro.utils.DexKit.dexKitBridge
 import de.robv.android.xposed.XposedBridge
-import org.luckypray.dexkit.DexKitBridge
-import org.luckypray.dexkit.result.ClassData
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 
 object FeatureHook : BaseHook() {
@@ -35,20 +33,19 @@ object FeatureHook : BaseHook() {
 
             XposedBridge.log("OplusGalleryPro: GallerySettings loaded, enableAIComposition = ${enableAI}")
 
-            var className: ClassData
-            DexKitBridge.create(lpparam.appInfo.sourceDir).use { bridge ->
-                className = bridge.findClass {
-                    searchPackages("com.oplus.aiunit.vision")
-                    matcher {
-                        methods {
-                            add {
-                                usingStrings("ConfigAbilityWrapper")
-                                usingStrings("getInt configAbility is null, configId:")
-                            }
+            val bridge = dexKitBridge
+            val className = bridge.findClass {
+                searchPackages("com.oplus.aiunit.vision")
+                matcher {
+                    methods {
+                        add {
+                            usingStrings("ConfigAbilityWrapper")
+                            usingStrings("getInt configAbility is null, configId:")
                         }
                     }
-                }.single()
-            }
+                }
+            }.single()
+
             
             loadClass(className.name)
                 .methodFinder()

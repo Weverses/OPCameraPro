@@ -85,54 +85,6 @@
     <string name="export_time_label">导出时间</string>
     <string name="unknown">未知</string>
 
-    <!-- 相机设置 -->
-    <string name="camera_settings_title">相机功能设置</string>
-    <string name="vendor_tag_settings_title">相机设置</string>
-    <string name="vendor_tag_enable_25mp">25MP Turbo RAW分辨率增强</string>
-    <string name="vendor_tag_enable_master_mode">大师模式(Version 2)</string>
-    <string name="vendor_tag_enable_master_raw_max">大师模式 RAW MAX 格式</string>
-    <string name="vendor_tag_enable_portrait_zoom">人像模式变焦</string>
-    <string name="vendor_tag_enable_720p_60fps">720P 60FPS 视频</string>
-    <string name="vendor_tag_enable_slow_video_480fps">慢动作视频超广角480FPS</string>
-    <string name="vendor_tag_enable_new_macro_mode">新版微距模式</string>
-    <string name="vendor_tag_enable_macro_tele">微距模式调用长焦</string>
-    <string name="vendor_tag_enable_macro_depth_fusion">微距景深融合</string>
-    <string name="vendor_tag_enable_heif_blur_edit">HEIF模式下相册支持编辑背景虚化</string>
-    <string name="vendor_tag_enable_style_effect">大师模式-滤镜参数预设</string>
-    <string name="vendor_tag_enable_scale_focus">大师模式-Pro-放大对焦</string>
-    <string name="vendor_tag_enable_live_photo_fov_optimize">实况照片fov优化</string>
-    <string name="vendor_tag_enable_10bit_photo">10bit照片</string>
-    <string name="vendor_tag_enable_heif_live_photo">实况HEIF照片</string>
-    <string name="vendor_tag_enable_10bit_live_photo">实况10bit照片</string>
-    <string name="vendor_tag_enable_tol_style_filter">光影有声滤镜</string>
-    <string name="vendor_tag_enable_grand_tour_filter">grand tour系列滤镜</string>
-    <string name="vendor_tag_enable_desert_filter">沙漠系列滤镜</string>
-    <string name="vendor_tag_enable_vignette_grain_filter">vignette grain 滤镜</string>
-    <string name="vendor_tag_enable_jzk_movie_filter">贾樟柯滤镜</string>
-    <string name="vendor_tag_enable_new_beauty_menu">新版美颜菜单</string>
-    <string name="vendor_tag_enable_super_text_scanner">超级文本扫描</string>
-    <string name="vendor_tag_enable_soft_light_photo_mode">照片模式柔光滤镜</string>
-    <string name="vendor_tag_enable_soft_light_night_mode">夜景模式柔光滤镜</string>
-    <string name="vendor_tag_enable_soft_light_pro_mode">大师模式柔光滤镜</string>
-    <string name="vendor_tag_enable_meishe_filter">meishe 系列滤镜</string>
-    <string name="vendor_tag_enable_preview_hdr">Preview HDR</string>
-    <string name="vendor_tag_enable_video_auto_fps">视频自动帧率</string>
-    <string name="vendor_tag_enable_quick_launch">双击音量键快捷启动相机</string>
-    <string name="vendor_tag_enable_live_photo_high_bitrate">实况视频码率</string>
-    <string name="vendor_tag_enable_video_stop_sound_immediate">停止录制立即播放提示音</string>
-    <string name="vendor_tag_enable_force_portrait_for_third_party">第三方app调用官方相机时可以选择人像模式</string>
-    <string name="vendor_tag_enable_front_camera_zoom">前置拍照变焦</string>
-    <string name="vendor_tag_enable_portrait_rear_flash">人像模式后置闪光灯</string>
-    <string name="vendor_tag_enable_ai_hd_switch">AI 超清望远算法</string>
-    <string name="vendor_tag_enable_tele_sdsr">超清长焦算法</string>
-    <string name="vendor_tag_enable_dolby_video">杜比视频支持</string>
-    <string name="vendor_tag_enable_dolby_video_60fps">杜比视频60fps</string>
-    <string name="vendor_tag_enable_dolby_video_sat">长焦杜比视频</string>
-    <string name="vendor_tag_enable_front_dolby_video">前置杜比视频</string>
-    <string name="vendor_tag_enable_video_lock_lens">视频录制锁定镜头</string>
-    <string name="vendor_tag_enable_video_lock_wb">视频录制锁定白平衡</string>
-    <string name="vendor_tag_enable_mic_status_check">视频录制检测麦克风状态</string>
-
     <!-- 相机设置分类 -->
     <string name="camera_settings_category_advanced">拍照设置</string>
     <string name="camera_settings_category_video">视频设置</string>
@@ -142,6 +94,7 @@
     <string name="camera_settings_category_other">实况照片设置</string>
 
     <!-- 相机设置项目 -->
+    <string name="camera_settings_title">相机设置</string>
     <string name="camera_settings_25mp_title">25MP</string>
     <string name="camera_settings_25mp_desc">启用25MP Turbo RAW Enhance Resolution</string>
     <string name="camera_settings_master_mode_title">新版大师模式</string>
@@ -271,6 +224,8 @@
     <string name="camera_settings_video_sound_focus_desc">视频录制时聚焦捕捉特定方向的声音</string>
     <string name="camera_settings_live_photo_duration_title">实况照片时长</string>
     <string name="camera_settings_live_photo_duration_desc">调整实况照片视频时长</string>
+    <string name="camera_settings_iso_extension_title">扩展ISO上限</string>
+    <string name="camera_settings_iso_extension_desc">解锁专业模式中ISO调节上限至12800</string>
     <!-- 默认值设置 -->
     <string name="default_value_enabled">设备默认值：开</string>
     <string name="default_value_disabled">设备默认值：关</string>

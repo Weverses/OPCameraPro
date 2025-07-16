@@ -3,16 +3,13 @@ package com.tlsu.opluscamerapro.utils
 import android.annotation.SuppressLint
 import com.github.kyuubiran.ezxhelper.Log
 import com.tlsu.opluscamerapro.data.AppConfig
-import com.tlsu.opluscamerapro.data.GallerySettings
 import com.tlsu.opluscamerapro.data.VendorTagSettings
 import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
 import com.tlsu.opluscamerapro.utils.ParseConfig.addPresetTag
-import com.tlsu.opluscamerapro.utils.ZipExtractor.MAGISK_MODULE_PATH
 import com.topjohnwu.superuser.Shell
 import de.robv.android.xposed.XposedBridge
 import org.json.JSONObject
-import java.io.File
 
 /**
  * 基于配置的AddConfig类
@@ -24,7 +21,7 @@ object ConfigBasedAddConfig {
     private const val CONFIG_FILE = "/sdcard/Android/OplusCameraPro/config.json"
     
     // 存储配置信息
-    private var config: AppConfig? = null
+    var config: AppConfig? = null
     
     // 初始化标志，避免重复初始化Shell
     private var isInitialized = false
@@ -63,14 +60,6 @@ object ConfigBasedAddConfig {
         return config?.vendorTags ?: VendorTagSettings()
     }
 
-    fun getGallerySettings(): GallerySettings {
-        // 确保配置已加载
-        if (config == null) {
-            reloadConfig()
-        }
-        return config?.gallerySettings ?: GallerySettings()
-    }
-
     /**
      * 加载配置文件
      */
@@ -82,7 +71,6 @@ object ConfigBasedAddConfig {
             
             if (fileExists) {
                 // 使用Shell读取文件
-
                     val result = Shell.cmd("cat $CONFIG_FILE").exec()
                     if (result.isSuccess) {
                         val jsonStr = result.out.joinToString("\n")
@@ -204,7 +192,8 @@ object ConfigBasedAddConfig {
                 enableMultiFrameBurstShot = vendorTagsObj.optBoolean("enableMultiFrameBurstShot", false),
                 enableVideoSoundFocus = vendorTagsObj.optBoolean("enableVideoSoundFocus", false),
                 enableFront4KVideo = vendorTagsObj.optBoolean("enableFront4KVideo", false),
-                enableAiScenePreset = vendorTagsObj.optBoolean("enableAiScenePreset", false)
+                enableAiScenePreset = vendorTagsObj.optBoolean("enableAiScenePreset", false),
+                enableISOExtension = vendorTagsObj.optBoolean("enableISOExtension", false)
             )
             
             AppConfig(

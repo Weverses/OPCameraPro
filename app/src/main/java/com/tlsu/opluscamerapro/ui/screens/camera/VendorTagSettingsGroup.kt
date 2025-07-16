@@ -26,7 +26,6 @@ import com.tlsu.opluscamerapro.data.VendorTagSettings
 import com.tlsu.opluscamerapro.ui.components.SettingsSwitchItem
 import com.tlsu.opluscamerapro.utils.DefaultConfigManager
 import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
-import com.tlsu.opluscamerapro.utils.ZipExtractor.MAGISK_MODULE_PATH
 
 /**
  * VendorTag设置组
@@ -428,7 +427,7 @@ fun VendorTagSettingsGroup(
             .padding(vertical = 8.dp)
     ) {
         Text(
-            text = stringResource(R.string.vendor_tag_settings_title),
+            text = stringResource(R.string.camera_settings_title),
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.padding(bottom = 16.dp, start = 8.dp)
         )
@@ -604,6 +603,14 @@ fun VendorTagSettingsGroup(
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSoftLightProMode"),
                 onCheckedChange = { onSettingChanged("enableSoftLightProMode", it) }
             )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_iso_extension_title),
+                description = stringResource(R.string.camera_settings_iso_extension_desc),
+                checked = vendorTagSettings.enableISOExtension,
+                onCheckedChange = { onSettingChanged("enableISOExtension", it) }
+            )
+
         }
         
         // 人像模式设置

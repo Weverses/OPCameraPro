@@ -5,8 +5,10 @@ import com.github.kyuubiran.ezxhelper.Log
 import com.github.kyuubiran.ezxhelper.LogExtensions.logexIfThrow
 import com.tlsu.opluscamerapro.hook.BaseHook
 import com.tlsu.opluscamerapro.hook.camera.FilterGroup
+import com.tlsu.opluscamerapro.hook.camera.ISOHook
 import com.tlsu.opluscamerapro.hook.camera.OplusCameraConfig
 import com.tlsu.opluscamerapro.hook.gallery.GalleryHook
+import com.tlsu.opluscamerapro.utils.DexKit
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 
@@ -20,16 +22,19 @@ private val PACKAGE_NAME_HOOKED = setOf(
 class MainHook : IXposedHookLoadPackage {
     override fun handleLoadPackage(lpparam: XC_LoadPackage.LoadPackageParam) {
         if (lpparam.packageName in PACKAGE_NAME_HOOKED) {
-            // Init EzXHelper
-            EzXHelper.initHandleLoadPackage(lpparam)
-            EzXHelper.setLogTag(TAG)
-            EzXHelper.setToastTag(TAG)
+            if (lpparam.isFirstApplication) {
+                DexKit.initDexKit(lpparam)
+                EzXHelper.initHandleLoadPackage(lpparam)
+                EzXHelper.setLogTag(TAG)
+                EzXHelper.setToastTag(TAG)
+            }
             // Init hooks
             when (lpparam.packageName) {
                 "com.oplus.camera" -> {
                     // 初始化所有Hook
                     initHooks(FilterGroup)
                     initHooks(OplusCameraConfig)
+                    ISOHook.handleLoadPackage(lpparam)
                 }
                 "com.coloros.gallery3d" -> {
                     GalleryHook.handleLoadPackage(lpparam)

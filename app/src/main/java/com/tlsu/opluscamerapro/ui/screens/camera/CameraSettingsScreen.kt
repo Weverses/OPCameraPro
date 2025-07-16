@@ -138,6 +138,7 @@ fun CameraSettingsScreen(
                                 "enableVideoSoundFocus" -> currentConfig.vendorTags.copy(enableVideoSoundFocus = value)
                                 "enableFront4KVideo" -> currentConfig.vendorTags.copy(enableFront4KVideo = value)
                                 "enableAiScenePreset" -> currentConfig.vendorTags.copy(enableAiScenePreset = value)
+                                "enableISOExtension" -> currentConfig.vendorTags.copy(enableISOExtension = value)
                                 else -> currentConfig.vendorTags
                             }
                             

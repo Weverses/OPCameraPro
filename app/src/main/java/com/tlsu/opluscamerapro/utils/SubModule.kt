@@ -3,12 +3,11 @@ package com.tlsu.opluscamerapro.utils
 import android.annotation.SuppressLint
 import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
 
-
 /**
  * 附属模块相关
  */
-object ZipExtractor {
-    private const val TAG = "ZipExtractor"
+object SubModule {
+    private const val TAG = "SubModule"
     
     const val MAGISK_MODULE_PATH = "/data/adb/modules/OPCameraPro"
     @SuppressLint("SdCardPath")

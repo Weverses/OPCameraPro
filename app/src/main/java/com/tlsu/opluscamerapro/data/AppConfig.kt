@@ -221,7 +221,10 @@ data class VendorTagSettings(
     val enableFront4KVideo: Boolean = false,
     
     // AI场景预设
-    val enableAiScenePreset: Boolean = false
+    val enableAiScenePreset: Boolean = false,
+
+    // ISO 12800
+    val enableISOExtension: Boolean = false
 )
 
 /**

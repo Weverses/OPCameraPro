@@ -171,7 +171,8 @@ object ConfigManager {
                 enableMultiFrameBurstShot = vendorTagsObj.optBoolean("enableMultiFrameBurstShot", false),
                 enableVideoSoundFocus = vendorTagsObj.optBoolean("enableVideoSoundFocus", false),
                 enableFront4KVideo = vendorTagsObj.optBoolean("enableFront4KVideo", false),
-                enableAiScenePreset = vendorTagsObj.optBoolean("enableAiScenePreset", false)
+                enableAiScenePreset = vendorTagsObj.optBoolean("enableAiScenePreset", false),
+                enableISOExtension = vendorTagsObj.optBoolean("enableISOExtension", false)
             )
             
             // 解析其他设置
@@ -293,6 +294,7 @@ object ConfigManager {
                     put("enableVideoSoundFocus", config.vendorTags.enableVideoSoundFocus)
                     put("enableFront4KVideo", config.vendorTags.enableFront4KVideo)
                     put("enableAiScenePreset", config.vendorTags.enableAiScenePreset)
+                    put("enableISOExtension", config.vendorTags.enableISOExtension)
                 })
                 
                 // 保存其他设置

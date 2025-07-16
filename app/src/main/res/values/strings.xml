@@ -85,54 +85,6 @@
     <string name="export_time_label">Export Time</string>
     <string name="unknown">Unknown</string>
 
-    <!-- Camera Settings -->
-    <string name="camera_settings_title">Camera Feature Settings</string>
-    <string name="vendor_tag_settings_title">Camera</string>
-    <string name="vendor_tag_enable_25mp">25MP Turbo RAW Resolution Enhancement</string>
-    <string name="vendor_tag_enable_master_mode">Master Mode (Version 2)</string>
-    <string name="vendor_tag_enable_master_raw_max">Master Mode RAW MAX Format</string>
-    <string name="vendor_tag_enable_portrait_zoom">Portrait Mode Zoom</string>
-    <string name="vendor_tag_enable_720p_60fps">720P 60FPS Video</string>
-    <string name="vendor_tag_enable_slow_video_480fps">Slow Motion Video Ultra-wide 480FPS</string>
-    <string name="vendor_tag_enable_new_macro_mode">New Macro Mode</string>
-    <string name="vendor_tag_enable_macro_tele">Macro Mode Telephoto</string>
-    <string name="vendor_tag_enable_macro_depth_fusion">Macro Depth Fusion</string>
-    <string name="vendor_tag_enable_heif_blur_edit">HEIF Mode Gallery Background Blur Editing</string>
-    <string name="vendor_tag_enable_style_effect">Master Mode - Filter Parameter Presets</string>
-    <string name="vendor_tag_enable_scale_focus">Master Mode - Pro - Magnified Focus</string>
-    <string name="vendor_tag_enable_live_photo_fov_optimize">Live Photo FOV Optimization</string>
-    <string name="vendor_tag_enable_10bit_photo">10-bit Photos</string>
-    <string name="vendor_tag_enable_heif_live_photo">Live HEIF Photos</string>
-    <string name="vendor_tag_enable_10bit_live_photo">Live 10-bit Photos</string>
-    <string name="vendor_tag_enable_tol_style_filter">Light and Shadow Audio Filters</string>
-    <string name="vendor_tag_enable_grand_tour_filter">Grand Tour Series Filters</string>
-    <string name="vendor_tag_enable_desert_filter">Desert Series Filters</string>
-    <string name="vendor_tag_enable_vignette_grain_filter">Vignette Grain Filters</string>
-    <string name="vendor_tag_enable_jzk_movie_filter">Jia Zhangke Filters</string>
-    <string name="vendor_tag_enable_new_beauty_menu">New Beauty Menu</string>
-    <string name="vendor_tag_enable_super_text_scanner">Super Text Scanner</string>
-    <string name="vendor_tag_enable_soft_light_photo_mode">Photo Mode Soft Light Filter</string>
-    <string name="vendor_tag_enable_soft_light_night_mode">Night Mode Soft Light Filter</string>
-    <string name="vendor_tag_enable_soft_light_pro_mode">Master Mode Soft Light Filter</string>
-    <string name="vendor_tag_enable_meishe_filter">Meishe Series Filters</string>
-    <string name="vendor_tag_enable_preview_hdr">Preview HDR</string>
-    <string name="vendor_tag_enable_video_auto_fps">Video Auto Frame Rate</string>
-    <string name="vendor_tag_enable_quick_launch">Double-tap Volume Key Quick Camera Launch</string>
-    <string name="vendor_tag_enable_live_photo_high_bitrate">Live Video Bitrate</string>
-    <string name="vendor_tag_enable_video_stop_sound_immediate">Stop Recording Immediate Sound Prompt</string>
-    <string name="vendor_tag_enable_force_portrait_for_third_party">Third-party apps can select Portrait Mode when calling official camera</string>
-    <string name="vendor_tag_enable_front_camera_zoom">Front Camera Zoom</string>
-    <string name="vendor_tag_enable_portrait_rear_flash">Portrait Mode Rear Flash</string>
-    <string name="vendor_tag_enable_ai_hd_switch">AI Super Clear Telephoto Algorithm</string>
-    <string name="vendor_tag_enable_tele_sdsr">Super Clear Telephoto Algorithm</string>
-    <string name="vendor_tag_enable_dolby_video">Dolby Video Support</string>
-    <string name="vendor_tag_enable_dolby_video_60fps">Dolby Video 60fps</string>
-    <string name="vendor_tag_enable_dolby_video_sat">Telephoto Dolby Video</string>
-    <string name="vendor_tag_enable_front_dolby_video">Front Dolby Video</string>
-    <string name="vendor_tag_enable_video_lock_lens">Video Recording Lock Lens</string>
-    <string name="vendor_tag_enable_video_lock_wb">Video Recording Lock White Balance</string>
-    <string name="vendor_tag_enable_mic_status_check">Video Recording Microphone Status Detection</string>
-
     <!-- Camera Settings Categories -->
     <string name="camera_settings_category_advanced">Photo Settings</string>
     <string name="camera_settings_category_video">Video Settings</string>
@@ -142,6 +94,7 @@
     <string name="camera_settings_category_other">Live Photo Settings</string>
 
     <!-- Camera Settings Items -->
+    <string name="camera_settings_title">Camera Settings</string>
     <string name="camera_settings_25mp_title">25MP</string>
     <string name="camera_settings_25mp_desc">Enable 25MP Turbo RAW Enhance Resolution</string>
     <string name="camera_settings_master_mode_title">New Master Mode</string>
@@ -234,6 +187,8 @@
     <string name="camera_settings_video_lock_wb_desc">Allow locking white balance settings during video recording</string>
     <string name="camera_settings_mic_status_check_title">Video Recording Microphone Status Detection</string>
     <string name="camera_settings_mic_status_check_desc">Enable microphone status detection functionality, alert for microphone anomalies</string>
+    <string name="camera_settings_iso_extension_title">ISO Extension</string>
+    <string name="camera_settings_iso_extension_desc">Unlock ISO upper limitation to 12800</string>
 
     <string name="camera_settings_hasselblad_watermark_guide_title">Hasselblad Watermark Guide</string>
     <string name="camera_settings_hasselblad_watermark_guide_desc">Enable Hasselblad watermark guide functionality</string>

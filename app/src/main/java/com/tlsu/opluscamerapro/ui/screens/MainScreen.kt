@@ -59,8 +59,8 @@ fun MainScreen(viewModel: MainViewModel) {
         bottomBar = {
             NavigationBar {
                 NavigationBarItem(
-                    icon = { Icon(Icons.Filled.Camera, contentDescription = stringResource(R.string.vendor_tag_settings_title)) },
-                    label = { Text(stringResource(R.string.vendor_tag_settings_title)) },
+                    icon = { Icon(Icons.Filled.Camera, contentDescription = stringResource(R.string.camera_settings_title)) },
+                    label = { Text(stringResource(R.string.camera_settings_title)) },
                     selected = currentPage == 0,
                     onClick = { currentPage = 0 }
                 )
