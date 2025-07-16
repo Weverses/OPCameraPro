@@ -55,7 +55,7 @@
 
     <!-- Dialogs -->
     <string name="about_dialog_title">About</string>
-    <string name="about_dialog_version">Version: Penicillin 2.1.50</string>
+    <string name="about_dialog_version">Version: Penicillin 2.1.60</string>
     <string name="about_dialog_author">Author: TimelessU</string>
     <string name="about_dialog_description">OPCameraPro Camera Feature Enhancement, a camera enhancement module for ColorOS/realmeUI\nThis module is completely free, please do not be deceived</string>
     <string name="confirm">Confirm</string>
