@@ -473,13 +473,13 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableNewBeautyMenu", it) }
             )
 
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_super_text_scanner_title),
-                description = stringResource(R.string.camera_settings_super_text_scanner_desc),
-                checked = vendorTagSettings.enableSuperTextScanner,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSuperTextScanner"),
-                onCheckedChange = { onSettingChanged("enableSuperTextScanner", it) }
-            )
+//            SettingsSwitchItem(
+//                title = stringResource(R.string.camera_settings_super_text_scanner_title),
+//                description = stringResource(R.string.camera_settings_super_text_scanner_desc),
+//                checked = vendorTagSettings.enableSuperTextScanner,
+//                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSuperTextScanner"),
+//                onCheckedChange = { onSettingChanged("enableSuperTextScanner", it) }
+//            )
 
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_quick_launch_title),
@@ -631,13 +631,13 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enablePortraitRearFlash", it) }
             )
             
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_force_portrait_title),
-                description = stringResource(R.string.camera_settings_force_portrait_desc),
-                checked = vendorTagSettings.enableForcePortraitForThirdParty,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableForcePortraitForThirdParty"),
-                onCheckedChange = { onSettingChanged("enableForcePortraitForThirdParty", it) }
-            )
+//            SettingsSwitchItem(
+//                title = stringResource(R.string.camera_settings_force_portrait_title),
+//                description = stringResource(R.string.camera_settings_force_portrait_desc),
+//                checked = vendorTagSettings.enableForcePortraitForThirdParty,
+//                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableForcePortraitForThirdParty"),
+//                onCheckedChange = { onSettingChanged("enableForcePortraitForThirdParty", it) }
+//            )
         }
 
         // 滤镜设置

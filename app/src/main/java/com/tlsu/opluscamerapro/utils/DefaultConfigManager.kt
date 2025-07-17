@@ -94,7 +94,7 @@ object DefaultConfigManager {
         "com.oplus.video.sound.focus.support" to "enableVideoSoundFocus",
         "com.oplus.feature.front.video.4k.support" to "enableFront4KVideo",
         "com.oplus.ai.scene.preset.support" to "enableAiScenePreset",
-        "com.oplus.camera.livephoto.support " to "enableLivePhoto"
+        "com.oplus.camera.livephoto.support" to "enableLivePhoto"
     )
     
     // 保存功能名称到VendorTag的反向映射

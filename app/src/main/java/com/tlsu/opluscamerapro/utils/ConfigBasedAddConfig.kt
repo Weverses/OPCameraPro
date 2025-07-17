@@ -676,18 +676,18 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            // 超级文本扫描
-            if (vendorTags.enableSuperTextScanner) {
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.feature.super.text.scanner.support",
-                        "Byte",
-                        "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-            }
+//            // 超级文本扫描
+//            if (vendorTags.enableSuperTextScanner) {
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.feature.super.text.scanner.support",
+//                        "Byte",
+//                        "1",
+//                        "1"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+//            }
 
             // 照片模式柔光滤镜
             if (vendorTags.enableSoftLightPhotoMode) {
@@ -942,18 +942,18 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            // 第三方app调用官方相机时可以选择人像模式
-            if (vendorTags.enableForcePortraitForThirdParty) {
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.force.portrait.when.parse.intent",
-                        "Byte",
-                        "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-            }
+//            // 第三方app调用官方相机时可以选择人像模式
+//            if (vendorTags.enableForcePortraitForThirdParty) {
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.force.portrait.when.parse.intent",
+//                        "Byte",
+//                        "1",
+//                        "1"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+//            }
 
             // 前置拍照变焦
             if (vendorTags.enableFrontCameraZoom) {

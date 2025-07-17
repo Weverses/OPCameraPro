@@ -158,7 +158,7 @@
     <string name="camera_settings_scale_focus_title">大师模式放大对焦</string>
     <string name="camera_settings_scale_focus_desc">在大师模式中启用放大对焦功能</string>
     <string name="camera_settings_new_beauty_menu_title">新版美颜菜单</string>
-    <string name="camera_settings_new_beauty_menu_desc">启用新版美颜菜单</string>
+    <string name="camera_settings_new_beauty_menu_desc">启用新版美颜菜单，支持原生与经典美颜预设，并新增一些美颜选项</string>
     <string name="camera_settings_super_text_scanner_title">超级文本扫描</string>
     <string name="camera_settings_super_text_scanner_desc">启用超级文本扫描功能</string>
     <string name="camera_settings_quick_launch_title">双击音量键快捷启动相机</string>
