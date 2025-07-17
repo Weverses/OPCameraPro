@@ -85,6 +85,12 @@ fun GallerySettingsGroup(
                 checked = gallerySettings.enableOliveCoverProXDR,
                 onCheckedChange = { onSettingChanged("enableOliveCoverProXDR", it) }
             )
+            SettingsSwitchItem(
+                title = stringResource(R.string.gallery_settings_lumo_watermark_title),
+                description = stringResource(R.string.gallery_settings_lumo_watermark_desc),
+                checked = gallerySettings.enableLumoWatermark,
+                onCheckedChange = { onSettingChanged("enableLumoWatermark", it) }
+            )
         }
 
         Spacer(modifier = Modifier.height(8.dp))

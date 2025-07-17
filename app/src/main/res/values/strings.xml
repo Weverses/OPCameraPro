@@ -254,6 +254,8 @@
     <string name="gallery_settings_no_defalut_keys">Device Defalut: Unknown\nYou can check the default value by yourself</string>
     <string name="gallery_settings_olive_cover_proxdr_title">Live Photo Cover ProXDR</string>
     <string name="gallery_settings_olive_cover_proxdr_desc">Enable Live Photo Cover ProXDR</string>
+    <string name="gallery_settings_lumo_watermark_title">Enable Lumo Watermark</string>
+    <string name="gallery_settings_lumo_watermark_desc">Enable Lumo Watermark in gallery and camera</string>
     
     <string name="module_update_checking">Checking for module updates...</string>
     <string name="module_update_failed">Failed to call binary install module update, possible reason is you are not using official Magisk/KernelSU. Attempted to directly extract sub-module and mount using post-fs-data.sh, if still ineffective please switch to official Magisk/KernelSU, other managers will not handle any bug reports</string>

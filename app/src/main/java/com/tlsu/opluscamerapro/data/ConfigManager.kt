@@ -198,7 +198,8 @@ object ConfigManager {
                 enableAIQualityEnhance = gallerySettingsObj.optBoolean("enableAIQualityEnhance", false),
                 enableAIDeReflection = gallerySettingsObj.optBoolean("enableAIDeReflection", false),
                 enableAIBestTake = gallerySettingsObj.optBoolean("enableAIBestTake", false),
-                enableOliveCoverProXDR = gallerySettingsObj.optBoolean("enableOliveCoverProXDR", false)
+                enableOliveCoverProXDR = gallerySettingsObj.optBoolean("enableOliveCoverProXDR", false),
+                enableLumoWatermark = gallerySettingsObj.optBoolean("enableLumoWatermark", false)
             )
             
             // 解析元数据
@@ -318,6 +319,7 @@ object ConfigManager {
                     put("enableAIDeReflection", config.gallerySettings.enableAIDeReflection)
                     put("enableAIBestTake", config.gallerySettings.enableAIBestTake)
                     put("enableOliveCoverProXDR", config.gallerySettings.enableOliveCoverProXDR)
+                    put("enableLumoWatermark", config.gallerySettings.enableLumoWatermark)
                 })
                 
                 // 保存元数据

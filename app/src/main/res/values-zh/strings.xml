@@ -250,8 +250,10 @@
     <string name="gallery_settings_ai_dereflection_desc">启用AI去反光功能，改善照片反光问题</string>
     <string name="gallery_settings_ai_besttake_title">AI 最佳表情</string>
     <string name="gallery_settings_ai_besttake_desc">启用AI最佳表情功能，检测人脸然后替换表情</string>
-    <string name="gallery_settings_olive_cover_proxdr_title">实况照片更换封面ProXDR</string>
-    <string name="gallery_settings_olive_cover_proxdr_desc">开启后，在相册中更换实况照片的封面或导出照片时，可以将原本的SDR通过算法替换为ProXDR格式</string>
+    <string name="gallery_settings_olive_cover_proxdr_title">实况照片更换封面 ProXDR</string>
+    <string name="gallery_settings_olive_cover_proxdr_desc">开启后，在相册中更换实况照片的封面或导出照片时，可以将原本的 SDR 通过算法替换为 ProXDR 格式</string>
+    <string name="gallery_settings_lumo_watermark_title">Lumo 凝光水印</string>
+    <string name="gallery_settings_lumo_watermark_desc">在相册和相机App中启用 Lumo 凝光水印, 注意: 需要安装 OPPO 渠道版本的相册App</string>
     <string name="gallery_settings_no_defalut_keys">模块无法获取相册的设备默认值, 你可自行查看默认支持情况</string>
     <string name="module_update_checking">正在检查模块更新...</string>
     <string name="module_update_failed">调用二进制安装模块更新失败,可能原因为你不是官方的Magisk/KernelSU. 已尝试直接解压附属模块并使用post-fs-data.sh挂载模块, 若依旧无效请换官方的Magisk/KernelSU, 其他管理器不受理任何Bug反馈</string>

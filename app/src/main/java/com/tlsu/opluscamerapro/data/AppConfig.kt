@@ -264,7 +264,10 @@ data class GallerySettings(
     val enableAIBestTake: Boolean = false,
 
     // 实况封面 ProXDR
-    val enableOliveCoverProXDR: Boolean = false
+    val enableOliveCoverProXDR: Boolean = false,
+
+    // Lumo 水印
+    val enableLumoWatermark: Boolean = false
 )
 
 /**

@@ -29,6 +29,7 @@ object FeatureHook : BaseHook() {
             val enableAIBestTake = config.gallerySettings.enableAIBestTake
             val enableHasselblad = config.vendorTags.enableHasselbladWatermark
             val enableOliveCoverProXDR = config.gallerySettings.enableOliveCoverProXDR
+            val enableLumoWatermark = config.gallerySettings.enableLumoWatermark
 
             XposedBridge.log("OplusGalleryPro: GallerySettings loaded, enableAIComposition = ${enableAIComposition}")
 
@@ -121,6 +122,13 @@ object FeatureHook : BaseHook() {
 
                         if (it.args[0] == "feature_is_support_olive_extract_uhdr_frame") {
                             if (enableOliveCoverProXDR) {
+                                it.args[0] = "feature_is_support_olive"
+                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_olive_sdr_to_hdr success")
+                            }
+                        }
+
+                        if (it.args[0] == "feature_is_support_lumo_watermark") {
+                            if (enableLumoWatermark) {
                                 it.args[0] = "feature_is_support_olive"
                                 XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_olive_sdr_to_hdr success")
                             }

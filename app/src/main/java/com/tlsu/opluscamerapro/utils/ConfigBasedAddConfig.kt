@@ -1549,6 +1549,46 @@ object ConfigBasedAddConfig {
 
                 addPresetTag(
                     VendorTagInfo(
+                        "com.oplus.camera.livephoto.video.only.before.shutter",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.livePhoto.autoMicro.need.match.preview.timestamp",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.livephoto.audio.timestamp.offset",
+                        "Long",
+                        "1",
+                        "100000000"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.livephoto.pts.use.timestamp",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
                         "com.oplus.camera.livephoto.video.bitrate",
                         "Int32",
                         "1",

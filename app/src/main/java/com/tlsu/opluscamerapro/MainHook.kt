@@ -8,6 +8,7 @@ import com.tlsu.opluscamerapro.hook.camera.FilterGroup
 import com.tlsu.opluscamerapro.hook.camera.ISOHook
 import com.tlsu.opluscamerapro.hook.camera.OplusCameraConfig
 import com.tlsu.opluscamerapro.hook.gallery.GalleryHook
+import com.tlsu.opluscamerapro.hook.gallery.HasselbladWatermarkHook
 import com.tlsu.opluscamerapro.utils.DexKit
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.callbacks.XC_LoadPackage
@@ -38,6 +39,7 @@ class MainHook : IXposedHookLoadPackage {
                 }
                 "com.coloros.gallery3d" -> {
                     GalleryHook.handleLoadPackage(lpparam)
+                    HasselbladWatermarkHook.handleLoadPackage(lpparam)
                     initHooks(FilterGroup)
                 }
             }

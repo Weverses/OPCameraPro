@@ -110,6 +110,11 @@ fun GallerySettingsScreen(
                                         enableOliveCoverProXDR = value
                                     )
                                 )
+                                "enableLumoWatermark" -> currentConfig.copy(
+                                    gallerySettings = currentConfig.gallerySettings.copy(
+                                        enableLumoWatermark = value
+                                    )
+                                )
                                 else -> currentConfig
                             }
                         }
