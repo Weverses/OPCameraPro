@@ -189,6 +189,9 @@
     <string name="camera_settings_mic_status_check_desc">Enable microphone status detection functionality, alert for microphone anomalies</string>
     <string name="camera_settings_iso_extension_title">ISO Extension</string>
     <string name="camera_settings_iso_extension_desc">Unlock ISO upper limitation to 12800</string>
+    <string name="camera_settings_live_photo_title">Live Photo</string>
+    <string name="camera_settings_live_photo_desc">Enable live photo</string>
+
 
     <string name="camera_settings_hasselblad_watermark_guide_title">Hasselblad Watermark Guide</string>
     <string name="camera_settings_hasselblad_watermark_guide_desc">Enable Hasselblad watermark guide functionality</string>
@@ -235,6 +238,7 @@
     <!-- Gallery Settings -->
     <string name="gallery_settings_title">Gallery</string>
     <string name="gallery_settings_category_ai">AI Features</string>
+    <string name="gallery_settings_category_edit">Edit Features</string>
     <string name="gallery_settings_ai_composition_title">AI Inspiration Creation</string>
     <string name="gallery_settings_ai_eliminate_title">AI Elimination</string>
     <string name="gallery_settings_ai_deblur_title">AI Deblur</string>
@@ -247,7 +251,9 @@
     <string name="gallery_settings_ai_dereflection_desc">Enable AI dereflection functionality, improve photo reflection issues</string>
     <string name="gallery_settings_ai_besttake_title">AI Best Expression</string>
     <string name="gallery_settings_ai_besttake_desc">Enable AI best expression functionality, detect faces and replace expressions</string>
-    <string name="gallery_settings_no_defalut_keys">Device Defalut: Unknown\nYou can check the default value by yourself</string>"
+    <string name="gallery_settings_no_defalut_keys">Device Defalut: Unknown\nYou can check the default value by yourself</string>
+    <string name="gallery_settings_olive_cover_proxdr_title">Live Photo Cover ProXDR</string>
+    <string name="gallery_settings_olive_cover_proxdr_desc">Enable Live Photo Cover ProXDR</string>
     
     <string name="module_update_checking">Checking for module updates...</string>
     <string name="module_update_failed">Failed to call binary install module update, possible reason is you are not using official Magisk/KernelSU. Attempted to directly extract sub-module and mount using post-fs-data.sh, if still ineffective please switch to official Magisk/KernelSU, other managers will not handle any bug reports</string>

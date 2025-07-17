@@ -77,7 +77,16 @@ fun GallerySettingsGroup(
                 onCheckedChange = { onSettingChanged("enableAIBestTake", it) }
             )
         }
-        
+
+        SettingsCard(title = stringResource(R.string.gallery_settings_category_edit)) {
+            SettingsSwitchItem(
+                title = stringResource(R.string.gallery_settings_olive_cover_proxdr_title),
+                description = stringResource(R.string.gallery_settings_olive_cover_proxdr_desc),
+                checked = gallerySettings.enableOliveCoverProXDR,
+                onCheckedChange = { onSettingChanged("enableOliveCoverProXDR", it) }
+            )
+        }
+
         Spacer(modifier = Modifier.height(8.dp))
     }
 }

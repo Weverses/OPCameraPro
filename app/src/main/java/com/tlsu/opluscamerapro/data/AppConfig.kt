@@ -224,7 +224,10 @@ data class VendorTagSettings(
     val enableAiScenePreset: Boolean = false,
 
     // ISO 12800
-    val enableISOExtension: Boolean = false
+    val enableISOExtension: Boolean = false,
+
+    // Live Photo
+    val enableLivePhoto: Boolean = false
 )
 
 /**
@@ -258,7 +261,10 @@ data class GallerySettings(
     // AI 去反光
     val enableAIDeReflection: Boolean = false,
     // AI 最佳表情
-    val enableAIBestTake: Boolean = false
+    val enableAIBestTake: Boolean = false,
+
+    // 实况封面 ProXDR
+    val enableOliveCoverProXDR: Boolean = false
 )
 
 /**

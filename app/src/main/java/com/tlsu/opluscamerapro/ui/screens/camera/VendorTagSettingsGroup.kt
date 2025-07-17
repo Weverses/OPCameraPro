@@ -895,20 +895,28 @@ fun VendorTagSettingsGroup(
         // 实况照片设置
         SettingsCard(title = stringResource(R.string.camera_settings_category_other)) {
             SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_heif_live_photo_title),
-                description = stringResource(R.string.camera_settings_heif_live_photo_desc),
-                checked = vendorTagSettings.enableHeifLivePhoto,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHeifLivePhoto"),
-                onCheckedChange = { onSettingChanged("enableHeifLivePhoto", it) }
+                title = stringResource(R.string.camera_settings_live_photo_title),
+                description = stringResource(R.string.camera_settings_live_photo_desc),
+                checked = vendorTagSettings.enableLivePhoto,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableLivePhoto"),
+                onCheckedChange = { onSettingChanged("enableLivePhoto", it) }
             )
 
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_10bit_live_photo_title),
-                description = stringResource(R.string.camera_settings_10bit_live_photo_desc),
-                checked = vendorTagSettings.enable10bitLivePhoto,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enable10bitLivePhoto"),
-                onCheckedChange = { onSettingChanged("enable10bitLivePhoto", it) }
-            )
+//            SettingsSwitchItem(
+//                title = stringResource(R.string.camera_settings_heif_live_photo_title),
+//                description = stringResource(R.string.camera_settings_heif_live_photo_desc),
+//                checked = vendorTagSettings.enableHeifLivePhoto,
+//                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHeifLivePhoto"),
+//                onCheckedChange = { onSettingChanged("enableHeifLivePhoto", it) }
+//            )
+//
+//            SettingsSwitchItem(
+//                title = stringResource(R.string.camera_settings_10bit_live_photo_title),
+//                description = stringResource(R.string.camera_settings_10bit_live_photo_desc),
+//                checked = vendorTagSettings.enable10bitLivePhoto,
+//                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enable10bitLivePhoto"),
+//                onCheckedChange = { onSettingChanged("enable10bitLivePhoto", it) }
+//            )
 
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_live_photo_fov_title),

@@ -172,7 +172,8 @@ object ConfigManager {
                 enableVideoSoundFocus = vendorTagsObj.optBoolean("enableVideoSoundFocus", false),
                 enableFront4KVideo = vendorTagsObj.optBoolean("enableFront4KVideo", false),
                 enableAiScenePreset = vendorTagsObj.optBoolean("enableAiScenePreset", false),
-                enableISOExtension = vendorTagsObj.optBoolean("enableISOExtension", false)
+                enableISOExtension = vendorTagsObj.optBoolean("enableISOExtension", false),
+                enableLivePhoto = vendorTagsObj.optBoolean("enableLivePhoto", false)
             )
             
             // 解析其他设置
@@ -196,7 +197,8 @@ object ConfigManager {
                 enableAIDeblur = gallerySettingsObj.optBoolean("enableAIDeblur", false),
                 enableAIQualityEnhance = gallerySettingsObj.optBoolean("enableAIQualityEnhance", false),
                 enableAIDeReflection = gallerySettingsObj.optBoolean("enableAIDeReflection", false),
-                enableAIBestTake = gallerySettingsObj.optBoolean("enableAIBestTake", false)
+                enableAIBestTake = gallerySettingsObj.optBoolean("enableAIBestTake", false),
+                enableOliveCoverProXDR = gallerySettingsObj.optBoolean("enableOliveCoverProXDR", false)
             )
             
             // 解析元数据
@@ -295,6 +297,7 @@ object ConfigManager {
                     put("enableFront4KVideo", config.vendorTags.enableFront4KVideo)
                     put("enableAiScenePreset", config.vendorTags.enableAiScenePreset)
                     put("enableISOExtension", config.vendorTags.enableISOExtension)
+                    put("enableLivePhoto", config.vendorTags.enableLivePhoto)
                 })
                 
                 // 保存其他设置
@@ -314,6 +317,7 @@ object ConfigManager {
                     put("enableAIQualityEnhance", config.gallerySettings.enableAIQualityEnhance)
                     put("enableAIDeReflection", config.gallerySettings.enableAIDeReflection)
                     put("enableAIBestTake", config.gallerySettings.enableAIBestTake)
+                    put("enableOliveCoverProXDR", config.gallerySettings.enableOliveCoverProXDR)
                 })
                 
                 // 保存元数据

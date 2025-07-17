@@ -193,7 +193,8 @@ object ConfigBasedAddConfig {
                 enableVideoSoundFocus = vendorTagsObj.optBoolean("enableVideoSoundFocus", false),
                 enableFront4KVideo = vendorTagsObj.optBoolean("enableFront4KVideo", false),
                 enableAiScenePreset = vendorTagsObj.optBoolean("enableAiScenePreset", false),
-                enableISOExtension = vendorTagsObj.optBoolean("enableISOExtension", false)
+                enableISOExtension = vendorTagsObj.optBoolean("enableISOExtension", false),
+                enableLivePhoto = vendorTagsObj.optBoolean("enableLivePhoto", false)
             )
             
             AppConfig(
@@ -1499,6 +1500,79 @@ object ConfigBasedAddConfig {
                         "Byte",
                         "1",
                         "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+
+            // Live Photo
+            if (vendorTags.enableLivePhoto) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.livephoto.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.livephoto.color.dataspace.value",
+                        "String",
+                        "3",
+                        "1,2,2"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.livephoto.gyro.threshould.vector",
+                        "Float",
+                        "2",
+                        "2.6, 2.6"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.livephoto.clear.video",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.livephoto.video.bitrate",
+                        "Int32",
+                        "1",
+                        vendorTags.livePhotoBitrate.toString()
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.livephoto.video.max.duration",
+                        "Int32",
+                        "1",
+                        vendorTags.livePhotoMaxDuration.toString()
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.livephoto.video.min.duration",
+                        "Int32",
+                        "1",
+                        vendorTags.livePhotoMinDuration.toString()
                     ),
                     MergeStrategy.OVERRIDE
                 )

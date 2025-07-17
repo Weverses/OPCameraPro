@@ -105,6 +105,11 @@ fun GallerySettingsScreen(
                                         enableAIBestTake = value
                                     )
                                 )
+                                "enableOliveCoverProXDR" -> currentConfig.copy(
+                                    gallerySettings = currentConfig.gallerySettings.copy(
+                                        enableOliveCoverProXDR = value
+                                    )
+                                )
                                 else -> currentConfig
                             }
                         }
