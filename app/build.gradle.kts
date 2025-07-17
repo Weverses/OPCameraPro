@@ -102,7 +102,7 @@ android {
 }
 
 dependencies {
-    implementation("com.github.kyuubiran:EzXHelper:2.2.0")
+    implementation("com.github.kyuubiran:EzXHelper:2.2.1")
     compileOnly("de.robv.android.xposed:api:82")
     
     // Jetpack Compose相关依赖
@@ -141,5 +141,5 @@ dependencies {
     // 调试工具
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("org.luckypray:dexkit:2.0.0")
+    implementation("org.luckypray:dexkit:2.0.6")
 }
