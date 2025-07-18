@@ -55,6 +55,7 @@ object DefaultConfigManager {
         "com.oplus.desert.filter.type.support" to "enableDesertFilter",
         "com.oplus.vignette.grain.filter.type.support" to "enableVignetteGrainFilter",
         "com.oplus.director.filter.upgrade.support" to "enableDirectorFilter",
+        "com.oplus.director.filter.support" to "enableJiangWenFilter",
         "com.oplus.support.jzk.movie.filter" to "enableJzkMovieFilter",
         "com.oplus.feature.face.beauty.custom.menu.version" to "enableNewBeautyMenu",
         "com.oplus.feature.super.text.scanner.support" to "enableSuperTextScanner",
@@ -94,7 +95,9 @@ object DefaultConfigManager {
         "com.oplus.video.sound.focus.support" to "enableVideoSoundFocus",
         "com.oplus.feature.front.video.4k.support" to "enableFront4KVideo",
         "com.oplus.ai.scene.preset.support" to "enableAiScenePreset",
-        "com.oplus.camera.livephoto.support" to "enableLivePhoto"
+        "com.oplus.camera.livephoto.support" to "enableLivePhoto",
+        "com.oplus.camera.livephoto.mastermode.support" to "enableMasterModeLivePhoto",
+        "com.oplus.feature.soft.light.filter.support" to "enableSoftLightFilter"
     )
     
     // 保存功能名称到VendorTag的反向映射

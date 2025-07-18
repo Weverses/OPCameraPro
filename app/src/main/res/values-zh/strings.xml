@@ -31,11 +31,11 @@
     <string name="submodule_title">安装附属模块</string>
     <string name="submodule_desc">安装附属模块后, 才能开启大师模式滤镜、参数预设以及预览HDR功能</string>
     <string name="submodule_effectstyle_title">仅安装精简版</string>
-    <string name="submodule_effectstyle_desc">仅包含大师模式滤镜、参数预设的必要文件</string>
+    <string name="submodule_effectstyle_desc">仅包含大师模式参数预设、大师模式实况(masterOlive分支)的必要文件</string>
     <string name="submodule_hdr_title">安装完整版</string>
-    <string name="submodule_hdr_desc">包含参数预设滤镜以及预览HDR\n安装后可能会导致相机闪退等一系列问题，请谨慎安装\n目前只在一加13上可用，其他机型请勿安装</string>
+    <string name="submodule_hdr_desc">包含预设滤镜、大师实况(masterOlive分支)以及预览HDR\n安装后可能会导致相机闪退等一系列问题，请谨慎安装\n目前只在一加13上可用，其他机型请勿安装</string>
     <string name="submodule_install_title">安装说明</string>
-    <string name="submodule_install_desc">密码: 63q4\n点击上方的选项后将会跳转网盘, 请下载后自行到Root管理器中安装模块\n安装后请:\n1. KSU及第三方版本关闭默认卸载模块选项\n2. Magisk关闭Hide/Sulist模式Magisk\n3. Shamiko白名单模式切换成黑名单模式\n4. 给予相机、相册Root权限</string>
+    <string name="submodule_install_desc">密码: 63q4\n点击上方的选项后将会跳转网盘, 请下载后自行到Root管理器中安装模块\n如果安装的是 masterOlive 分支的附属模块, 安装后请打开大师模式实况功能, 否则将会出现Bug!!\n安装后请:1. KSU及第三方版本关闭默认卸载模块选项; 2. Magisk关闭Hide/Sulist模式; 3. Shamiko白名单模式切换成黑名单模式; 4. 给予相机、相册Root权限</string>
     <string name="submodule_switch_mount_title">切换附属模块挂载方式</string>
     <string name="submodule_switch_mount_desc">点击自由切换附属模块的挂载方式, 以解决在部分管理器中无法正确挂载的问题</string>
     <string name="submodule_default_title">管理器默认挂载方式</string>
@@ -55,7 +55,7 @@
 
     <!-- 对话框 -->
     <string name="about_dialog_title">关于</string>
-    <string name="about_dialog_version">版本: Penicillin 2.1.60</string>
+    <string name="about_dialog_version">版本: Lavender 2.2.00</string>
     <string name="about_dialog_author">作者: TimelessU</string>
     <string name="about_dialog_description">OPCameraPro 相机功能补全, 一个适用于ColorOS/realmeUI的相机增强型模块\n该模块完全免费, 请勿上当受骗</string>
     <string name="confirm">确定</string>
@@ -224,10 +224,14 @@
     <string name="camera_settings_video_sound_focus_desc">视频录制时聚焦捕捉特定方向的声音</string>
     <string name="camera_settings_live_photo_duration_title">实况照片时长</string>
     <string name="camera_settings_live_photo_duration_desc">调整实况照片视频时长</string>
-    <string name="camera_settings_iso_extension_title">扩展ISO上限</string>
-    <string name="camera_settings_iso_extension_desc">解锁专业模式中ISO调节上限至12800</string>
+    <string name="camera_settings_iso_extension_title">扩展ISO上下限</string>
+    <string name="camera_settings_iso_extension_desc">解锁专业模式中ISO调节上限至12800, 下限至50, 注意: 由于只修改了专业模式中的ISO范围, 相册中的EXIF信息未修改, 最终EXIF中显示的ISO信息不准确</string>
     <string name="camera_settings_live_photo_title">实况照片</string>
     <string name="camera_settings_live_photo_desc">启用实况照片功能</string>
+    <string name="camera_setiings_live_photo_mastermode_title">大师模式实况</string>
+    <string name="camera_setiings_live_photo_mastermode_desc">启用大师模式的实况功能, 注意: 需要 相机版本为5.0.46+, 并且刷入 masterOlive 分支的附属模块, 安装该分支的附属模块后请保持开启大师模式实况功能, 否则将会出现Bug!!\n开启该功能后, 一加13将会丢失实况防抖功能, 如果机型本身就没有实况防抖, 则没有影响</string>
+    <string name="camera_setiings_softlight_filter_title">更多柔光滤镜</string>
+    <string name="camera_setiings_softlight_filter_desc">启用更多的柔光滤镜, 包括晨曦梦境、怀旧光景滤镜, 注意: 需要刷入任意附属模块方能生效</string>
 
     <!-- 默认值设置 -->
     <string name="default_value_enabled">设备默认值：开</string>

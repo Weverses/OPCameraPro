@@ -140,6 +140,9 @@ fun CameraSettingsScreen(
                                 "enableAiScenePreset" -> currentConfig.vendorTags.copy(enableAiScenePreset = value)
                                 "enableISOExtension" -> currentConfig.vendorTags.copy(enableISOExtension = value)
                                 "enableLivePhoto" -> currentConfig.vendorTags.copy(enableLivePhoto = value)
+                                "enableMasterModeLivePhoto" -> currentConfig.vendorTags.copy(enableMasterModeLivePhoto = value)
+                                "enableSoftLightFilter" -> currentConfig.vendorTags.copy(enableSoftLightFilter = value)
+
                                 else -> currentConfig.vendorTags
                             }
                             

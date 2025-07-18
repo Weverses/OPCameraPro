@@ -227,7 +227,13 @@ data class VendorTagSettings(
     val enableISOExtension: Boolean = false,
 
     // Live Photo
-    val enableLivePhoto: Boolean = false
+    val enableLivePhoto: Boolean = false,
+
+    // 大师模式实况模式
+    val enableMasterModeLivePhoto: Boolean = false,
+
+    // 更多柔光滤镜
+    val enableSoftLightFilter: Boolean = false
 )
 
 /**

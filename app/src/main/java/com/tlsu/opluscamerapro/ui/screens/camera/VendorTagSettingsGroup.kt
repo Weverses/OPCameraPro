@@ -451,7 +451,9 @@ fun VendorTagSettingsGroup(
             )
 
             if (execWithResult("md5sum /odm/lib64/libAlgoInterface.so")
-                        .out.joinToString("").contains("f723969a47ac1806769d1e90de77124b")) {
+                        .out.joinToString("").contains("f723969a47ac1806769d1e90de77124b")
+                || execWithResult("md5sum /odm/lib64/libAlgoInterface.so")
+                    .out.joinToString("").contains("31bfee2af2c77acdffff374c28cde2d0")) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_preview_hdr_title),
                     description = stringResource(R.string.camera_settings_preview_hdr_desc),
@@ -714,6 +716,14 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableOs15NewFilter", it) }
             )
 
+//            SettingsSwitchItem(
+//                title = stringResource(R.string.camera_setiings_softlight_filter_title),
+//                description = stringResource(R.string.camera_setiings_softlight_filter_desc),
+//                checked = vendorTagSettings.enableSoftLightFilter,
+//                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSoftLightFilter"),
+//                onCheckedChange = { onSettingChanged("enableSoftLightFilter", it) }
+//            )
+
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_soft_light_photo_title),
                 description = stringResource(R.string.camera_settings_soft_light_photo_desc),
@@ -902,6 +912,13 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableLivePhoto", it) }
             )
 
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_setiings_live_photo_mastermode_title),
+                description = stringResource(R.string.camera_setiings_live_photo_mastermode_desc),
+                checked = vendorTagSettings.enableMasterModeLivePhoto,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMasterModeLivePhoto"),
+                onCheckedChange = { onSettingChanged("enableMasterModeLivePhoto", it) }
+            )
 //            SettingsSwitchItem(
 //                title = stringResource(R.string.camera_settings_heif_live_photo_title),
 //                description = stringResource(R.string.camera_settings_heif_live_photo_desc),

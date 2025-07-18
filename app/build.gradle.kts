@@ -13,8 +13,8 @@ android {
         applicationId = "com.tlsu.opluscamerapro"
         minSdk = 34
         targetSdk = 36
-        versionCode = 2160
-        versionName = "Penicillin 2.1.60"
+        versionCode = 2200
+        versionName = "Lavender 2.2.00"
     }
 
     val properties = Properties()
@@ -102,7 +102,7 @@ android {
 }
 
 dependencies {
-    implementation("com.github.kyuubiran:EzXHelper:2.2.1")
+    implementation("com.github.kyuubiran:EzXHelper:2.2.0")
     compileOnly("de.robv.android.xposed:api:82")
     
     // Jetpack Compose相关依赖

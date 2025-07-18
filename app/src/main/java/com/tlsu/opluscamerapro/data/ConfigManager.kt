@@ -173,9 +173,10 @@ object ConfigManager {
                 enableFront4KVideo = vendorTagsObj.optBoolean("enableFront4KVideo", false),
                 enableAiScenePreset = vendorTagsObj.optBoolean("enableAiScenePreset", false),
                 enableISOExtension = vendorTagsObj.optBoolean("enableISOExtension", false),
-                enableLivePhoto = vendorTagsObj.optBoolean("enableLivePhoto", false)
+                enableLivePhoto = vendorTagsObj.optBoolean("enableLivePhoto", false),
+                enableMasterModeLivePhoto = vendorTagsObj.optBoolean("enableMasterModeLivePhoto", false),
+                enableSoftLightFilter = vendorTagsObj.optBoolean("enableSoftLightFilter", false)
             )
-            
             // 解析其他设置
             val otherSettingsObj = json.optJSONObject("otherSettings") ?: JSONObject()
             val otherSettings = OtherSettings(
@@ -299,6 +300,8 @@ object ConfigManager {
                     put("enableAiScenePreset", config.vendorTags.enableAiScenePreset)
                     put("enableISOExtension", config.vendorTags.enableISOExtension)
                     put("enableLivePhoto", config.vendorTags.enableLivePhoto)
+                    put("enableMasterModeLivePhoto", config.vendorTags.enableMasterModeLivePhoto)
+                    put("enableSoftLightFilter", config.vendorTags.enableSoftLightFilter)
                 })
                 
                 // 保存其他设置

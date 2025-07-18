@@ -55,7 +55,7 @@
 
     <!-- Dialogs -->
     <string name="about_dialog_title">About</string>
-    <string name="about_dialog_version">Version: Penicillin 2.1.60</string>
+    <string name="about_dialog_version">Version: Lavender 2.2.00</string>
     <string name="about_dialog_author">Author: TimelessU</string>
     <string name="about_dialog_description">OPCameraPro Camera Feature Enhancement, a camera enhancement module for ColorOS/realmeUI\nThis module is completely free, please do not be deceived</string>
     <string name="confirm">Confirm</string>
@@ -191,6 +191,12 @@
     <string name="camera_settings_iso_extension_desc">Unlock ISO upper limitation to 12800</string>
     <string name="camera_settings_live_photo_title">Live Photo</string>
     <string name="camera_settings_live_photo_desc">Enable live photo</string>
+    <string name="camera_setiings_live_photo_mastermode_title">Live Photo in Master Mode</string>
+    <string name="camera_setiings_live_photo_mastermode_desc">Enable live photo in master mode</string>
+    <string name="camera_setiings_softlight_filter_title">Softlight Filter</string>
+    <string name="camera_setiings_softlight_filter_desc">Enable more softlight filters, including morning dream and nostalgic scene</string>
+
+
 
 
     <string name="camera_settings_hasselblad_watermark_guide_title">Hasselblad Watermark Guide</string>

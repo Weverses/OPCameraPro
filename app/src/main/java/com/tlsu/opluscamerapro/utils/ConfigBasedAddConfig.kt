@@ -5,6 +5,7 @@ import com.github.kyuubiran.ezxhelper.Log
 import com.tlsu.opluscamerapro.data.AppConfig
 import com.tlsu.opluscamerapro.data.VendorTagSettings
 import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isOP13
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
 import com.tlsu.opluscamerapro.utils.ParseConfig.addPresetTag
 import com.topjohnwu.superuser.Shell
@@ -194,7 +195,9 @@ object ConfigBasedAddConfig {
                 enableFront4KVideo = vendorTagsObj.optBoolean("enableFront4KVideo", false),
                 enableAiScenePreset = vendorTagsObj.optBoolean("enableAiScenePreset", false),
                 enableISOExtension = vendorTagsObj.optBoolean("enableISOExtension", false),
-                enableLivePhoto = vendorTagsObj.optBoolean("enableLivePhoto", false)
+                enableLivePhoto = vendorTagsObj.optBoolean("enableLivePhoto", false),
+                enableMasterModeLivePhoto = vendorTagsObj.optBoolean("enableMasterModeLivePhoto", false),
+                enableSoftLightFilter = vendorTagsObj.optBoolean("enableSoftLightFilter", false)
             )
             
             AppConfig(
@@ -261,15 +264,7 @@ object ConfigBasedAddConfig {
 //                    ),
 //                    MergeStrategy.OVERRIDE
 //                )
-//                addPresetTag(
-//                    VendorTagInfo(
-//                        "com.oplus.camera.livephoto.mastermode.support",
-//                        "Byte",
-//                        "1",
-//                        "1"
-//                    ),
-//                    MergeStrategy.OVERRIDE
-//                )
+//
 //                addPresetTag(
 //                    VendorTagInfo(
 //                        "com.oplus.camera.master.video.type",
@@ -743,9 +738,8 @@ object ConfigBasedAddConfig {
 
             // Preview HDR
             // Require OplusRom Version >= V15.0.1
-            if (execWithResult("md5sum /odm/lib64/libAlgoInterface.so")
-                        .out.joinToString("").contains("f723969a47ac1806769d1e90de77124b")) {
-                if (isV1501() && vendorTags.enablePreviewHdr) {
+
+                if (vendorTags.enablePreviewHdr) {
                     XposedBridge.log("OplusTest: V15.0.1 Device, enable Preview HDR")
                     addPresetTag(
                         VendorTagInfo(
@@ -866,7 +860,7 @@ object ConfigBasedAddConfig {
                         MergeStrategy.OVERRIDE
                     )
                 }
-            }
+
 
 
             // 视频自动帧率
@@ -1549,46 +1543,6 @@ object ConfigBasedAddConfig {
 
                 addPresetTag(
                     VendorTagInfo(
-                        "com.oplus.camera.livephoto.video.only.before.shutter",
-                        "Byte",
-                        "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.livePhoto.autoMicro.need.match.preview.timestamp",
-                        "Byte",
-                        "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.camera.livephoto.audio.timestamp.offset",
-                        "Long",
-                        "1",
-                        "100000000"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.camera.livephoto.pts.use.timestamp",
-                        "Byte",
-                        "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-
-                addPresetTag(
-                    VendorTagInfo(
                         "com.oplus.camera.livephoto.video.bitrate",
                         "Int32",
                         "1",
@@ -1617,6 +1571,48 @@ object ConfigBasedAddConfig {
                     MergeStrategy.OVERRIDE
                 )
             }
+
+            if (vendorTags.enableMasterModeLivePhoto) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.livephoto.mastermode.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.livephoto.enable.eis",
+                        "Byte",
+                        "1",
+                        "0"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.livephoto.enable.frc",
+                        "Byte",
+                        "1",
+                        "0"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+
+//            if (vendorTags.enableSoftLightFilter) {
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.feature.soft.light.filter.support",
+//                        "Byte",
+//                        "1",
+//                        "1"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+//            }
         } catch (e: Exception) {
             XposedBridge.log("OplusCameraPro: Error in addConfig: ${e.message}")
         }
