@@ -231,7 +231,10 @@
     <string name="camera_setiings_live_photo_mastermode_title">大师模式实况</string>
     <string name="camera_setiings_live_photo_mastermode_desc">启用大师模式的实况功能, 注意: 需要 相机版本为5.0.46+, 并且刷入 masterOlive 分支的附属模块, 安装该分支的附属模块后请保持开启大师模式实况功能, 否则将会出现Bug!!\n开启该功能后, 一加13将会丢失实况防抖功能, 如果机型本身就没有实况防抖, 则没有影响</string>
     <string name="camera_setiings_softlight_filter_title">更多柔光滤镜</string>
-    <string name="camera_setiings_softlight_filter_desc">启用更多的柔光滤镜, 包括晨曦梦境、怀旧光景滤镜, 注意: 需要刷入任意附属模块方能生效</string>
+    <string name="camera_setiings_softlight_filter_desc">启用更多的柔光滤镜, 包括晨曦梦境、怀旧光景滤镜, 注意: 需要刷入任意附属模块 (版本为2.2.1+) 方能生效, 并且需要相机版本为5.0.52+</string>
+    <string name="camera_setiings_ccd_filter_title">CCD 冷调闪光滤镜</string>
+    <string name="camera_setiings_ccd_filter_desc">启用CCD 冷调闪光滤镜, 注意: 需要刷入任意附属模块 (版本为2.2.1+) 方能生效, 并且需要相机版本为5.0.52+</string>
+
 
     <!-- 默认值设置 -->
     <string name="default_value_enabled">设备默认值：开</string>

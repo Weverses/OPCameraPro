@@ -16,7 +16,7 @@ import java.io.File
  * 负责解析原始相机配置、保存默认配置文件、加载默认配置
  */
 object DefaultConfigManager {
-    private const val TAG = "DefaultConfigManager"
+    private const val TAG = "OPCameraPro"
     
     @SuppressLint("SdCardPath")
     private const val ORIGIN_CONFIG_FILE = "/sdcard/Android/OplusCameraPro/oplus_camera_config_origin.json"
@@ -97,7 +97,8 @@ object DefaultConfigManager {
         "com.oplus.ai.scene.preset.support" to "enableAiScenePreset",
         "com.oplus.camera.livephoto.support" to "enableLivePhoto",
         "com.oplus.camera.livephoto.mastermode.support" to "enableMasterModeLivePhoto",
-        "com.oplus.feature.soft.light.filter.support" to "enableSoftLightFilter"
+        "com.oplus.feature.soft.light.filter.support" to "enableSoftLightFilter",
+        "com.oplus.feature.flash.filter.support" to "enableFlashFilter"
     )
     
     // 保存功能名称到VendorTag的反向映射
@@ -229,8 +230,6 @@ object DefaultConfigManager {
                         value = "0",
                         isEnabled = false
                     )
-                    
-                    XposedBridge.log("$TAG: Adding missing tag $vendorTag for feature $featureName with default OFF state")
                 }
             }
             

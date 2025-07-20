@@ -233,7 +233,10 @@ data class VendorTagSettings(
     val enableMasterModeLivePhoto: Boolean = false,
 
     // 更多柔光滤镜
-    val enableSoftLightFilter: Boolean = false
+    val enableSoftLightFilter: Boolean = false,
+
+    // CCD 滤镜
+    val enableFlashFilter: Boolean = false
 )
 
 /**

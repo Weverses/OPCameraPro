@@ -1,18 +1,12 @@
 package com.tlsu.opluscamerapro.hook.camera
 
-import android.R.attr.classLoader
-import com.github.kyuubiran.ezxhelper.ClassUtils.loadClass
 import com.github.kyuubiran.ezxhelper.EzXHelper.safeClassLoader
-import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
-import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinder
 import com.tlsu.opluscamerapro.hook.BaseHook
 import com.tlsu.opluscamerapro.utils.ConfigBasedAddConfig
-import com.tlsu.opluscamerapro.utils.DexKit.dexKitBridge
 import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.callbacks.XC_LoadPackage
-
 
 object Video120FPS: BaseHook() {
     private lateinit var lpparam: XC_LoadPackage.LoadPackageParam

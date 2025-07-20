@@ -9,7 +9,6 @@ import de.robv.android.xposed.XC_MethodReplacement
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
 
-
 object FilterGroup : BaseHook() {
     override fun init() {
         try {
@@ -155,9 +154,9 @@ object FilterGroup : BaseHook() {
                     }
                 )
             }
-            XposedBridge.log("OplusTest: hook camera successfully")
+            XposedBridge.log("OPCameraPro: hook camera successfully")
         } catch (e: Throwable) {
-            XposedBridge.log("OplusTest: hook camera failed!")
+            XposedBridge.log("OPCameraPro: hook camera failed!")
             XposedBridge.log(e)
         }
     }

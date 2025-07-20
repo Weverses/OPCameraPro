@@ -5,6 +5,7 @@ import com.github.kyuubiran.ezxhelper.Log
 import com.tlsu.opluscamerapro.data.AppConfig
 import com.tlsu.opluscamerapro.data.VendorTagSettings
 import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVer
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isOP13
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
 import com.tlsu.opluscamerapro.utils.ParseConfig.addPresetTag
@@ -34,10 +35,10 @@ object ConfigBasedAddConfig {
                 try {
                     Shell.enableVerboseLogging = false
                     Shell.setDefaultBuilder(Shell.Builder.create().setFlags(Shell.FLAG_MOUNT_MASTER))
-                    XposedBridge.log("ConfigBasedAddConfig: Shell initialized successfully")
+                    XposedBridge.log("OPCameraPro: Shell initialized successfully")
                 } catch (e: Exception) {
-                    // 如果Shell已经初始化，会抛出异常，我们可以忽略这个错误
-                    XposedBridge.log("ConfigBasedAddConfig: Shell already initialized: ${e.message}")
+                    // 如果Shell已经初始化，会抛出异常，可以忽略这个错误
+                    XposedBridge.log("OPCameraPro: Shell already initialized: ${e.message}")
                 }
                 isInitialized = true
             }
@@ -45,7 +46,7 @@ object ConfigBasedAddConfig {
             // 尝试读取配置文件
             loadConfig()
         } catch (e: Exception) {
-            XposedBridge.log("ConfigBasedAddConfig init error: ${e.message}")
+            XposedBridge.log("OPCameraPro init error: ${e.message}")
         }
     }
     
@@ -85,26 +86,26 @@ object ConfigBasedAddConfig {
                                     }..."
                                 )
                                 config = parseConfig(jsonStr)
-                                XposedBridge.log("OplusCameraPro: Config loaded successfully")
+                                XposedBridge.log("OPCameraPro: Config loaded successfully")
                             } catch (e: Exception) {
-                                XposedBridge.log("OplusCameraPro: Failed to parse config: ${e.message}")
+                                XposedBridge.log("OPCameraPro: Failed to parse config: ${e.message}")
                                 config = AppConfig() // 解析错误时使用默认配置
                             }
                         } else {
-                            XposedBridge.log("OplusCameraPro: Empty config file, using defaults")
+                            XposedBridge.log("OPCameraPro: Empty config file, using defaults")
                             config = AppConfig()
                         }
                     } else {
-                        XposedBridge.log("OplusCameraPro: Failed to read config file: ${result.out}")
+                        XposedBridge.log("OPCameraPro: Failed to read config file: ${result.out}")
                         config = AppConfig()
                     }
 
             } else {
-                XposedBridge.log("OplusCameraPro: Config file not found, using defaults")
+                XposedBridge.log("OPCameraPro: Config file not found, using defaults")
                 config = AppConfig() // 文件不存在时使用默认配置
             }
         } catch (e: Exception) {
-            XposedBridge.log("OplusCameraPro: Error in loadConfig: ${e.message}")
+            XposedBridge.log("OPCameraPro: Error in loadConfig: ${e.message}")
             e.printStackTrace()
             config = AppConfig() // 出错时使用默认配置
         }
@@ -116,7 +117,7 @@ object ConfigBasedAddConfig {
      */
     fun reloadConfig() {
         loadConfig()
-        XposedBridge.log("OplusCameraPro: Config reloaded successfully")
+        XposedBridge.log("OPCameraPro: Config reloaded successfully")
     }
     
     /**
@@ -197,7 +198,8 @@ object ConfigBasedAddConfig {
                 enableISOExtension = vendorTagsObj.optBoolean("enableISOExtension", false),
                 enableLivePhoto = vendorTagsObj.optBoolean("enableLivePhoto", false),
                 enableMasterModeLivePhoto = vendorTagsObj.optBoolean("enableMasterModeLivePhoto", false),
-                enableSoftLightFilter = vendorTagsObj.optBoolean("enableSoftLightFilter", false)
+                enableSoftLightFilter = vendorTagsObj.optBoolean("enableSoftLightFilter", false),
+                enableFlashFilter = vendorTagsObj.optBoolean("enableFlashFilter", false)
             )
             
             AppConfig(
@@ -223,7 +225,7 @@ object ConfigBasedAddConfig {
             
             // 25MP Turbo RAW Resolution Enhance
             if (vendorTags.enable25MP) {
-                XposedBridge.log("OplusCameraPro: enable 25MP")
+                XposedBridge.log("OPCameraPro: enable 25MP")
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.turboraw.re.support",
@@ -740,7 +742,7 @@ object ConfigBasedAddConfig {
             // Require OplusRom Version >= V15.0.1
 
                 if (vendorTags.enablePreviewHdr) {
-                    XposedBridge.log("OplusTest: V15.0.1 Device, enable Preview HDR")
+                    XposedBridge.log("OPCameraPro: V15.0.1 Device, enable Preview HDR")
                     addPresetTag(
                         VendorTagInfo(
                             "com.oplus.camera.ai.perception.detect.support",
@@ -825,7 +827,7 @@ object ConfigBasedAddConfig {
                             "com.oplus.camera.preview.hdr.cap.mode.value",
                             "String",
                             "6",
-                            "common,night,highPixel,xpan,sticker,idPhoto"
+                            "common,night,highPixel,xpan,sticker,idPhoto,professional"
                         ),
                         MergeStrategy.OVERRIDE
                     )
@@ -835,7 +837,7 @@ object ConfigBasedAddConfig {
                             "com.oplus.camera.capture.hdr.cap.mode.value",
                             "String",
                             "7",
-                            "common,portrait,night,highPixel,xpan,sticker,idPhoto"
+                            "common,portrait,night,highPixel,xpan,sticker,idPhoto,professional"
                         ),
                         MergeStrategy.OVERRIDE
                     )
@@ -855,7 +857,7 @@ object ConfigBasedAddConfig {
                             "com.oplus.camera.preview.hdr.front.portrait.support",
                             "Byte",
                             "1",
-                            "0"
+                            "1"
                         ),
                         MergeStrategy.OVERRIDE
                     )
@@ -1376,7 +1378,7 @@ object ConfigBasedAddConfig {
             }
             
             // 1080P 120FPS视频
-            if (vendorTags.enable1080p120fpsVideo) {
+            if (isNewCameraVer() && vendorTags.enable1080p120fpsVideo) {
                 // 启用1080P 120FPS视频
                 addPresetTag(
                     VendorTagInfo(
@@ -1572,7 +1574,7 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            if (vendorTags.enableMasterModeLivePhoto) {
+            if (isNewCameraVer() && vendorTags.enableMasterModeLivePhoto) {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.camera.livephoto.mastermode.support",
@@ -1596,25 +1598,37 @@ object ConfigBasedAddConfig {
                         "com.oplus.camera.livephoto.enable.frc",
                         "Byte",
                         "1",
-                        "0"
+                        "1"
                     ),
                     MergeStrategy.OVERRIDE
                 )
             }
 
-//            if (vendorTags.enableSoftLightFilter) {
-//                addPresetTag(
-//                    VendorTagInfo(
-//                        "com.oplus.feature.soft.light.filter.support",
-//                        "Byte",
-//                        "1",
-//                        "1"
-//                    ),
-//                    MergeStrategy.OVERRIDE
-//                )
-//            }
+            if (isNewCameraVer() && vendorTags.enableSoftLightFilter) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.soft.light.filter.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+
+            if (isNewCameraVer() && vendorTags.enableFlashFilter) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.flash.filter.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
         } catch (e: Exception) {
-            XposedBridge.log("OplusCameraPro: Error in addConfig: ${e.message}")
+            XposedBridge.log("OPCameraPro: Error in addConfig: ${e.message}")
         }
     }
 } 

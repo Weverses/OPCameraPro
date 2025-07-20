@@ -15,7 +15,7 @@ object FeatureHook : BaseHook() {
     
     override fun init() {
         try {
-            XposedBridge.log("OplusGalleryPro: finding Config method")
+            XposedBridge.log("OPCameraPro: finding Config method")
             System.loadLibrary("dexkit")
             
             // 加载配置
@@ -31,7 +31,7 @@ object FeatureHook : BaseHook() {
             val enableOliveCoverProXDR = config.gallerySettings.enableOliveCoverProXDR
             val enableLumoWatermark = config.gallerySettings.enableLumoWatermark
 
-            XposedBridge.log("OplusGalleryPro: GallerySettings loaded, enableAIComposition = ${enableAIComposition}")
+            XposedBridge.log("OPCameraPro: GallerySettings loaded, enableAIComposition = ${enableAIComposition}")
 
             val bridge = dexKitBridge
             val className = bridge.findClass {
@@ -56,89 +56,88 @@ object FeatureHook : BaseHook() {
                 .single()
                 .createHook {
                     before {
-                        XposedBridge.log("OplusGalleryPro: Hook triggered, enableAIComposition = $enableAIComposition")
                         if (it.args[0] == "feature_is_support_ai_composition") {
                             if (enableAIComposition) {
                                 it.args[0] = "feature_is_support_olive"
-                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_ai_composition success")
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_ai_composition success")
                             }
                         }
                         if (it.args[0] == "feature_is_support_ai_eliminate") {
                             if (enableAIEliminate) {
                                 it.args[0] = "feature_is_support_olive"
-                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_ai_eliminate success")
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_ai_eliminate success")
                             }
                         }
                         if (it.args[0] == "feature_is_support_ai_deblur") {
                             if (enableAIDeblur) {
                                 it.args[0] = "feature_is_support_olive"
-                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_ai_deblur success")
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_ai_deblur success")
                             }
                         }
                         if (it.args[0] == "feature_is_support_image_quality_enhance") {
                             if (enableAIQualityEnhance) {
                                 it.args[0] = "feature_is_support_olive"
-                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_image_quality_enhance success")
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_image_quality_enhance success")
                             }
                         }
                         if (it.args[0] == "feature_is_support_ai_dereflection") {
                             if (enableAIDeReflection) {
                                 it.args[0] = "feature_is_support_olive"
-                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_ai_dereflection success")
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_ai_dereflection success")
                             }
                         }
                         if (it.args[0] == "feature_is_support_hassel_watermark") {
                             if (enableHasselblad) {
                                 it.args[0] = "feature_is_support_olive"
-                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_hassel_watermark success")
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_hassel_watermark success")
                             }
                         }
                         if (it.args[0] == "feature_is_support_ai_best_take") {
                             if (enableAIBestTake) {
                                 it.args[0] = "feature_is_support_olive"
-                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_ai_best_take success")
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_ai_best_take success")
                             }
                         }
 
 //                        if (it.args[0] == "feature_is_support_ai_filter") {
 //                            if (enableAI) {
 //                                it.args[0] = "feature_is_support_olive"
-//                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_hassel_watermark success")
+//                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_hassel_watermark success")
 //                            }
 //                        }
 //                        if (it.args[0] == "feature_is_support_ai_face_hd") {
 //                            if (enableAI) {
 //                                it.args[0] = "feature_is_support_olive"
-//                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_hassel_watermark success")
+//                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_hassel_watermark success")
 //                            }
 //                        }
 
                         if (it.args[0] == "feature_is_support_olive_sdr_to_hdr") {
                             if (enableOliveCoverProXDR) {
                                 it.args[0] = "feature_is_support_olive"
-                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_olive_sdr_to_hdr success")
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_olive_sdr_to_hdr success")
                             }
                         }
 
                         if (it.args[0] == "feature_is_support_olive_extract_uhdr_frame") {
                             if (enableOliveCoverProXDR) {
                                 it.args[0] = "feature_is_support_olive"
-                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_olive_sdr_to_hdr success")
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_olive_sdr_to_hdr success")
                             }
                         }
 
                         if (it.args[0] == "feature_is_support_lumo_watermark") {
                             if (enableLumoWatermark) {
                                 it.args[0] = "feature_is_support_olive"
-                                XposedBridge.log("OplusGalleryPro: Hook ${className.name} feature_is_support_olive_sdr_to_hdr success")
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_olive_sdr_to_hdr success")
                             }
                         }
                     }
                 }
             
-            XposedBridge.log("OplusGalleryPro: Hook ${className.name} success")
+            XposedBridge.log("OPCameraPro: Hook ${className.name} success")
         } catch (e: Throwable) {
-            XposedBridge.log("OplusGalleryPro: Hook error! ${e.message}")
+            XposedBridge.log("OPCameraPro: Hook error! ${e.message}")
             e.printStackTrace()
         }
     }

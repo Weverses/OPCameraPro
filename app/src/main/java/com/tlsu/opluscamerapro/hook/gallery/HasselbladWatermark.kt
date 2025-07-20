@@ -8,7 +8,6 @@ import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 
-
 object Hasselblad: BaseHook() {
     private lateinit var lpparam: XC_LoadPackage.LoadPackageParam
     override fun init() {

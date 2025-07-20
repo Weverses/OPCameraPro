@@ -195,9 +195,8 @@
     <string name="camera_setiings_live_photo_mastermode_desc">Enable live photo in master mode</string>
     <string name="camera_setiings_softlight_filter_title">Softlight Filter</string>
     <string name="camera_setiings_softlight_filter_desc">Enable more softlight filters, including morning dream and nostalgic scene</string>
-
-
-
+    <string name="camera_setiings_ccd_filter_title">CCD Filter</string>
+    <string name="camera_setiings_ccd_filter_desc">Enable CCD Filter</string>
 
     <string name="camera_settings_hasselblad_watermark_guide_title">Hasselblad Watermark Guide</string>
     <string name="camera_settings_hasselblad_watermark_guide_desc">Enable Hasselblad watermark guide functionality</string>

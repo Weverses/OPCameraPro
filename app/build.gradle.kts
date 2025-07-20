@@ -13,8 +13,8 @@ android {
         applicationId = "com.tlsu.opluscamerapro"
         minSdk = 34
         targetSdk = 36
-        versionCode = 2200
-        versionName = "Lavender 2.2.00"
+        versionCode = 2201
+        versionName = "LavenderT 2.2.01"
     }
 
     val properties = Properties()

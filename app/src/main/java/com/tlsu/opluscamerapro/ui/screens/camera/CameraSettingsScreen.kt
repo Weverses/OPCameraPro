@@ -142,6 +142,7 @@ fun CameraSettingsScreen(
                                 "enableLivePhoto" -> currentConfig.vendorTags.copy(enableLivePhoto = value)
                                 "enableMasterModeLivePhoto" -> currentConfig.vendorTags.copy(enableMasterModeLivePhoto = value)
                                 "enableSoftLightFilter" -> currentConfig.vendorTags.copy(enableSoftLightFilter = value)
+                                "enableFlashFilter" -> currentConfig.vendorTags.copy(enableFlashFilter = value)
 
                                 else -> currentConfig.vendorTags
                             }

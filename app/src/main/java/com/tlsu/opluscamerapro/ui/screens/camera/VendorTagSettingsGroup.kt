@@ -26,6 +26,7 @@ import com.tlsu.opluscamerapro.data.VendorTagSettings
 import com.tlsu.opluscamerapro.ui.components.SettingsSwitchItem
 import com.tlsu.opluscamerapro.utils.DefaultConfigManager
 import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVer
 
 /**
  * VendorTag设置组
@@ -716,14 +717,29 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableOs15NewFilter", it) }
             )
 
-//            SettingsSwitchItem(
-//                title = stringResource(R.string.camera_setiings_softlight_filter_title),
-//                description = stringResource(R.string.camera_setiings_softlight_filter_desc),
-//                checked = vendorTagSettings.enableSoftLightFilter,
-//                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSoftLightFilter"),
-//                onCheckedChange = { onSettingChanged("enableSoftLightFilter", it) }
-//            )
+            if (isNewCameraVer()) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_setiings_ccd_filter_title),
+                    description = stringResource(R.string.camera_setiings_ccd_filter_desc),
+                    checked = vendorTagSettings.enableFlashFilter,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                        context,
+                        "enableFlashFilter"
+                    ),
+                    onCheckedChange = { onSettingChanged("enableFlashFilter", it) }
+                )
 
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_setiings_softlight_filter_title),
+                    description = stringResource(R.string.camera_setiings_softlight_filter_desc),
+                    checked = vendorTagSettings.enableSoftLightFilter,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                        context,
+                        "enableSoftLightFilter"
+                    ),
+                    onCheckedChange = { onSettingChanged("enableSoftLightFilter", it) }
+                )
+            }
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_soft_light_photo_title),
                 description = stringResource(R.string.camera_settings_soft_light_photo_desc),
@@ -758,15 +774,19 @@ fun VendorTagSettingsGroup(
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableFront4KVideo"),
                 onCheckedChange = { onSettingChanged("enableFront4KVideo", it) }
             )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_1080p_120fps_video_title),
-                description = stringResource(R.string.camera_settings_1080p_120fps_video_desc),
-                checked = vendorTagSettings.enable1080p120fpsVideo,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enable1080p120fpsVideo"),
-                onCheckedChange = { onSettingChanged("enable1080p120fpsVideo", it) }
-            )
-            
+
+            if (isNewCameraVer()) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_settings_1080p_120fps_video_title),
+                    description = stringResource(R.string.camera_settings_1080p_120fps_video_desc),
+                    checked = vendorTagSettings.enable1080p120fpsVideo,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                        context,
+                        "enable1080p120fpsVideo"
+                    ),
+                    onCheckedChange = { onSettingChanged("enable1080p120fpsVideo", it) }
+                )
+            }
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_4k_120fps_video_title),
                 description = stringResource(R.string.camera_settings_4k_120fps_video_desc),
@@ -912,13 +932,18 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableLivePhoto", it) }
             )
 
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_setiings_live_photo_mastermode_title),
-                description = stringResource(R.string.camera_setiings_live_photo_mastermode_desc),
-                checked = vendorTagSettings.enableMasterModeLivePhoto,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMasterModeLivePhoto"),
-                onCheckedChange = { onSettingChanged("enableMasterModeLivePhoto", it) }
-            )
+            if (isNewCameraVer()) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_setiings_live_photo_mastermode_title),
+                    description = stringResource(R.string.camera_setiings_live_photo_mastermode_desc),
+                    checked = vendorTagSettings.enableMasterModeLivePhoto,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                        context,
+                        "enableMasterModeLivePhoto"
+                    ),
+                    onCheckedChange = { onSettingChanged("enableMasterModeLivePhoto", it) }
+                )
+            }
 //            SettingsSwitchItem(
 //                title = stringResource(R.string.camera_settings_heif_live_photo_title),
 //                description = stringResource(R.string.camera_settings_heif_live_photo_desc),

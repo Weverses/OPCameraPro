@@ -26,26 +26,26 @@ object OplusCameraConfig : BaseHook() {
                     after {
                         val originalConfig = it.result as String
                         if (isOplusCameraConfig(configName)) {
-                            XposedBridge.log("OplusTest: configName: $configName isOplusCameraConfig!")
+                            XposedBridge.log("OPCameraPro: configName: $configName isOplusCameraConfig!")
                             // 保存原始配置
                             DefaultConfigManager.parseAndSaveDefaultConfig(originalConfig)
-                            XposedBridge.log("OplusTest: original config saved successfully")
+                            XposedBridge.log("OPCameraPro: original config saved successfully")
                             
                             val modifyConfig = parseConfig(originalConfig)
                             DefaultConfigManager.saveModifyConfig(modifyConfig)
-                            XposedBridge.log("OplusTest: get originalConfig successfully")
+                            XposedBridge.log("OPCameraPro: get originalConfig successfully")
                             it.result = modifyConfig
-                            XposedBridge.log("OplusTest: return modifyConfig successfully")
+                            XposedBridge.log("OPCameraPro: return modifyConfig successfully")
                         } else {
                             saveOriginOtherConfig(configName, originalConfig)
-                            XposedBridge.log("OplusTest: configName: $configName! isn't OplusCameraConfig")
+                            XposedBridge.log("OPCameraPro: configName: $configName! isn't OplusCameraConfig")
                         }
                     }
                 }
-            XposedBridge.log("OplusTest: hook getValidConfigData successfully")
+            XposedBridge.log("OPCameraPro: hook getValidConfigData successfully")
 
         } catch (e: Throwable) {
-            XposedBridge.log("OplusTest: hook getValidConfigData  failed!")
+            XposedBridge.log("OPCameraPro: hook getValidConfigData  failed!")
             XposedBridge.log(e)
         }
     }

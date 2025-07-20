@@ -19,6 +19,8 @@ object DeviceCheck {
         val isSuccess: Boolean get() = code == 0
     }
 
+    var opCameraVersion: String = ""
+
     @SuppressLint("PrivateApi")
     fun getProp(mKey: String): String = Class.forName("android.os.SystemProperties").getMethod("get", String::class.java).invoke(Class.forName("android.os.SystemProperties"), mKey)!!
         .toString()
@@ -34,18 +36,18 @@ object DeviceCheck {
     fun isV1501(): Boolean {
         // 获取OplusRom版本
         val romVersion = getOplusRomVersion()
-        
+
         // 提取主要版本号部分
         val versionRegex = "V(\\d+)\\.(\\d+)\\.(\\d+).*".toRegex()
         val matchResult = versionRegex.find(romVersion) ?: return false
-        
+
         try {
             // 提取主版本号、次版本号和修订版本号
             val (majorStr, minorStr, patchStr) = matchResult.destructured
             val major = majorStr.toInt()
             val minor = minorStr.toInt()
             val patch = patchStr.toInt()
-            
+
             // 判断版本是否大于等于V15.0.1
             return when {
                 major > 15 -> true  // 例如V16.0.0
@@ -102,6 +104,34 @@ object DeviceCheck {
         return (getProp("ro.vendor.oplus.market.enname"))
     }
 
+    fun setOPCameraVersion(cameraVer: String) {
+        opCameraVersion = cameraVer
+    }
+
+    fun isNewCameraVer(): Boolean {
+        if (opCameraVersion.isNullOrEmpty()) {
+            return false
+        }
+
+        val parts = opCameraVersion.split('.')
+
+        try {
+            // 将每个部分转换为整数
+            val major = parts[0].toInt()
+            // val minor = parts[1].toInt()
+            val patch = parts[2].toInt()
+            // val build = parts[3].toInt()
+
+            // >=5.0.46
+            val isSupported = major >= 5 && patch >= 46
+
+            return isSupported
+
+        } catch (e: NumberFormatException) {
+            return false
+        }
+    }
+
     /**
      * 执行命令并返回字符串结果（旧方式，保留兼容性）
      */
@@ -109,7 +139,6 @@ object DeviceCheck {
         val result = execWithResult(command)
         return result.out.joinToString("\n")
     }
-
     /**
      * 执行命令并返回结构化结果
      */
