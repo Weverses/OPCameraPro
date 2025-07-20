@@ -4,10 +4,7 @@ import android.annotation.SuppressLint
 import com.github.kyuubiran.ezxhelper.Log
 import com.tlsu.opluscamerapro.data.AppConfig
 import com.tlsu.opluscamerapro.data.VendorTagSettings
-import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVer
-import com.tlsu.opluscamerapro.utils.DeviceCheck.isOP13
-import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
 import com.tlsu.opluscamerapro.utils.ParseConfig.addPresetTag
 import com.topjohnwu.superuser.Shell
 import de.robv.android.xposed.XposedBridge
@@ -42,7 +39,7 @@ object ConfigBasedAddConfig {
                 }
                 isInitialized = true
             }
-            
+
             // 尝试读取配置文件
             loadConfig()
         } catch (e: Exception) {
@@ -1378,7 +1375,7 @@ object ConfigBasedAddConfig {
             }
             
             // 1080P 120FPS视频
-            if (isNewCameraVer() && vendorTags.enable1080p120fpsVideo) {
+            if (vendorTags.enable1080p120fpsVideo) {
                 // 启用1080P 120FPS视频
                 addPresetTag(
                     VendorTagInfo(
@@ -1574,7 +1571,7 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            if (isNewCameraVer() && vendorTags.enableMasterModeLivePhoto) {
+            if (vendorTags.enableMasterModeLivePhoto) {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.camera.livephoto.mastermode.support",
@@ -1598,13 +1595,13 @@ object ConfigBasedAddConfig {
                         "com.oplus.camera.livephoto.enable.frc",
                         "Byte",
                         "1",
-                        "1"
+                        "0"
                     ),
                     MergeStrategy.OVERRIDE
                 )
             }
 
-            if (isNewCameraVer() && vendorTags.enableSoftLightFilter) {
+            if (vendorTags.enableSoftLightFilter) {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.feature.soft.light.filter.support",
@@ -1616,7 +1613,7 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            if (isNewCameraVer() && vendorTags.enableFlashFilter) {
+            if (vendorTags.enableFlashFilter) {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.feature.flash.filter.support",

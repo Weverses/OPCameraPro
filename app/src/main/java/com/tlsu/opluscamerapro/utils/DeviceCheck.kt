@@ -19,8 +19,6 @@ object DeviceCheck {
         val isSuccess: Boolean get() = code == 0
     }
 
-    var opCameraVersion: String = ""
-
     @SuppressLint("PrivateApi")
     fun getProp(mKey: String): String = Class.forName("android.os.SystemProperties").getMethod("get", String::class.java).invoke(Class.forName("android.os.SystemProperties"), mKey)!!
         .toString()
@@ -104,16 +102,16 @@ object DeviceCheck {
         return (getProp("ro.vendor.oplus.market.enname"))
     }
 
-    fun setOPCameraVersion(cameraVer: String) {
-        opCameraVersion = cameraVer
-    }
-
     fun isNewCameraVer(): Boolean {
+        val opCameraVersion = exec("dumpsys package com.oplus.camera 2>/dev/null | awk '/codePath=\\/data\\/app/{p=1} p && /versionName/{print; exit}' | cut -d'=' -f2")
         if (opCameraVersion.isNullOrEmpty()) {
             return false
         }
+        return checkVersionName(opCameraVersion)
+    }
 
-        val parts = opCameraVersion.split('.')
+    fun checkVersionName(versionName: String): Boolean {
+        val parts = versionName.split('.')
 
         try {
             // 将每个部分转换为整数
@@ -123,15 +121,11 @@ object DeviceCheck {
             // val build = parts[3].toInt()
 
             // >=5.0.46
-            val isSupported = major >= 5 && patch >= 46
-
-            return isSupported
-
+            return (major >= 5 && patch >= 46)
         } catch (e: NumberFormatException) {
             return false
         }
     }
-
     /**
      * 执行命令并返回字符串结果（旧方式，保留兼容性）
      */

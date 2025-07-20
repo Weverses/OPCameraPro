@@ -5,7 +5,6 @@ import com.github.kyuubiran.ezxhelper.Log
 import com.github.kyuubiran.ezxhelper.LogExtensions.logexIfThrow
 import com.tlsu.opluscamerapro.hook.BaseHook
 import com.tlsu.opluscamerapro.hook.camera.FilterGroup
-import com.tlsu.opluscamerapro.hook.camera.GetCameraVersionHook
 import com.tlsu.opluscamerapro.hook.camera.ISOHook
 import com.tlsu.opluscamerapro.hook.camera.LivePhotoEISHook
 import com.tlsu.opluscamerapro.hook.camera.OplusCameraConfig
@@ -36,7 +35,6 @@ class MainHook : IXposedHookLoadPackage {
             when (lpparam.packageName) {
                 "com.oplus.camera" -> {
                     // 初始化所有Hook
-                    GetCameraVersionHook.handleLoadPackage(lpparam)
                     initHooks(FilterGroup)
                     initHooks(OplusCameraConfig)
                     ISOHook.handleLoadPackage(lpparam)
