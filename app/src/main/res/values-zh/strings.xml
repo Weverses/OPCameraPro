@@ -234,7 +234,8 @@
     <string name="camera_setiings_softlight_filter_desc">启用更多的柔光滤镜, 包括晨曦梦境、怀旧光景滤镜, 注意: 需要刷入任意附属模块 (版本为2.2.1+) 方能生效, 并且需要相机版本为5.0.52+</string>
     <string name="camera_setiings_ccd_filter_title">CCD 冷调闪光滤镜</string>
     <string name="camera_setiings_ccd_filter_desc">启用CCD 冷调闪光滤镜, 注意: 需要刷入任意附属模块 (版本为2.2.1+) 方能生效, 并且需要相机版本为5.0.52+</string>
-
+    <string name="camera_setiings_xpan_title">XPAN</string>
+    <string name="camera_setiings_xpan_desc">启用XPAN模式 (仅一加13T可用)</string>
 
     <!-- 默认值设置 -->
     <string name="default_value_enabled">设备默认值：开</string>

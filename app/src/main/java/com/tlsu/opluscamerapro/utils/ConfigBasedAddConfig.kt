@@ -196,7 +196,8 @@ object ConfigBasedAddConfig {
                 enableLivePhoto = vendorTagsObj.optBoolean("enableLivePhoto", false),
                 enableMasterModeLivePhoto = vendorTagsObj.optBoolean("enableMasterModeLivePhoto", false),
                 enableSoftLightFilter = vendorTagsObj.optBoolean("enableSoftLightFilter", false),
-                enableFlashFilter = vendorTagsObj.optBoolean("enableFlashFilter", false)
+                enableFlashFilter = vendorTagsObj.optBoolean("enableFlashFilter", false),
+                enableXPAN = vendorTagsObj.optBoolean("enableXPAN", false)
             )
             
             AppConfig(
@@ -1638,6 +1639,108 @@ object ConfigBasedAddConfig {
                         "Byte",
                         "1",
                         "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+
+            if (vendorTags.enableXPAN) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.xpan.mode.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.xpan.all.camera.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.xpan.switch.camera.mm",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.xpan.wide.picturesize",
+                        "Int32",
+                        "2",
+                        "7872x2912"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.xpan.main.picturesize",
+                        "Int32",
+                        "2",
+                        "7872x2912"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.xpan.tele.picturesize",
+                        "Int32",
+                        "2",
+                        "7872x2912"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.xpan.crop.region.main.portrait",
+                        "Int32",
+                        "4",
+                        "360,64,2912,7872"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.xpan.crop.region.main.landscape",
+                        "Int32",
+                        "4",
+                        "64,360,7872,2912"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.xpan.crop.region.wide.portrait",
+                        "Int32",
+                        "4",
+                        "360,64,2912,7872"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.xpan.crop.region.wide.landscape",
+                        "Int32",
+                        "4",
+                        "64,360,7872,2912"
                     ),
                     MergeStrategy.OVERRIDE
                 )

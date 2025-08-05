@@ -176,7 +176,8 @@ object ConfigManager {
                 enableLivePhoto = vendorTagsObj.optBoolean("enableLivePhoto", false),
                 enableMasterModeLivePhoto = vendorTagsObj.optBoolean("enableMasterModeLivePhoto", false),
                 enableSoftLightFilter = vendorTagsObj.optBoolean("enableSoftLightFilter", false),
-                enableFlashFilter = vendorTagsObj.optBoolean("enableFlashFilter", false)
+                enableFlashFilter = vendorTagsObj.optBoolean("enableFlashFilter", false),
+                enableXPAN = vendorTagsObj.optBoolean("enableXPAN", false)
             )
             // 解析其他设置
             val otherSettingsObj = json.optJSONObject("otherSettings") ?: JSONObject()
@@ -304,6 +305,7 @@ object ConfigManager {
                     put("enableMasterModeLivePhoto", config.vendorTags.enableMasterModeLivePhoto)
                     put("enableSoftLightFilter", config.vendorTags.enableSoftLightFilter)
                     put("enableFlashFilter", config.vendorTags.enableFlashFilter)
+                    put("enableXPAN", config.vendorTags.enableXPAN)
                 })
                 
                 // 保存其他设置

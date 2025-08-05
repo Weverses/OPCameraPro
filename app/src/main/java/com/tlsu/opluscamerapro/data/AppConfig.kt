@@ -236,7 +236,10 @@ data class VendorTagSettings(
     val enableSoftLightFilter: Boolean = false,
 
     // CCD 滤镜
-    val enableFlashFilter: Boolean = false
+    val enableFlashFilter: Boolean = false,
+
+    // XPAN
+    val enableXPAN: Boolean = false
 )
 
 /**

@@ -3,7 +3,6 @@ package com.tlsu.opluscamerapro.ui.screens.camera
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -143,6 +142,7 @@ fun CameraSettingsScreen(
                                 "enableMasterModeLivePhoto" -> currentConfig.vendorTags.copy(enableMasterModeLivePhoto = value)
                                 "enableSoftLightFilter" -> currentConfig.vendorTags.copy(enableSoftLightFilter = value)
                                 "enableFlashFilter" -> currentConfig.vendorTags.copy(enableFlashFilter = value)
+                                "enableXPAN" -> currentConfig.vendorTags.copy(enableXPAN = value)
 
                                 else -> currentConfig.vendorTags
                             }

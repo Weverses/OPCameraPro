@@ -98,7 +98,8 @@ object DefaultConfigManager {
         "com.oplus.camera.livephoto.support" to "enableLivePhoto",
         "com.oplus.camera.livephoto.mastermode.support" to "enableMasterModeLivePhoto",
         "com.oplus.feature.soft.light.filter.support" to "enableSoftLightFilter",
-        "com.oplus.feature.flash.filter.support" to "enableFlashFilter"
+        "com.oplus.feature.flash.filter.support" to "enableFlashFilter",
+        "com.oplus.feature.xpan.mode.support" to "enableXPAN"
     )
     
     // 保存功能名称到VendorTag的反向映射
