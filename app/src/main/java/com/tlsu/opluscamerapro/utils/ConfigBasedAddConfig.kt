@@ -668,6 +668,24 @@ object ConfigBasedAddConfig {
                     ),
                     MergeStrategy.OVERRIDE
                 )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.custom.beauty.back.camera.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.face.beauty.custom.menu.refinement.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
             }
 
 //            // 超级文本扫描
