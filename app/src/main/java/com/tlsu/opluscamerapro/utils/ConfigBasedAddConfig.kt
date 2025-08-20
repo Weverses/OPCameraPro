@@ -843,7 +843,7 @@ object ConfigBasedAddConfig {
                             "com.oplus.camera.preview.hdr.cap.mode.value",
                             "String",
                             "6",
-                            "common,night,highPixel,xpan,sticker,idPhoto,professional"
+                            "common,night,highPixel,xpan,sticker,idPhoto"
                         ),
                         MergeStrategy.OVERRIDE
                     )
@@ -853,7 +853,7 @@ object ConfigBasedAddConfig {
                             "com.oplus.camera.capture.hdr.cap.mode.value",
                             "String",
                             "7",
-                            "common,portrait,night,highPixel,xpan,sticker,idPhoto,professional"
+                            "common,portrait,night,highPixel,xpan,sticker,idPhoto"
                         ),
                         MergeStrategy.OVERRIDE
                     )

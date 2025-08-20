@@ -8,6 +8,7 @@ import com.tlsu.opluscamerapro.hook.camera.FilterGroup
 import com.tlsu.opluscamerapro.hook.camera.ISOHook
 import com.tlsu.opluscamerapro.hook.camera.LivePhotoEISHook
 import com.tlsu.opluscamerapro.hook.camera.OplusCameraConfig
+import com.tlsu.opluscamerapro.hook.camera.ProtobufFeatureHook
 import com.tlsu.opluscamerapro.hook.camera.Video120FPSHook
 import com.tlsu.opluscamerapro.hook.gallery.GalleryHook
 import com.tlsu.opluscamerapro.hook.gallery.HasselbladWatermarkHook
@@ -40,6 +41,7 @@ class MainHook : IXposedHookLoadPackage {
                     ISOHook.handleLoadPackage(lpparam)
                     Video120FPSHook.handleLoadPackage(lpparam)
                     LivePhotoEISHook.handleLoadPackage(lpparam)
+                    ProtobufFeatureHook.handleLoadPackage(lpparam)
                 }
                 "com.coloros.gallery3d" -> {
                     GalleryHook.handleLoadPackage(lpparam)
