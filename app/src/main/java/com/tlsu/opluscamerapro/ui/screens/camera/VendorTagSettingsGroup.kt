@@ -579,14 +579,18 @@ fun VendorTagSettingsGroup(
         
         // 大师模式设置
         SettingsCard(title = stringResource(R.string.camera_settings_category_master)) {
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_master_mode_title),
-                description = stringResource(R.string.camera_settings_master_mode_desc),
-                checked = vendorTagSettings.enableMasterMode,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableStyleEffect"),
-                onCheckedChange = { onSettingChanged("enableMasterMode", it) }
-            )
-            
+            if (isNewCameraVerOver45()) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_settings_master_mode_title),
+                    description = stringResource(R.string.camera_settings_master_mode_desc),
+                    checked = vendorTagSettings.enableMasterMode,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                        context,
+                        "enableStyleEffect"
+                    ),
+                    onCheckedChange = { onSettingChanged("enableMasterMode", it) }
+                )
+            }
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_master_raw_max_title),
                 description = stringResource(R.string.camera_settings_master_raw_max_desc),
@@ -594,23 +598,28 @@ fun VendorTagSettingsGroup(
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMasterRawMax"),
                 onCheckedChange = { onSettingChanged("enableMasterRawMax", it) }
             )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_scale_focus_title),
-                description = stringResource(R.string.camera_settings_scale_focus_desc),
-                checked = vendorTagSettings.enableScaleFocus,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableScaleFocus"),
-                onCheckedChange = { onSettingChanged("enableScaleFocus", it) }
-            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_style_effect_title),
-                description = stringResource(R.string.camera_settings_style_effect_desc),
-                checked = vendorTagSettings.enableStyleEffect,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableStyleEffect"),
-                onCheckedChange = { onSettingChanged("enableStyleEffect", it) }
-            )
-            
+
+            if (isNewCameraVerOver45()) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_settings_scale_focus_title),
+                    description = stringResource(R.string.camera_settings_scale_focus_desc),
+                    checked = vendorTagSettings.enableScaleFocus,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableScaleFocus"),
+                    onCheckedChange = { onSettingChanged("enableScaleFocus", it) }
+                )
+
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_settings_style_effect_title),
+                    description = stringResource(R.string.camera_settings_style_effect_desc),
+                    checked = vendorTagSettings.enableStyleEffect,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                        context,
+                        "enableStyleEffect"
+                    ),
+                    onCheckedChange = { onSettingChanged("enableStyleEffect", it) }
+                )
+            }
+
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_soft_light_pro_title),
                 description = stringResource(R.string.camera_settings_soft_light_pro_desc),
@@ -638,13 +647,18 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enablePortraitZoom", it) }
             )
 
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_portrait_rear_flash_title),
-                description = stringResource(R.string.camera_settings_portrait_rear_flash_desc),
-                checked = vendorTagSettings.enablePortraitRearFlash,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enablePortraitRearFlash"),
-                onCheckedChange = { onSettingChanged("enablePortraitRearFlash", it) }
-            )
+            if (isNewCameraVerOver46()) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_settings_portrait_rear_flash_title),
+                    description = stringResource(R.string.camera_settings_portrait_rear_flash_desc),
+                    checked = vendorTagSettings.enablePortraitRearFlash,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                        context,
+                        "enablePortraitRearFlash"
+                    ),
+                    onCheckedChange = { onSettingChanged("enablePortraitRearFlash", it) }
+                )
+            }
             
 //            SettingsSwitchItem(
 //                title = stringResource(R.string.camera_settings_force_portrait_title),

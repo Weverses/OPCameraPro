@@ -1590,7 +1590,7 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            if (vendorTags.enableMasterModeLivePhoto) {
+            if (vendorTags.enableMasterModeLivePhoto && isNewCameraVerOver46()) {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.camera.livephoto.mastermode.support",
