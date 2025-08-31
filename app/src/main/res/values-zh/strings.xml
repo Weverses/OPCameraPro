@@ -288,4 +288,5 @@
     <string name="module_introduction_label">模块介绍</string>
     <string name="no_root_access_title">无ROOT权限</string>
     <string name="no_root_access_message">本模块需要ROOT权限才能正常工作。请授予ROOT权限后重启应用。</string>
+    <string name="unsupport_camera_app_version">你的机型当前系统版本与相机App版本不匹配, 可能会出现闪退问题, 请卸载相机App更新, 恢复自带版本</string>
 </resources>

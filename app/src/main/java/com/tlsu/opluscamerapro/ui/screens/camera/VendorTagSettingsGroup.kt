@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -18,15 +19,20 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.highcapable.yukihookapi.YukiHookAPI.Status.isXposedModuleActive
 import com.tlsu.opluscamerapro.R
 import com.tlsu.opluscamerapro.data.VendorTagSettings
 import com.tlsu.opluscamerapro.ui.components.SettingsSwitchItem
 import com.tlsu.opluscamerapro.utils.DefaultConfigManager
 import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
-import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVer
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVerOver45
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVerOver46
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
 
 /**
  * VendorTag设置组
@@ -433,7 +439,13 @@ fun VendorTagSettingsGroup(
             modifier = Modifier.padding(bottom = 16.dp, start = 8.dp)
         )
         
-        // 高级拍照设置
+        // 拍照设置
+
+        if (isNewCameraVerOver45() && !isV1501()) {
+            HintCard(title = stringResource(R.string.unsupport_camera_app_version)) {
+            }
+        }
+
         SettingsCard(title = stringResource(R.string.camera_settings_category_advanced)) {
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_25mp_title),
@@ -717,7 +729,7 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableOs15NewFilter", it) }
             )
 
-            if (isNewCameraVer()) {
+            if (isNewCameraVerOver46()) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_setiings_ccd_filter_title),
                     description = stringResource(R.string.camera_setiings_ccd_filter_desc),
@@ -775,7 +787,7 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableFront4KVideo", it) }
             )
 
-            if (isNewCameraVer()) {
+            if (isNewCameraVerOver46()) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_1080p_120fps_video_title),
                     description = stringResource(R.string.camera_settings_1080p_120fps_video_desc),
@@ -932,7 +944,7 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableLivePhoto", it) }
             )
 
-            if (isNewCameraVer()) {
+            if (isNewCameraVerOver46()) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_setiings_live_photo_mastermode_title),
                     description = stringResource(R.string.camera_setiings_live_photo_mastermode_desc),
@@ -1070,4 +1082,40 @@ private fun SettingsCard(
             content()
         }
     }
-} 
+}
+
+/**
+ * 设置Hint组件
+ */
+@Composable
+private fun HintCard(
+    title: String,
+    content: @Composable () -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp),
+        // 设置卡片的颜色
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xffc3172f)
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(15.dp)
+        ) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontSize = 15.sp
+                ),
+                modifier = Modifier.padding(bottom = 12.dp)
+            )
+
+            // 内容部分的字体大小需要在调用时定义
+            content()
+        }
+    }
+}

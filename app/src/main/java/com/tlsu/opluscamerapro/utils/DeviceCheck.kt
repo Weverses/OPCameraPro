@@ -1,6 +1,8 @@
 package com.tlsu.opluscamerapro.utils
 
 import android.annotation.SuppressLint
+import android.content.Context
+import androidx.activity.ComponentActivity.MODE_WORLD_READABLE
 import java.io.IOException
 import java.io.BufferedReader
 import java.io.DataOutputStream
@@ -102,15 +104,23 @@ object DeviceCheck {
         return (getProp("ro.vendor.oplus.market.enname"))
     }
 
-    fun isNewCameraVer(): Boolean {
+    fun isNewCameraVerOver46(): Boolean {
         val opCameraVersion = exec("dumpsys package com.oplus.camera 2>/dev/null | awk '/codePath=\\/data\\/app/{p=1} p && /versionName/{print; exit}' | cut -d'=' -f2")
         if (opCameraVersion.isNullOrEmpty()) {
             return false
         }
-        return checkVersionName(opCameraVersion)
+        return checkVersionName(opCameraVersion, 46)
     }
 
-    fun checkVersionName(versionName: String): Boolean {
+    fun isNewCameraVerOver45(): Boolean {
+        val opCameraVersion = exec("dumpsys package com.oplus.camera 2>/dev/null | awk '/codePath=\\/data\\/app/{p=1} p && /versionName/{print; exit}' | cut -d'=' -f2")
+        if (opCameraVersion.isNullOrEmpty()) {
+            return false
+        }
+        return checkVersionName(opCameraVersion, 45)
+    }
+
+    fun checkVersionName(versionName: String, checkVer: Int): Boolean {
         val parts = versionName.split('.')
 
         try {
@@ -121,7 +131,7 @@ object DeviceCheck {
             // val build = parts[3].toInt()
 
             // >=5.0.46
-            return (major >= 5 && patch >= 46)
+            return (major == 5 && patch >= checkVer) || (major > 5)
         } catch (e: NumberFormatException) {
             return false
         }

@@ -3,8 +3,8 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp") version "1.9.0-1.0.13"
 }
-
 android {
     //noinspection GradleDependency
     compileSdk = 36
@@ -103,6 +103,8 @@ android {
 
 dependencies {
     implementation("com.github.kyuubiran:EzXHelper:2.2.0")
+    implementation("com.highcapable.yukihookapi:api:1.2.1")
+    ksp("com.highcapable.yukihookapi:ksp-xposed:1.2.1")
     compileOnly("de.robv.android.xposed:api:82")
     
     // Jetpack Compose相关依赖

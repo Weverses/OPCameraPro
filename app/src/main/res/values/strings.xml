@@ -290,4 +290,5 @@
     <string name="module_introduction_label">Module Introduction</string>
     <string name="no_root_access_title">No ROOT Permission</string>
     <string name="no_root_access_message">This module requires ROOT permission to work properly. Please grant ROOT permission and restart the application.</string>
+    <string name="unsupport_camera_app_version">Your device does not support this version of the camera app.</string>
 </resources>

@@ -40,7 +40,7 @@ object LivePhotoEIS: BaseHook() {
 
                             XposedBridge.log("OPCameraPro: get Camera Version Name: $sVersionName")
 
-                            if (checkVersionName(sVersionName)) {
+                            if (checkVersionName(sVersionName, 46)) {
                                 XposedBridge.log("OPCameraPro: hook LivePhotoEIS")
                                 val bridge = dexKitBridge
                                 val livePhotoClass = bridge.findClass {

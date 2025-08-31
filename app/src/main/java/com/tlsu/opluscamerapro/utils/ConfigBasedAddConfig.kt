@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import com.github.kyuubiran.ezxhelper.Log
 import com.tlsu.opluscamerapro.data.AppConfig
 import com.tlsu.opluscamerapro.data.VendorTagSettings
-import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVer
 import com.tlsu.opluscamerapro.utils.ParseConfig.addPresetTag
 import com.topjohnwu.superuser.Shell
 import de.robv.android.xposed.XposedBridge
