@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import com.github.kyuubiran.ezxhelper.Log
 import com.tlsu.opluscamerapro.data.AppConfig
 import com.tlsu.opluscamerapro.data.VendorTagSettings
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVerOver46
 import com.tlsu.opluscamerapro.utils.ParseConfig.addPresetTag
 import com.topjohnwu.superuser.Shell
 import de.robv.android.xposed.XposedBridge
@@ -1740,6 +1741,26 @@ object ConfigBasedAddConfig {
                         "Int32",
                         "4",
                         "64,360,7872,2912"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+            if (isNewCameraVerOver46()) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.master.mode.vignette.process.in.lsc.and.soft",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.master.mode.vignette.process.in.lsc",
+                        "Byte",
+                        "1",
+                        "0"
                     ),
                     MergeStrategy.OVERRIDE
                 )
