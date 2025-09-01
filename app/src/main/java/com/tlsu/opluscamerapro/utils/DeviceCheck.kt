@@ -104,20 +104,12 @@ object DeviceCheck {
         return (getProp("ro.vendor.oplus.market.enname"))
     }
 
-    fun isNewCameraVerOver46(): Boolean {
+    fun isNewCameraVer(ver: Int): Boolean {
         val opCameraVersion = exec("dumpsys package com.oplus.camera 2>/dev/null | awk '/codePath=\\/data\\/app/{p=1} p && /versionName/{print; exit}' | cut -d'=' -f2")
         if (opCameraVersion.isNullOrEmpty()) {
             return false
         }
-        return checkVersionName(opCameraVersion, 46)
-    }
-
-    fun isNewCameraVerOver45(): Boolean {
-        val opCameraVersion = exec("dumpsys package com.oplus.camera 2>/dev/null | awk '/codePath=\\/data\\/app/{p=1} p && /versionName/{print; exit}' | cut -d'=' -f2")
-        if (opCameraVersion.isNullOrEmpty()) {
-            return false
-        }
-        return checkVersionName(opCameraVersion, 45)
+        return checkVersionName(opCameraVersion, ver)
     }
 
     fun checkVersionName(versionName: String, checkVer: Int): Boolean {

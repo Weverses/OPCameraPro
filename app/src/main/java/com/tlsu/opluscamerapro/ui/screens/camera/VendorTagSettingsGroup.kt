@@ -24,14 +24,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.highcapable.yukihookapi.YukiHookAPI.Status.isXposedModuleActive
 import com.tlsu.opluscamerapro.R
 import com.tlsu.opluscamerapro.data.VendorTagSettings
 import com.tlsu.opluscamerapro.ui.components.SettingsSwitchItem
 import com.tlsu.opluscamerapro.utils.DefaultConfigManager
 import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
-import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVerOver45
-import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVerOver46
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVer
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
 
 /**
@@ -441,7 +439,7 @@ fun VendorTagSettingsGroup(
         
         // 拍照设置
 
-        if (isNewCameraVerOver45() && !isV1501()) {
+        if (isNewCameraVer(45) && !isV1501()) {
             HintCard(title = stringResource(R.string.unsupport_camera_app_version)) {
             }
         }
@@ -579,18 +577,18 @@ fun VendorTagSettingsGroup(
         
         // 大师模式设置
         SettingsCard(title = stringResource(R.string.camera_settings_category_master)) {
-            if (isNewCameraVerOver45()) {
-                SettingsSwitchItem(
-                    title = stringResource(R.string.camera_settings_master_mode_title),
-                    description = stringResource(R.string.camera_settings_master_mode_desc),
-                    checked = vendorTagSettings.enableMasterMode,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                        context,
-                        "enableStyleEffect"
-                    ),
-                    onCheckedChange = { onSettingChanged("enableMasterMode", it) }
-                )
-            }
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_master_mode_title),
+                description = stringResource(R.string.camera_settings_master_mode_desc),
+                checked = vendorTagSettings.enableMasterMode,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                    context,
+                    "enableStyleEffect"
+                ),
+                onCheckedChange = { onSettingChanged("enableMasterMode", it) }
+            )
+
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_master_raw_max_title),
                 description = stringResource(R.string.camera_settings_master_raw_max_desc),
@@ -599,7 +597,7 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableMasterRawMax", it) }
             )
 
-            if (isNewCameraVerOver45()) {
+            if (isNewCameraVer(45)) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_scale_focus_title),
                     description = stringResource(R.string.camera_settings_scale_focus_desc),
@@ -647,7 +645,7 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enablePortraitZoom", it) }
             )
 
-            if (isNewCameraVerOver46()) {
+            if (isNewCameraVer(46)) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_portrait_rear_flash_title),
                     description = stringResource(R.string.camera_settings_portrait_rear_flash_desc),
@@ -743,7 +741,7 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableOs15NewFilter", it) }
             )
 
-            if (isNewCameraVerOver46()) {
+            if (isNewCameraVer(52)) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_setiings_ccd_filter_title),
                     description = stringResource(R.string.camera_setiings_ccd_filter_desc),
@@ -801,7 +799,7 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableFront4KVideo", it) }
             )
 
-            if (isNewCameraVerOver46()) {
+            if (isNewCameraVer(46)) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_1080p_120fps_video_title),
                     description = stringResource(R.string.camera_settings_1080p_120fps_video_desc),
@@ -958,7 +956,7 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableLivePhoto", it) }
             )
 
-            if (isNewCameraVerOver46()) {
+            if (isNewCameraVer(46)) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_setiings_live_photo_mastermode_title),
                     description = stringResource(R.string.camera_setiings_live_photo_mastermode_desc),

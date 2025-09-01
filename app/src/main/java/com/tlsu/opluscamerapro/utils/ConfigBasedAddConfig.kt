@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import com.github.kyuubiran.ezxhelper.Log
 import com.tlsu.opluscamerapro.data.AppConfig
 import com.tlsu.opluscamerapro.data.VendorTagSettings
-import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVerOver46
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVer
 import com.tlsu.opluscamerapro.utils.ParseConfig.addPresetTag
 import com.topjohnwu.superuser.Shell
 import de.robv.android.xposed.XposedBridge
@@ -981,10 +981,10 @@ object ConfigBasedAddConfig {
             }
 
             // 人像模式后置闪光灯
-            if (vendorTags.enablePortraitRearFlash) {
+            if (vendorTags.enablePortraitRearFlash && isNewCameraVer(46)) {
                 addPresetTag(
                     VendorTagInfo(
-                        "com.oplus.portrait.rear.flash.support",
+                        "com.oplus.portrait.rear.flash.supp`ort",
                         "Byte",
                         "1",
                         "1"
@@ -1590,7 +1590,7 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            if (vendorTags.enableMasterModeLivePhoto && isNewCameraVerOver46()) {
+            if (vendorTags.enableMasterModeLivePhoto && isNewCameraVer(46)) {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.camera.livephoto.mastermode.support",
@@ -1620,7 +1620,7 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            if (vendorTags.enableSoftLightFilter) {
+            if (vendorTags.enableSoftLightFilter && isNewCameraVer(48)) {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.feature.soft.light.filter.support",
@@ -1632,7 +1632,7 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            if (vendorTags.enableFlashFilter) {
+            if (vendorTags.enableFlashFilter && isNewCameraVer(52)) {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.feature.flash.filter.support",
@@ -1745,7 +1745,7 @@ object ConfigBasedAddConfig {
                     MergeStrategy.OVERRIDE
                 )
             }
-            if (isNewCameraVerOver46()) {
+            if (isNewCameraVer(46)) {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.feature.master.mode.vignette.process.in.lsc.and.soft",
