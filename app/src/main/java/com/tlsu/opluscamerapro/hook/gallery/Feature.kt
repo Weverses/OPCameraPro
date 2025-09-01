@@ -149,7 +149,6 @@ object FeatureHook : BaseHook() {
 
 object GalleryHook : BaseHook() {
     override fun init() {
-        // 初始化AI构图功能Hook
         FeatureHook.init()
     }
     

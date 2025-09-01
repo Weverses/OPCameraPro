@@ -16,7 +16,6 @@ object Video120FPS: BaseHook() {
 
         if (vendorTags.enable1080p120fpsVideo || vendorTags.enable4K120fpsVideo) {
             try {
-
                 XposedHelpers.findAndHookMethod("com.oplus.ocs.camera.configure.ConfigFeatureImpl",
                     safeClassLoader,
                     "isFeatureValueLegal",
@@ -32,7 +31,6 @@ object Video120FPS: BaseHook() {
                             }
                         }
                     })
-
             } catch (e: Throwable) {
                 XposedBridge.log("OPCameraPro: hook 120FPS error! ${e.message}")
                 e.printStackTrace()

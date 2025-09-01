@@ -2,11 +2,11 @@ package com.tlsu.opluscamerapro.hook.camera
 
 import com.github.kyuubiran.ezxhelper.EzXHelper.safeClassLoader
 import com.tlsu.opluscamerapro.hook.BaseHook
+import com.tlsu.opluscamerapro.utils.ConfigBasedAddConfig
 import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.callbacks.XC_LoadPackage
-
 
 object ProtobufFeature: BaseHook() {
     private lateinit var lpparam: XC_LoadPackage.LoadPackageParam
@@ -14,6 +14,7 @@ object ProtobufFeature: BaseHook() {
     override fun init() {
         try {
             val FEATURE_TABLE_CLASS = "com.oplus.ocs.camera.configure.ProtobufFeatureConfig\$FeatureTable"
+            val vendorTags = ConfigBasedAddConfig.getVendorTagSettings()
 
             XposedHelpers.findAndHookMethod(FEATURE_TABLE_CLASS,
                 safeClassLoader,
@@ -28,8 +29,13 @@ object ProtobufFeature: BaseHook() {
                         try {
                             val builder = XposedHelpers.callMethod(originalConfig, "toBuilder")
 
-                            addFilterToProfessionalMode(builder)
-                            addLivePhotoToProfessionalMode(builder)
+                            if (vendorTags.enableStyleEffect) {
+                                addFilterToProfessionalMode(builder)
+                            }
+
+                            if (vendorTags.enableMasterModeLivePhoto) {
+                                addLivePhotoToProfessionalMode(builder)
+                            }
 
                             param.result = XposedHelpers.callMethod(builder, "build")
                             XposedBridge.log("OPCameraPro: [Protobuf] Config modification complete!")
