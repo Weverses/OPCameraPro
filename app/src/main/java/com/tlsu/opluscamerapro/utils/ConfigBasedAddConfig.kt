@@ -1632,7 +1632,7 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            if (vendorTags.enableFlashFilter && isNewCameraVer(52)) {
+            if (vendorTags.enableFlashFilter && isNewCameraVer(60)) {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.feature.flash.filter.support",
@@ -1644,7 +1644,7 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            if (vendorTags.enableXPAN) {
+            if (vendorTags.enableXPAN && isNewCameraVer(60)) {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.feature.xpan.mode.support",

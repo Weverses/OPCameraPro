@@ -741,7 +741,7 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableOs15NewFilter", it) }
             )
 
-            if (isNewCameraVer(52)) {
+            if (isNewCameraVer(60)) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_setiings_ccd_filter_title),
                     description = stringResource(R.string.camera_setiings_ccd_filter_desc),
@@ -1053,13 +1053,18 @@ fun VendorTagSettingsGroup(
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHasselbladWatermark"),
                 onCheckedChange = { onSettingChanged("enableHasselbladWatermark", it) }
             )
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_setiings_xpan_title),
-                description = stringResource(R.string.camera_setiings_xpan_desc),
-                checked = vendorTagSettings.enableXPAN,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableXPAN"),
-                onCheckedChange = { onSettingChanged("enableXPAN", it) }
-            )
+            if (isNewCameraVer(60)) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_setiings_xpan_title),
+                    description = stringResource(R.string.camera_setiings_xpan_desc),
+                    checked = vendorTagSettings.enableXPAN,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                        context,
+                        "enableXPAN"
+                    ),
+                    onCheckedChange = { onSettingChanged("enableXPAN", it) }
+                )
+            }
         }
         
         Spacer(modifier = Modifier.height(8.dp))
