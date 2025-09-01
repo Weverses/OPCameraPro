@@ -19,6 +19,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.clickable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Autorenew
+import androidx.compose.material.icons.filled.Coffee
 import androidx.compose.material.icons.filled.Construction
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.FileDownload
@@ -284,29 +285,29 @@ fun ModuleSettingsScreen(
                             }
                         )
 
-                        // 子模块设置
-                        SettingsClickableItem(
-                            title = stringResource(R.string.submodule_title),
-                            description = stringResource(R.string.submodule_desc),
-                            icon = { Icon(Icons.Default.InstallMobile, contentDescription = null) },
-                            onClick = { showSubmoduleDialog = true }
-                        )
-
-                        // 子模块挂载切换
-                        if(execWithResult("test -f $MAGISK_MODULE_PATH/version.txt && echo true || echo false")
-                                .out.joinToString("").contains("true")) {
-                            SettingsClickableItem(
-                                title = stringResource(R.string.submodule_switch_mount_title),
-                                description = stringResource(R.string.submodule_switch_mount_desc),
-                                icon = {
-                                    Icon(
-                                        Icons.Default.Autorenew,
-                                        contentDescription = null
-                                    )
-                                },
-                                onClick = { showSwitchMountDialog = true }
-                            )
-                        }
+//                        // 子模块设置
+//                        SettingsClickableItem(
+//                            title = stringResource(R.string.submodule_title),
+//                            description = stringResource(R.string.submodule_desc),
+//                            icon = { Icon(Icons.Default.InstallMobile, contentDescription = null) },
+//                            onClick = { showSubmoduleDialog = true }
+//                        )
+//
+//                        // 子模块挂载切换
+//                        if(execWithResult("test -f $MAGISK_MODULE_PATH/version.txt && echo true || echo false")
+//                                .out.joinToString("").contains("true")) {
+//                            SettingsClickableItem(
+//                                title = stringResource(R.string.submodule_switch_mount_title),
+//                                description = stringResource(R.string.submodule_switch_mount_desc),
+//                                icon = {
+//                                    Icon(
+//                                        Icons.Default.Autorenew,
+//                                        contentDescription = null
+//                                    )
+//                                },
+//                                onClick = { showSwitchMountDialog = true }
+//                            )
+//                        }
 
                         SettingsClickableItem(
                             title = stringResource(R.string.delete_libs_and_framework),
@@ -327,6 +328,17 @@ fun ModuleSettingsScreen(
                                         snackbarHostState.showSnackbar(context.getString(R.string.no_root_permission))
                                     }
                                 }
+                            }
+                        )
+
+                        // 捐赠
+                        SettingsClickableItem(
+                            title = stringResource(R.string.donate_title),
+                            description = stringResource(R.string.donate_desc),
+                            icon = { Icon(Icons.Filled.Coffee, contentDescription = null) },
+                            onClick = {
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://gitee.com/bugme7/OPCameraPro/blob/master/donate.jpg"))
+                                context.startActivity(intent)
                             }
                         )
 

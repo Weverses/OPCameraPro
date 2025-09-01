@@ -461,22 +461,22 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableAiScenePreset", it) }
             )
 
-            if (execWithResult("md5sum /odm/lib64/libAlgoInterface.so")
-                        .out.joinToString("").contains("f723969a47ac1806769d1e90de77124b")
-                || execWithResult("md5sum /odm/lib64/libAlgoInterface.so")
-                    .out.joinToString("").contains("31bfee2af2c77acdffff374c28cde2d0")) {
-                SettingsSwitchItem(
-                    title = stringResource(R.string.camera_settings_preview_hdr_title),
-                    description = stringResource(R.string.camera_settings_preview_hdr_desc),
-                    checked = vendorTagSettings.enablePreviewHdr,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                        context,
-                        "enablePreviewHdr"
-                    ),
-
-                    onCheckedChange = { onSettingChanged("enablePreviewHdr", it) }
-                )
-            }
+//            if (execWithResult("md5sum /odm/lib64/libAlgoInterface.so")
+//                        .out.joinToString("").contains("f723969a47ac1806769d1e90de77124b")
+//                || execWithResult("md5sum /odm/lib64/libAlgoInterface.so")
+//                    .out.joinToString("").contains("31bfee2af2c77acdffff374c28cde2d0")) {
+//                SettingsSwitchItem(
+//                    title = stringResource(R.string.camera_settings_preview_hdr_title),
+//                    description = stringResource(R.string.camera_settings_preview_hdr_desc),
+//                    checked = vendorTagSettings.enablePreviewHdr,
+//                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+//                        context,
+//                        "enablePreviewHdr"
+//                    ),
+//
+//                    onCheckedChange = { onSettingChanged("enablePreviewHdr", it) }
+//                )
+//            }
 
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_new_beauty_menu_title),
