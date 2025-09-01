@@ -13,8 +13,8 @@ android {
         applicationId = "com.tlsu.opluscamerapro"
         minSdk = 34
         targetSdk = 36
-        versionCode = 2210
-        versionName = "Lavender 2.2.10"
+        versionCode = 2300
+        versionName = "Xenon 2.3.0"
     }
 
     val properties = Properties()
