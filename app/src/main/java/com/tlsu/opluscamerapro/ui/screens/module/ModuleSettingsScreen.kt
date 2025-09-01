@@ -95,6 +95,7 @@ fun ModuleSettingsScreen(
     var showImportSuccessDialog by remember { mutableStateOf(false) }
     var showImportFailedDialog by remember { mutableStateOf(false) }
     var showSubmoduleDialog by remember { mutableStateOf(false) }
+    var showCrashFixDialog by remember { mutableStateOf(false) }
     var showSwitchMountDialog by remember { mutableStateOf(false) }
     var exportPath by remember { mutableStateOf("") }
     var exportMessage by remember { mutableStateOf("") }
@@ -314,20 +315,7 @@ fun ModuleSettingsScreen(
                             description = stringResource(R.string.delete_libs_and_framework_desc),
                             icon = { Icon(Icons.Filled.Construction, contentDescription = null) },
                             onClick = {
-                                if (hasRootAccess) {
-                                    coroutineScope.launch {
-                                        val result = deleteFrameworkAndLibs()
-                                        if (result) {
-                                            snackbarHostState.showSnackbar(context.getString(R.string.delete_success))
-                                        } else {
-                                            snackbarHostState.showSnackbar(context.getString(R.string.delete_failed))
-                                        }
-                                    }
-                                } else {
-                                    coroutineScope.launch {
-                                        snackbarHostState.showSnackbar(context.getString(R.string.no_root_permission))
-                                    }
-                                }
+                                showCrashFixDialog = true
                             }
                         )
 
@@ -686,7 +674,47 @@ fun ModuleSettingsScreen(
                 }
             )
         }
-        
+
+        if (showCrashFixDialog) {
+            AlertDialog(
+                onDismissRequest = {
+                    showCrashFixDialog = false
+                },
+                title = { Text(stringResource(R.string.delete_libs_and_framework)) },
+                text = {
+                    Column {
+                        Text(stringResource(R.string.delete_libs_and_framework_desc))
+                    }
+                },
+                confirmButton = {
+                    TextButton(onClick = {
+                        if (hasRootAccess) {
+                            coroutineScope.launch {
+                                val result = deleteFrameworkAndLibs()
+                                if (result) {
+                                    snackbarHostState.showSnackbar(context.getString(R.string.delete_success))
+                                } else {
+                                    snackbarHostState.showSnackbar(context.getString(R.string.delete_failed))
+                                }
+                            }
+                        } else {
+                            coroutineScope.launch {
+                                snackbarHostState.showSnackbar(context.getString(R.string.no_root_permission))
+                            }
+                        }
+                        showCrashFixDialog = false
+                    }) {
+                        Text(stringResource(R.string.confirm))
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = {
+                        showCrashFixDialog = false
+                    }) {
+                        Text(stringResource(R.string.cancel))
+                    }
+                })
+        }
         // 子模块选择对话框
         if (showSubmoduleDialog) {
             AlertDialog(
