@@ -20,7 +20,6 @@ object SubModule {
             deleteModuleData()
             true
         } catch (e: Exception) {
-            android.util.Log.e("MainViewModel", "Failed to delete libs ${e.message}")
             false
         }
     }

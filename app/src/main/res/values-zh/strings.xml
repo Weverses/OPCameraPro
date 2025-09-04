@@ -30,12 +30,12 @@
     <string name="delete_failed">修复失败</string>
     <string name="submodule_title">安装附属模块</string>
     <string name="submodule_desc">安装附属模块后, 才能开启大师模式滤镜、参数预设以及预览HDR功能</string>
-    <string name="submodule_effectstyle_title">仅安装精简版</string>
-    <string name="submodule_effectstyle_desc">仅包含大师模式参数预设、大师模式实况(masterOlive分支)的必要文件</string>
+    <string name="submodule_effectstyle_title">附属模块</string>
+    <string name="submodule_effectstyle_desc">包含部分功能所需要的必要底层文件, 在安装该附属模块后可以补齐底层所缺失的代码。</string>
     <string name="submodule_hdr_title">安装完整版</string>
     <string name="submodule_hdr_desc">包含预设滤镜、大师实况(masterOlive分支)以及预览HDR\n安装后可能会导致相机闪退等一系列问题，请谨慎安装\n目前只在一加13上可用，其他机型请勿安装</string>
     <string name="submodule_install_title">安装说明</string>
-    <string name="submodule_install_desc">密码: 63q4\n点击上方的选项后将会跳转网盘, 请下载后自行到Root管理器中安装模块\n如果安装的是 masterOlive 分支的附属模块, 安装后请打开大师模式实况功能, 否则将会出现Bug!!\n安装后请:1. KSU及第三方版本关闭默认卸载模块选项; 2. Magisk关闭Hide/Sulist模式; 3. Shamiko白名单模式切换成黑名单模式; 4. 给予相机、相册Root权限</string>
+    <string name="submodule_install_desc">安装后请:1. KSU及第三方版本关闭默认卸载模块选项; 2. Magisk关闭Hide/Sulist模式; 3. Shamiko白名单模式切换成黑名单模式; 4. 给予相机、相册Root权限</string>
     <string name="submodule_switch_mount_title">切换附属模块挂载方式</string>
     <string name="submodule_switch_mount_desc">点击自由切换附属模块的挂载方式, 以解决在部分管理器中无法正确挂载的问题</string>
     <string name="submodule_default_title">管理器默认挂载方式</string>
@@ -120,7 +120,7 @@
     <string name="camera_settings_macro_depth_fusion_title">微距景深融合</string>
     <string name="camera_settings_macro_depth_fusion_desc">启用微距景深融合功能</string>
     <string name="camera_settings_style_effect_title">大师模式滤镜与参数预设</string>
-    <string name="camera_settings_style_effect_desc">启用大师模式滤镜参数预设,\n*提示: 该功能需要安装任意版本的附属模块方可使用</string>
+    <string name="camera_settings_style_effect_desc">启用大师模式滤镜参数预设,\n*提示: 该功能需要安装相机版本为5.0.45及以上</string>
     <string name="camera_settings_master_filter_title">大师滤镜</string>
     <string name="camera_settings_master_filter_desc">启用大师滤镜</string>
     <string name="camera_settings_tol_style_filter_title">光影有声滤镜</string>
@@ -213,9 +213,9 @@
     <string name="camera_settings_motion_capture_title">运动模式</string>
     <string name="camera_settings_motion_capture_desc">启用运动模式捕捉快速移动的物体</string>
     <string name="camera_settings_4k_120fps_video_title">4K 120FPS视频</string>
-    <string name="camera_settings_4k_120fps_video_desc">启用4K分辨率120帧视频录制</string>
+    <string name="camera_settings_4k_120fps_video_desc">启用4K分辨率120帧视频录制, 如果开启后相机卡死或闪退, 请安装附属模块解决</string>
     <string name="camera_settings_1080p_120fps_video_title">1080P 120FPS视频</string>
-    <string name="camera_settings_1080p_120fps_video_desc">启用1080P分辨率120帧视频录制</string>
+    <string name="camera_settings_1080p_120fps_video_desc">启用1080P分辨率120帧视频录制, 如果开启后相机卡死或闪退, 请安装附属模块解决</string>
     <string name="camera_settings_dolby_video_120fps_title">杜比视界120FPS视频</string>
     <string name="camera_settings_dolby_video_120fps_desc">启用120帧杜比视界视频录制</string>
     <string name="camera_settings_multi_frame_burst_shot_title">无影抓拍</string>
@@ -229,7 +229,7 @@
     <string name="camera_settings_live_photo_title">实况照片</string>
     <string name="camera_settings_live_photo_desc">启用实况照片功能</string>
     <string name="camera_setiings_live_photo_mastermode_title">大师模式实况</string>
-    <string name="camera_setiings_live_photo_mastermode_desc">启用大师模式的实况功能, 注意: 需要 相机版本为5.0.46+, 并且刷入 masterOlive 分支的附属模块, 安装该分支的附属模块后请保持开启大师模式实况功能, 否则将会出现Bug!!\n开启该功能后, 一加13将会丢失实况防抖功能, 如果机型本身就没有实况防抖, 则没有影响</string>
+    <string name="camera_setiings_live_photo_mastermode_desc">启用大师模式的实况功能, 注意: 需要 相机版本为5.0.46+, \n开启该功能后, 一加13将会丢失实况防抖功能, 如果机型本身就没有实况防抖, 则没有影响</string>
     <string name="camera_setiings_softlight_filter_title">更多柔光滤镜</string>
     <string name="camera_setiings_softlight_filter_desc">启用更多的柔光滤镜, 包括晨曦梦境、怀旧光景滤镜, 注意: 需要刷入任意附属模块 (版本为2.2.1+) 方能生效, 并且需要相机版本为5.0.52+</string>
     <string name="camera_setiings_ccd_filter_title">CCD 冷调闪光滤镜</string>
@@ -284,11 +284,11 @@
     <string name="no_root_permission">无root权限</string>
     <string name="version_label">版本</string>
     <string name="author_label">作者</string>
-    <string name="telegram_channel_desc">OPlusCameraPro 官方频道</string>
+    <string name="telegram_channel_desc">OPCameraPro 官方频道</string>
     <string name="module_introduction_label">模块介绍</string>
     <string name="no_root_access_title">无ROOT权限</string>
     <string name="no_root_access_message">本模块需要ROOT权限才能正常工作。请授予ROOT权限后重启应用。</string>
-    <string name="unsupport_camera_app_version">你的机型当前系统版本与相机App版本不匹配, 可能会出现闪退问题, 请卸载相机App更新, 恢复自带版本</string>
+    <string name="unsupport_camera_app_version">你的机型当前系统版本与相机App版本不匹配, 可能会出现闪退问题。 请卸载相机App更新, 恢复自带版本。也可以通过安装附属模块来尝试解决。</string>
     <string name="donate_title">捐赠</string>
     <string name="donate_desc">如果觉得 OPCameraPro 不错的话, 可以请作者喝杯咖啡☕️</string>
 </resources>

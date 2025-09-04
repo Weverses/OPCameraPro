@@ -30,12 +30,12 @@
     <string name="delete_failed">Fix failed</string>
     <string name="submodule_title">Install Sub-module</string>
     <string name="submodule_desc">After installing the sub-module, you can enable Master Mode filters, parameter presets, and preview HDR features</string>
-    <string name="submodule_effectstyle_title">Install Lite Version Only</string>
-    <string name="submodule_effectstyle_desc">Contains only essential files for Master Mode filters and parameter presets</string>
+    <string name="submodule_effectstyle_title">Install Submodule</string>
+    <string name="submodule_effectstyle_desc">It contains the necessary files required for some functions. After installing this accessory module, the missing code in the system can be completed.</string>
     <string name="submodule_hdr_title">Install Full Version</string>
     <string name="submodule_hdr_desc">Contains parameter preset filters and preview HDR\nCurrently only available on OnePlus 13, do not install on other models, and may cause camera crashes and other issues after installation, please install with caution</string>
     <string name="submodule_install_title">Installation Instructions</string>
-    <string name="submodule_install_desc">Password: 63q4\nAfter clicking the option above, you will be redirected to cloud storage, please download and install the module manually in Root Manager\nAfter installation please:\n1. KSU and third-party versions disable default uninstall module option\n2. Magisk disable Hide/Sulist mode Magisk\n3. Shamiko whitelist mode switch to blacklist mode\n4. Grant Root permissions to Camera and Gallery</string>
+    <string name="submodule_install_desc">After clicking the option above, you will be redirected to cloud storage, please download and install the module manually in Root Manager\nAfter installation please:\n1. KSU and third-party versions disable default uninstall module option\n2. Magisk disable Hide/Sulist mode Magisk\n3. Shamiko whitelist mode switch to blacklist mode\n4. Grant Root permissions to Camera and Gallery</string>
     <string name="submodule_switch_mount_title">Switch Sub-module Mount Method</string>
     <string name="submodule_switch_mount_desc">Click to freely switch the mounting method of sub-modules to solve mounting issues in some managers</string>
     <string name="submodule_default_title">Manager Default Mount Method</string>
@@ -225,9 +225,9 @@
     <string name="camera_settings_motion_capture_title">Motion Mode</string>
     <string name="camera_settings_motion_capture_desc">Enable motion mode to capture fast-moving objects</string>
     <string name="camera_settings_4k_120fps_video_title">4K 120FPS Video</string>
-    <string name="camera_settings_4k_120fps_video_desc">Enable 4K resolution 120fps video recording</string>
+    <string name="camera_settings_4k_120fps_video_desc">Enable 4K resolution 120fps video recording. If the camera freezes or crashes after enabling this function, please install the accessory module to solve the problem.</string>
     <string name="camera_settings_1080p_120fps_video_title">1080P 120FPS Video</string>
-    <string name="camera_settings_1080p_120fps_video_desc">Enable 1080P resolution 120fps video recording</string>
+    <string name="camera_settings_1080p_120fps_video_desc">Enable 1080P resolution 120fps video recording. If the camera freezes or crashes after enabling this function, please install the accessory module to solve the problem.</string>
     <string name="camera_settings_dolby_video_120fps_title">Dolby Vision 120FPS Video</string>
     <string name="camera_settings_dolby_video_120fps_desc">Enable 120fps Dolby Vision video recording</string>
     <string name="camera_settings_multi_frame_burst_shot_title">Shadow-free Burst Shot</string>

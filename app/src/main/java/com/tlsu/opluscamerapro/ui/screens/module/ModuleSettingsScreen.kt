@@ -286,29 +286,29 @@ fun ModuleSettingsScreen(
                             }
                         )
 
-//                        // 子模块设置
-//                        SettingsClickableItem(
-//                            title = stringResource(R.string.submodule_title),
-//                            description = stringResource(R.string.submodule_desc),
-//                            icon = { Icon(Icons.Default.InstallMobile, contentDescription = null) },
-//                            onClick = { showSubmoduleDialog = true }
-//                        )
-//
-//                        // 子模块挂载切换
-//                        if(execWithResult("test -f $MAGISK_MODULE_PATH/version.txt && echo true || echo false")
-//                                .out.joinToString("").contains("true")) {
-//                            SettingsClickableItem(
-//                                title = stringResource(R.string.submodule_switch_mount_title),
-//                                description = stringResource(R.string.submodule_switch_mount_desc),
-//                                icon = {
-//                                    Icon(
-//                                        Icons.Default.Autorenew,
-//                                        contentDescription = null
-//                                    )
-//                                },
-//                                onClick = { showSwitchMountDialog = true }
-//                            )
-//                        }
+                        // 子模块设置
+                        SettingsClickableItem(
+                            title = stringResource(R.string.submodule_title),
+                            description = stringResource(R.string.submodule_desc),
+                            icon = { Icon(Icons.Default.InstallMobile, contentDescription = null) },
+                            onClick = { showSubmoduleDialog = true }
+                        )
+
+                        // 子模块挂载切换
+                        if(execWithResult("test -f $MAGISK_MODULE_PATH/version.txt && echo true || echo false")
+                                .out.joinToString("").contains("true")) {
+                            SettingsClickableItem(
+                                title = stringResource(R.string.submodule_switch_mount_title),
+                                description = stringResource(R.string.submodule_switch_mount_desc),
+                                icon = {
+                                    Icon(
+                                        Icons.Default.Autorenew,
+                                        contentDescription = null
+                                    )
+                                },
+                                onClick = { showSwitchMountDialog = true }
+                            )
+                        }
 
                         SettingsClickableItem(
                             title = stringResource(R.string.delete_libs_and_framework),
@@ -728,7 +728,7 @@ fun ModuleSettingsScreen(
                                 .padding(bottom = 8.dp)
                                 .clickable {
                                     showSubmoduleDialog = false
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://bugme7.lanzouu.com/b02f7iqzbg"))
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://gitee.com/bugme7/OPCameraPro/raw/master/SubModule/Submodule_2.3.0.zip"))
                                     context.startActivity(intent)
                                 },
                             shape = RoundedCornerShape(8.dp)
@@ -742,32 +742,6 @@ fun ModuleSettingsScreen(
                                 Spacer(modifier = Modifier.height(4.dp))
                                 Text(
                                     text = stringResource(R.string.submodule_effectstyle_desc),
-                                    style = MaterialTheme.typography.bodyMedium
-                                )
-                            }
-                        }
-                        
-                        // 选项二：HDR设置
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(bottom = 8.dp)
-                                .clickable {
-                                    showSubmoduleDialog = false
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://bugme7.lanzouu.com/b02f7iqzbg"))
-                                    context.startActivity(intent)
-                                },
-                            shape = RoundedCornerShape(8.dp)
-                        ) {
-                            Column(modifier = Modifier.padding(16.dp)) {
-                                Text(
-                                    text = stringResource(R.string.submodule_hdr_title),
-                                    style = MaterialTheme.typography.titleSmall,
-                                    color = MaterialTheme.colorScheme.primary
-                                )
-                                Spacer(modifier = Modifier.height(4.dp))
-                                Text(
-                                    text = stringResource(R.string.submodule_hdr_desc),
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
