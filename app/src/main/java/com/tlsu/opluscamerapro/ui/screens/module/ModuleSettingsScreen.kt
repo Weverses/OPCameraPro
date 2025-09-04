@@ -735,18 +735,42 @@ fun ModuleSettingsScreen(
                         ) {
                             Column(modifier = Modifier.padding(16.dp)) {
                                 Text(
-                                    text = stringResource(R.string.submodule_effectstyle_title),
+                                    text = stringResource(R.string.submodule_common_title),
                                     style = MaterialTheme.typography.titleSmall,
                                     color = MaterialTheme.colorScheme.primary
                                 )
                                 Spacer(modifier = Modifier.height(4.dp))
                                 Text(
-                                    text = stringResource(R.string.submodule_effectstyle_desc),
+                                    text = stringResource(R.string.submodule_common_desc),
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
                         }
 
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp)
+                                .clickable {
+                                    showSubmoduleDialog = false
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://gitee.com/bugme7/OPCameraPro/raw/master/SubModule/CameraApp_5052383.zip"))
+                                    context.startActivity(intent)
+                                },
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Column(modifier = Modifier.padding(16.dp)) {
+                                Text(
+                                    text = stringResource(R.string.submodule_apk_title),
+                                    style = MaterialTheme.typography.titleSmall,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = stringResource(R.string.submodule_apk_desc),
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
+                        }
                         Card(
                             modifier = Modifier
                                 .fillMaxWidth()

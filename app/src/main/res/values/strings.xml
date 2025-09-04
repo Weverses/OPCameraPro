@@ -30,10 +30,10 @@
     <string name="delete_failed">Fix failed</string>
     <string name="submodule_title">Install Sub-module</string>
     <string name="submodule_desc">After installing the sub-module, you can enable Master Mode filters, parameter presets, and preview HDR features</string>
-    <string name="submodule_effectstyle_title">Install Submodule</string>
-    <string name="submodule_effectstyle_desc">It contains the necessary files required for some functions. After installing this accessory module, the missing code in the system can be completed.</string>
-    <string name="submodule_hdr_title">Install Full Version</string>
-    <string name="submodule_hdr_desc">Contains parameter preset filters and preview HDR\nCurrently only available on OnePlus 13, do not install on other models, and may cause camera crashes and other issues after installation, please install with caution</string>
+    <string name="submodule_common_title">Install Submodule</string>
+    <string name="submodule_common_desc">It contains the necessary files required for some functions. After installing this accessory module, the missing code in the system can be completed.</string>
+    <string name="submodule_apk_title">Install the latest version of the camera App</string>
+    <string name="submodule_apk_desc">Since the actual versionCode of the new version 5.0.46 and above of the camera is lower than that of the 5.0.45 version, this will cause the core patch installation to restore the old version of the camera App every time it is restarted. The function of this camera App module is to directly solidify the new version of the camera into the system through the module, eliminating the problem of it becoming invalid upon restart.</string>
     <string name="submodule_install_title">Installation Instructions</string>
     <string name="submodule_install_desc">After clicking the option above, you will be redirected to cloud storage, please download and install the module manually in Root Manager\nAfter installation please:\n1. KSU and third-party versions disable default uninstall module option\n2. Magisk disable Hide/Sulist mode Magisk\n3. Shamiko whitelist mode switch to blacklist mode\n4. Grant Root permissions to Camera and Gallery</string>
     <string name="submodule_switch_mount_title">Switch Sub-module Mount Method</string>

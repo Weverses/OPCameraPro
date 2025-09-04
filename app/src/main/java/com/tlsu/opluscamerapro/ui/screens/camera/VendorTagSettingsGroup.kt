@@ -741,6 +741,7 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableOs15NewFilter", it) }
             )
 
+            // 暂不开放
             if (isNewCameraVer(60)) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_setiings_ccd_filter_title),
