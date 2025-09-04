@@ -29,7 +29,7 @@
     <string name="delete_success">修复成功, 请重启手机</string>
     <string name="delete_failed">修复失败</string>
     <string name="submodule_title">安装附属模块</string>
-    <string name="submodule_desc">安装附属模块后, 才能开启大师模式滤镜、参数预设以及预览HDR功能</string>
+    <string name="submodule_desc">安装附属模块后, 将会补全系统底层一些缺失的文件, 使得一些功能生效</string>
     <string name="submodule_common_title">附属模块</string>
     <string name="submodule_common_desc">包含部分功能所需要的必要底层文件, 在安装该附属模块后可以补齐底层所缺失的代码。</string>
     <string name="submodule_apk_title">安装最新版相机App</string>

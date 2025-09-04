@@ -29,7 +29,7 @@
     <string name="delete_success">Fix successful, please restart your phone</string>
     <string name="delete_failed">Fix failed</string>
     <string name="submodule_title">Install Sub-module</string>
-    <string name="submodule_desc">After installing the sub-module, you can enable Master Mode filters, parameter presets, and preview HDR features</string>
+    <string name="submodule_desc">After installing the sub-module, you can enable some features.</string>
     <string name="submodule_common_title">Install Submodule</string>
     <string name="submodule_common_desc">It contains the necessary files required for some functions. After installing this accessory module, the missing code in the system can be completed.</string>
     <string name="submodule_apk_title">Install the latest version of the camera App</string>
