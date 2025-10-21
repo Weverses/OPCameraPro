@@ -143,6 +143,7 @@ fun CameraSettingsScreen(
                                 "enableSoftLightFilter" -> currentConfig.vendorTags.copy(enableSoftLightFilter = value)
                                 "enableFlashFilter" -> currentConfig.vendorTags.copy(enableFlashFilter = value)
                                 "enableXPAN" -> currentConfig.vendorTags.copy(enableXPAN = value)
+                                "enableGRFilter" -> currentConfig.vendorTags.copy(enableGRFilter = value)
 
                                 else -> currentConfig.vendorTags
                             }

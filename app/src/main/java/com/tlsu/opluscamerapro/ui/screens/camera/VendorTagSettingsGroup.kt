@@ -670,6 +670,13 @@ fun VendorTagSettingsGroup(
         // 滤镜设置
         SettingsCard(title = stringResource(R.string.camera_settings_category_filter)) {
             SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_gr_filter_title),
+                description = stringResource(R.string.camera_settings_gr_filter_desc),
+                checked = vendorTagSettings.enableGRFilter,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableGRFilter"),
+                onCheckedChange = { onSettingChanged("enableGRFilter", it) }
+            )
+            SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_master_filter_title),
                 description = stringResource(R.string.camera_settings_master_filter_desc),
                 checked = vendorTagSettings.enableMasterFilter,
@@ -742,7 +749,6 @@ fun VendorTagSettingsGroup(
             )
 
             // 暂不开放
-            if (isNewCameraVer(60)) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_setiings_ccd_filter_title),
                     description = stringResource(R.string.camera_setiings_ccd_filter_desc),
@@ -764,7 +770,7 @@ fun VendorTagSettingsGroup(
                     ),
                     onCheckedChange = { onSettingChanged("enableSoftLightFilter", it) }
                 )
-            }
+
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_soft_light_photo_title),
                 description = stringResource(R.string.camera_settings_soft_light_photo_desc),

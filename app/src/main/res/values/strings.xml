@@ -123,6 +123,8 @@
     <string name="camera_settings_style_effect_desc">Enable Master Mode filter parameter presets,\n*Note: This feature requires installing any version of the sub-module to use</string>
     <string name="camera_settings_master_filter_title">Master Filters</string>
     <string name="camera_settings_master_filter_desc">Enable master filters</string>
+    <string name="camera_settings_gr_filter_title">GR Filters</string>
+    <string name="camera_settings_gr_filter_desc">Enable GR filters</string>
     <string name="camera_settings_tol_style_filter_title">Light and Shadow Audio Filters</string>
     <string name="camera_settings_tol_style_filter_desc">Enable light and shadow audio filters</string>
     <string name="camera_settings_grand_tour_filter_title">Grand Tour Filters</string>

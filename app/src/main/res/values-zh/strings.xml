@@ -123,6 +123,8 @@
     <string name="camera_settings_style_effect_desc">启用大师模式滤镜参数预设,\n*提示: 该功能需要安装相机版本为5.0.45及以上</string>
     <string name="camera_settings_master_filter_title">大师滤镜</string>
     <string name="camera_settings_master_filter_desc">启用大师滤镜</string>
+    <string name="camera_settings_gr_filter_title">GR 滤镜</string>
+    <string name="camera_settings_gr_filter_desc">启用GR 滤镜</string>
     <string name="camera_settings_tol_style_filter_title">光影有声滤镜</string>
     <string name="camera_settings_tol_style_filter_desc">启用光影有声滤镜</string>
     <string name="camera_settings_grand_tour_filter_title">Grand Tour滤镜</string>

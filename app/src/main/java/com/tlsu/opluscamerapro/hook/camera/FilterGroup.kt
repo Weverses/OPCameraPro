@@ -104,30 +104,29 @@ object FilterGroup : BaseHook() {
                             if (isV1501()) {
                                 XposedHelpers.setStaticIntField(clazz, "sFujiFilterSize", 3)
                             }
-//                        // 根据开关控制是否增加Grand Tour滤镜
-//                        if (vendorTags.enableGrandTourFilter) {
-//                            // 4个国际版专属的滤镜
-//                            invokeAddFrontAndBack(
-//                                filterGroup,
-//                                "gt-lake.cube.rgb.bin",
-//                                "R.string.camera_filter_gt_blue_wave"
-//                            )
-//                            invokeAddFrontAndBack(
-//                                filterGroup,
-//                                "gt-japan.cube.rgb.bin",
-//                                "R.string.camera_filter_gt_clean"
-//                            )
-//                            invokeAddFrontAndBack(
-//                                filterGroup,
-//                                "gt-earth.cube.rgb.bin",
-//                                "R.string.camera_filter_gt_classic"
-//                            )
-//                            invokeAddFrontAndBack(
-//                                filterGroup,
-//                                "gt-rosy.cube.rgb.bin",
-//                                "R.string.camera_filter_gt_rosy"
-//                            )
-//                        }
+                            // 理光 GR
+                            if (vendorTags.enableGRFilter) {
+                                invokeAddFrontAndBack(
+                                    filterGroup,
+                                    "gr.posi.rgba.bin",
+                                    "R.string.camera_gr_filter_posi"
+                                )
+                                invokeAddFrontAndBack(
+                                    filterGroup,
+                                    "gr.nega.rgba.bin",
+                                    "R.string.camera_gr_filter_nega"
+                                )
+                                invokeAddFrontAndBack(
+                                    filterGroup,
+                                    "gr.bw.rgba.bin",
+                                    "R.string.camera_gr_filter_bw"
+                                )
+                                invokeAddFrontAndBack(
+                                    filterGroup,
+                                    "gr.hi.bw.rgba.bin",
+                                    "R.string.camera_gr_filter_hi_bw"
+                                )
+                            }
                         }
                     }
                 )

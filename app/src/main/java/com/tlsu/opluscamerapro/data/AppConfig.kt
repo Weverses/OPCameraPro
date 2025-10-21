@@ -239,7 +239,10 @@ data class VendorTagSettings(
     val enableFlashFilter: Boolean = false,
 
     // XPAN
-    val enableXPAN: Boolean = false
+    val enableXPAN: Boolean = false,
+
+    // 理光 GR 滤镜
+    val enableGRFilter: Boolean = false
 )
 
 /**

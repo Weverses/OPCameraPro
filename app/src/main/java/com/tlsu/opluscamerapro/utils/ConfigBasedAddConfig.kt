@@ -196,7 +196,8 @@ object ConfigBasedAddConfig {
                 enableMasterModeLivePhoto = vendorTagsObj.optBoolean("enableMasterModeLivePhoto", false),
                 enableSoftLightFilter = vendorTagsObj.optBoolean("enableSoftLightFilter", false),
                 enableFlashFilter = vendorTagsObj.optBoolean("enableFlashFilter", false),
-                enableXPAN = vendorTagsObj.optBoolean("enableXPAN", false)
+                enableXPAN = vendorTagsObj.optBoolean("enableXPAN", false),
+                enableGRFilter = vendorTagsObj.optBoolean("enableGRFilter", false)
             )
             
             AppConfig(
@@ -1760,6 +1761,15 @@ object ConfigBasedAddConfig {
                     "Byte",
                     "1",
                     "0"
+                ),
+                MergeStrategy.OVERRIDE
+            )
+            addPresetTag(
+                VendorTagInfo(
+                    "com.oplus.xpan.legacy.ui.style",
+                    "Byte",
+                    "1",
+                    "1"
                 ),
                 MergeStrategy.OVERRIDE
             )
