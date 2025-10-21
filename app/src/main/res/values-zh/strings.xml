@@ -125,6 +125,8 @@
     <string name="camera_settings_master_filter_desc">启用大师滤镜</string>
     <string name="camera_settings_gr_filter_title">GR 滤镜</string>
     <string name="camera_settings_gr_filter_desc">启用GR 滤镜</string>
+    <string name="camera_settings_mastermode_unlock_filter_title">启用所有滤镜</string>
+    <string name="camera_settings_mastermode_unlock_filter_desc">启用后, 在大师模式中可以选择原本只有在普通拍照模式才能选择的滤镜</string>
     <string name="camera_settings_tol_style_filter_title">光影有声滤镜</string>
     <string name="camera_settings_tol_style_filter_desc">启用光影有声滤镜</string>
     <string name="camera_settings_grand_tour_filter_title">Grand Tour滤镜</string>
@@ -155,8 +157,8 @@
     <string name="camera_settings_10bit_live_photo_desc">启用实况10bit照片格式</string>
     <string name="camera_settings_live_photo_fov_title">实况照片FOV优化</string>
     <string name="camera_settings_live_photo_fov_desc">优化实况照片视场角</string>
-    <string name="camera_settings_preview_hdr_title">预览HDR</string>
-    <string name="camera_settings_preview_hdr_desc">启用预览HDR功能,\n*风险提示: 此功能需要安装完整版的附属模块方可正常使用, 否则会遇到闪退问题</string>
+    <string name="camera_settings_preview_hdr_title">全链路ProXDR</string>
+    <string name="camera_settings_preview_hdr_desc">启用全链路ProXDR, 开启后相机预览框将实时渲染ProXDR效果, 并且拍摄出的实况照片中的视频也为ProXDR规格</string>
     <string name="camera_settings_scale_focus_title">大师模式放大对焦</string>
     <string name="camera_settings_scale_focus_desc">在大师模式中启用放大对焦功能</string>
     <string name="camera_settings_new_beauty_menu_title">新版美颜菜单</string>
@@ -233,11 +235,12 @@
     <string name="camera_setiings_live_photo_mastermode_title">大师模式实况</string>
     <string name="camera_setiings_live_photo_mastermode_desc">启用大师模式的实况功能, 注意: 需要 相机版本为5.0.46+, \n开启该功能后, 一加13将会丢失实况防抖功能, 如果机型本身就没有实况防抖, 则没有影响</string>
     <string name="camera_setiings_softlight_filter_title">更多柔光滤镜</string>
-    <string name="camera_setiings_softlight_filter_desc">启用更多的柔光滤镜, 包括晨曦梦境、怀旧光景滤镜, 注意: 需要刷入任意附属模块 (版本为2.3.0+) 方能生效, 并且需要相机版本为5.0.52+</string>
+    <string name="camera_setiings_softlight_filter_desc">启用更多的柔光滤镜, 包括晨曦梦境、怀旧光景滤镜</string>
     <string name="camera_setiings_ccd_filter_title">CCD 冷调闪光滤镜</string>
-    <string name="camera_setiings_ccd_filter_desc">启用CCD 冷调闪光滤镜, 注意: 需要刷入任意附属模块 (版本为2.4.0+) 方能生效, 并且需要相机版本为5.0.52+</string>
-    <string name="camera_setiings_xpan_title">XPAN</string>
-    <string name="camera_setiings_xpan_desc">启用XPAN模式 (仅一加13T可用)</string>
+    <string name="camera_setiings_ccd_filter_desc">启用CCD 冷调闪光滤镜</string>
+    <string name="camera_setiings_xpan_title">新版XPAN</string>
+    <string name="camera_setiings_xpan_desc">启用新版XPAN模式, 支持显影动画以及多个滤镜切换</string>
+
 
     <!-- 默认值设置 -->
     <string name="default_value_enabled">设备默认值：开</string>

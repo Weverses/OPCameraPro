@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import com.github.kyuubiran.ezxhelper.Log
 import com.tlsu.opluscamerapro.data.AppConfig
 import com.tlsu.opluscamerapro.data.VendorTagSettings
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isV16
 import com.tlsu.opluscamerapro.utils.ParseConfig.addPresetTag
 import com.topjohnwu.superuser.Shell
 import de.robv.android.xposed.XposedBridge
@@ -197,7 +198,8 @@ object ConfigBasedAddConfig {
                 enableSoftLightFilter = vendorTagsObj.optBoolean("enableSoftLightFilter", false),
                 enableFlashFilter = vendorTagsObj.optBoolean("enableFlashFilter", false),
                 enableXPAN = vendorTagsObj.optBoolean("enableXPAN", false),
-                enableGRFilter = vendorTagsObj.optBoolean("enableGRFilter", false)
+                enableGRFilter = vendorTagsObj.optBoolean("enableGRFilter", false),
+                unlockFilterInMasterMode = vendorTagsObj.optBoolean("unlockFilterInMasterMode", false)
             )
             
             AppConfig(
@@ -753,133 +755,6 @@ object ConfigBasedAddConfig {
                     MergeStrategy.OVERRIDE
                 )
             }
-
-            // Preview HDR
-            // Require OplusRom Version >= V15.0.1
-
-//                if (vendorTags.enablePreviewHdr) {
-//                    XposedBridge.log("OPCameraPro: V15.0.1 Device, enable Preview HDR")
-//                    addPresetTag(
-//                        VendorTagInfo(
-//                            "com.oplus.camera.ai.perception.detect.support",
-//                            "Byte",
-//                            "1",
-//                            "0"
-//                        ),
-//                        MergeStrategy.OVERRIDE
-//                    )
-//                    addPresetTag(
-//                        VendorTagInfo(
-//                            "com.oplus.camera.preview.hdr.brightness.ratio",
-//                            "Float",
-//                            "1",
-//                            "5"
-//                        ),
-//                        MergeStrategy.OVERRIDE
-//                    )
-//
-//                    addPresetTag(
-//                        VendorTagInfo(
-//                            "com.oplus.camera.preview.hdr.video.support",
-//                            "Byte",
-//                            "1",
-//                            "1"
-//                        ),
-//                        MergeStrategy.OVERRIDE
-//                    )
-//
-//                    addPresetTag(
-//                        VendorTagInfo(
-//                            "com.oplus.camera.preview.hdr.video.brightness.ratio",
-//                            "Float",
-//                            "1",
-//                            "5"
-//                        ),
-//                        MergeStrategy.OVERRIDE
-//                    )
-//
-//                    addPresetTag(
-//                        VendorTagInfo(
-//                            "com.oplus.camera.capture.hdr.support",
-//                            "Byte",
-//                            "1",
-//                            "1"
-//                        ),
-//                        MergeStrategy.OVERRIDE
-//                    )
-//
-//                    addPresetTag(
-//                        VendorTagInfo(
-//                            "com.oplus.camera.preview.hdr.support",
-//                            "Byte",
-//                            "1",
-//                            "1"
-//                        ),
-//                        MergeStrategy.OVERRIDE
-//                    )
-//
-////                addPresetTag(
-////                    VendorTagInfo(
-////                        "com.oplus.camera.preview.hdr.transform.support",
-////                        "Byte",
-////                        "1",
-////                        "0"
-////                    ),
-////                    MergeStrategy.OVERRIDE
-////                )
-////
-////                addPresetTag(
-////                    VendorTagInfo(
-////                        "com.oplus.camera.preview.hdr.transform.lut.video.support",
-////                        "Byte",
-////                        "1",
-////                        "0"
-////                    ),
-////                    MergeStrategy.OVERRIDE
-////                )
-//
-//                    addPresetTag(
-//                        VendorTagInfo(
-//                            "com.oplus.camera.preview.hdr.cap.mode.value",
-//                            "String",
-//                            "6",
-//                            "common,night,highPixel,xpan,sticker,idPhoto"
-//                        ),
-//                        MergeStrategy.OVERRIDE
-//                    )
-//
-//                    addPresetTag(
-//                        VendorTagInfo(
-//                            "com.oplus.camera.capture.hdr.cap.mode.value",
-//                            "String",
-//                            "7",
-//                            "common,portrait,night,highPixel,xpan,sticker,idPhoto"
-//                        ),
-//                        MergeStrategy.OVERRIDE
-//                    )
-//
-//                    addPresetTag(
-//                        VendorTagInfo(
-//                            "com.oplus.camera.preview.hdr.livephoto.support",
-//                            "Byte",
-//                            "1",
-//                            "1"
-//                        ),
-//                        MergeStrategy.OVERRIDE
-//                    )
-//
-//                    addPresetTag(
-//                        VendorTagInfo(
-//                            "com.oplus.camera.preview.hdr.front.portrait.support",
-//                            "Byte",
-//                            "1",
-//                            "1"
-//                        ),
-//                        MergeStrategy.OVERRIDE
-//                    )
-//                }
-
-
 
             // 视频自动帧率
             if (vendorTags.enableVideoAutoFps) {
@@ -1644,103 +1519,13 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            if (vendorTags.enableXPAN) {
+            if (isV16() && vendorTags.enableXPAN) {
                 addPresetTag(
                     VendorTagInfo(
-                        "com.oplus.feature.xpan.mode.support",
-                        "Byte",
+                        "com.oplus.xpan.mode.version",
+                        "Int32",
                         "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.xpan.all.camera.support",
-                        "Byte",
-                        "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.xpan.switch.camera.mm",
-                        "Byte",
-                        "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.xpan.wide.picturesize",
-                        "Int32",
-                        "2",
-                        "7872x2912"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.xpan.main.picturesize",
-                        "Int32",
-                        "2",
-                        "7872x2912"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.xpan.tele.picturesize",
-                        "Int32",
-                        "2",
-                        "7872x2912"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.xpan.crop.region.main.portrait",
-                        "Int32",
-                        "4",
-                        "360,64,2912,7872"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.xpan.crop.region.main.landscape",
-                        "Int32",
-                        "4",
-                        "64,360,7872,2912"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.xpan.crop.region.wide.portrait",
-                        "Int32",
-                        "4",
-                        "360,64,2912,7872"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.xpan.crop.region.wide.landscape",
-                        "Int32",
-                        "4",
-                        "64,360,7872,2912"
+                        "3"
                     ),
                     MergeStrategy.OVERRIDE
                 )
@@ -1764,15 +1549,150 @@ object ConfigBasedAddConfig {
                 ),
                 MergeStrategy.OVERRIDE
             )
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.xpan.legacy.ui.style",
-                    "Byte",
-                    "1",
-                    "1"
-                ),
-                MergeStrategy.OVERRIDE
-            )
+
+            if (isV16() && vendorTags.enablePreviewHdr) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.ai.perception.detect.support",
+                        "Byte",
+                        "1",
+                        "0"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.preview.hdr.brightness.ratio",
+                        "Float",
+                        "1",
+                        "5"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.preview.hdr.video.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.preview.hdr.video.brightness.ratio",
+                        "Float",
+                        "1",
+                        "5"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.capture.hdr.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.preview.hdr.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.camera.preview.hdr.transform.support",
+//                        "Byte",
+//                        "1",
+//                        "0"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+//
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.camera.preview.hdr.transform.lut.video.support",
+//                        "Byte",
+//                        "1",
+//                        "0"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.preview.hdr.cap.mode.value",
+                        "String",
+                        "6",
+                        "common,night,highPixel,xpan,sticker,idPhoto"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.capture.hdr.cap.mode.value",
+                        "String",
+                        "7",
+                        "common,portrait,night,highPixel,xpan,sticker,idPhoto"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.camera.preview.hdr.livephoto.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+
+
+//            addPresetTag(
+//                VendorTagInfo(
+//                    "com.oplus.camera.video.bitrate.increase.support",
+//                    "Byte",
+//                    "1",
+//                    "1"
+//                ),
+//                MergeStrategy.OVERRIDE
+//            )
+//
+//            addPresetTag(
+//                VendorTagInfo(
+//                    "com.oplus.camera.video.livephoto.support",
+//                    "Byte",
+//                    "1",
+//                    "1"
+//                ),
+//                MergeStrategy.OVERRIDE
+//            )
+
+
+//            addPresetTag(
+//                VendorTagInfo(
+//                    "com.oplus.camera.hasselblad.super.definition.support",
+//                    "Byte",
+//                    "1",
+//                    "1"
+//                ),
+//                MergeStrategy.OVERRIDE
+//            )
+
         } catch (e: Exception) {
             XposedBridge.log("OPCameraPro: Error in addConfig: ${e.message}")
         }

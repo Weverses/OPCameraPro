@@ -13,6 +13,7 @@ import com.tlsu.opluscamerapro.hook.camera.UnitSDKPatchHook
 import com.tlsu.opluscamerapro.hook.camera.Video120FPSHook
 import com.tlsu.opluscamerapro.hook.gallery.GalleryHook
 import com.tlsu.opluscamerapro.hook.gallery.HasselbladWatermarkHook
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isV16
 import com.tlsu.opluscamerapro.utils.DexKit
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.callbacks.XC_LoadPackage
@@ -43,7 +44,9 @@ class MainHook : IXposedHookLoadPackage {
                     Video120FPSHook.handleLoadPackage(lpparam)
                     LivePhotoEISHook.handleLoadPackage(lpparam)
                     ProtobufFeatureHook.handleLoadPackage(lpparam)
-                    UnitSDKPatchHook.handleLoadPackage(lpparam)
+                    if (!isV16()) {
+                        UnitSDKPatchHook.handleLoadPackage(lpparam)
+                    }
                 }
                 "com.coloros.gallery3d" -> {
                     GalleryHook.handleLoadPackage(lpparam)

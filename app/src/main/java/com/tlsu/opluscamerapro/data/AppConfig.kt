@@ -242,7 +242,10 @@ data class VendorTagSettings(
     val enableXPAN: Boolean = false,
 
     // 理光 GR 滤镜
-    val enableGRFilter: Boolean = false
+    val enableGRFilter: Boolean = false,
+
+    // 大师模式解锁所有滤镜
+    val unlockFilterInMasterMode: Boolean = false
 )
 
 /**

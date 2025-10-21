@@ -31,6 +31,7 @@ import com.tlsu.opluscamerapro.utils.DefaultConfigManager
 import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVer
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isV16
 
 /**
  * VendorTag设置组
@@ -461,22 +462,19 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableAiScenePreset", it) }
             )
 
-//            if (execWithResult("md5sum /odm/lib64/libAlgoInterface.so")
-//                        .out.joinToString("").contains("f723969a47ac1806769d1e90de77124b")
-//                || execWithResult("md5sum /odm/lib64/libAlgoInterface.so")
-//                    .out.joinToString("").contains("31bfee2af2c77acdffff374c28cde2d0")) {
-//                SettingsSwitchItem(
-//                    title = stringResource(R.string.camera_settings_preview_hdr_title),
-//                    description = stringResource(R.string.camera_settings_preview_hdr_desc),
-//                    checked = vendorTagSettings.enablePreviewHdr,
-//                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-//                        context,
-//                        "enablePreviewHdr"
-//                    ),
-//
-//                    onCheckedChange = { onSettingChanged("enablePreviewHdr", it) }
-//                )
-//            }
+            if (isV16()) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_settings_preview_hdr_title),
+                    description = stringResource(R.string.camera_settings_preview_hdr_desc),
+                    checked = vendorTagSettings.enablePreviewHdr,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                        context,
+                        "enablePreviewHdr"
+                    ),
+
+                    onCheckedChange = { onSettingChanged("enablePreviewHdr", it) }
+                )
+            }
 
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_new_beauty_menu_title),
@@ -597,7 +595,7 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableMasterRawMax", it) }
             )
 
-            if (isNewCameraVer(45)) {
+
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_scale_focus_title),
                     description = stringResource(R.string.camera_settings_scale_focus_desc),
@@ -616,7 +614,14 @@ fun VendorTagSettingsGroup(
                     ),
                     onCheckedChange = { onSettingChanged("enableStyleEffect", it) }
                 )
-            }
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_mastermode_unlock_filter_title),
+                description = stringResource(R.string.camera_settings_mastermode_unlock_filter_desc),
+                checked = vendorTagSettings.unlockFilterInMasterMode,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "unlockFilterInMasterMode"),
+                onCheckedChange = { onSettingChanged("unlockFilterInMasterMode", it) }
+            )
 
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_soft_light_pro_title),
@@ -676,6 +681,7 @@ fun VendorTagSettingsGroup(
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableGRFilter"),
                 onCheckedChange = { onSettingChanged("enableGRFilter", it) }
             )
+
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_master_filter_title),
                 description = stringResource(R.string.camera_settings_master_filter_desc),
@@ -748,7 +754,8 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableOs15NewFilter", it) }
             )
 
-            // 暂不开放
+            // 仅ColorOS16
+            if (isV16()) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_setiings_ccd_filter_title),
                     description = stringResource(R.string.camera_setiings_ccd_filter_desc),
@@ -770,7 +777,7 @@ fun VendorTagSettingsGroup(
                     ),
                     onCheckedChange = { onSettingChanged("enableSoftLightFilter", it) }
                 )
-
+            }
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_soft_light_photo_title),
                 description = stringResource(R.string.camera_settings_soft_light_photo_desc),
@@ -1060,18 +1067,18 @@ fun VendorTagSettingsGroup(
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHasselbladWatermark"),
                 onCheckedChange = { onSettingChanged("enableHasselbladWatermark", it) }
             )
-            if (isNewCameraVer(60)) {
-                SettingsSwitchItem(
-                    title = stringResource(R.string.camera_setiings_xpan_title),
-                    description = stringResource(R.string.camera_setiings_xpan_desc),
-                    checked = vendorTagSettings.enableXPAN,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                        context,
-                        "enableXPAN"
-                    ),
-                    onCheckedChange = { onSettingChanged("enableXPAN", it) }
-                )
-            }
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_setiings_xpan_title),
+                description = stringResource(R.string.camera_setiings_xpan_desc),
+                checked = vendorTagSettings.enableXPAN,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                    context,
+                    "enableXPAN"
+                ),
+                onCheckedChange = { onSettingChanged("enableXPAN", it) }
+            )
+
         }
         
         Spacer(modifier = Modifier.height(8.dp))

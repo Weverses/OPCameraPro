@@ -178,7 +178,8 @@ object ConfigManager {
                 enableSoftLightFilter = vendorTagsObj.optBoolean("enableSoftLightFilter", false),
                 enableFlashFilter = vendorTagsObj.optBoolean("enableFlashFilter", false),
                 enableXPAN = vendorTagsObj.optBoolean("enableXPAN", false),
-                enableGRFilter = vendorTagsObj.optBoolean("enableGRFilter", false)
+                enableGRFilter = vendorTagsObj.optBoolean("enableGRFilter", false),
+                unlockFilterInMasterMode = vendorTagsObj.optBoolean("unlockFilterInMasterMode", false)
             )
             // 解析其他设置
             val otherSettingsObj = json.optJSONObject("otherSettings") ?: JSONObject()

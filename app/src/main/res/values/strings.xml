@@ -125,6 +125,8 @@
     <string name="camera_settings_master_filter_desc">Enable master filters</string>
     <string name="camera_settings_gr_filter_title">GR Filters</string>
     <string name="camera_settings_gr_filter_desc">Enable GR filters</string>
+    <string name="camera_settings_mastermode_unlock_filter_title">Unlock All Filters in Master Mode</string>
+    <string name="camera_settings_mastermode_unlock_filter_desc">Unlock All Filters in Master Mode</string>
     <string name="camera_settings_tol_style_filter_title">Light and Shadow Audio Filters</string>
     <string name="camera_settings_tol_style_filter_desc">Enable light and shadow audio filters</string>
     <string name="camera_settings_grand_tour_filter_title">Grand Tour Filters</string>
@@ -199,8 +201,8 @@
     <string name="camera_setiings_softlight_filter_desc">Enable more softlight filters, including morning dream and nostalgic scene</string>
     <string name="camera_setiings_ccd_filter_title">CCD Filter</string>
     <string name="camera_setiings_ccd_filter_desc">Enable CCD Filter</string>
-    <string name="camera_setiings_xpan_title">XPAN</string>
-    <string name="camera_setiings_xpan_desc">Enable XPAN Mode (For OnePlus 13s)</string>
+    <string name="camera_setiings_xpan_title">XPAN 3.0</string>
+    <string name="camera_setiings_xpan_desc">Enable XPAN 3.0</string>
 
     <string name="camera_settings_hasselblad_watermark_guide_title">Hasselblad Watermark Guide</string>
     <string name="camera_settings_hasselblad_watermark_guide_desc">Enable Hasselblad watermark guide functionality</string>

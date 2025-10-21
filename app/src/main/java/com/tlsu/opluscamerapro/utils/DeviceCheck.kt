@@ -61,7 +61,7 @@ object DeviceCheck {
         }
     }
 
-    fun isV1502(): Boolean {
+    fun isV1600(): Boolean {
         // 获取OplusRom版本
         val romVersion = getOplusRomVersion()
 
@@ -92,8 +92,13 @@ object DeviceCheck {
     fun isOP13(): Boolean {
         return (getDeviceModel() == "PJZ110")
     }
+
     fun isV15(): Boolean {
         return (getProp("ro.oplus.theme.version") >= "15000")
+    }
+
+    fun isV16(): Boolean {
+        return (getProp("ro.oplus.theme.version") >= "16000")
     }
 
     fun getDeviceModel(): String {

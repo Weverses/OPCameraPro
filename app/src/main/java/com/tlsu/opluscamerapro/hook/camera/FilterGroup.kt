@@ -5,6 +5,7 @@ import com.tlsu.opluscamerapro.hook.BaseHook
 import com.tlsu.opluscamerapro.utils.ConfigBasedAddConfig
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV15
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isV16
 import de.robv.android.xposed.XC_MethodReplacement
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
@@ -37,7 +38,7 @@ object FilterGroup : BaseHook() {
 
             // 获取VendorTag设置
             val vendorTags = ConfigBasedAddConfig.getVendorTagSettings()
-            if (isV15() && (vendorTags.enableTolStyleFilter || vendorTags.enableJzkMovieFilter || vendorTags.enableMasterFilter)) {
+            if (isV15()){
                 XposedHelpers.findAndHookMethod(
                     clazz,
                     "initOS15FilmFilterGroup",
@@ -104,7 +105,7 @@ object FilterGroup : BaseHook() {
                             if (isV1501()) {
                                 XposedHelpers.setStaticIntField(clazz, "sFujiFilterSize", 3)
                             }
-                            // 理光 GR
+                            // GR
                             if (vendorTags.enableGRFilter) {
                                 invokeAddFrontAndBack(
                                     filterGroup,
@@ -132,7 +133,7 @@ object FilterGroup : BaseHook() {
                 )
             }
 
-            if (isV1501() && vendorTags.enableStyleEffect) {
+            if (isV1501() && vendorTags.unlockFilterInMasterMode) {
                 XposedHelpers.findAndHookMethod(
                     clazz,
                     "initProFilterGroup",
@@ -153,14 +154,61 @@ object FilterGroup : BaseHook() {
                     }
                 )
             }
-            XposedBridge.log("OPCameraPro: hook camera successfully")
+            if (isV16() && vendorTags.enableXPAN) {
+                XposedHelpers.findAndHookMethod(
+                    clazz,
+                    "initHasselbladXpanFilterGroup",
+                    object : XC_MethodReplacement() {
+                        @Throws(Throwable::class)
+                        override fun replaceHookedMethod(param: MethodHookParam) {
+                            val sFilterGroup =
+                                XposedHelpers.getStaticObjectField(clazz, "sHasselbladXpanFilterGroup")
+                            invokeAddBack(
+                                sFilterGroup,
+                                "default",
+                                "R.string.camera_filter_none"
+                            )
+                            invokeAddBack(
+                                sFilterGroup,
+                                "Delta400.3dl.rgb.bin",
+                                "R.string.camera_filter_oplus_soft"
+                            )
+                            invokeAddBack(
+                                sFilterGroup,
+                                "fuji_cc.bin",
+                                "R.string.camera_filter_oplus_qing_xin"
+                            )
+                            invokeAddBack(
+                                sFilterGroup,
+                                "fuji-nc.bin",
+                                "R.string.camera_filter_oplus_fu_gu"
+                            )
+                            invokeAddBack(
+                                sFilterGroup,
+                                "fuji-proNegHi.bin",
+                                "R.string.camera_filter_oplus_tong_tou"
+                            )
+//                        invokeAddBack(
+//                            sFilterGroup,
+//                            "800t.bin",
+//                            "R.string.camera_filter_oplus_neon"
+//                        )
+                        }
+                    }
+                )
+            }
+            XposedBridge.log("OPCameraPro: hook FilterGroup successfully")
         } catch (e: Throwable) {
-            XposedBridge.log("OPCameraPro: hook camera failed!")
+            XposedBridge.log("OPCameraPro: hook FilterGroup failed!")
             XposedBridge.log(e)
         }
     }
 
     private fun invokeAddFrontAndBack(filterGroup: Any, bin: String, res: String) {
         XposedHelpers.callMethod(filterGroup, "addFrontAndBack", bin, res)
+    }
+
+    private fun invokeAddBack(filterGroup: Any, bin: String, res: String) {
+        XposedHelpers.callMethod(filterGroup, "addBack", bin, res)
     }
 }
