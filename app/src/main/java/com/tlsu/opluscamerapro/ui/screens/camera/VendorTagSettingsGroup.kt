@@ -454,15 +454,22 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enable25MP", it) }
             )
 
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_enable_ai_scene_preset),
-                description = stringResource(R.string.camera_settings_enable_ai_scene_preset_desc),
-                checked = vendorTagSettings.enableAiScenePreset,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableAiScenePreset"),
-                onCheckedChange = { onSettingChanged("enableAiScenePreset", it) }
-            )
+//            SettingsSwitchItem(
+//                title = stringResource(R.string.camera_settings_enable_ai_scene_preset),
+//                description = stringResource(R.string.camera_settings_enable_ai_scene_preset_desc),
+//                checked = vendorTagSettings.enableAiScenePreset,
+//                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableAiScenePreset"),
+//                onCheckedChange = { onSettingChanged("enableAiScenePreset", it) }
+//            )
 
             if (isV16()) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_settings_gr_watermark_title),
+                    description = stringResource(R.string.camera_settings_gr_watermark_desc),
+                    checked = vendorTagSettings.enableGRWatermark,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableGRWatermark"),
+                    onCheckedChange = { onSettingChanged("enableGRWatermark", it) }
+                )
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_preview_hdr_title),
                     description = stringResource(R.string.camera_settings_preview_hdr_desc),
@@ -596,13 +603,13 @@ fun VendorTagSettingsGroup(
             )
 
 
-                SettingsSwitchItem(
-                    title = stringResource(R.string.camera_settings_scale_focus_title),
-                    description = stringResource(R.string.camera_settings_scale_focus_desc),
-                    checked = vendorTagSettings.enableScaleFocus,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableScaleFocus"),
-                    onCheckedChange = { onSettingChanged("enableScaleFocus", it) }
-                )
+//                SettingsSwitchItem(
+//                    title = stringResource(R.string.camera_settings_scale_focus_title),
+//                    description = stringResource(R.string.camera_settings_scale_focus_desc),
+//                    checked = vendorTagSettings.enableScaleFocus,
+//                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableScaleFocus"),
+//                    onCheckedChange = { onSettingChanged("enableScaleFocus", it) }
+//                )
 
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_style_effect_title),
@@ -842,37 +849,44 @@ fun VendorTagSettingsGroup(
             )
             
             SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_video_auto_fps_title),
-                description = stringResource(R.string.camera_settings_video_auto_fps_desc),
-                checked = vendorTagSettings.enableVideoAutoFps,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoAutoFps"),
-                onCheckedChange = { onSettingChanged("enableVideoAutoFps", it) }
-            )
-            
-            SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_video_stop_sound_title),
                 description = stringResource(R.string.camera_settings_video_stop_sound_desc),
                 checked = vendorTagSettings.enableVideoStopSoundImmediate,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoStopSoundImmediate"),
                 onCheckedChange = { onSettingChanged("enableVideoStopSoundImmediate", it) }
             )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_video_lock_lens_title),
-                description = stringResource(R.string.camera_settings_video_lock_lens_desc),
-                checked = vendorTagSettings.enableVideoLockLens,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoLockLens"),
-                onCheckedChange = { onSettingChanged("enableVideoLockLens", it) }
-            )
-            
-//            SettingsSwitchItem(
-//                title = stringResource(R.string.camera_settings_video_lock_wb_title),
-//                description = stringResource(R.string.camera_settings_video_lock_wb_desc),
-//                checked = vendorTagSettings.enableVideoLockWb,
-//                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoLockWb"),
-//                onCheckedChange = { onSettingChanged("enableVideoLockWb", it) }
-//            )
-            
+
+            if (isV16()) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_settings_video_auto_fps_title),
+                    description = stringResource(R.string.camera_settings_video_auto_fps_desc),
+                    checked = vendorTagSettings.enableVideoAutoFps,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoAutoFps"),
+                    onCheckedChange = { onSettingChanged("enableVideoAutoFps", it) }
+                )
+
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_settings_video_lock_lens_title),
+                    description = stringResource(R.string.camera_settings_video_lock_lens_desc),
+                    checked = vendorTagSettings.enableVideoLockLens,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                        context,
+                        "enableVideoLockLens"
+                    ),
+                    onCheckedChange = { onSettingChanged("enableVideoLockLens", it) }
+                )
+
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_settings_video_lock_wb_title),
+                    description = stringResource(R.string.camera_settings_video_lock_wb_desc),
+                    checked = vendorTagSettings.enableVideoLockWb,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                        context,
+                        "enableVideoLockWb"
+                    ),
+                    onCheckedChange = { onSettingChanged("enableVideoLockWb", it) }
+                )
+            }
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_video_sound_focus_title),
                 description = stringResource(R.string.camera_settings_video_sound_focus_desc),

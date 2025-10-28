@@ -1,0 +1,104 @@
+{
+  "styleId": "personalize_retroCamera_1",
+  "baseImageSize": 360,
+  "size": {
+    "leftMargin": 8,
+    "topMargin": 95,
+    "rightMargin": 8,
+    "bottomMargin": 70
+  },
+  "imageOffset": {
+    "startX": 8,
+    "startY": 95
+  },
+  "background": {
+    "backgroundType": 0,
+    "color": "#FFFFFF"
+  },
+  "bitmaps": [
+    {
+      "direction": 1,
+      "orientation": 0,
+      "position": {
+        "borderX": 10,
+        "borderY": 79,
+        "gravity": "center"
+      },
+      "width": -1,
+      "height": 79,
+      "elements": [
+        {
+          "id": 1,
+          "visible": true,
+          "content": {
+            "type": "elements",
+            "orientation": 1,
+            "width": 340
+          },
+          "elements": [
+            {
+              "id": 3,
+              "visible": true,
+              "editable": false,
+              "content": {
+                "type": "text",
+                "textSource": 0
+              },
+              "paint": {
+                "fontType": 2,
+                "fontName": "FZLTZCHK.zip",
+                "fontFileType": 1,
+                "font": "https://videoclipfs.coloros.com/dirfile/icon/2025/09/11/0df1ec4e-af72-42ad-87e0-9d7f71797c25.zip",
+                "md5": "5e8b7ce73dbb13ca7d87eea7a1690a65",
+                "fontWeight": 600,
+                "textSize": 12,
+                "letterSpacing": 0.04,
+                "lineHeight": 14.06,
+                "alpha": 1,
+                "gradientType": -1,
+                "colors": [
+                  "#000000"
+                ]
+              },
+              "position": {
+                "layoutGravity": "topHorCenter",
+                "layoutGravityEnable": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "direction": 3,
+      "orientation": 1,
+      "position": {
+        "borderX": 10,
+        "borderY": 0,
+        "gravity": "center"
+      },
+      "width": -1,
+      "height": 79,
+      "elements": [
+        {
+          "id": 2,
+          "visible": true,
+          "editable": false,
+          "content": {
+            "type": "image",
+            "bitmapSourceType": 0,
+            "bitmap": "classic_135_camera_dark",
+            "bitmapResName": "classic_135_camera_dark",
+            "width": 75,
+            "height": 23,
+            "scaleType": 3
+          },
+          "position": {
+            "layoutGravity": "center",
+            "layoutGravityEnable": true
+          }
+        }
+      ]
+    }
+  ]
+}

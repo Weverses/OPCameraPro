@@ -106,7 +106,7 @@ object FilterGroup : BaseHook() {
                                 XposedHelpers.setStaticIntField(clazz, "sFujiFilterSize", 3)
                             }
                             // GR
-                            if (vendorTags.enableGRFilter) {
+                            if (isV16() && vendorTags.enableGRFilter) {
                                 invokeAddFrontAndBack(
                                     filterGroup,
                                     "gr.posi.rgba.bin",

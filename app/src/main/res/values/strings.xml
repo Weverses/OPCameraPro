@@ -204,6 +204,9 @@
     <string name="camera_setiings_xpan_title">XPAN 3.0</string>
     <string name="camera_setiings_xpan_desc">Enable XPAN 3.0</string>
 
+    <string name="camera_settings_gr_watermark_title">GR Watermark</string>
+    <string name="camera_settings_gr_watermark_desc">Enable GR Watermark</string>
+
     <string name="camera_settings_hasselblad_watermark_guide_title">Hasselblad Watermark Guide</string>
     <string name="camera_settings_hasselblad_watermark_guide_desc">Enable Hasselblad watermark guide functionality</string>
     <string name="camera_settings_hasselblad_watermark_title">Custom Hasselblad Watermark</string>

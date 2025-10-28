@@ -245,7 +245,10 @@ data class VendorTagSettings(
     val enableGRFilter: Boolean = false,
 
     // 大师模式解锁所有滤镜
-    val unlockFilterInMasterMode: Boolean = false
+    val unlockFilterInMasterMode: Boolean = false,
+
+    // GR 水印
+    val enableGRWatermark: Boolean = false
 )
 
 /**

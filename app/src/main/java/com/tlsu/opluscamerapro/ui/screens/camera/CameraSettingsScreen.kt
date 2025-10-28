@@ -145,6 +145,7 @@ fun CameraSettingsScreen(
                                 "enableXPAN" -> currentConfig.vendorTags.copy(enableXPAN = value)
                                 "enableGRFilter" -> currentConfig.vendorTags.copy(enableGRFilter = value)
                                 "unlockFilterInMasterMode" -> currentConfig.vendorTags.copy(unlockFilterInMasterMode = value)
+                                "enableGRWatermark" -> currentConfig.vendorTags.copy(enableGRWatermark = value)
 
                                 else -> currentConfig.vendorTags
                             }

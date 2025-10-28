@@ -1,0 +1,345 @@
+{
+  "styleId": "personalize_retroCamera_5",
+  "isNeedShootingInfo": true,
+  "baseImageSize": 360,
+  "size": {
+    "leftMargin": 10,
+    "topMargin": 10,
+    "rightMargin": 162,
+    "bottomMargin": 10
+  },
+  "imageOffset": {
+    "startX": 10,
+    "startY": 10
+  },
+  "background": {
+    "backgroundType": 0,
+    "color": "#FFFFFF"
+  },
+  "bitmaps": [
+    {
+      "direction": 2,
+      "orientation": 0,
+      "position": {
+        "borderX": 10,
+        "borderY": 10,
+        "gravity": "center"
+      },
+      "width": 162,
+      "height": -1,
+      "elements": [
+        {
+          "id": 1,
+          "content": {
+            "type": "elements",
+            "orientation": 1
+          },
+          "elements": [
+            {
+              "id": 2,
+              "visible": true,
+              "editable": false,
+              "content": {
+                "type": "text",
+                "textSource": 1,
+                "textSourcePart": "ISOValue"
+              },
+              "paint": {
+                "fontType": 2,
+                "fontName": "Butler.zip",
+                "fontFileType": 2,
+                "font": "https://videoclipfs.coloros.com/dirfile/icon/2024/11/06/d68d3c03-49e2-4520-839f-a45b732fd786.zip",
+                "md5": "81281646c9be40532b23b094e5413bd9",
+                "textSize": 12,
+                "letterSpacing": 0.05,
+                "lineHeight": 14.4,
+                "fontWeight": 500,
+                "alpha": 0.9,
+                "lightAlpha": 0.9,
+                "colors": [
+                  "#000000"
+                ],
+                "gradientType": -1
+              },
+              "position": {
+                "layoutGravity": "topHorCenter",
+                "layoutGravityEnable": true,
+                "topMargin": 0
+              }
+            },
+            {
+              "id": 3,
+              "visible": true,
+              "editable": false,
+              "content": {
+                "type": "text",
+                "textSource": 1,
+                "textSourcePart": "ISOTitle"
+              },
+              "paint": {
+                "fontType": 2,
+                "fontName": "Butler.zip",
+                "fontFileType": 2,
+                "font": "https://videoclipfs.coloros.com/dirfile/icon/2024/11/06/d68d3c03-49e2-4520-839f-a45b732fd786.zip",
+                "md5": "81281646c9be40532b23b094e5413bd9",
+                "textSize": 8,
+                "fontWeight": 500,
+                "letterSpacing": 0.08,
+                "lineHeight": 9.6,
+                "alpha": 0.54,
+                "lightAlpha": 0.54,
+                "colors": [
+                  "#000000"
+                ],
+                "gradientType": -1
+              },
+              "position": {
+                "layoutGravity": "horCenter",
+                "layoutGravityEnable": true,
+                "topMargin": 2
+              }
+            },
+            {
+              "id": 4,
+              "visible": true,
+              "editable": false,
+              "content": {
+                "type": "text",
+                "textSource": 1,
+                "textSourcePart": "FValue"
+              },
+              "paint": {
+                "fontType": 2,
+                "fontName": "Butler.zip",
+                "fontFileType": 2,
+                "font": "https://videoclipfs.coloros.com/dirfile/icon/2024/11/06/d68d3c03-49e2-4520-839f-a45b732fd786.zip",
+                "md5": "81281646c9be40532b23b094e5413bd9",
+                "textSize": 12,
+                "letterSpacing": 0.05,
+                "lineHeight": 14.4,
+                "fontWeight": 500,
+                "alpha": 0.9,
+                "lightAlpha": 0.9,
+                "colors": [
+                  "#000000"
+                ],
+                "gradientType": -1
+              },
+              "position": {
+                "layoutGravity": "topHorCenter",
+                "layoutGravityEnable": true,
+                "topMargin": 28
+              }
+            },
+            {
+              "id": 5,
+              "visible": true,
+              "editable": false,
+              "content": {
+                "type": "text",
+                "textSource": 1,
+                "textSourcePart": "FTitle"
+              },
+              "paint": {
+                "fontType": 2,
+                "fontName": "Butler.zip",
+                "fontFileType": 2,
+                "font": "https://videoclipfs.coloros.com/dirfile/icon/2024/11/06/d68d3c03-49e2-4520-839f-a45b732fd786.zip",
+                "md5": "81281646c9be40532b23b094e5413bd9",
+                "textSize": 8,
+                "fontWeight": 500,
+                "letterSpacing": 0.08,
+                "lineHeight": 9.6,
+                "alpha": 0.54,
+                "lightAlpha": 0.54,
+                "colors": [
+                  "#000000"
+                ],
+                "gradientType": -1
+              },
+              "position": {
+                "layoutGravity": "horCenter",
+                "layoutGravityEnable": true,
+                "topMargin": 2
+              }
+            },
+            {
+              "id": 6,
+              "visible": true,
+              "editable": false,
+              "content": {
+                "type": "text",
+                "textSource": 1,
+                "textSourcePart": "MMValue"
+              },
+              "paint": {
+                "fontType": 2,
+                "fontName": "Butler.zip",
+                "fontFileType": 2,
+                "font": "https://videoclipfs.coloros.com/dirfile/icon/2024/11/06/d68d3c03-49e2-4520-839f-a45b732fd786.zip",
+                "md5": "81281646c9be40532b23b094e5413bd9",
+                "letterSpacing": 0.05,
+                "lineHeight": 14.4,
+                "textSize": 12,
+                "fontWeight": 500,
+                "alpha": 0.9,
+                "lightAlpha": 0.9,
+                "colors": [
+                  "#000000"
+                ],
+                "gradientType": -1
+              },
+              "position": {
+                "layoutGravity": "topHorCenter",
+                "layoutGravityEnable": true,
+                "topMargin": 28
+              }
+            },
+            {
+              "id": 7,
+              "visible": true,
+              "editable": false,
+              "content": {
+                "type": "text",
+                "textSource": 1,
+                "textSourcePart": "MMTitle"
+              },
+              "paint": {
+                "fontType": 2,
+                "fontName": "Butler.zip",
+                "fontFileType": 2,
+                "font": "https://videoclipfs.coloros.com/dirfile/icon/2024/11/06/d68d3c03-49e2-4520-839f-a45b732fd786.zip",
+                "md5": "81281646c9be40532b23b094e5413bd9",
+                "textSize": 8,
+                "letterSpacing": 0.08,
+                "lineHeight": 9.6,
+                "fontWeight": 500,
+                "alpha": 0.54,
+                "lightAlpha": 0.54,
+                "colors": [
+                  "#000000"
+                ],
+                "gradientType": -1
+              },
+              "position": {
+                "layoutGravity": "horCenter",
+                "layoutGravityEnable": true,
+                "topMargin": 2
+              }
+            },
+            {
+              "id": 8,
+              "visible": true,
+              "editable": false,
+              "content": {
+                "type": "text",
+                "textSource": 1,
+                "textSourcePart": "SValue"
+              },
+              "paint": {
+                "fontType": 2,
+                "fontName": "Butler.zip",
+                "fontFileType": 2,
+                "font": "https://videoclipfs.coloros.com/dirfile/icon/2024/11/06/d68d3c03-49e2-4520-839f-a45b732fd786.zip",
+                "md5": "81281646c9be40532b23b094e5413bd9",
+                "letterSpacing": 0.05,
+                "lineHeight": 14.4,
+                "textSize": 12,
+                "fontWeight": 500,
+                "alpha": 0.9,
+                "lightAlpha": 0.9,
+                "colors": [
+                  "#000000"
+                ],
+                "gradientType": -1
+              },
+              "position": {
+                "layoutGravity": "topHorCenter",
+                "layoutGravityEnable": true,
+                "topMargin": 28
+              }
+            },
+            {
+              "id": 9,
+              "visible": true,
+              "editable": false,
+              "content": {
+                "type": "text",
+                "textSource": 1,
+                "textSourcePart": "STitle"
+              },
+              "paint": {
+                "fontType": 2,
+                "fontName": "Butler.zip",
+                "fontFileType": 2,
+                "font": "https://videoclipfs.coloros.com/dirfile/icon/2024/11/06/d68d3c03-49e2-4520-839f-a45b732fd786.zip",
+                "md5": "81281646c9be40532b23b094e5413bd9",
+                "textSize": 8,
+                "fontWeight": 500,
+                "letterSpacing": 0.08,
+                "lineHeight": 9.6,
+                "alpha": 0.54,
+                "lightAlpha": 0.54,
+                "colors": [
+                  "#000000"
+                ],
+                "gradientType": -1
+              },
+              "position": {
+                "layoutGravity": "horCenter",
+                "layoutGravityEnable": true,
+                "topMargin": 2
+              }
+            },
+            {
+              "id": 10,
+              "possiblePreviousIds": [9],
+              "possibleNextIds": [12],
+              "visible": true,
+              "editable": false,
+              "content": {
+                "type": "shape",
+                "shape": "rectangle",
+                "width": 18.15,
+                "height": 0.7
+              },
+              "paint": {
+                "gradientType": -1,
+                "colors": [
+                  "#4c000000"
+                ],
+                "lightColor": "#4c000000",
+                "darkColor": "#4cFFFFFF"
+              },
+              "position": {
+                "layoutGravity": "horCenter",
+                "layoutGravityEnable": true,
+                "topMargin": 32
+              }
+            },
+            {
+              "id": 12,
+              "visible": true,
+              "editable": true,
+              "affinityId": 10,
+              "content": {
+                "type": "image",
+                "bitmapSourceType": 0,
+                "bitmap": "classic_135_camera_dark",
+                "bitmapResName": "classic_135_camera_dark",
+                "width": 68,
+                "height": 40,
+                "scaleType": 2
+              },
+              "position": {
+                "layoutGravity": "horCenter",
+                "layoutGravityEnable": true,
+                "topMargin": 30
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

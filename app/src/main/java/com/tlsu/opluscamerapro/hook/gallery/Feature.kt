@@ -92,6 +92,30 @@ object FeatureHook : BaseHook() {
                                 XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_hassel_watermark success")
                             }
                         }
+                        if (it.args[0] == "is_support_hassel_device") {
+                            if (enableHasselblad) {
+                                it.args[0] = "feature_is_support_olive"
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_hassel_watermark success")
+                            }
+                        }
+                        if (it.args[0] == "is_hassel_watermark_supported") {
+                            if (enableHasselblad) {
+                                it.args[0] = "feature_is_support_olive"
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_hassel_watermark success")
+                            }
+                        }
+                        if (it.args[0] == "feature_is_support_hassel_device") {
+                            if (enableHasselblad) {
+                                it.args[0] = "feature_is_support_olive"
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_hassel_watermark success")
+                            }
+                        }
+                        if (it.args[0] == "is_camera_support_hasseblad_super_definition") {
+                            if (enableHasselblad) {
+                                it.args[0] = "feature_is_support_olive"
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_hassel_watermark success")
+                            }
+                        }
                         if (it.args[0] == "feature_is_support_ai_best_take") {
                             if (enableAIBestTake) {
                                 it.args[0] = "feature_is_support_olive"
@@ -122,16 +146,48 @@ object FeatureHook : BaseHook() {
                         if (it.args[0] == "feature_is_support_olive_extract_uhdr_frame") {
                             if (enableOliveCoverProXDR) {
                                 it.args[0] = "feature_is_support_olive"
-                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_olive_sdr_to_hdr success")
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_olive_extract_uhdr_frame success")
                             }
                         }
 
                         if (it.args[0] == "feature_is_support_lumo_watermark") {
                             if (enableLumoWatermark) {
                                 it.args[0] = "feature_is_support_olive"
-                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_olive_sdr_to_hdr success")
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_lumo_watermark success")
                             }
                         }
+
+                        // AI 图像精灵
+//                        if (it.args[0] == "feature_ai_voice_image_assistant") {
+//                            if (enableLumoWatermark) {
+//                                it.args[0] = "feature_is_support_olive"
+//                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_ai_voice_image_assistant success")
+//                            }
+//                        }
+//                        if (it.args[0] == "feature_is_camera_gr_supported") {
+//                            if (enableHasselblad) {
+//                                it.args[0] = "feature_is_support_olive"
+//                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_hassel_watermark success")
+//                            }
+//                        }
+//                        if (it.args[0] == "is_camera_gr_supported") {
+//                            if (enableHasselblad) {
+//                                it.args[0] = "feature_is_support_olive"
+//                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_hassel_watermark success")
+//                            }
+//                        }
+//                        if (it.args[0] == "feature_is_support_collage_live_photo") {
+//                            if (enableHasselblad) {
+//                                it.args[0] = "feature_is_support_olive"
+//                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_hassel_watermark success")
+//                            }
+//                        }
+//                        if (it.args[0] == "feature_is_support_olive_heif") {
+//                            if (enableHasselblad) {
+//                                it.args[0] = "feature_is_support_olive"
+//                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_hassel_watermark success")
+//                            }
+//                        }
                     }
                 }
             

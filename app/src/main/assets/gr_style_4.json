@@ -1,0 +1,116 @@
+{
+  "styleId": "personalize_retroCamera_4",
+  "baseImageSize": 360,
+  "size": {
+    "leftMargin": 0,
+    "topMargin": 0,
+    "rightMargin": 0,
+    "bottomMargin": 0
+  },
+  "imageOffset": {
+    "startX": 0,
+    "startY": 0
+  },
+  "bitmaps": [
+    {
+      "direction": 4,
+      "orientation": 1,
+      "position": {
+        "borderX": 20,
+        "borderY": 20,
+        "gravity": "center"
+      },
+      "composite": {
+        "textSize": 1,
+        "position": 3
+      },
+      "width": -1,
+      "height": 54,
+      "elements": [
+        {
+          "id": 1,
+          "content": {
+            "type": "elements",
+            "orientation": 1
+          },
+          "position": {
+            "layoutGravity": "center",
+            "layoutGravityEnable": true,
+            "leftMargin": 0,
+            "topMargin": 0,
+            "rightMargin": 0,
+            "bottomMargin": 0
+          },
+          "elements": [
+            {
+              "id": 21,
+              "visible": true,
+              "editable": true,
+              "spaceUse": "bottomAlign",
+              "content": {
+                "type": "space"
+              },
+              "layoutWeight": 1
+            },
+            {
+              "id": 2,
+              "visible": true,
+              "editable": true,
+              "content": {
+                "type": "image",
+                "bitmapSourceType": 0,
+                "bitmap": "classic_135_camera",
+                "bitmapResName": "classic_135_camera",
+                "width": 70,
+                "height": 22,
+                "scaleType": 3
+              },
+              "position": {
+                "layoutGravity": "topHorCenter",
+                "layoutGravityEnable": true,
+                "leftMargin": 0,
+                "topMargin": 0,
+                "rightMargin": 0,
+                "bottomMargin": 0
+              }
+            },
+            {
+              "id": 3,
+              "visible": true,
+              "editable": false,
+              "content": {
+                "type": "text",
+                "textSource": 0
+              },
+              "paint": {
+                "fontType": 2,
+                "fontName": "FZLTZCHK.zip",
+                "fontFileType": 1,
+                "font": "https://videoclipfs.coloros.com/dirfile/icon/2025/09/11/0df1ec4e-af72-42ad-87e0-9d7f71797c25.zip",
+                "md5": "5e8b7ce73dbb13ca7d87eea7a1690a65",
+                "fontWeight": 600,
+                "textSize": 9,
+                "letterSpacing": 0.04,
+                "lineHeight": 14.06,
+                "alpha": 1,
+                "colors": ["#FFFFFF"],
+                "gradientType": -1,
+                "withShadow": true,
+                "shadowValues": [1, 0, 0.33],
+                "shadowColor": "#65000000"
+              },
+              "position": {
+                "layoutGravity": "horCenter",
+                "layoutGravityEnable": true,
+                "leftMargin": 0,
+                "topMargin": 19,
+                "rightMargin": 0,
+                "bottomMargin": 0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

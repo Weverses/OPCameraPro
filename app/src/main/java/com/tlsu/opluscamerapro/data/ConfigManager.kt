@@ -179,7 +179,8 @@ object ConfigManager {
                 enableFlashFilter = vendorTagsObj.optBoolean("enableFlashFilter", false),
                 enableXPAN = vendorTagsObj.optBoolean("enableXPAN", false),
                 enableGRFilter = vendorTagsObj.optBoolean("enableGRFilter", false),
-                unlockFilterInMasterMode = vendorTagsObj.optBoolean("unlockFilterInMasterMode", false)
+                unlockFilterInMasterMode = vendorTagsObj.optBoolean("unlockFilterInMasterMode", false),
+                enableGRWatermark = vendorTagsObj.optBoolean("enableGRWatermark", false)
             )
             // 解析其他设置
             val otherSettingsObj = json.optJSONObject("otherSettings") ?: JSONObject()
@@ -309,6 +310,8 @@ object ConfigManager {
                     put("enableFlashFilter", config.vendorTags.enableFlashFilter)
                     put("enableXPAN", config.vendorTags.enableXPAN)
                     put("enableGRFilter", config.vendorTags.enableGRFilter)
+                    put("unlockFilterInMasterMode", config.vendorTags.unlockFilterInMasterMode)
+                    put("enableGRWatermark", config.vendorTags.enableGRWatermark)
                 })
                 
                 // 保存其他设置

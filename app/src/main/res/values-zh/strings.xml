@@ -240,6 +240,8 @@
     <string name="camera_setiings_ccd_filter_desc">启用CCD 冷调闪光滤镜</string>
     <string name="camera_setiings_xpan_title">新版XPAN</string>
     <string name="camera_setiings_xpan_desc">启用新版XPAN模式, 支持显影动画以及多个滤镜切换</string>
+    <string name="camera_settings_gr_watermark_title">GR 水印</string>
+    <string name="camera_settings_gr_watermark_desc">开启GR 水印, 需要相册版本大于等于16.6.36</string>
 
 
     <!-- 默认值设置 -->

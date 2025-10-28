@@ -1,8 +1,6 @@
 package com.tlsu.opluscamerapro.utils
 
 import android.annotation.SuppressLint
-import android.content.Context
-import androidx.activity.ComponentActivity.MODE_WORLD_READABLE
 import java.io.IOException
 import java.io.BufferedReader
 import java.io.DataOutputStream
@@ -20,6 +18,8 @@ object DeviceCheck {
     ) {
         val isSuccess: Boolean get() = code == 0
     }
+
+    val DEBUG = true
 
     @SuppressLint("PrivateApi")
     fun getProp(mKey: String): String = Class.forName("android.os.SystemProperties").getMethod("get", String::class.java).invoke(Class.forName("android.os.SystemProperties"), mKey)!!
