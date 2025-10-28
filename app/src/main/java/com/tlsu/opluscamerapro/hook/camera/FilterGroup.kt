@@ -204,7 +204,7 @@ object FilterGroup : BaseHook() {
                 .methodFinder().filterByName("setStaticLUTPath").single()
                 .createHook {
                     before { param ->
-                        param.args[0] = "/data/user/0/com.tlsu.opluscamerapro/files/meishe_lut"
+                        param.args[0] = "/data/user/0/com.tlsu.opluscamerapro/files/meishe_lut/"
                     }
                 }
 

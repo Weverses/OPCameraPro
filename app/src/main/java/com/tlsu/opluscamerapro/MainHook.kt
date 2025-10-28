@@ -9,6 +9,7 @@ import com.tlsu.opluscamerapro.hook.camera.FilterGroup
 import com.tlsu.opluscamerapro.hook.camera.ISOHook
 import com.tlsu.opluscamerapro.hook.camera.LivePhotoEISHook
 import com.tlsu.opluscamerapro.hook.camera.OplusCameraConfig
+import com.tlsu.opluscamerapro.hook.camera.PreviewHDRHook
 import com.tlsu.opluscamerapro.hook.camera.ProtobufFeatureHook
 import com.tlsu.opluscamerapro.hook.camera.UnitSDKPatchHook
 import com.tlsu.opluscamerapro.hook.camera.Video120FPSHook
@@ -56,6 +57,7 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit, IXposedHookInitP
                     if (!isV16()) {
                         UnitSDKPatchHook.handleLoadPackage(lpparam)
                     }
+                    PreviewHDRHook.handleLoadPackage(lpparam)
                 }
                 "com.coloros.gallery3d" -> {
                     GalleryHook.handleLoadPackage(lpparam)
