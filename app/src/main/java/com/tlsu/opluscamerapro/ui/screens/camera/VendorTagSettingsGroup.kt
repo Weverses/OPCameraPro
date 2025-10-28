@@ -28,6 +28,7 @@ import com.tlsu.opluscamerapro.R
 import com.tlsu.opluscamerapro.data.VendorTagSettings
 import com.tlsu.opluscamerapro.ui.components.SettingsSwitchItem
 import com.tlsu.opluscamerapro.utils.DefaultConfigManager
+import com.tlsu.opluscamerapro.utils.DefaultConfigManager.isDefaultValueEnableFunction
 import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVer
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
@@ -451,7 +452,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_25mp_desc),
                 checked = vendorTagSettings.enable25MP,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enable25MP"),
-                onCheckedChange = { onSettingChanged("enable25MP", it) }
+                onCheckedChange = { onSettingChanged("enable25MP", it) },
+                visible = !isDefaultValueEnableFunction(context, "enable25MP")
             )
 
 //            SettingsSwitchItem(
@@ -468,18 +470,16 @@ fun VendorTagSettingsGroup(
                     description = stringResource(R.string.camera_settings_gr_watermark_desc),
                     checked = vendorTagSettings.enableGRWatermark,
                     defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableGRWatermark"),
-                    onCheckedChange = { onSettingChanged("enableGRWatermark", it) }
+                    onCheckedChange = { onSettingChanged("enableGRWatermark", it) },
+                    visible = !isDefaultValueEnableFunction(context, "enableGRWatermark")
                 )
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_preview_hdr_title),
                     description = stringResource(R.string.camera_settings_preview_hdr_desc),
                     checked = vendorTagSettings.enablePreviewHdr,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                        context,
-                        "enablePreviewHdr"
-                    ),
-
-                    onCheckedChange = { onSettingChanged("enablePreviewHdr", it) }
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enablePreviewHdr"),
+                    onCheckedChange = { onSettingChanged("enablePreviewHdr", it) },
+                    visible = !isDefaultValueEnableFunction(context, "enablePreviewHdr")
                 )
             }
 
@@ -488,7 +488,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_new_beauty_menu_desc),
                 checked = vendorTagSettings.enableNewBeautyMenu,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableNewBeautyMenu"),
-                onCheckedChange = { onSettingChanged("enableNewBeautyMenu", it) }
+                onCheckedChange = { onSettingChanged("enableNewBeautyMenu", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableNewBeautyMenu")
             )
 
 //            SettingsSwitchItem(
@@ -504,7 +505,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_quick_launch_desc),
                 checked = vendorTagSettings.enableQuickLaunch,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableQuickLaunch"),
-                onCheckedChange = { onSettingChanged("enableQuickLaunch", it) }
+                onCheckedChange = { onSettingChanged("enableQuickLaunch", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableQuickLaunch")
             )
 
             SettingsSwitchItem(
@@ -512,7 +514,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_front_camera_zoom_desc),
                 checked = vendorTagSettings.enableFrontCameraZoom,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableFrontCameraZoom"),
-                onCheckedChange = { onSettingChanged("enableFrontCameraZoom", it) }
+                onCheckedChange = { onSettingChanged("enableFrontCameraZoom", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableFrontCameraZoom")
             )
             
             SettingsSwitchItem(
@@ -520,7 +523,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_global_ev_desc),
                 checked = vendorTagSettings.enableGlobalEv,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableGlobalEv"),
-                onCheckedChange = { onSettingChanged("enableGlobalEv", it) }
+                onCheckedChange = { onSettingChanged("enableGlobalEv", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableGlobalEv")
             )
 
             SettingsSwitchItem(
@@ -528,7 +532,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_switch_lens_focal_length_desc),
                 checked = vendorTagSettings.enableSwitchLensFocalLength,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSwitchLensFocalLength"),
-                onCheckedChange = { onSettingChanged("enableSwitchLensFocalLength", it) }
+                onCheckedChange = { onSettingChanged("enableSwitchLensFocalLength", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableSwitchLensFocalLength")
             )
 
             SettingsSwitchItem(
@@ -536,7 +541,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_motion_capture_desc),
                 checked = vendorTagSettings.enableMotionCapture,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMotionCapture"),
-                onCheckedChange = { onSettingChanged("enableMotionCapture", it) }
+                onCheckedChange = { onSettingChanged("enableMotionCapture", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableMotionCapture")
             )
 
             SettingsSwitchItem(
@@ -544,7 +550,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_multi_frame_burst_shot_desc),
                 checked = vendorTagSettings.enableMultiFrameBurstShot,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMultiFrameBurstShot"),
-                onCheckedChange = { onSettingChanged("enableMultiFrameBurstShot", it) }
+                onCheckedChange = { onSettingChanged("enableMultiFrameBurstShot", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableMultiFrameBurstShot")
             )
 
             SettingsSwitchItem(
@@ -587,11 +594,9 @@ fun VendorTagSettingsGroup(
                 title = stringResource(R.string.camera_settings_master_mode_title),
                 description = stringResource(R.string.camera_settings_master_mode_desc),
                 checked = vendorTagSettings.enableMasterMode,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                    context,
-                    "enableStyleEffect"
-                ),
-                onCheckedChange = { onSettingChanged("enableMasterMode", it) }
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableStyleEffect"),
+                onCheckedChange = { onSettingChanged("enableMasterMode", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableMasterMode")
             )
 
             SettingsSwitchItem(
@@ -599,7 +604,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_master_raw_max_desc),
                 checked = vendorTagSettings.enableMasterRawMax,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMasterRawMax"),
-                onCheckedChange = { onSettingChanged("enableMasterRawMax", it) }
+                onCheckedChange = { onSettingChanged("enableMasterRawMax", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableMasterRawMax")
             )
 
 
@@ -611,22 +617,20 @@ fun VendorTagSettingsGroup(
 //                    onCheckedChange = { onSettingChanged("enableScaleFocus", it) }
 //                )
 
+
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_style_effect_title),
                     description = stringResource(R.string.camera_settings_style_effect_desc),
                     checked = vendorTagSettings.enableStyleEffect,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                        context,
-                        "enableStyleEffect"
-                    ),
-                    onCheckedChange = { onSettingChanged("enableStyleEffect", it) }
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableStyleEffect"),
+                    onCheckedChange = { onSettingChanged("enableStyleEffect", it) },
+                    visible = !isDefaultValueEnableFunction(context, "enableStyleEffect")
                 )
 
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_mastermode_unlock_filter_title),
                 description = stringResource(R.string.camera_settings_mastermode_unlock_filter_desc),
                 checked = vendorTagSettings.unlockFilterInMasterMode,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "unlockFilterInMasterMode"),
                 onCheckedChange = { onSettingChanged("unlockFilterInMasterMode", it) }
             )
 
@@ -635,7 +639,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_soft_light_pro_desc),
                 checked = vendorTagSettings.enableSoftLightProMode,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSoftLightProMode"),
-                onCheckedChange = { onSettingChanged("enableSoftLightProMode", it) }
+                onCheckedChange = { onSettingChanged("enableSoftLightProMode", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableSoftLightProMode")
             )
 
             SettingsSwitchItem(
@@ -654,7 +659,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_portrait_zoom_desc),
                 checked = vendorTagSettings.enablePortraitZoom,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enablePortraitZoom"),
-                onCheckedChange = { onSettingChanged("enablePortraitZoom", it) }
+                onCheckedChange = { onSettingChanged("enablePortraitZoom", it) },
+                visible = !isDefaultValueEnableFunction(context, "enablePortraitZoom")
             )
 
             if (isNewCameraVer(46)) {
@@ -662,10 +668,7 @@ fun VendorTagSettingsGroup(
                     title = stringResource(R.string.camera_settings_portrait_rear_flash_title),
                     description = stringResource(R.string.camera_settings_portrait_rear_flash_desc),
                     checked = vendorTagSettings.enablePortraitRearFlash,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                        context,
-                        "enablePortraitRearFlash"
-                    ),
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enablePortraitRearFlash"),
                     onCheckedChange = { onSettingChanged("enablePortraitRearFlash", it) }
                 )
             }
@@ -686,7 +689,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_gr_filter_desc),
                 checked = vendorTagSettings.enableGRFilter,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableGRFilter"),
-                onCheckedChange = { onSettingChanged("enableGRFilter", it) }
+                onCheckedChange = { onSettingChanged("enableGRFilter", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableGRFilter")
             )
 
             SettingsSwitchItem(
@@ -702,7 +706,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_tol_style_filter_desc),
                 checked = vendorTagSettings.enableTolStyleFilter,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableTolStyleFilter"),
-                onCheckedChange = { onSettingChanged("enableTolStyleFilter", it) }
+                onCheckedChange = { onSettingChanged("enableTolStyleFilter", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableTolStyleFilter")
             )
 
             SettingsSwitchItem(
@@ -710,7 +715,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_grand_tour_filter_desc),
                 checked = vendorTagSettings.enableGrandTourFilter,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableGrandTourFilter"),
-                onCheckedChange = { onSettingChanged("enableGrandTourFilter", it) }
+                onCheckedChange = { onSettingChanged("enableGrandTourFilter", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableGrandTourFilter")
             )
 
             SettingsSwitchItem(
@@ -718,7 +724,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_desert_filter_desc),
                 checked = vendorTagSettings.enableDesertFilter,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableDesertFilter"),
-                onCheckedChange = { onSettingChanged("enableDesertFilter", it) }
+                onCheckedChange = { onSettingChanged("enableDesertFilter", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableDesertFilter")
             )
 
             SettingsSwitchItem(
@@ -726,7 +733,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_vignette_grain_filter_desc),
                 checked = vendorTagSettings.enableVignetteGrainFilter,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVignetteGrainFilter"),
-                onCheckedChange = { onSettingChanged("enableVignetteGrainFilter", it) }
+                onCheckedChange = { onSettingChanged("enableVignetteGrainFilter", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableVignetteGrainFilter")
             )
 
             SettingsSwitchItem(
@@ -734,7 +742,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_jiang_wen_filter_desc),
                 checked = vendorTagSettings.enableJiangWenFilter,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableJiangWenFilter"),
-                onCheckedChange = { onSettingChanged("enableJiangWenFilter", it) }
+                onCheckedChange = { onSettingChanged("enableJiangWenFilter", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableJiangWenFilter")
             )
 
             SettingsSwitchItem(
@@ -742,7 +751,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_jzk_movie_filter_desc),
                 checked = vendorTagSettings.enableJzkMovieFilter,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableJzkMovieFilter"),
-                onCheckedChange = { onSettingChanged("enableJzkMovieFilter", it) }
+                onCheckedChange = { onSettingChanged("enableJzkMovieFilter", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableJzkMovieFilter")
             )
 
             SettingsSwitchItem(
@@ -750,7 +760,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_meishe_filter_desc),
                 checked = vendorTagSettings.enableMeisheFilter,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMeisheFilter"),
-                onCheckedChange = { onSettingChanged("enableMeisheFilter", it) }
+                onCheckedChange = { onSettingChanged("enableMeisheFilter", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableMeisheFilter")
             )
 
             SettingsSwitchItem(
@@ -758,7 +769,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_os15_new_filter_desc),
                 checked = vendorTagSettings.enableOs15NewFilter,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableOs15NewFilter"),
-                onCheckedChange = { onSettingChanged("enableOs15NewFilter", it) }
+                onCheckedChange = { onSettingChanged("enableOs15NewFilter", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableOs15NewFilter")
             )
 
             // 仅ColorOS16
@@ -767,22 +779,20 @@ fun VendorTagSettingsGroup(
                     title = stringResource(R.string.camera_setiings_ccd_filter_title),
                     description = stringResource(R.string.camera_setiings_ccd_filter_desc),
                     checked = vendorTagSettings.enableFlashFilter,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                        context,
-                        "enableFlashFilter"
-                    ),
-                    onCheckedChange = { onSettingChanged("enableFlashFilter", it) }
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableFlashFilter"),
+                    onCheckedChange = { onSettingChanged("enableFlashFilter", it) },
+                    visible = !isDefaultValueEnableFunction(context, "enableFlashFilter"),
+                    enabled = vendorTagSettings.enableFlashFilter
                 )
 
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_setiings_softlight_filter_title),
                     description = stringResource(R.string.camera_setiings_softlight_filter_desc),
                     checked = vendorTagSettings.enableSoftLightFilter,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                        context,
-                        "enableSoftLightFilter"
-                    ),
-                    onCheckedChange = { onSettingChanged("enableSoftLightFilter", it) }
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSoftLightFilter"),
+                    onCheckedChange = { onSettingChanged("enableSoftLightFilter", it) },
+                    visible = !isDefaultValueEnableFunction(context, "enableSoftLightFilter"),
+                    enabled = vendorTagSettings.enableSoftLightFilter
                 )
             }
             SettingsSwitchItem(
@@ -790,7 +800,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_soft_light_photo_desc),
                 checked = vendorTagSettings.enableSoftLightPhotoMode,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSoftLightPhotoMode"),
-                onCheckedChange = { onSettingChanged("enableSoftLightPhotoMode", it) }
+                onCheckedChange = { onSettingChanged("enableSoftLightPhotoMode", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableSoftLightPhotoMode")
             )
 
             SettingsSwitchItem(
@@ -798,7 +809,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_soft_light_night_desc),
                 checked = vendorTagSettings.enableSoftLightNightMode,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSoftLightNightMode"),
-                onCheckedChange = { onSettingChanged("enableSoftLightNightMode", it) }
+                onCheckedChange = { onSettingChanged("enableSoftLightNightMode", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableSoftLightNightMode")
             )
         }
 
@@ -809,7 +821,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_720p_60fps_desc),
                 checked = vendorTagSettings.enable720p60fps,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enable720p60fps"),
-                onCheckedChange = { onSettingChanged("enable720p60fps", it) }
+                onCheckedChange = { onSettingChanged("enable720p60fps", it) },
+                visible = !isDefaultValueEnableFunction(context, "enable720p60fps")
             )
             
             SettingsSwitchItem(
@@ -817,35 +830,36 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_enable_front_4k_video_desc),
                 checked = vendorTagSettings.enableFront4KVideo,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableFront4KVideo"),
-                onCheckedChange = { onSettingChanged("enableFront4KVideo", it) }
+                onCheckedChange = { onSettingChanged("enableFront4KVideo", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableFront4KVideo")
             )
 
-            if (isNewCameraVer(46)) {
+            if (isV16()) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_1080p_120fps_video_title),
                     description = stringResource(R.string.camera_settings_1080p_120fps_video_desc),
                     checked = vendorTagSettings.enable1080p120fpsVideo,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                        context,
-                        "enable1080p120fpsVideo"
-                    ),
-                    onCheckedChange = { onSettingChanged("enable1080p120fpsVideo", it) }
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enable1080p120fpsVideo"),
+                    onCheckedChange = { onSettingChanged("enable1080p120fpsVideo", it) },
+                    visible = !isDefaultValueEnableFunction(context, "enable1080p120fpsVideo")
+                )
+
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_settings_4k_120fps_video_title),
+                    description = stringResource(R.string.camera_settings_4k_120fps_video_desc),
+                    checked = vendorTagSettings.enable4K120fpsVideo,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enable4K120fpsVideo"),
+                    onCheckedChange = { onSettingChanged("enable4K120fpsVideo", it) },
+                    visible = !isDefaultValueEnableFunction(context, "enable4K120fpsVideo")
                 )
             }
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_4k_120fps_video_title),
-                description = stringResource(R.string.camera_settings_4k_120fps_video_desc),
-                checked = vendorTagSettings.enable4K120fpsVideo,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enable4K120fpsVideo"),
-                onCheckedChange = { onSettingChanged("enable4K120fpsVideo", it) }
-            )
-            
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_slow_video_480fps_title),
                 description = stringResource(R.string.camera_settings_slow_video_480fps_desc),
                 checked = vendorTagSettings.enableSlowVideo480fps,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSlowVideo480fps"),
-                onCheckedChange = { onSettingChanged("enableSlowVideo480fps", it) }
+                onCheckedChange = { onSettingChanged("enableSlowVideo480fps", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableSlowVideo480fps")
             )
             
             SettingsSwitchItem(
@@ -853,7 +867,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_video_stop_sound_desc),
                 checked = vendorTagSettings.enableVideoStopSoundImmediate,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoStopSoundImmediate"),
-                onCheckedChange = { onSettingChanged("enableVideoStopSoundImmediate", it) }
+                onCheckedChange = { onSettingChanged("enableVideoStopSoundImmediate", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableVideoStopSoundImmediate")
             )
 
             if (isV16()) {
@@ -862,29 +877,26 @@ fun VendorTagSettingsGroup(
                     description = stringResource(R.string.camera_settings_video_auto_fps_desc),
                     checked = vendorTagSettings.enableVideoAutoFps,
                     defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoAutoFps"),
-                    onCheckedChange = { onSettingChanged("enableVideoAutoFps", it) }
+                    onCheckedChange = { onSettingChanged("enableVideoAutoFps", it) },
+                    visible = !isDefaultValueEnableFunction(context, "enableVideoAutoFps")
                 )
 
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_video_lock_lens_title),
                     description = stringResource(R.string.camera_settings_video_lock_lens_desc),
                     checked = vendorTagSettings.enableVideoLockLens,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                        context,
-                        "enableVideoLockLens"
-                    ),
-                    onCheckedChange = { onSettingChanged("enableVideoLockLens", it) }
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoLockLens"),
+                    onCheckedChange = { onSettingChanged("enableVideoLockLens", it) },
+                    visible = !isDefaultValueEnableFunction(context, "enableVideoLockLens")
                 )
 
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_video_lock_wb_title),
                     description = stringResource(R.string.camera_settings_video_lock_wb_desc),
                     checked = vendorTagSettings.enableVideoLockWb,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                        context,
-                        "enableVideoLockWb"
-                    ),
-                    onCheckedChange = { onSettingChanged("enableVideoLockWb", it) }
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoLockWb"),
+                    onCheckedChange = { onSettingChanged("enableVideoLockWb", it) },
+                    visible = !isDefaultValueEnableFunction(context, "enableVideoLockWb")
                 )
             }
             SettingsSwitchItem(
@@ -892,7 +904,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_video_sound_focus_desc),
                 checked = vendorTagSettings.enableVideoSoundFocus,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVideoSoundFocus"),
-                onCheckedChange = { onSettingChanged("enableVideoSoundFocus", it) }
+                onCheckedChange = { onSettingChanged("enableVideoSoundFocus", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableVideoSoundFocus")
             )
             
             SettingsSwitchItem(
@@ -900,7 +913,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_mic_status_check_desc),
                 checked = vendorTagSettings.enableMicStatusCheck,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMicStatusCheck"),
-                onCheckedChange = { onSettingChanged("enableMicStatusCheck", it) }
+                onCheckedChange = { onSettingChanged("enableMicStatusCheck", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableMicStatusCheck")
             )
         }
         
@@ -911,7 +925,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_dolby_video_desc),
                 checked = vendorTagSettings.enableDolbyVideo,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableDolbyVideo"),
-                onCheckedChange = { onSettingChanged("enableDolbyVideo", it) }
+                onCheckedChange = { onSettingChanged("enableDolbyVideo", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableDolbyVideo")
             )
 
             SettingsSwitchItem(
@@ -919,7 +934,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_dolby_video_60fps_desc),
                 checked = vendorTagSettings.enableDolbyVideo60fps,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableDolbyVideo60fps"),
-                onCheckedChange = { onSettingChanged("enableDolbyVideo60fps", it) }
+                onCheckedChange = { onSettingChanged("enableDolbyVideo60fps", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableDolbyVideo60fps")
             )
 
             SettingsSwitchItem(
@@ -927,7 +943,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_dolby_video_120fps_desc),
                 checked = vendorTagSettings.enableDolbyVideo120fps,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableDolbyVideo120fps"),
-                onCheckedChange = { onSettingChanged("enableDolbyVideo120fps", it) }
+                onCheckedChange = { onSettingChanged("enableDolbyVideo120fps", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableDolbyVideo120fps")
             )
 
             SettingsSwitchItem(
@@ -935,7 +952,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_dolby_video_sat_desc),
                 checked = vendorTagSettings.enableDolbyVideoSat,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableDolbyVideoSat"),
-                onCheckedChange = { onSettingChanged("enableDolbyVideoSat", it) }
+                onCheckedChange = { onSettingChanged("enableDolbyVideoSat", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableDolbyVideoSat")
             )
 
             SettingsSwitchItem(
@@ -943,7 +961,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_front_dolby_video_desc),
                 checked = vendorTagSettings.enableFrontDolbyVideo,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableFrontDolbyVideo"),
-                onCheckedChange = { onSettingChanged("enableFrontDolbyVideo", it) }
+                onCheckedChange = { onSettingChanged("enableFrontDolbyVideo", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableFrontDolbyVideo")
             )
         }
         
@@ -954,7 +973,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_new_macro_mode_desc),
                 checked = vendorTagSettings.enableNewMacroMode,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableNewMacroMode"),
-                onCheckedChange = { onSettingChanged("enableNewMacroMode", it) }
+                onCheckedChange = { onSettingChanged("enableNewMacroMode", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableNewMacroMode")
             )
             
             SettingsSwitchItem(
@@ -962,7 +982,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_macro_tele_desc),
                 checked = vendorTagSettings.enableMacroTele,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMacroTele"),
-                onCheckedChange = { onSettingChanged("enableMacroTele", it) }
+                onCheckedChange = { onSettingChanged("enableMacroTele", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableMacroTele")
             )
 
             SettingsSwitchItem(
@@ -970,7 +991,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_macro_depth_fusion_desc),
                 checked = vendorTagSettings.enableMacroDepthFusion,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMacroDepthFusion"),
-                onCheckedChange = { onSettingChanged("enableMacroDepthFusion", it) }
+                onCheckedChange = { onSettingChanged("enableMacroDepthFusion", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableMacroDepthFusion")
             )
         }
 
@@ -981,19 +1003,18 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_live_photo_desc),
                 checked = vendorTagSettings.enableLivePhoto,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableLivePhoto"),
-                onCheckedChange = { onSettingChanged("enableLivePhoto", it) }
+                onCheckedChange = { onSettingChanged("enableLivePhoto", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableLivePhoto")
             )
 
-            if (isNewCameraVer(46)) {
+            if (isV16()) {
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_setiings_live_photo_mastermode_title),
                     description = stringResource(R.string.camera_setiings_live_photo_mastermode_desc),
                     checked = vendorTagSettings.enableMasterModeLivePhoto,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                        context,
-                        "enableMasterModeLivePhoto"
-                    ),
-                    onCheckedChange = { onSettingChanged("enableMasterModeLivePhoto", it) }
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMasterModeLivePhoto"),
+                    onCheckedChange = { onSettingChanged("enableMasterModeLivePhoto", it) },
+                    visible = !isDefaultValueEnableFunction(context, "enableMasterModeLivePhoto")
                 )
             }
 //            SettingsSwitchItem(
@@ -1017,7 +1038,8 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_live_photo_fov_desc),
                 checked = vendorTagSettings.enableLivePhotoFovOptimize,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableLivePhotoFovOptimize"),
-                onCheckedChange = { onSettingChanged("enableLivePhotoFovOptimize", it) }
+                onCheckedChange = { onSettingChanged("enableLivePhotoFovOptimize", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableLivePhotoFovOptimize")
             )
             
             SettingsSwitchItem(
@@ -1055,20 +1077,22 @@ fun VendorTagSettingsGroup(
 
         // HEIF/HDR设置
         SettingsCard(title = stringResource(R.string.camera_settings_category_heif_hdr)) {
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_heif_blur_edit_title),
-                description = stringResource(R.string.camera_settings_heif_blur_edit_desc),
-                checked = vendorTagSettings.enableHeifBlurEdit,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHeifBlurEdit"),
-                onCheckedChange = { onSettingChanged("enableHeifBlurEdit", it) }
-            )
+//            SettingsSwitchItem(
+//                title = stringResource(R.string.camera_settings_heif_blur_edit_title),
+//                description = stringResource(R.string.camera_settings_heif_blur_edit_desc),
+//                checked = vendorTagSettings.enableHeifBlurEdit,
+//                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHeifBlurEdit"),
+//                onCheckedChange = { onSettingChanged("enableHeifBlurEdit", it) },
+//                visible = !isDefaultValueEnableFunction(context, "enableHeifBlurEdit")
+//            )
             
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_10bit_photo_title),
                 description = stringResource(R.string.camera_settings_10bit_photo_desc),
                 checked = vendorTagSettings.enable10bitPhoto,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enable10bitPhoto"),
-                onCheckedChange = { onSettingChanged("enable10bitPhoto", it) }
+                onCheckedChange = { onSettingChanged("enable10bitPhoto", it) },
+                visible = !isDefaultValueEnableFunction(context, "enable10bitPhoto")
             )
         }
         
@@ -1079,18 +1103,17 @@ fun VendorTagSettingsGroup(
                 description = stringResource(R.string.camera_settings_hasselblad_watermark_desc),
                 checked = vendorTagSettings.enableHasselbladWatermark,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHasselbladWatermark"),
-                onCheckedChange = { onSettingChanged("enableHasselbladWatermark", it) }
+                onCheckedChange = { onSettingChanged("enableHasselbladWatermark", it) },
+                visible = !isDefaultValueEnableFunction(context, "enableHasselbladWatermark")
             )
 
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_setiings_xpan_title),
                 description = stringResource(R.string.camera_setiings_xpan_desc),
                 checked = vendorTagSettings.enableXPAN,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                    context,
-                    "enableXPAN"
-                ),
-                onCheckedChange = { onSettingChanged("enableXPAN", it) }
+                //defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableXPAN"),
+                onCheckedChange = { onSettingChanged("enableXPAN", it) },
+                //visible = !isDefaultValueEnableFunction(context, "enableXPAN")
             )
 
         }

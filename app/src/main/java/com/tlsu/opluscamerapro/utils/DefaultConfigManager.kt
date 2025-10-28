@@ -99,7 +99,9 @@ object DefaultConfigManager {
         "com.oplus.camera.livephoto.mastermode.support" to "enableMasterModeLivePhoto",
         "com.oplus.feature.soft.light.filter.support" to "enableSoftLightFilter",
         "com.oplus.feature.flash.filter.support" to "enableFlashFilter",
-        "com.oplus.feature.xpan.mode.support" to "enableXPAN"
+        "com.oplus.feature.xpan.mode.support" to "enableXPAN",
+        "com.oplus.gr.mode.support" to "enableGRFilter",
+        "com.oplus.gr.mode.support" to "enableGRWatermark"
     )
     
     // 保存功能名称到VendorTag的反向映射
@@ -349,6 +351,20 @@ object DefaultConfigManager {
             }
         } else {
             context.getString(R.string.default_value_unknown)
+        }
+    }
+    fun isDefaultValueEnableFunction(context: Context, featureName: String): Boolean {
+        val config = loadDefaultConfig()
+        val defaultTag = config.vendorTags[featureName]
+
+        return if (defaultTag != null) {
+            if (defaultTag.isEnabled) {
+                true
+            } else {
+                false
+            }
+        } else {
+            true
         }
     }
 } 

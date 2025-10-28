@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -32,57 +31,61 @@ fun SettingsSwitchItem(
     modifier: Modifier = Modifier,
     icon: @Composable (() -> Unit)? = null,
     enabled: Boolean = true,
+    visible: Boolean = true, // <<<--- Add the visible parameter here
     defaultValueDescription: String? = null,
     onCheckedChange: (Boolean) -> Unit
 ) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 12.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        // 图标（如果有）
-        if (icon != null) {
-            icon()
-            Spacer(modifier = Modifier.width(16.dp))
-        }
-        
-        // 标题和描述
-        Column(
-            modifier = Modifier.weight(1f)
+    // <<<--- Wrap the Row in an if statement ---<<<
+    if (visible) {
+        Row(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.bodyLarge,
-                color = if (enabled) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
-            )
-            
-            // 显示描述（如果有）
-            if (description != null) {
-                Spacer(modifier = Modifier.height(4.dp))
+            // 图标（如果有）
+            if (icon != null) {
+                icon()
+                Spacer(modifier = Modifier.width(16.dp))
+            }
+
+            // 标题和描述
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
                 Text(
-                    text = description,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = if (enabled) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                    text = title,
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = if (enabled) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                 )
+
+                // 显示描述（如果有）
+                if (description != null) {
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = description,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = if (enabled) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                    )
+                }
+
+                // 默认值卡片（如果有）
+                if (defaultValueDescription != null) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    DefaultValueCard(
+                        text = defaultValueDescription,
+                        enabled = enabled
+                    )
+                }
             }
-            
-            // 默认值卡片（如果有）
-            if (defaultValueDescription != null) {
-                Spacer(modifier = Modifier.height(8.dp))
-                DefaultValueCard(
-                    text = defaultValueDescription,
-                    enabled = enabled
-                )
-            }
+
+            // 开关
+            Switch(
+                checked = checked,
+                onCheckedChange = onCheckedChange,
+                enabled = enabled
+            )
         }
-        
-        // 开关
-        Switch(
-            checked = checked,
-            onCheckedChange = onCheckedChange,
-            enabled = enabled
-        )
     }
 }
 
@@ -97,7 +100,7 @@ private fun DefaultValueCard(
 ) {
     Card(
         modifier = Modifier
-            .fillMaxWidth()
+            // .fillMaxWidth() // Consider removing fillMaxWidth if the switch is very close
             .padding(end = 8.dp, top = 2.dp, bottom = 2.dp),
         shape = RoundedCornerShape(6.dp),
         colors = CardDefaults.cardColors(
@@ -114,10 +117,10 @@ private fun DefaultValueCard(
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Normal
             ),
-            color = if (enabled) 
+            color = if (enabled)
                 MaterialTheme.colorScheme.onSurface
-            else 
+            else
                 MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
         )
     }
-} 
+}
