@@ -1,6 +1,9 @@
 package com.tlsu.opluscamerapro.hook.camera
 
 import com.github.kyuubiran.ezxhelper.ClassUtils.loadClass
+import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
+import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinder
+import com.github.kyuubiran.ezxhelper.params
 import com.tlsu.opluscamerapro.hook.BaseHook
 import com.tlsu.opluscamerapro.utils.ConfigBasedAddConfig
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV15
@@ -161,8 +164,7 @@ object FilterGroup : BaseHook() {
                     object : XC_MethodReplacement() {
                         @Throws(Throwable::class)
                         override fun replaceHookedMethod(param: MethodHookParam) {
-                            val sFilterGroup =
-                                XposedHelpers.getStaticObjectField(clazz, "sHasselbladXpanFilterGroup")
+                            val sFilterGroup = XposedHelpers.getStaticObjectField(clazz, "sHasselbladXpanFilterGroup")
                             invokeAddBack(
                                 sFilterGroup,
                                 "default",
@@ -197,6 +199,15 @@ object FilterGroup : BaseHook() {
                     }
                 )
             }
+
+            loadClass("com.meicam.effect.oppo.MeisheRender")
+                .methodFinder().filterByName("setStaticLUTPath").single()
+                .createHook {
+                    before { param ->
+                        param.args[0] = "/data/user/0/com.tlsu.opluscamerapro/files/meishe_lut"
+                    }
+                }
+
             XposedBridge.log("OPCameraPro: hook FilterGroup successfully")
         } catch (e: Throwable) {
             XposedBridge.log("OPCameraPro: hook FilterGroup failed!")
