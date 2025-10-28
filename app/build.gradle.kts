@@ -13,8 +13,8 @@ android {
         applicationId = "com.tlsu.opluscamerapro"
         minSdk = 34
         targetSdk = 36
-        versionCode = 2400
-        versionName = "Beta 2.4.0"
+        versionCode = 3000
+        versionName = "Katrina 3.0.0"
     }
 
     val properties = Properties()

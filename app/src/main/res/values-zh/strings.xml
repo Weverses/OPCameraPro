@@ -55,7 +55,7 @@
 
     <!-- 对话框 -->
     <string name="about_dialog_title">关于</string>
-    <string name="about_dialog_version">版本: Xenon 2.3.5</string>
+    <string name="about_dialog_version">版本: Katrina 3.0.0</string>
     <string name="about_dialog_author">作者: TimelessU</string>
     <string name="about_dialog_description">OPCameraPro 相机功能补全, 一个适用于 ColorOS 与 realmeUI 的相机增强型 Xposed 模块\n该模块完全免费, 请勿上当受骗</string>
     <string name="confirm">确定</string>
