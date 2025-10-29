@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.tlsu.opluscamerapro"
-        minSdk = 34
+        minSdk = 35
         targetSdk = 36
         versionCode = 3000
         versionName = "Katrina 3.0.0"
