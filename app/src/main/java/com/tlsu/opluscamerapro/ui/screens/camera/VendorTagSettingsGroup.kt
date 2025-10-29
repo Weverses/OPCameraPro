@@ -447,7 +447,7 @@ fun VendorTagSettingsGroup(
         }
 
         if (isV16()) {
-            HintCard(title = stringResource(R.string.unsupport_camera_app_version)) {}
+            HintCard(title = stringResource(R.string.need_wipe_camera_data)) {}
         }
 
         SettingsCard(title = stringResource(R.string.camera_settings_category_advanced)) {
@@ -1128,17 +1128,14 @@ fun VendorTagSettingsGroup(
                     //visible = !isDefaultValueEnableFunction(context, "enableXPAN")
                 )
 
-                SettingsSwitchItem(
-                    title = stringResource(R.string.camera_setiings_hasselblad_highpixel_title),
-                    description = stringResource(R.string.camera_setiings_hasselblad_highpixel_desc),
-                    checked = vendorTagSettings.enableHasselbladHighPixel,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
-                        context,
-                        "enableHasselbladHighPixel"
-                    ),
-                    onCheckedChange = { onSettingChanged("enableHasselbladHighPixel", it) },
-                    visible = !isDefaultValueEnableFunction(context, "enableHasselbladHighPixel")
-                )
+//                SettingsSwitchItem(
+//                    title = stringResource(R.string.camera_setiings_hasselblad_highpixel_title),
+//                    description = stringResource(R.string.camera_setiings_hasselblad_highpixel_desc),
+//                    checked = vendorTagSettings.enableHasselbladHighPixel,
+//                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableHasselbladHighPixel"),
+//                    onCheckedChange = { onSettingChanged("enableHasselbladHighPixel", it) },
+//                    visible = !isDefaultValueEnableFunction(context, "enableHasselbladHighPixel")
+//                )
             }
         }
         
@@ -1190,7 +1187,7 @@ private fun HintCard(
             .padding(vertical = 8.dp),
         // 设置卡片的颜色
         colors = CardDefaults.cardColors(
-            containerColor = Color(0xffc3172f)
+            containerColor = Color(0xfff66862)
         )
     ) {
         Column(

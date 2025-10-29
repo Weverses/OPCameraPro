@@ -1681,7 +1681,7 @@ object ConfigBasedAddConfig {
 
             }
 
-            if (isV1501() && vendorTags.enableHasselbladHighPixel) {
+            if (isV1501() && vendorTags.enableLUMO) {
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.lumo.setting.guide.support",
@@ -1804,17 +1804,17 @@ object ConfigBasedAddConfig {
 //                    MergeStrategy.OVERRIDE
 //                )
 
-                if (isV16() && vendorTags.enableHasselbladHighPixel) {
-                    addPresetTag(
-                        VendorTagInfo(
-                            "com.oplus.camera.hasselblad.super.definition.support",
-                            "Byte",
-                            "1",
-                            "1"
-                        ),
-                        MergeStrategy.OVERRIDE
-                    )
-                }
+//                if (isV16() && vendorTags.enableHasselbladHighPixel) {
+//                    addPresetTag(
+//                        VendorTagInfo(
+//                            "com.oplus.camera.hasselblad.super.definition.support",
+//                            "Byte",
+//                            "1",
+//                            "1"
+//                        ),
+//                        MergeStrategy.OVERRIDE
+//                    )
+                //}
 
 //                addPresetTag(
 //                    VendorTagInfo(

@@ -2,6 +2,8 @@ package com.tlsu.opluscamerapro.hook.gallery
 
 import android.content.res.XResForwarder
 import com.tlsu.opluscamerapro.hook.BaseHook
+import com.tlsu.opluscamerapro.utils.ConfigBasedAddConfig
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isV16
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.callbacks.XC_InitPackageResources
 
@@ -31,25 +33,37 @@ object DrawableRedirect : BaseHook() {
     private const val LAND_SUFFIX = "_land"
     private const val LAND_SUFFIX2 = "land_"
     private val SKETCH_INDICES = 1..5 // Numbers 1 to 5
+    // 获取配置
+    val vendorTags = ConfigBasedAddConfig.getVendorTagSettings()
 
     fun initResourceHook(resparam: XC_InitPackageResources.InitPackageResourcesParam) {
-        XposedBridge.log("$logTag: Initializing resource hook for package ${resparam.packageName}")
+        if (isV16() && vendorTags.enableGRWatermark) {
+            XposedBridge.log("$logTag: Initializing resource hook for package ${resparam.packageName}")
 
-        try {
-            redirectDrawables(resparam, SOURCE_CLASSIC_LOGO, TARGET_CLASSIC_LOGOS)
-            redirectDrawables(resparam, SOURCE_CLASSIC_LOGO_DARK, TARGET_CLASSIC_LOGOS_DARK, "_dark") // Add suffix for logging
-        } catch (e: Throwable) {
-            XposedBridge.log("$logTag: Error during classic logo redirection: ${e.message}")
-            XposedBridge.log(e)
-        }
-
-        try {
-            // Redirect normal sketch images (1 to 5)
-            SKETCH_INDICES.forEach { index ->
-                val sourceName = "$SOURCE_SKETCH_PREFIX$index"
-                val targetName = "$TARGET_SKETCH_PREFIX$index"
-                redirectSingleDrawable(resparam, sourceToRedirect = sourceName, targetToUse = targetName)
+            try {
+                redirectDrawables(resparam, SOURCE_CLASSIC_LOGO, TARGET_CLASSIC_LOGOS)
+                redirectDrawables(
+                    resparam,
+                    SOURCE_CLASSIC_LOGO_DARK,
+                    TARGET_CLASSIC_LOGOS_DARK,
+                    "_dark"
+                ) // Add suffix for logging
+            } catch (e: Throwable) {
+                XposedBridge.log("$logTag: Error during classic logo redirection: ${e.message}")
+                XposedBridge.log(e)
             }
+
+            try {
+                // Redirect normal sketch images (1 to 5)
+                SKETCH_INDICES.forEach { index ->
+                    val sourceName = "$SOURCE_SKETCH_PREFIX$index"
+                    val targetName = "$TARGET_SKETCH_PREFIX$index"
+                    redirectSingleDrawable(
+                        resparam,
+                        sourceToRedirect = sourceName,
+                        targetToUse = targetName
+                    )
+                }
 
 //            // Redirect landscape sketch images (1_land to 5_land)
 //            SKETCH_INDICES.forEach { index ->
@@ -57,11 +71,12 @@ object DrawableRedirect : BaseHook() {
 //                val targetName = "$TARGET_SKETCH_PREFIX$LAND_SUFFIX2$index"
 //                redirectSingleDrawable(resparam, sourceToRedirect = sourceName, targetToUse = targetName)
 //            }
-        } catch (e: Throwable) {
-            XposedBridge.log("$logTag: Error during sketch image redirection: ${e.message}")
-            XposedBridge.log(e)
+            } catch (e: Throwable) {
+                XposedBridge.log("$logTag: Error during sketch image redirection: ${e.message}")
+                XposedBridge.log(e)
+            }
+            XposedBridge.log("$logTag: Finished applying redirect rules.")
         }
-        XposedBridge.log("$logTag: Finished applying redirect rules.")
     }
 
     /**

@@ -180,7 +180,9 @@ object ConfigManager {
                 enableXPAN = vendorTagsObj.optBoolean("enableXPAN", false),
                 enableGRFilter = vendorTagsObj.optBoolean("enableGRFilter", false),
                 unlockFilterInMasterMode = vendorTagsObj.optBoolean("unlockFilterInMasterMode", false),
-                enableGRWatermark = vendorTagsObj.optBoolean("enableGRWatermark", false)
+                enableGRWatermark = vendorTagsObj.optBoolean("enableGRWatermark", false),
+                enableLUMO = vendorTagsObj.optBoolean("enableLUMO", false),
+                enableHasselbladHighPixel = vendorTagsObj.optBoolean("enableHasselbladHighPixel", false)
             )
             // 解析其他设置
             val otherSettingsObj = json.optJSONObject("otherSettings") ?: JSONObject()
