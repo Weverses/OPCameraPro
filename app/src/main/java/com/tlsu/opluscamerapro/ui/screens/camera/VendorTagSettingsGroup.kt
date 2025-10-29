@@ -446,6 +446,10 @@ fun VendorTagSettingsGroup(
             }
         }
 
+        if (isV16()) {
+            HintCard(title = stringResource(R.string.unsupport_camera_app_version)) {}
+        }
+
         SettingsCard(title = stringResource(R.string.camera_settings_category_advanced)) {
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_25mp_title),
@@ -800,7 +804,6 @@ fun VendorTagSettingsGroup(
                     defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableSoftLightFilter"),
                     onCheckedChange = { onSettingChanged("enableSoftLightFilter", it) },
                     visible = !isDefaultValueEnableFunction(context, "enableSoftLightFilter"),
-                    enabled = vendorTagSettings.enableSoftLightFilter
                 )
             }
             SettingsSwitchItem(

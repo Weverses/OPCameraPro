@@ -80,7 +80,7 @@ object DefaultConfigManager {
         "com.oplus.video.lock.lens.support" to "enableVideoLockLens",
         "com.oplus.video.lock.wb.support" to "enableVideoLockWb",
         "com.oplus.feature.mic.status.check.support" to "enableMicStatusCheck",
-        "com.oplus.use.hasselblad.style.support" to "enableMasterFilter",
+        "com.oplus.xpan.legacy.ui.style" to "enableMasterFilter",
         "com.oplus.hasselblad.watermark.guide.support" to "enableHasselbladWatermarkGuide",
         "com.oplus.camera.support.custom.hasselblad.watermark" to "enableHasselbladWatermark",
         "com.oplus.camera.support.custom.hasselblad.watermark.sellmode.default.open" to "enableHasselbladWatermarkDefault",
@@ -366,7 +366,7 @@ object DefaultConfigManager {
                 false
             }
         } else {
-            true
+            false
         }
     }
 } 

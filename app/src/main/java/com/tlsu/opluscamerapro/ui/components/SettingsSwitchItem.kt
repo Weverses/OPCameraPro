@@ -31,11 +31,10 @@ fun SettingsSwitchItem(
     modifier: Modifier = Modifier,
     icon: @Composable (() -> Unit)? = null,
     enabled: Boolean = true,
-    visible: Boolean = true, // <<<--- Add the visible parameter here
+    visible: Boolean = true,
     defaultValueDescription: String? = null,
     onCheckedChange: (Boolean) -> Unit
 ) {
-    // <<<--- Wrap the Row in an if statement ---<<<
     if (visible) {
         Row(
             modifier = modifier
