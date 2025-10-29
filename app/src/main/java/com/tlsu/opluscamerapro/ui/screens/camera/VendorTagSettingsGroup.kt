@@ -775,15 +775,15 @@ fun VendorTagSettingsGroup(
 
             // 仅ColorOS16
             if (isV16()) {
-                SettingsSwitchItem(
-                    title = stringResource(R.string.camera_setiings_ccd_filter_title),
-                    description = stringResource(R.string.camera_setiings_ccd_filter_desc),
-                    checked = vendorTagSettings.enableFlashFilter,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableFlashFilter"),
-                    onCheckedChange = { onSettingChanged("enableFlashFilter", it) },
-                    visible = !isDefaultValueEnableFunction(context, "enableFlashFilter"),
-                    enabled = vendorTagSettings.enableFlashFilter
-                )
+//                SettingsSwitchItem(
+//                    title = stringResource(R.string.camera_setiings_ccd_filter_title),
+//                    description = stringResource(R.string.camera_setiings_ccd_filter_desc),
+//                    checked = vendorTagSettings.enableFlashFilter,
+//                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableFlashFilter"),
+//                    onCheckedChange = { onSettingChanged("enableFlashFilter", it) },
+//                    visible = !isDefaultValueEnableFunction(context, "enableFlashFilter"),
+//                    enabled = vendorTagSettings.enableFlashFilter
+//                )
 
                 SettingsSwitchItem(
                     title = stringResource(R.string.camera_setiings_softlight_filter_title),

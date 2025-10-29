@@ -200,13 +200,13 @@ object FilterGroup : BaseHook() {
                 )
             }
 
-            loadClass("com.meicam.effect.oppo.MeisheRender")
-                .methodFinder().filterByName("setStaticLUTPath").single()
-                .createHook {
-                    before { param ->
-                        param.args[0] = "/data/user/0/com.tlsu.opluscamerapro/files/meishe_lut/"
-                    }
-                }
+//            loadClass("com.meicam.effect.oppo.MeisheRender")
+//                .methodFinder().filterByName("setStaticLUTPath").single()
+//                .createHook {
+//                    before { param ->
+//                        param.args[0] = "/data/data/com.tlsu.opluscamerapro/files/meishe_lut/"
+//                    }
+//                }
 
             XposedBridge.log("OPCameraPro: hook FilterGroup successfully")
         } catch (e: Throwable) {

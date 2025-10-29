@@ -1,4 +1,4 @@
-package com.tlsu.opluscamerapro.hook.camera // 或者其他合适的包名
+package com.tlsu.opluscamerapro.hook.camera
 
 import com.github.kyuubiran.ezxhelper.Log
 import com.tlsu.opluscamerapro.hook.BaseHook
@@ -9,8 +9,6 @@ import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 
 object PreviewHDR : BaseHook() {
-
-    private var TARGET_CLASS = ""
     private const val TARGET_METHOD = "h"
     private const val IS_FRONT_METHOD_NAME = "isFrontCamera"
     private val logTag = "OPCameraPro[PreviewHDRHook]"
@@ -38,7 +36,7 @@ object PreviewHDR : BaseHook() {
             }
         }.single()
 
-        TARGET_CLASS = previewHDRClass.name
+        val TARGET_CLASS = previewHDRClass.name
         XposedBridge.log("$logTag: Initializing hook for $TARGET_CLASS.$TARGET_METHOD in ${currentLpparam.packageName}")
 
         try {
@@ -55,30 +53,30 @@ object PreviewHDR : BaseHook() {
                             val cameraInstance: Any? = try {
                                 XposedHelpers.getObjectField(c0Instance, "b")
                             } catch (e: Throwable) {
-                                Log.e("$logTag: Failed to get field 'b' instance.", e)
+                                XposedBridge.log("$logTag: Failed to get field 'b' instance: $e")
                                 null // 获取失败
                             }
 
                             if (cameraInstance == null) {
-                                Log.w("$logTag: Could not get camera instance (field 'b'). Cannot check camera facing.")
+                                XposedBridge.log("$logTag: Could not get camera instance (field 'b'). Cannot check camera facing.")
                                 return
                             }
                             val isFront = XposedHelpers.callMethod(cameraInstance, IS_FRONT_METHOD_NAME) as? Boolean
 
                             if (isFront == true) {
-                                Log.i("$logTag: Front camera detected via interface. Forcing h() to return false. Original was: ${param.result}")
+                                XposedBridge.log("$logTag: Front camera detected via interface. Forcing h() to return false. Original was: ${param.result}")
                                 param.result = false // 强制返回 false
                             }
 
                         } catch (t: Throwable) {
-                            Log.e("$logTag: Error inside afterHookedMethod for $TARGET_CLASS.$TARGET_METHOD", t)
+                            XposedBridge.log("$logTag: Error inside afterHookedMethod for $TARGET_CLASS.$TARGET_METHOD: $t")
                         }
                     }
                 }
             )
-            Log.i("$logTag: Successfully hooked $TARGET_CLASS.$TARGET_METHOD")
+            XposedBridge.log("$logTag: Successfully hooked $TARGET_CLASS.$TARGET_METHOD")
         } catch (e: Throwable) {
-            Log.e("$logTag: Failed to hook $TARGET_CLASS.$TARGET_METHOD", e)
+            XposedBridge.log("$logTag: Failed to hook $TARGET_CLASS.$TARGET_METHOD: $e")
         }
     }
 }

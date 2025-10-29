@@ -15,6 +15,10 @@ android {
         targetSdk = 36
         versionCode = 3000
         versionName = "Katrina 3.0.0"
+        ndk {
+            //noinspection ChromeOsAbiSupport
+            abiFilters += "arm64-v8a"
+        }
     }
 
     val properties = Properties()
