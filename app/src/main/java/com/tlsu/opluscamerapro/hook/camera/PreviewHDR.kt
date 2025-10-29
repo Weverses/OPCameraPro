@@ -2,6 +2,7 @@ package com.tlsu.opluscamerapro.hook.camera
 
 import com.github.kyuubiran.ezxhelper.Log
 import com.tlsu.opluscamerapro.hook.BaseHook
+import com.tlsu.opluscamerapro.utils.ConfigBasedAddConfig
 import com.tlsu.opluscamerapro.utils.DexKit.dexKitBridge
 import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XposedBridge
@@ -18,65 +19,72 @@ object PreviewHDR : BaseHook() {
     fun setLoadPackageParam(param: XC_LoadPackage.LoadPackageParam) {
         lpparam = param
     }
+    // 获取配置
+    val vendorTags = ConfigBasedAddConfig.getVendorTagSettings()
 
     override fun init() {
-        val currentLpparam = lpparam ?: run {
-            Log.e("$logTag: lpparam is null, skipping init.")
-            return
-        }
-
-        val bridge = dexKitBridge
-        val previewHDRClass = bridge.findClass {
-            matcher {
-                methods {
-                    add {
-                        usingStrings("DATASPACE_DISPLAY_P3_HLG")
-                    }
-                }
+        if (vendorTags.enablePreviewHdr) {
+            val currentLpparam = lpparam ?: run {
+                Log.e("$logTag: lpparam is null, skipping init.")
+                return
             }
-        }.single()
 
-        val TARGET_CLASS = previewHDRClass.name
-        XposedBridge.log("$logTag: Initializing hook for $TARGET_CLASS.$TARGET_METHOD in ${currentLpparam.packageName}")
-
-        try {
-            XposedHelpers.findAndHookMethod(
-                previewHDRClass.name,
-                currentLpparam.classLoader,
-                TARGET_METHOD,
-                String::class.java,
-                object : XC_MethodHook() {
-                    override fun afterHookedMethod(param: MethodHookParam) {
-                        try {
-                            val c0Instance = param.thisObject ?: return
-
-                            val cameraInstance: Any? = try {
-                                XposedHelpers.getObjectField(c0Instance, "b")
-                            } catch (e: Throwable) {
-                                XposedBridge.log("$logTag: Failed to get field 'b' instance: $e")
-                                null // 获取失败
-                            }
-
-                            if (cameraInstance == null) {
-                                XposedBridge.log("$logTag: Could not get camera instance (field 'b'). Cannot check camera facing.")
-                                return
-                            }
-                            val isFront = XposedHelpers.callMethod(cameraInstance, IS_FRONT_METHOD_NAME) as? Boolean
-
-                            if (isFront == true) {
-                                XposedBridge.log("$logTag: Front camera detected via interface. Forcing h() to return false. Original was: ${param.result}")
-                                param.result = false // 强制返回 false
-                            }
-
-                        } catch (t: Throwable) {
-                            XposedBridge.log("$logTag: Error inside afterHookedMethod for $TARGET_CLASS.$TARGET_METHOD: $t")
+            val bridge = dexKitBridge
+            val previewHDRClass = bridge.findClass {
+                matcher {
+                    methods {
+                        add {
+                            usingStrings("DATASPACE_DISPLAY_P3_HLG")
                         }
                     }
                 }
-            )
-            XposedBridge.log("$logTag: Successfully hooked $TARGET_CLASS.$TARGET_METHOD")
-        } catch (e: Throwable) {
-            XposedBridge.log("$logTag: Failed to hook $TARGET_CLASS.$TARGET_METHOD: $e")
+            }.single()
+
+            val TARGET_CLASS = previewHDRClass.name
+            XposedBridge.log("$logTag: Initializing hook for $TARGET_CLASS.$TARGET_METHOD in ${currentLpparam.packageName}")
+
+            try {
+                XposedHelpers.findAndHookMethod(
+                    previewHDRClass.name,
+                    currentLpparam.classLoader,
+                    TARGET_METHOD,
+                    String::class.java,
+                    object : XC_MethodHook() {
+                        override fun afterHookedMethod(param: MethodHookParam) {
+                            try {
+                                val c0Instance = param.thisObject ?: return
+
+                                val cameraInstance: Any? = try {
+                                    XposedHelpers.getObjectField(c0Instance, "b")
+                                } catch (e: Throwable) {
+                                    XposedBridge.log("$logTag: Failed to get field 'b' instance: $e")
+                                    null // 获取失败
+                                }
+
+                                if (cameraInstance == null) {
+                                    XposedBridge.log("$logTag: Could not get camera instance (field 'b'). Cannot check camera facing.")
+                                    return
+                                }
+                                val isFront = XposedHelpers.callMethod(
+                                    cameraInstance,
+                                    IS_FRONT_METHOD_NAME
+                                ) as? Boolean
+
+                                if (isFront == true) {
+                                    XposedBridge.log("$logTag: Front camera detected via interface. Forcing h() to return false. Original was: ${param.result}")
+                                    param.result = false // 强制返回 false
+                                }
+
+                            } catch (t: Throwable) {
+                                XposedBridge.log("$logTag: Error inside afterHookedMethod for $TARGET_CLASS.$TARGET_METHOD: $t")
+                            }
+                        }
+                    }
+                )
+                XposedBridge.log("$logTag: Successfully hooked $TARGET_CLASS.$TARGET_METHOD")
+            } catch (e: Throwable) {
+                XposedBridge.log("$logTag: Failed to hook $TARGET_CLASS.$TARGET_METHOD: $e")
+            }
         }
     }
 }

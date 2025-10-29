@@ -248,7 +248,13 @@ data class VendorTagSettings(
     val unlockFilterInMasterMode: Boolean = false,
 
     // GR 水印
-    val enableGRWatermark: Boolean = false
+    val enableGRWatermark: Boolean = false,
+
+    // LUMO
+    val enableLUMO: Boolean = false,
+
+    // 哈苏超清
+    val enableHasselbladHighPixel: Boolean = false
 )
 
 /**
@@ -288,7 +294,10 @@ data class GallerySettings(
     val enableOliveCoverProXDR: Boolean = false,
 
     // Lumo 水印
-    val enableLumoWatermark: Boolean = false
+    val enableLumoWatermark: Boolean = false,
+
+    // AI 人像补光
+    val enableAILighting: Boolean = false
 )
 
 /**

@@ -52,10 +52,10 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit, IXposedHookInitP
                     initHooks(OplusCameraConfig)
                     ISOHook.handleLoadPackage(lpparam)
                     Video120FPSHook.handleLoadPackage(lpparam)
-                    LivePhotoEISHook.handleLoadPackage(lpparam)
                     ProtobufFeatureHook.handleLoadPackage(lpparam)
                     if (!isV16()) {
                         UnitSDKPatchHook.handleLoadPackage(lpparam)
+                        LivePhotoEISHook.handleLoadPackage(lpparam)
                     }
                     PreviewHDRHook.handleLoadPackage(lpparam)
                 }

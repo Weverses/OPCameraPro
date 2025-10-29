@@ -115,6 +115,11 @@ fun GallerySettingsScreen(
                                         enableLumoWatermark = value
                                     )
                                 )
+                                "enableAILighting" -> currentConfig.copy(
+                                    gallerySettings = currentConfig.gallerySettings.copy(
+                                        enableAILighting = value
+                                    )
+                                )
                                 else -> currentConfig
                             }
                         }

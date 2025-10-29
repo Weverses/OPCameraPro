@@ -101,7 +101,9 @@ object DefaultConfigManager {
         "com.oplus.feature.flash.filter.support" to "enableFlashFilter",
         "com.oplus.feature.xpan.mode.support" to "enableXPAN",
         "com.oplus.gr.mode.support" to "enableGRFilter",
-        "com.oplus.gr.mode.support" to "enableGRWatermark"
+        "com.oplus.gr.mode.support" to "enableGRWatermark",
+        "com.oplus.video.guide.support" to "enableLUMO",
+        "com.oplus.camera.hasselblad.super.definition.support" to "enableHasselbladHighPixel",
     )
     
     // 保存功能名称到VendorTag的反向映射

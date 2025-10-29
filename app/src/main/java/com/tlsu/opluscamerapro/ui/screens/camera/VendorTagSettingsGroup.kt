@@ -474,6 +474,14 @@ fun VendorTagSettingsGroup(
                     visible = !isDefaultValueEnableFunction(context, "enableGRWatermark")
                 )
                 SettingsSwitchItem(
+                    title = stringResource(R.string.camera_setiings_lumo_title),
+                    description = stringResource(R.string.camera_setiings_lumo_desc),
+                    checked = vendorTagSettings.enableLUMO,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableLUMO"),
+                    onCheckedChange = { onSettingChanged("enableLUMO", it) },
+                    visible = !isDefaultValueEnableFunction(context, "enableLUMO")
+                )
+                SettingsSwitchItem(
                     title = stringResource(R.string.camera_settings_preview_hdr_title),
                     description = stringResource(R.string.camera_settings_preview_hdr_desc),
                     checked = vendorTagSettings.enablePreviewHdr,
@@ -1107,15 +1115,28 @@ fun VendorTagSettingsGroup(
                 visible = !isDefaultValueEnableFunction(context, "enableHasselbladWatermark")
             )
 
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_setiings_xpan_title),
-                description = stringResource(R.string.camera_setiings_xpan_desc),
-                checked = vendorTagSettings.enableXPAN,
-                //defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableXPAN"),
-                onCheckedChange = { onSettingChanged("enableXPAN", it) },
-                //visible = !isDefaultValueEnableFunction(context, "enableXPAN")
-            )
+            if (isV16()) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_setiings_xpan_title),
+                    description = stringResource(R.string.camera_setiings_xpan_desc),
+                    checked = vendorTagSettings.enableXPAN,
+                    //defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableXPAN"),
+                    onCheckedChange = { onSettingChanged("enableXPAN", it) },
+                    //visible = !isDefaultValueEnableFunction(context, "enableXPAN")
+                )
 
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_setiings_hasselblad_highpixel_title),
+                    description = stringResource(R.string.camera_setiings_hasselblad_highpixel_desc),
+                    checked = vendorTagSettings.enableHasselbladHighPixel,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(
+                        context,
+                        "enableHasselbladHighPixel"
+                    ),
+                    onCheckedChange = { onSettingChanged("enableHasselbladHighPixel", it) },
+                    visible = !isDefaultValueEnableFunction(context, "enableHasselbladHighPixel")
+                )
+            }
         }
         
         Spacer(modifier = Modifier.height(8.dp))

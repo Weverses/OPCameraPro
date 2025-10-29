@@ -5,6 +5,7 @@ import com.github.kyuubiran.ezxhelper.Log
 import com.tlsu.opluscamerapro.data.AppConfig
 import com.tlsu.opluscamerapro.data.VendorTagSettings
 import com.tlsu.opluscamerapro.utils.DeviceCheck.DEBUG
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV16
 import com.tlsu.opluscamerapro.utils.ParseConfig.addPresetTag
 import com.topjohnwu.superuser.Shell
@@ -201,7 +202,9 @@ object ConfigBasedAddConfig {
                 enableXPAN = vendorTagsObj.optBoolean("enableXPAN", false),
                 enableGRFilter = vendorTagsObj.optBoolean("enableGRFilter", false),
                 unlockFilterInMasterMode = vendorTagsObj.optBoolean("unlockFilterInMasterMode", false),
-                enableGRWatermark = vendorTagsObj.optBoolean("enableGRWatermark", false)
+                enableGRWatermark = vendorTagsObj.optBoolean("enableGRWatermark", false),
+                enableLUMO = vendorTagsObj.optBoolean("enableLUMO", false),
+                enableHasselbladHighPixel = vendorTagsObj.optBoolean("enableHasselbladHighPixel", false)
             )
             
             AppConfig(
@@ -1678,6 +1681,28 @@ object ConfigBasedAddConfig {
 
             }
 
+            if (isV1501() && vendorTags.enableHasselbladHighPixel) {
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.lumo.setting.guide.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.video.guide.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+            }
+
             if (DEBUG) {
 //                addPresetTag(
 //                    VendorTagInfo(
@@ -1759,36 +1784,37 @@ object ConfigBasedAddConfig {
 //                    MergeStrategy.OVERRIDE
 //                )
 
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.camera.video.bitrate.increase.support",
-                        "Byte",
-                        "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.camera.video.bitrate.increase.support",
+//                        "Byte",
+//                        "1",
+//                        "1"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
 
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.camera.video.livephoto.support",
-                        "Byte",
-                        "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.camera.video.livephoto.support",
+//                        "Byte",
+//                        "1",
+//                        "1"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
 
-
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.camera.hasselblad.super.definition.support",
-                        "Byte",
-                        "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
+                if (isV16() && vendorTags.enableHasselbladHighPixel) {
+                    addPresetTag(
+                        VendorTagInfo(
+                            "com.oplus.camera.hasselblad.super.definition.support",
+                            "Byte",
+                            "1",
+                            "1"
+                        ),
+                        MergeStrategy.OVERRIDE
+                    )
+                }
 
 //                addPresetTag(
 //                    VendorTagInfo(

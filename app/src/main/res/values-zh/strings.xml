@@ -242,7 +242,10 @@
     <string name="camera_setiings_xpan_desc">启用新版XPAN模式, 支持显影动画以及多个滤镜切换</string>
     <string name="camera_settings_gr_watermark_title">GR 水印</string>
     <string name="camera_settings_gr_watermark_desc">开启GR 水印, 需要相册版本大于等于16.6.36</string>
-
+    <string name="camera_setiings_lumo_title">LUMO</string>
+    <string name="camera_setiings_lumo_desc">启用LUMO相机启动动画以及LUMO介绍</string>
+    <string name="camera_setiings_hasselblad_highpixel_title">哈苏超清模式</string>
+    <string name="camera_setiings_hasselblad_highpixel_desc">启用哈苏超清模式, 注意其中的4K超清实况不可用, 请不要反馈该问题</string>
 
     <!-- 默认值设置 -->
     <string name="default_value_enabled">设备默认值：开</string>
@@ -269,6 +272,8 @@
     <string name="gallery_settings_olive_cover_proxdr_desc">开启后，在相册中更换实况照片的封面或导出照片时，可以将原本的 SDR 通过算法替换为 ProXDR 格式</string>
     <string name="gallery_settings_lumo_watermark_title">Lumo 凝光水印</string>
     <string name="gallery_settings_lumo_watermark_desc">在相册和相机App中启用 Lumo 凝光水印, 注意: 需要安装 OPPO 渠道版本的相册App</string>
+    <string name="gallery_settings_ai_lighting_title">AI人像补光</string>
+    <string name="gallery_settings_ai_lighting_desc">启用AI人像补光功能</string>
     <string name="gallery_settings_no_defalut_keys">模块无法获取相册的设备默认值, 你可自行查看默认支持情况</string>
     <string name="module_update_checking">正在检查模块更新...</string>
     <string name="module_update_failed">调用二进制安装模块更新失败,可能原因为你不是官方的Magisk/KernelSU. 已尝试直接解压附属模块并使用post-fs-data.sh挂载模块, 若依旧无效请换官方的Magisk/KernelSU, 其他管理器不受理任何Bug反馈</string>

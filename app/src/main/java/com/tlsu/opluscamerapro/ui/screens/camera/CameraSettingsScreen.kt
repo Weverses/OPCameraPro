@@ -146,6 +146,9 @@ fun CameraSettingsScreen(
                                 "enableGRFilter" -> currentConfig.vendorTags.copy(enableGRFilter = value)
                                 "unlockFilterInMasterMode" -> currentConfig.vendorTags.copy(unlockFilterInMasterMode = value)
                                 "enableGRWatermark" -> currentConfig.vendorTags.copy(enableGRWatermark = value)
+                                "enableLUMO" -> currentConfig.vendorTags.copy(enableLUMO = value)
+                                "enableHasselbladHighPixel" -> currentConfig.vendorTags.copy(enableHasselbladHighPixel = value)
+
 
                                 else -> currentConfig.vendorTags
                             }

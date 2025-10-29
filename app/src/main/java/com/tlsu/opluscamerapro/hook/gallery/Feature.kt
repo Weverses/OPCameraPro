@@ -30,6 +30,7 @@ object FeatureHook : BaseHook() {
             val enableHasselblad = config.vendorTags.enableHasselbladWatermark
             val enableOliveCoverProXDR = config.gallerySettings.enableOliveCoverProXDR
             val enableLumoWatermark = config.gallerySettings.enableLumoWatermark
+            val enableAILighting = config.gallerySettings.enableAILighting
 
             XposedBridge.log("OPCameraPro: GallerySettings loaded, enableAIComposition = ${enableAIComposition}")
 
@@ -152,6 +153,13 @@ object FeatureHook : BaseHook() {
 
                         if (it.args[0] == "feature_is_support_lumo_watermark") {
                             if (enableLumoWatermark) {
+                                it.args[0] = "feature_is_support_olive"
+                                XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_lumo_watermark success")
+                            }
+                        }
+
+                        if (it.args[0] == "feature_is_support_ai_lighting") {
+                            if (enableAILighting) {
                                 it.args[0] = "feature_is_support_olive"
                                 XposedBridge.log("OPCameraPro: Hook ${className.name} feature_is_support_lumo_watermark success")
                             }

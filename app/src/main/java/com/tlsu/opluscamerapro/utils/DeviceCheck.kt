@@ -19,7 +19,7 @@ object DeviceCheck {
         val isSuccess: Boolean get() = code == 0
     }
 
-    val DEBUG = true
+    val DEBUG = false
 
     @SuppressLint("PrivateApi")
     fun getProp(mKey: String): String = Class.forName("android.os.SystemProperties").getMethod("get", String::class.java).invoke(Class.forName("android.os.SystemProperties"), mKey)!!

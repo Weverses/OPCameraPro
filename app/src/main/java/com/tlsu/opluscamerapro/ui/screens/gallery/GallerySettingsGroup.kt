@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.tlsu.opluscamerapro.R
 import com.tlsu.opluscamerapro.data.GallerySettings
 import com.tlsu.opluscamerapro.ui.components.SettingsSwitchItem
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isV16
 
 /**
  * 相册设置组
@@ -91,6 +92,14 @@ fun GallerySettingsGroup(
                 checked = gallerySettings.enableLumoWatermark,
                 onCheckedChange = { onSettingChanged("enableLumoWatermark", it) }
             )
+            if (isV16()) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.gallery_settings_ai_lighting_title),
+                    description = stringResource(R.string.gallery_settings_ai_lighting_desc),
+                    checked = gallerySettings.enableAILighting,
+                    onCheckedChange = { onSettingChanged("enableAILighting", it) }
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(8.dp))

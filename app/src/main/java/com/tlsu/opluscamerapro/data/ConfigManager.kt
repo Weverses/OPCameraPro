@@ -205,7 +205,8 @@ object ConfigManager {
                 enableAIDeReflection = gallerySettingsObj.optBoolean("enableAIDeReflection", false),
                 enableAIBestTake = gallerySettingsObj.optBoolean("enableAIBestTake", false),
                 enableOliveCoverProXDR = gallerySettingsObj.optBoolean("enableOliveCoverProXDR", false),
-                enableLumoWatermark = gallerySettingsObj.optBoolean("enableLumoWatermark", false)
+                enableLumoWatermark = gallerySettingsObj.optBoolean("enableLumoWatermark", false),
+                enableAILighting = gallerySettingsObj.optBoolean("enableAILighting", false)
             )
             
             // 解析元数据
@@ -312,6 +313,8 @@ object ConfigManager {
                     put("enableGRFilter", config.vendorTags.enableGRFilter)
                     put("unlockFilterInMasterMode", config.vendorTags.unlockFilterInMasterMode)
                     put("enableGRWatermark", config.vendorTags.enableGRWatermark)
+                    put("enableLUMO", config.vendorTags.enableLUMO)
+                    put("enableHasselbladHighPixel", config.vendorTags.enableHasselbladHighPixel)
                 })
                 
                 // 保存其他设置
@@ -333,6 +336,7 @@ object ConfigManager {
                     put("enableAIBestTake", config.gallerySettings.enableAIBestTake)
                     put("enableOliveCoverProXDR", config.gallerySettings.enableOliveCoverProXDR)
                     put("enableLumoWatermark", config.gallerySettings.enableLumoWatermark)
+                    put("enableAILighting", config.gallerySettings.enableAILighting)
                 })
                 
                 // 保存元数据
