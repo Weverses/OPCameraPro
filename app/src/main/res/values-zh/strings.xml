@@ -217,9 +217,9 @@
     <string name="camera_settings_motion_capture_title">运动模式</string>
     <string name="camera_settings_motion_capture_desc">启用运动模式捕捉快速移动的物体</string>
     <string name="camera_settings_4k_120fps_video_title">4K 120FPS视频</string>
-    <string name="camera_settings_4k_120fps_video_desc">启用4K分辨率120帧视频录制, 如果开启后相机卡死或闪退, 请安装附属模块解决</string>
+    <string name="camera_settings_4k_120fps_video_desc">启用4K分辨率120帧视频录制</string>
     <string name="camera_settings_1080p_120fps_video_title">1080P 120FPS视频</string>
-    <string name="camera_settings_1080p_120fps_video_desc">启用1080P分辨率120帧视频录制, 如果开启后相机卡死或闪退, 请安装附属模块解决</string>
+    <string name="camera_settings_1080p_120fps_video_desc">启用1080P分辨率120帧视频录制</string>
     <string name="camera_settings_dolby_video_120fps_title">杜比视界120FPS视频</string>
     <string name="camera_settings_dolby_video_120fps_desc">启用120帧杜比视界视频录制</string>
     <string name="camera_settings_multi_frame_burst_shot_title">无影抓拍</string>

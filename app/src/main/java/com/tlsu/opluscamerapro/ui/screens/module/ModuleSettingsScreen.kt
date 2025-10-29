@@ -57,6 +57,7 @@ import com.tlsu.opluscamerapro.ui.components.NoRootAccessDialog
 import com.tlsu.opluscamerapro.ui.components.SettingsClickableItem
 import com.tlsu.opluscamerapro.ui.components.SettingsSwitchItem
 import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
+import com.tlsu.opluscamerapro.utils.DeviceCheck.isV16
 import com.tlsu.opluscamerapro.utils.SubModule.MAGISK_MODULE_PATH
 import com.tlsu.opluscamerapro.utils.SubModule.deleteFrameworkAndLibs
 import com.tlsu.opluscamerapro.utils.SubModule.getCurrentMountMethod
@@ -286,30 +287,37 @@ fun ModuleSettingsScreen(
                             }
                         )
 
-//                        // 子模块设置
-//                        SettingsClickableItem(
-//                            title = stringResource(R.string.submodule_title),
-//                            description = stringResource(R.string.submodule_desc),
-//                            icon = { Icon(Icons.Default.InstallMobile, contentDescription = null) },
-//                            onClick = { showSubmoduleDialog = true }
-//                        )
-//
-//                        // 子模块挂载切换
-//                        if(execWithResult("test -f $MAGISK_MODULE_PATH/version.txt && echo true || echo false")
-//                                .out.joinToString("").contains("true")) {
-//                            SettingsClickableItem(
-//                                title = stringResource(R.string.submodule_switch_mount_title),
-//                                description = stringResource(R.string.submodule_switch_mount_desc),
-//                                icon = {
-//                                    Icon(
-//                                        Icons.Default.Autorenew,
-//                                        contentDescription = null
-//                                    )
-//                                },
-//                                onClick = { showSwitchMountDialog = true }
-//                            )
-//                        }
+                        // 子模块设置
+                        if (!isV16()) {
+                            SettingsClickableItem(
+                                title = stringResource(R.string.submodule_title),
+                                description = stringResource(R.string.submodule_desc),
+                                icon = {
+                                    Icon(
+                                        Icons.Default.InstallMobile,
+                                        contentDescription = null
+                                    )
+                                },
+                                onClick = { showSubmoduleDialog = true }
+                            )
 
+                            // 子模块挂载切换
+                            if (execWithResult("test -f $MAGISK_MODULE_PATH/version.txt && echo true || echo false")
+                                    .out.joinToString("").contains("true")
+                            ) {
+                                SettingsClickableItem(
+                                    title = stringResource(R.string.submodule_switch_mount_title),
+                                    description = stringResource(R.string.submodule_switch_mount_desc),
+                                    icon = {
+                                        Icon(
+                                            Icons.Default.Autorenew,
+                                            contentDescription = null
+                                        )
+                                    },
+                                    onClick = { showSwitchMountDialog = true }
+                                )
+                            }
+                        }
                         SettingsClickableItem(
                             title = stringResource(R.string.delete_libs_and_framework),
                             description = stringResource(R.string.delete_libs_and_framework_desc),
