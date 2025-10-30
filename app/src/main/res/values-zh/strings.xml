@@ -129,8 +129,8 @@
     <string name="camera_settings_mastermode_unlock_filter_desc">启用后, 在大师模式中可以选择原本只有在普通拍照模式才能选择的滤镜</string>
     <string name="camera_settings_tol_style_filter_title">光影有声滤镜</string>
     <string name="camera_settings_tol_style_filter_desc">启用光影有声滤镜</string>
-    <string name="camera_settings_grand_tour_filter_title">Grand Tour滤镜</string>
-    <string name="camera_settings_grand_tour_filter_desc">启用Grand Tour系列滤镜</string>
+    <string name="camera_settings_grand_tour_filter_title">旅行系列滤镜</string>
+    <string name="camera_settings_grand_tour_filter_desc">启用旅行系列滤镜, 包括 夕照、湖光、阳光沙滩、沧浪、古典、净蓝、椰林、艳阳、大漠、琉璃瓦、叠翠、不夜城、旧时光、浪漫、花港、烟火气</string>
     <string name="camera_settings_desert_filter_title">沙漠系列滤镜</string>
     <string name="camera_settings_desert_filter_desc">启用沙漠系列滤镜</string>
     <string name="camera_settings_vignette_grain_filter_title">Vignette Grain滤镜</string>
@@ -272,7 +272,7 @@
     <string name="gallery_settings_olive_cover_proxdr_desc">开启后，在相册中更换实况照片的封面或导出照片时，可以将原本的 SDR 通过算法替换为 ProXDR 格式</string>
     <string name="gallery_settings_lumo_watermark_title">Lumo 凝光水印</string>
     <string name="gallery_settings_lumo_watermark_desc">在相册和相机App中启用 Lumo 凝光水印, 注意: 需要安装 OPPO 渠道版本的相册App</string>
-    <string name="gallery_settings_ai_lighting_title">AI人像补光</string>
+    <string name="gallery_settings_ai_lighting_title">AI 人像补光</string>
     <string name="gallery_settings_ai_lighting_desc">启用AI人像补光功能</string>
     <string name="gallery_settings_no_defalut_keys">模块无法获取相册的设备默认值, 你可自行查看默认支持情况</string>
     <string name="module_update_checking">正在检查模块更新...</string>
@@ -302,6 +302,7 @@
     <string name="no_root_access_message">本模块需要ROOT权限才能正常工作。请授予ROOT权限后重启应用。</string>
     <string name="unsupport_camera_app_version">你的机型当前系统版本与相机App版本不匹配, 可能会出现闪退问题。 请卸载相机App更新, 恢复自带版本。也可以通过安装附属模块来尝试解决。</string>
     <string name="need_wipe_camera_data">在启用任意功能后, 请自行清除相机的数据, 否则部分功能无效!</string>
+    <string name="default_value_null">无法获取到设备默认值, 所有功能已被禁用, 请反复尝试: 先关闭OPCameraPro模块, 杀死相机App进程后重新打开相机App, 再重新进入模块获取设备默认值! </string>
     <string name="donate_title">捐赠</string>
     <string name="donate_desc">如果觉得 OPCameraPro 不错的话, 可以请作者喝杯咖啡☕️</string>
 </resources>

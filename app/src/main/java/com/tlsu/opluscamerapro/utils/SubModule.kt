@@ -30,7 +30,7 @@ object SubModule {
     }
 
     fun deleteModuleData() {
-        execWithResult("rm -rf /sdcard/Android/OplusCameraPro/*")
+        execWithResult("rm -rf /storage/emulated/0/Android/OplusCameraPro/*")
     }
 
     fun switchToDefaultMount() {

@@ -77,6 +77,14 @@ fun GallerySettingsGroup(
                 checked = gallerySettings.enableAIBestTake,
                 onCheckedChange = { onSettingChanged("enableAIBestTake", it) }
             )
+            if (isV16()) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.gallery_settings_ai_lighting_title),
+                    description = stringResource(R.string.gallery_settings_ai_lighting_desc),
+                    checked = gallerySettings.enableAILighting,
+                    onCheckedChange = { onSettingChanged("enableAILighting", it) }
+                )
+            }
         }
 
         SettingsCard(title = stringResource(R.string.gallery_settings_category_edit)) {
@@ -92,14 +100,6 @@ fun GallerySettingsGroup(
                 checked = gallerySettings.enableLumoWatermark,
                 onCheckedChange = { onSettingChanged("enableLumoWatermark", it) }
             )
-            if (isV16()) {
-                SettingsSwitchItem(
-                    title = stringResource(R.string.gallery_settings_ai_lighting_title),
-                    description = stringResource(R.string.gallery_settings_ai_lighting_desc),
-                    checked = gallerySettings.enableAILighting,
-                    onCheckedChange = { onSettingChanged("enableAILighting", it) }
-                )
-            }
         }
 
         Spacer(modifier = Modifier.height(8.dp))

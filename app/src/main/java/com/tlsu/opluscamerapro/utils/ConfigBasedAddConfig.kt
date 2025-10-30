@@ -577,31 +577,31 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            // 沙漠系列滤镜
-            if (vendorTags.enableDesertFilter) {
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.desert.filter.type.support",
-                        "Byte",
-                        "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-            }
+//            // 沙漠系列滤镜
+//            if (vendorTags.enableDesertFilter) {
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.desert.filter.type.support",
+//                        "Byte",
+//                        "1",
+//                        "1"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+//            }
 
-            // vignette grain 滤镜
-            if (vendorTags.enableVignetteGrainFilter) {
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.oplus.vignette.grain.filter.type.support",
-                        "Byte",
-                        "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-            }
+//            // vignette grain 滤镜
+//            if (vendorTags.enableVignetteGrainFilter) {
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.oplus.vignette.grain.filter.type.support",
+//                        "Byte",
+//                        "1",
+//                        "1"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+//            }
 
             // 姜文滤镜
             if (vendorTags.enableJiangWenFilter) {

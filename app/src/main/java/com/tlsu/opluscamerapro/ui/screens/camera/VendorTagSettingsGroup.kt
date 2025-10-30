@@ -451,6 +451,10 @@ fun VendorTagSettingsGroup(
             HintCard(title = stringResource(R.string.need_wipe_camera_data)) {}
         }
 
+        if (isNullDefaultValueEnableFunction(context, "enable25MP")) {
+            HintCard(title = stringResource(R.string.default_value_null)) {}
+        }
+
         SettingsCard(title = stringResource(R.string.camera_settings_category_advanced)) {
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_25mp_title),
@@ -753,25 +757,25 @@ fun VendorTagSettingsGroup(
                 enabled = !isNullDefaultValueEnableFunction(context, "enableGrandTourFilter")
             )
 
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_desert_filter_title),
-                description = stringResource(R.string.camera_settings_desert_filter_desc),
-                checked = vendorTagSettings.enableDesertFilter,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableDesertFilter"),
-                onCheckedChange = { onSettingChanged("enableDesertFilter", it) },
-                visible = !isDefaultValueEnableFunction(context, "enableDesertFilter"),
-                enabled = !isNullDefaultValueEnableFunction(context, "enableDesertFilter")
-            )
+//            SettingsSwitchItem(
+//                title = stringResource(R.string.camera_settings_desert_filter_title),
+//                description = stringResource(R.string.camera_settings_desert_filter_desc),
+//                checked = vendorTagSettings.enableDesertFilter,
+//                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableDesertFilter"),
+//                onCheckedChange = { onSettingChanged("enableDesertFilter", it) },
+//                visible = !isDefaultValueEnableFunction(context, "enableDesertFilter"),
+//                enabled = !isNullDefaultValueEnableFunction(context, "enableDesertFilter")
+//            )
 
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_vignette_grain_filter_title),
-                description = stringResource(R.string.camera_settings_vignette_grain_filter_desc),
-                checked = vendorTagSettings.enableVignetteGrainFilter,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVignetteGrainFilter"),
-                onCheckedChange = { onSettingChanged("enableVignetteGrainFilter", it) },
-                visible = !isDefaultValueEnableFunction(context, "enableVignetteGrainFilter"),
-                enabled = !isNullDefaultValueEnableFunction(context, "enableVignetteGrainFilter")
-            )
+//            SettingsSwitchItem(
+//                title = stringResource(R.string.camera_settings_vignette_grain_filter_title),
+//                description = stringResource(R.string.camera_settings_vignette_grain_filter_desc),
+//                checked = vendorTagSettings.enableVignetteGrainFilter,
+//                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableVignetteGrainFilter"),
+//                onCheckedChange = { onSettingChanged("enableVignetteGrainFilter", it) },
+//                visible = !isDefaultValueEnableFunction(context, "enableVignetteGrainFilter"),
+//                enabled = !isNullDefaultValueEnableFunction(context, "enableVignetteGrainFilter")
+//            )
 
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_jiang_wen_filter_title),
@@ -1241,10 +1245,10 @@ private fun HintCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp),
+            .padding(vertical = 6.dp),
         // 设置卡片的颜色
         colors = CardDefaults.cardColors(
-            containerColor = Color(0xfff66862)
+            containerColor = Color(0xfff69894)
         )
     ) {
         Column(
@@ -1257,7 +1261,7 @@ private fun HintCard(
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontSize = 15.sp
                 ),
-                modifier = Modifier.padding(bottom = 12.dp)
+                modifier = Modifier.padding(bottom = 8.dp)
             )
 
             // 内容部分的字体大小需要在调用时定义
