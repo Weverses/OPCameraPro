@@ -99,7 +99,7 @@ object DefaultConfigManager {
         "com.oplus.camera.livephoto.mastermode.support" to "enableMasterModeLivePhoto",
         "com.oplus.feature.soft.light.filter.support" to "enableSoftLightFilter",
         "com.oplus.feature.flash.filter.support" to "enableFlashFilter",
-        "com.oplus.feature.xpan.mode.support" to "enableXPAN",
+        "com.oplus.xpan.mode.version" to "enableXPAN",
         "com.oplus.gr.mode.support" to "enableGRFilter",
         "com.oplus.gr.mode.support" to "enableGRWatermark",
         "com.oplus.video.guide.support" to "enableLUMO",
@@ -368,5 +368,11 @@ object DefaultConfigManager {
         } else {
             false
         }
+    }
+    fun isNullDefaultValueEnableFunction(context: Context, featureName: String): Boolean {
+        val config = loadDefaultConfig()
+        val defaultTag = config.vendorTags[featureName]
+
+        return (defaultTag == null)
     }
 } 
