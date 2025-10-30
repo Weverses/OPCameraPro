@@ -748,18 +748,18 @@ object ConfigBasedAddConfig {
                 )
             }
 
-            // meishe 系列滤镜
-            if (vendorTags.enableMeisheFilter) {
-                addPresetTag(
-                    VendorTagInfo(
-                        "com.ocs.camera.ipu.meishe.filter.support",
-                        "Byte",
-                        "1",
-                        "1"
-                    ),
-                    MergeStrategy.OVERRIDE
-                )
-            }
+//            // meishe 系列滤镜
+//            if (vendorTags.enableMeisheFilter) {
+//                addPresetTag(
+//                    VendorTagInfo(
+//                        "com.ocs.camera.ipu.meishe.filter.support",
+//                        "Byte",
+//                        "1",
+//                        "1"
+//                    ),
+//                    MergeStrategy.OVERRIDE
+//                )
+//            }
 
             // 视频自动帧率
             if (vendorTags.enableVideoAutoFps) {
@@ -1653,8 +1653,8 @@ object ConfigBasedAddConfig {
                     VendorTagInfo(
                         "com.oplus.camera.preview.hdr.cap.mode.value",
                         "String",
-                        "6",
-                        "common,night,highPixel,xpan,sticker,idPhoto,professional"
+                        "5",
+                        "common,night,highPixel,sticker,idPhoto"
                     ),
                     MergeStrategy.OVERRIDE
                 )
@@ -1663,8 +1663,8 @@ object ConfigBasedAddConfig {
                     VendorTagInfo(
                         "com.oplus.camera.capture.hdr.cap.mode.value",
                         "String",
-                        "7",
-                        "common,portrait,night,highPixel,xpan,sticker,idPhoto,professional"
+                        "6",
+                        "common,portrait,night,highPixel,sticker,idPhoto"
                     ),
                     MergeStrategy.OVERRIDE
                 )

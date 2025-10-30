@@ -90,7 +90,7 @@
     <string name="camera_settings_category_video">视频设置</string>
     <string name="camera_settings_category_macro">微距设置</string>
     <string name="camera_settings_category_filter">滤镜设置</string>
-    <string name="camera_settings_category_heif_hdr">杂项设置</string>
+    <string name="camera_settings_category_heif_hdr">实验性功能</string>
     <string name="camera_settings_category_other">实况照片设置</string>
 
     <!-- 相机设置项目 -->
@@ -158,7 +158,7 @@
     <string name="camera_settings_live_photo_fov_title">实况照片FOV优化</string>
     <string name="camera_settings_live_photo_fov_desc">优化实况照片视场角</string>
     <string name="camera_settings_preview_hdr_title">全链路ProXDR</string>
-    <string name="camera_settings_preview_hdr_desc">启用全链路ProXDR, 开启后相机预览框将实时渲染ProXDR效果, 并且拍摄出的实况照片中的视频也为ProXDR规格</string>
+    <string name="camera_settings_preview_hdr_desc">启用全链路ProXDR, 开启后相机预览框将实时渲染ProXDR效果, 并且拍摄出的实况照片中的视频也为ProXDR规格, 请注意, 这个功能为实验性功能, 不接受反馈. 目前已知启用后, 需要打开相机水印实况才能正常显示</string>
     <string name="camera_settings_scale_focus_title">大师模式放大对焦</string>
     <string name="camera_settings_scale_focus_desc">在大师模式中启用放大对焦功能</string>
     <string name="camera_settings_new_beauty_menu_title">新版美颜菜单</string>

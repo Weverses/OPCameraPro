@@ -493,15 +493,6 @@ fun VendorTagSettingsGroup(
                     visible = !isDefaultValueEnableFunction(context, "enableLUMO"),
                     enabled = !isNullDefaultValueEnableFunction(context, "enableLUMO")
                 )
-                SettingsSwitchItem(
-                    title = stringResource(R.string.camera_settings_preview_hdr_title),
-                    description = stringResource(R.string.camera_settings_preview_hdr_desc),
-                    checked = vendorTagSettings.enablePreviewHdr,
-                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enablePreviewHdr"),
-                    onCheckedChange = { onSettingChanged("enablePreviewHdr", it) },
-                    visible = !isDefaultValueEnableFunction(context, "enablePreviewHdr"),
-                    enabled = !isNullDefaultValueEnableFunction(context, "enablePreviewHdr")
-                )
             }
 
             SettingsSwitchItem(
@@ -580,6 +571,16 @@ fun VendorTagSettingsGroup(
                 onCheckedChange = { onSettingChanged("enableMultiFrameBurstShot", it) },
                 visible = !isDefaultValueEnableFunction(context, "enableMultiFrameBurstShot"),
                 enabled = !isNullDefaultValueEnableFunction(context, "enableMultiFrameBurstShot")
+            )
+
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_10bit_photo_title),
+                description = stringResource(R.string.camera_settings_10bit_photo_desc),
+                checked = vendorTagSettings.enable10bitPhoto,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enable10bitPhoto"),
+                onCheckedChange = { onSettingChanged("enable10bitPhoto", it) },
+                visible = !isDefaultValueEnableFunction(context, "enable10bitPhoto"),
+                enabled = !isNullDefaultValueEnableFunction(context, "enable10bitPhoto")
             )
 
             SettingsSwitchItem(
@@ -721,7 +722,7 @@ fun VendorTagSettingsGroup(
                 title = stringResource(R.string.camera_settings_gr_filter_title),
                 description = stringResource(R.string.camera_settings_gr_filter_desc),
                 checked = vendorTagSettings.enableGRFilter,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableGRFilter"),
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableGRWatermark"),
                 onCheckedChange = { onSettingChanged("enableGRFilter", it) },
                 visible = !isDefaultValueEnableFunction(context, "enableGRWatermark"),
                 enabled = !isNullDefaultValueEnableFunction(context, "enableGRWatermark")
@@ -797,15 +798,15 @@ fun VendorTagSettingsGroup(
                 enabled = !isNullDefaultValueEnableFunction(context, "enableJzkMovieFilter")
             )
 
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_meishe_filter_title),
-                description = stringResource(R.string.camera_settings_meishe_filter_desc),
-                checked = vendorTagSettings.enableMeisheFilter,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMeisheFilter"),
-                onCheckedChange = { onSettingChanged("enableMeisheFilter", it) },
-                visible = !isDefaultValueEnableFunction(context, "enableMeisheFilter"),
-                enabled = !isNullDefaultValueEnableFunction(context, "enableMeisheFilter")
-            )
+//            SettingsSwitchItem(
+//                title = stringResource(R.string.camera_settings_meishe_filter_title),
+//                description = stringResource(R.string.camera_settings_meishe_filter_desc),
+//                checked = vendorTagSettings.enableMeisheFilter,
+//                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableMeisheFilter"),
+//                onCheckedChange = { onSettingChanged("enableMeisheFilter", it) },
+//                visible = !isDefaultValueEnableFunction(context, "enableMeisheFilter"),
+//                enabled = !isNullDefaultValueEnableFunction(context, "enableMeisheFilter")
+//            )
 
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_os15_new_filter_title),
@@ -1143,7 +1144,6 @@ fun VendorTagSettingsGroup(
             )
         }
 
-        // HEIF/HDR设置
         SettingsCard(title = stringResource(R.string.camera_settings_category_heif_hdr)) {
 //            SettingsSwitchItem(
 //                title = stringResource(R.string.camera_settings_heif_blur_edit_title),
@@ -1153,16 +1153,17 @@ fun VendorTagSettingsGroup(
 //                onCheckedChange = { onSettingChanged("enableHeifBlurEdit", it) },
 //                visible = !isDefaultValueEnableFunction(context, "enableHeifBlurEdit")
 //            )
-            
-            SettingsSwitchItem(
-                title = stringResource(R.string.camera_settings_10bit_photo_title),
-                description = stringResource(R.string.camera_settings_10bit_photo_desc),
-                checked = vendorTagSettings.enable10bitPhoto,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enable10bitPhoto"),
-                onCheckedChange = { onSettingChanged("enable10bitPhoto", it) },
-                visible = !isDefaultValueEnableFunction(context, "enable10bitPhoto"),
-                enabled = !isNullDefaultValueEnableFunction(context, "enable10bitPhoto")
-            )
+            if (isV16()) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_settings_preview_hdr_title),
+                    description = stringResource(R.string.camera_settings_preview_hdr_desc),
+                    checked = vendorTagSettings.enablePreviewHdr,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enablePreviewHdr"),
+                    onCheckedChange = { onSettingChanged("enablePreviewHdr", it) },
+                    visible = !isDefaultValueEnableFunction(context, "enablePreviewHdr"),
+                    enabled = !isNullDefaultValueEnableFunction(context, "enablePreviewHdr")
+                )
+            }
         }
         
         // 哈苏相关设置
