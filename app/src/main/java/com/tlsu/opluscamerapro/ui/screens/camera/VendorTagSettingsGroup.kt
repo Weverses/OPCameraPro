@@ -666,8 +666,8 @@ fun VendorTagSettingsGroup(
                 checked = vendorTagSettings.enableMasterMode,
                 defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableStyleEffect"),
                 onCheckedChange = { onSettingChanged("enableMasterMode", it) },
-                visible = !isDefaultValueEnableFunction(context, "enableMasterMode"),
-                enabled = !isNullDefaultValueEnableFunction(context, "enableMasterMode")
+                visible = !isDefaultValueEnableFunction(context, "enableStyleEffect"),
+                enabled = !isNullDefaultValueEnableFunction(context, "enableStyleEffect")
             )
 
             SettingsSwitchItem(
