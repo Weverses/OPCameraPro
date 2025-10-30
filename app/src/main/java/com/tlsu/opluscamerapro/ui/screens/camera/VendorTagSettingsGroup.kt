@@ -1,5 +1,7 @@
 package com.tlsu.opluscamerapro.ui.screens.camera
 
+import android.content.Context
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,6 +16,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -70,7 +74,16 @@ fun VendorTagSettingsGroup(
     var showTeleSdsrZoomDialog by remember { mutableStateOf(false) }
     var teleSdsrZoomValue by remember { mutableStateOf(vendorTagSettings.teleSdsrZoomValue.toString()) }
     var teleSdsrZoomError by remember { mutableStateOf<String?>(null) }
-    
+
+    val mindCardPreferenceKey = "mind_card_v2_clicked"
+
+    var showMindCard by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        val prefs = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        showMindCard = prefs.getBoolean(mindCardPreferenceKey, true)
+    }
+
     if (showBitrateDialog) {
         AlertDialog(
             onDismissRequest = { showBitrateDialog = false },
@@ -86,10 +99,8 @@ fun VendorTagSettingsGroup(
                             // 验证输入
                             bitrateError = try {
                                 val value = it.toInt()
-                                if (value < 10) {
-                                    "码率不能小于10Mbps"
-                                } else if (value > 100) {
-                                    "码率不能大于100Mbps"
+                                if (value < 1) {
+                                    "码率不能小于1Mbps"
                                 } else {
                                     null
                                 }
@@ -165,8 +176,8 @@ fun VendorTagSettingsGroup(
                             // 验证输入
                             maxDurationError = try {
                                 val value = it.toInt()
-                                if (value < 10) {
-                                    "最大时长不能小于10毫秒"
+                                if (value < 1) {
+                                    "最大时长不能小于1毫秒"
                                 } else if (value > 100000) {
                                     "最大时长不能大于100000毫秒"
                                 } else {
@@ -442,17 +453,47 @@ fun VendorTagSettingsGroup(
         
         // 拍照设置
 
+        if (showMindCard) {
+            MindCard(
+                url = "https://github.com/Weverses/OPCameraPro",
+                onClick = {
+                    val prefs = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+                    prefs.edit().putBoolean(mindCardPreferenceKey, false).apply()
+                    showMindCard = false
+                }
+            ) {
+                Text(
+                    text = stringResource(R.string.github),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
+        }
+
         if (isNewCameraVer(45) && !isV1501()) {
-            HintCard(title = stringResource(R.string.unsupport_camera_app_version)) {
+            HintCard {
+                Text(
+                    text = stringResource(R.string.unsupport_camera_app_version),
+                    style = MaterialTheme.typography.bodyMedium
+                )
             }
         }
 
         if (isV16()) {
-            HintCard(title = stringResource(R.string.need_wipe_camera_data)) {}
+            HintCard {
+                Text(
+                    text = stringResource(R.string.need_wipe_camera_data),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
         }
 
         if (isNullDefaultValueEnableFunction(context, "enable25MP")) {
-            HintCard(title = stringResource(R.string.default_value_null)) {}
+            HintCard {
+                Text(
+                    text = stringResource(R.string.default_value_null),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
         }
 
         SettingsCard(title = stringResource(R.string.camera_settings_category_advanced)) {
@@ -1240,16 +1281,14 @@ private fun SettingsCard(
  */
 @Composable
 private fun HintCard(
-    title: String,
     content: @Composable () -> Unit
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 6.dp),
-        // 设置卡片的颜色
         colors = CardDefaults.cardColors(
-            containerColor = Color(0xfff69894)
+            containerColor = Color(0xffe2e0f3)
         )
     ) {
         Column(
@@ -1257,15 +1296,41 @@ private fun HintCard(
                 .fillMaxWidth()
                 .padding(15.dp)
         ) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleMedium.copy(
-                    fontSize = 15.sp
-                ),
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
+            content()
+        }
+    }
+}
 
-            // 内容部分的字体大小需要在调用时定义
+/**
+ * 设置Hint组件
+ */
+@Composable
+private fun MindCard(
+    url: String, // 新增：要跳转的URL
+    onClick: () -> Unit, // 新增：点击后执行的回调
+    content: @Composable () -> Unit
+) {
+    // 获取用于打开URL的handler
+    val uriHandler = LocalUriHandler.current
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 6.dp)
+            .clickable {
+                uriHandler.openUri(url)
+                onClick()
+            },
+        // 设置卡片的颜色
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xffe2e0f3)
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(15.dp)
+        ) {
             content()
         }
     }

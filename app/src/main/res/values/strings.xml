@@ -306,6 +306,7 @@
     <string name="unsupport_camera_app_version">Your device does not support this version of the camera app.</string>
     <string name="need_wipe_camera_data">When you enable any functions, you need to wipe Camera app data.</string>
     <string name="default_value_null">无法获取到设备默认值, 所有功能已被禁用, 请先关闭OPCameraPro模块, 打开相机App后再重新进入模块获取设备默认值!</string>
+    <string name="github">如果觉得 OPCameraPro 不错的话, 欢迎给 GitHub 仓库点一个 Star</string>
     <string name="donate_title">Donate</string>
     <string name="donate_desc">Make a donation to support the author in developing the app. (Wechat Pay or Alipay)</string>
 </resources>

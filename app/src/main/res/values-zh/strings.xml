@@ -303,6 +303,7 @@
     <string name="unsupport_camera_app_version">你的机型当前系统版本与相机App版本不匹配, 可能会出现闪退问题。 请卸载相机App更新, 恢复自带版本。也可以通过安装附属模块来尝试解决。</string>
     <string name="need_wipe_camera_data">在启用任意功能后, 请自行清除相机的数据, 否则部分功能无效!</string>
     <string name="default_value_null">无法获取到设备默认值, 所有功能已被禁用, 请反复尝试: 先关闭OPCameraPro模块, 杀死相机App进程后重新打开相机App, 再重新进入模块获取设备默认值! </string>
+    <string name="github">如果觉得 OPCameraPro 不错的话, 欢迎给 GitHub 仓库点一个 Star</string>
     <string name="donate_title">捐赠</string>
     <string name="donate_desc">如果觉得 OPCameraPro 不错的话, 可以请作者喝杯咖啡☕️</string>
 </resources>
