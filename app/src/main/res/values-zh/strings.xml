@@ -174,9 +174,9 @@
     <string name="camera_settings_portrait_rear_flash_title">人像模式后置闪光灯</string>
     <string name="camera_settings_portrait_rear_flash_desc">在人像模式中启用后置闪光灯功能</string>
     <string name="camera_settings_ai_hd_switch_title">AI 超清望远算法</string>
-    <string name="camera_settings_ai_hd_switch_desc">启用AI增强的超清望远算法功能</string>
+    <string name="camera_settings_ai_hd_switch_desc">启用AIHD超清望远算法功能, 并且可以调节该算法介入的倍率</string>
     <string name="camera_settings_tele_sdsr_title">超清长焦算法</string>
-    <string name="camera_settings_tele_sdsr_desc">启用超清长焦算法增强图像质量</string>
+    <string name="camera_settings_tele_sdsr_desc">启用SDSR算法增强图像质量, 并且可以调节该算法介入的倍率</string>
     <string name="camera_settings_dolby_video_title">杜比视频支持</string>
     <string name="camera_settings_dolby_video_desc">启用杜比视觉HDR视频录制功能</string>
     <string name="camera_settings_dolby_video_60fps_title">杜比视频60fps</string>
