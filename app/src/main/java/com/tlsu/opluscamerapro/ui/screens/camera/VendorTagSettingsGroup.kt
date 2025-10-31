@@ -1287,9 +1287,6 @@ private fun HintCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 6.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color(0xffe2e0f3)
-        )
     ) {
         Column(
             modifier = Modifier
@@ -1321,10 +1318,6 @@ private fun MindCard(
                 uriHandler.openUri(url)
                 onClick()
             },
-        // 设置卡片的颜色
-        colors = CardDefaults.cardColors(
-            containerColor = Color(0xffe2e0f3)
-        )
     ) {
         Column(
             modifier = Modifier

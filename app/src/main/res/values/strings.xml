@@ -94,7 +94,7 @@
     <string name="camera_settings_category_other">Live Photo Settings</string>
 
     <!-- Camera Settings Items -->
-    <string name="camera_settings_title">Camera Settings</string>
+    <string name="camera_settings_title">Camera</string>
     <string name="camera_settings_25mp_title">25MP</string>
     <string name="camera_settings_25mp_desc">Enable 25MP Turbo RAW Enhance Resolution</string>
     <string name="camera_settings_master_mode_title">New Master Mode</string>
