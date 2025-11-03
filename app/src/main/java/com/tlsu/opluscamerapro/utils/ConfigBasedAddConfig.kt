@@ -204,7 +204,9 @@ object ConfigBasedAddConfig {
                 unlockFilterInMasterMode = vendorTagsObj.optBoolean("unlockFilterInMasterMode", false),
                 enableGRWatermark = vendorTagsObj.optBoolean("enableGRWatermark", false),
                 enableLUMO = vendorTagsObj.optBoolean("enableLUMO", false),
-                enableHasselbladHighPixel = vendorTagsObj.optBoolean("enableHasselbladHighPixel", false)
+                enableHasselbladHighPixel = vendorTagsObj.optBoolean("enableHasselbladHighPixel", false),
+                enableCustomWatermarkName = vendorTagsObj.optBoolean("enableCustomWatermarkName", false),
+                deviceName = vendorTagsObj.optString("deviceName", "")
             )
             
             AppConfig(
@@ -1826,7 +1828,15 @@ object ConfigBasedAddConfig {
 //                    MergeStrategy.OVERRIDE
 //                )
             }
-
+            addPresetTag(
+                VendorTagInfo(
+                    "com.oplus.master.mode.focus.peaking.params",
+                    "Float",
+                    "5",
+                    "255, 206, 59, 1, 1"
+                ),
+                MergeStrategy.OVERRIDE
+            )
 
         } catch (e: Exception) {
             XposedBridge.log("OPCameraPro: Error in addConfig: ${e.message}")

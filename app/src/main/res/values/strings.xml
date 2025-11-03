@@ -247,6 +247,10 @@
     <string name="camera_settings_video_sound_focus_desc">Focus on capturing sound from specific directions during video recording</string>
     <string name="camera_settings_live_photo_duration_title">Live Photo Duration</string>
     <string name="camera_settings_live_photo_duration_desc">Adjust live photo video duration</string>
+    <string name="camera_settings_watermark_device_name_title">Custom Watermark Device Name</string>
+    <string name="camera_settings_watermark_device_name_desc">Custom Watermark Device Name</string>
+    <string name="camera_settings_watermark_device_name_enter_text">Please enter the text</string>
+    <string name="camera_settings_watermark_device_name_hint">Hint: Any character can be entered</string>
     
     <!-- Default Value Settings -->
     <string name="default_value_enabled">Device Default: On</string>
@@ -305,8 +309,8 @@
     <string name="no_root_access_message">This module requires ROOT permission to work properly. Please grant ROOT permission and restart the application.</string>
     <string name="unsupport_camera_app_version">Your device does not support this version of the camera app.</string>
     <string name="need_wipe_camera_data">When you enable any functions, you need to wipe Camera app data.</string>
-    <string name="default_value_null">无法获取到设备默认值, 所有功能已被禁用, 请先关闭OPCameraPro模块, 打开相机App后再重新进入模块获取设备默认值!</string>
-    <string name="github">如果觉得 OPCameraPro 不错的话, 欢迎给 GitHub 仓库点一个 Star</string>
+    <string name="default_value_null">The default value of the device cannot be obtained. All functions have been disabled. Please first close the OPCameraPro module, open the camera App, and then re-enter the module to obtain the default value of the device!</string>
+    <string name="github">If you think OPCameraPro is good, you are welcome to give the GitHub repository a Star</string>
     <string name="donate_title">Donate</string>
     <string name="donate_desc">Make a donation to support the author in developing the app. (Wechat Pay or Alipay)</string>
 </resources>

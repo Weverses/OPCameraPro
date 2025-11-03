@@ -148,7 +148,7 @@ fun CameraSettingsScreen(
                                 "enableGRWatermark" -> currentConfig.vendorTags.copy(enableGRWatermark = value)
                                 "enableLUMO" -> currentConfig.vendorTags.copy(enableLUMO = value)
                                 "enableHasselbladHighPixel" -> currentConfig.vendorTags.copy(enableHasselbladHighPixel = value)
-
+                                "enableCustomWatermarkName" -> currentConfig.vendorTags.copy(enableCustomWatermarkName = value)
 
                                 else -> currentConfig.vendorTags
                             }
@@ -216,6 +216,14 @@ fun CameraSettingsScreen(
                         // 显示保存成功提示
                         coroutineScope.launch {
                             snackbarHostState.showSnackbar("实况照片时长已更新为：最大${maxDuration}毫秒，最小${minDuration}毫秒")
+                        }
+                    },
+                    onDeviceNameChanged = { newDeviceName ->
+                        viewModel.updateVendorTagSetting { currentConfig ->
+                            val updatedVendorTags = currentConfig.vendorTags.copy(
+                                deviceName = newDeviceName
+                            )
+                            currentConfig.copy(vendorTags = updatedVendorTags)
                         }
                     }
                 )

@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -22,19 +21,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.tlsu.opluscamerapro.R
 import com.tlsu.opluscamerapro.data.VendorTagSettings
 import com.tlsu.opluscamerapro.ui.components.SettingsSwitchItem
 import com.tlsu.opluscamerapro.utils.DefaultConfigManager
 import com.tlsu.opluscamerapro.utils.DefaultConfigManager.isDefaultValueEnableFunction
 import com.tlsu.opluscamerapro.utils.DefaultConfigManager.isNullDefaultValueEnableFunction
-import com.tlsu.opluscamerapro.utils.DeviceCheck.execWithResult
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isNewCameraVer
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV16
@@ -49,7 +45,8 @@ fun VendorTagSettingsGroup(
     onBitrateChanged: (Int) -> Unit = {},
     onAiHdZoomValueChanged: (Int) -> Unit = {},
     onTeleSdsrZoomValueChanged: (Int) -> Unit = {},
-    onDurationChanged: (Int, Int) -> Unit = { _, _ -> }
+    onDurationChanged: (Int, Int) -> Unit = { _, _ -> },
+    onDeviceNameChanged: (String) -> Unit = {}
 ) {
     val context = LocalContext.current
     
@@ -75,6 +72,10 @@ fun VendorTagSettingsGroup(
     var teleSdsrZoomValue by remember { mutableStateOf(vendorTagSettings.teleSdsrZoomValue.toString()) }
     var teleSdsrZoomError by remember { mutableStateOf<String?>(null) }
 
+    // 机型水印
+    var showWatermarkDeviceNameDialog by remember { mutableStateOf(false) }
+    var deviceName by remember { mutableStateOf(vendorTagSettings.deviceName) }
+    var deviceNameError by remember { mutableStateOf<String?>(null) }
     val mindCardPreferenceKey = "mind_card_v2_clicked"
 
     var showMindCard by remember { mutableStateOf(false) }
@@ -147,12 +148,12 @@ fun VendorTagSettingsGroup(
                     },
                     enabled = bitrateError == null
                 ) {
-                    Text("确定")
+                    Text(stringResource(R.string.confirm))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showBitrateDialog = false }) {
-                    Text("取消")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
@@ -275,12 +276,12 @@ fun VendorTagSettingsGroup(
                     },
                     enabled = maxDurationError == null && minDurationError == null
                 ) {
-                    Text("确定")
+                    Text(stringResource(R.string.confirm))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDurationDialog = false }) {
-                    Text("取消")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
@@ -352,12 +353,12 @@ fun VendorTagSettingsGroup(
                     },
                     enabled = aiHdZoomError == null
                 ) {
-                    Text("确定")
+                    Text(stringResource(R.string.confirm))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showAiHdZoomDialog = false }) {
-                    Text("取消")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
@@ -429,17 +430,77 @@ fun VendorTagSettingsGroup(
                     },
                     enabled = teleSdsrZoomError == null
                 ) {
-                    Text("确定")
+                    Text(stringResource(R.string.confirm))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showTeleSdsrZoomDialog = false }) {
-                    Text("取消")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
     }
-    
+
+    if (showWatermarkDeviceNameDialog) {
+        AlertDialog(
+            onDismissRequest = { showWatermarkDeviceNameDialog = false },
+            title = { Text(stringResource(R.string.camera_settings_watermark_device_name_title)) },
+            text = {
+                Column {
+                    Text(stringResource(R.string.camera_settings_watermark_device_name_enter_text))
+                    Spacer(modifier = Modifier.height(8.dp))
+                    OutlinedTextField(
+                        value = deviceName,
+                        onValueChange = {
+                            deviceName = it
+                            teleSdsrZoomError = it
+                        },
+                        isError = deviceNameError != null,
+                        modifier = Modifier.fillMaxWidth(),
+                        label = { Text("Any String") },
+                        singleLine = true
+                    )
+                    if (deviceNameError != null) {
+                        Text(
+                            text = deviceNameError!!,
+                            color = MaterialTheme.colorScheme.error,
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        stringResource(R.string.camera_settings_watermark_device_name_enter_text),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        try {
+                            val newDeviceName = deviceName
+                            if (deviceNameError == null && newDeviceName != vendorTagSettings.deviceName) {
+                                onDeviceNameChanged(newDeviceName)
+                            }
+                            showWatermarkDeviceNameDialog = false
+                        } catch (e: NumberFormatException) {
+                            deviceNameError = "请输入有效的文本"
+                        }
+                    },
+                    enabled = bitrateError == null
+                ) {
+                    Text(stringResource(R.string.confirm))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showBitrateDialog = false }) {
+                    Text(stringResource(R.string.cancel))
+                }
+            }
+        )
+    }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -1205,6 +1266,18 @@ fun VendorTagSettingsGroup(
                     enabled = !isNullDefaultValueEnableFunction(context, "enablePreviewHdr")
                 )
             }
+            SettingsSwitchItem(
+                title = stringResource(R.string.camera_settings_watermark_device_name_title),
+                description = stringResource(R.string.camera_settings_watermark_device_name_desc),
+                checked = vendorTagSettings.enableCustomWatermarkName,
+                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableCustomWatermarkName"),
+                onCheckedChange = { newState ->
+                    onSettingChanged("enableCustomWatermarkName", newState)
+                    if (newState) {
+                        showWatermarkDeviceNameDialog = true
+                    }
+                }
+            )
         }
         
         // 哈苏相关设置

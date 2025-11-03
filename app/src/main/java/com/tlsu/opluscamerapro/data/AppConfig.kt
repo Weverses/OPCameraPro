@@ -254,7 +254,13 @@ data class VendorTagSettings(
     val enableLUMO: Boolean = false,
 
     // 哈苏超清
-    val enableHasselbladHighPixel: Boolean = false
+    val enableHasselbladHighPixel: Boolean = false,
+
+    // 更改机型水印
+    val enableCustomWatermarkName: Boolean = false,
+
+    // 机型名称
+    val deviceName: String = ""
 )
 
 /**

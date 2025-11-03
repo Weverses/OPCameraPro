@@ -182,7 +182,9 @@ object ConfigManager {
                 unlockFilterInMasterMode = vendorTagsObj.optBoolean("unlockFilterInMasterMode", false),
                 enableGRWatermark = vendorTagsObj.optBoolean("enableGRWatermark", false),
                 enableLUMO = vendorTagsObj.optBoolean("enableLUMO", false),
-                enableHasselbladHighPixel = vendorTagsObj.optBoolean("enableHasselbladHighPixel", false)
+                enableHasselbladHighPixel = vendorTagsObj.optBoolean("enableHasselbladHighPixel", false),
+                enableCustomWatermarkName = vendorTagsObj.optBoolean("enableCustomWatermarkName", false),
+                deviceName = vendorTagsObj.optString("deviceName", "")
             )
             // 解析其他设置
             val otherSettingsObj = json.optJSONObject("otherSettings") ?: JSONObject()
@@ -317,6 +319,8 @@ object ConfigManager {
                     put("enableGRWatermark", config.vendorTags.enableGRWatermark)
                     put("enableLUMO", config.vendorTags.enableLUMO)
                     put("enableHasselbladHighPixel", config.vendorTags.enableHasselbladHighPixel)
+                    put("enableCustomWatermarkName", config.vendorTags.enableCustomWatermarkName)
+                    put("deviceName", config.vendorTags.deviceName)
                 })
                 
                 // 保存其他设置

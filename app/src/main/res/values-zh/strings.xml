@@ -246,6 +246,10 @@
     <string name="camera_setiings_lumo_desc">启用LUMO相机启动动画以及LUMO介绍</string>
     <string name="camera_setiings_hasselblad_highpixel_title">哈苏超清模式</string>
     <string name="camera_setiings_hasselblad_highpixel_desc">启用哈苏超清模式, 注意其中的4K超清实况不可用, 请不要反馈该问题</string>
+    <string name="camera_settings_watermark_device_name_title">自定义机型水印名称</string>
+    <string name="camera_settings_watermark_device_name_desc">启用后, 可以自定义机型水印名称</string>
+    <string name="camera_settings_watermark_device_name_enter_text">请输入文本</string>
+    <string name="camera_settings_watermark_device_name_hint">提示: 可以输入任意字符</string>
 
     <!-- 默认值设置 -->
     <string name="default_value_enabled">设备默认值：开</string>

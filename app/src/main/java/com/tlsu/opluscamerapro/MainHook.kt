@@ -4,6 +4,7 @@ import com.github.kyuubiran.ezxhelper.EzXHelper
 import com.github.kyuubiran.ezxhelper.Log
 import com.github.kyuubiran.ezxhelper.LogExtensions.logexIfThrow
 import com.tlsu.opluscamerapro.hook.BaseHook
+import com.tlsu.opluscamerapro.hook.camera.DeviceNameHook
 import com.tlsu.opluscamerapro.hook.gallery.GRFilterHook
 import com.tlsu.opluscamerapro.hook.camera.FilterGroup
 import com.tlsu.opluscamerapro.hook.camera.ISOHook
@@ -58,6 +59,7 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit, IXposedHookInitP
                         LivePhotoEISHook.handleLoadPackage(lpparam)
                     }
                     PreviewHDRHook.handleLoadPackage(lpparam)
+                    DeviceNameHook.handleLoadPackage(lpparam)
                 }
                 "com.coloros.gallery3d" -> {
                     GalleryHook.handleLoadPackage(lpparam)
