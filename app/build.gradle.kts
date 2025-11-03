@@ -13,8 +13,8 @@ android {
         applicationId = "com.tlsu.opluscamerapro"
         minSdk = 35
         targetSdk = 36
-        versionCode = 3000
-        versionName = "Katrina 3.0.0"
+        versionCode = 3010
+        versionName = "Katrina 3.0.1"
         ndk {
             //noinspection ChromeOsAbiSupport
             abiFilters += "arm64-v8a"

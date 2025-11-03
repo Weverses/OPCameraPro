@@ -468,11 +468,6 @@ fun VendorTagSettingsGroup(
                         )
                     }
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        stringResource(R.string.camera_settings_watermark_device_name_enter_text),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
                 }
             },
             confirmButton = {
@@ -1270,7 +1265,6 @@ fun VendorTagSettingsGroup(
                 title = stringResource(R.string.camera_settings_watermark_device_name_title),
                 description = stringResource(R.string.camera_settings_watermark_device_name_desc),
                 checked = vendorTagSettings.enableCustomWatermarkName,
-                defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enableCustomWatermarkName"),
                 onCheckedChange = { newState ->
                     onSettingChanged("enableCustomWatermarkName", newState)
                     if (newState) {
