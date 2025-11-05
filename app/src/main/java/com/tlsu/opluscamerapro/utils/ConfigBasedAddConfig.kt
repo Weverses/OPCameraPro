@@ -1538,6 +1538,24 @@ object ConfigBasedAddConfig {
                     ),
                     MergeStrategy.OVERRIDE
                 )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.feature.xpan.mode.support",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.xpan.legacy.ui.style",
+                        "Byte",
+                        "1",
+                        "0"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
             }
 
             if (!isV16() && vendorTags.enableStyleEffect) {
@@ -1828,15 +1846,6 @@ object ConfigBasedAddConfig {
 //                    MergeStrategy.OVERRIDE
 //                )
             }
-            addPresetTag(
-                VendorTagInfo(
-                    "com.oplus.master.mode.focus.peaking.params",
-                    "Float",
-                    "5",
-                    "255, 206, 59, 1, 1"
-                ),
-                MergeStrategy.OVERRIDE
-            )
 
         } catch (e: Exception) {
             XposedBridge.log("OPCameraPro: Error in addConfig: ${e.message}")

@@ -6,6 +6,7 @@ import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinde
 import com.tlsu.opluscamerapro.hook.BaseHook
 import com.tlsu.opluscamerapro.utils.DefaultConfigManager
 import com.tlsu.opluscamerapro.utils.DefaultConfigManager.saveOriginOtherConfig
+import com.tlsu.opluscamerapro.utils.DeviceCheck.DEBUG
 import com.tlsu.opluscamerapro.utils.ParseConfig.isOplusCameraConfig
 import com.tlsu.opluscamerapro.utils.ParseConfig.parseConfig
 import de.robv.android.xposed.XposedBridge
@@ -22,23 +23,30 @@ object OplusCameraConfig : BaseHook() {
                 .createHook {
                     before { param ->
                         configName = param.args[1] as String
+                        if (DEBUG) {
+                            param.args[1] = "/sdcard/Android/OplusCameraPro/origin/oplus_camera_preview_decision_config.json"
+                        }
                     }
                     after {
                         val originalConfig = it.result as String
-                        if (isOplusCameraConfig(configName)) {
-                            XposedBridge.log("OPCameraPro: configName: $configName isOplusCameraConfig!")
-                            // 保存原始配置
-                            DefaultConfigManager.parseAndSaveDefaultConfig(originalConfig)
-                            XposedBridge.log("OPCameraPro: original config saved successfully")
-                            
-                            val modifyConfig = parseConfig(originalConfig)
-                            DefaultConfigManager.saveModifyConfig(modifyConfig)
-                            XposedBridge.log("OPCameraPro: get originalConfig successfully")
-                            it.result = modifyConfig
-                            XposedBridge.log("OPCameraPro: return modifyConfig successfully")
-                        } else {
+                        if (DEBUG) {
                             saveOriginOtherConfig(configName, originalConfig)
-                            XposedBridge.log("OPCameraPro: configName: $configName! isn't OplusCameraConfig")
+                        } else {
+                            if (isOplusCameraConfig(configName)) {
+                                XposedBridge.log("OPCameraPro: configName: $configName isOplusCameraConfig!")
+                                // 保存原始配置
+                                DefaultConfigManager.parseAndSaveDefaultConfig(originalConfig)
+                                XposedBridge.log("OPCameraPro: original config saved successfully")
+
+                                val modifyConfig = parseConfig(originalConfig)
+                                DefaultConfigManager.saveModifyConfig(modifyConfig)
+                                XposedBridge.log("OPCameraPro: get originalConfig successfully")
+                                it.result = modifyConfig
+                                XposedBridge.log("OPCameraPro: return modifyConfig successfully")
+                            } else {
+                                saveOriginOtherConfig(configName, originalConfig)
+                                XposedBridge.log("OPCameraPro: configName: $configName! isn't OplusCameraConfig")
+                            }
                         }
                     }
                 }

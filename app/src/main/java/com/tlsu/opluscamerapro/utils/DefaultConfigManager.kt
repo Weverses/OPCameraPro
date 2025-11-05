@@ -277,8 +277,11 @@ object DefaultConfigManager {
             // 创建目录
             Shell.cmd("mkdir -p /sdcard/Android/OplusCameraPro").exec()
 
+            val targetDir = File(ORIGIN_CONFIG_PATH)
+            val fileName = File(originalJsonName).name
+
             // 写入文件
-            val file = File("ORIGIN_CONFIG_PATH/originalJsonName")
+            val file = File(targetDir, fileName)
             file.writeText(originalJson)
 
             XposedBridge.log("$TAG: Original config saved successfully")
