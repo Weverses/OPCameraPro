@@ -6,6 +6,7 @@ import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinde
 import com.github.kyuubiran.ezxhelper.params
 import com.tlsu.opluscamerapro.hook.BaseHook
 import com.tlsu.opluscamerapro.utils.ConfigBasedAddConfig
+import com.tlsu.opluscamerapro.utils.DefaultConfigManager.isDefaultValueEnableFunction
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV15
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV1501
 import com.tlsu.opluscamerapro.utils.DeviceCheck.isV16
@@ -70,7 +71,7 @@ object FilterGroup : BaseHook() {
                             )
 
                             // 根据开关控制是否增加大师滤镜
-                            if (vendorTags.enableMasterFilter) {
+                            if (isDefaultValueEnableFunction("enableMasterFilter") || vendorTags.enableMasterFilter) {
                                 // 增加大师滤镜
                                 invokeAddFrontAndBack(
                                     filterGroup,
@@ -90,14 +91,14 @@ object FilterGroup : BaseHook() {
                                 XposedHelpers.setStaticIntField(clazz, "sMasterFilterSize", 3)
                             }
 
-                            if (vendorTags.enableJzkMovieFilter) {
+                            if (isDefaultValueEnableFunction("enableJzkMovieFilter") || vendorTags.enableJzkMovieFilter) {
                                 invokeAddFrontAndBack(
                                     filterGroup,
                                     "jzk-movie.cube.rgb.bin",
                                     "R.string.camera_filter_type_director_joint_filter_JZK"
                                 )
                             }
-                            if (vendorTags.enableTolStyleFilter) {
+                            if (isDefaultValueEnableFunction("enableTolStyleFilter") || vendorTags.enableTolStyleFilter) {
                                 invokeAddFrontAndBack(
                                     filterGroup,
                                     "tone-of-light.cube.rgb.bin",
@@ -109,7 +110,7 @@ object FilterGroup : BaseHook() {
                                 XposedHelpers.setStaticIntField(clazz, "sFujiFilterSize", 3)
                             }
                             // GR
-                            if (isV16() && vendorTags.enableGRFilter) {
+                            if (isDefaultValueEnableFunction("enableGRWatermark") || (isV16() && vendorTags.enableGRFilter)) {
                                 invokeAddFrontAndBack(
                                     filterGroup,
                                     "gr.posi.rgba.bin",

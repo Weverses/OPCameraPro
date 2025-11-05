@@ -358,7 +358,7 @@ object DefaultConfigManager {
             context.getString(R.string.default_value_unknown)
         }
     }
-    fun isDefaultValueEnableFunction(context: Context, featureName: String): Boolean {
+    fun isDefaultValueEnableFunction(featureName: String): Boolean {
         val config = loadDefaultConfig()
         val defaultTag = config.vendorTags[featureName]
 
@@ -372,7 +372,7 @@ object DefaultConfigManager {
             false
         }
     }
-    fun isNullDefaultValueEnableFunction(context: Context, featureName: String): Boolean {
+    fun isNullDefaultValueEnableFunction(featureName: String): Boolean {
         val config = loadDefaultConfig()
         val defaultTag = config.vendorTags[featureName]
 
