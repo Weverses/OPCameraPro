@@ -794,15 +794,17 @@ fun VendorTagSettingsGroup(
                 enabled = !isNullDefaultValueEnableFunction( "enablePortraitZoom")
             )
 
-//            if (isNewCameraVer(46)) {
-//                SettingsSwitchItem(
-//                    title = stringResource(R.string.camera_settings_portrait_rear_flash_title),
-//                    description = stringResource(R.string.camera_settings_portrait_rear_flash_desc),
-//                    checked = vendorTagSettings.enablePortraitRearFlash,
-//                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enablePortraitRearFlash"),
-//                    onCheckedChange = { onSettingChanged("enablePortraitRearFlash", it) }
-//                )
-//            }
+
+            if (isV16()) {
+                SettingsSwitchItem(
+                    title = stringResource(R.string.camera_settings_portrait_rear_flash_title),
+                    description = stringResource(R.string.camera_settings_portrait_rear_flash_desc),
+                    checked = vendorTagSettings.enablePortraitRearFlash,
+                    defaultValueDescription = DefaultConfigManager.getDefaultValueDescription(context, "enablePortraitRearFlash"
+                    ),
+                    onCheckedChange = { onSettingChanged("enablePortraitRearFlash", it) }
+                )
+            }
             
 //            SettingsSwitchItem(
 //                title = stringResource(R.string.camera_settings_force_portrait_title),

@@ -8,168 +8,224 @@ import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 
-object ProtobufFeature: BaseHook() {
-    private lateinit var lpparam: XC_LoadPackage.LoadPackageParam
+object ProtobufFeature : BaseHook() {
+
+    // 数据类：用于清晰地定义一个要添加的特性
+    private data class FeatureInfo(
+        val name: String,
+        val key: String,
+        val range: String = "",
+        val default: String = "",
+        val entryType: String,
+        val valueType: String
+    )
+
+    // 数据类：用于定义一个完整的修改操作
+    private data class FeatureModification(
+        val logName: String,
+        val targetMode: String,
+        val targetCameraTypes: List<String>,
+        val featuresToAdd: List<FeatureInfo>
+    )
 
     override fun init() {
+        val FEATURE_TABLE_CLASS = "com.oplus.ocs.camera.configure.ProtobufFeatureConfig\$FeatureTable"
         try {
-            val FEATURE_TABLE_CLASS = "com.oplus.ocs.camera.configure.ProtobufFeatureConfig\$FeatureTable"
-            val vendorTags = ConfigBasedAddConfig.getVendorTagSettings()
-
-            XposedHelpers.findAndHookMethod(FEATURE_TABLE_CLASS,
+            XposedHelpers.findAndHookMethod(
+                FEATURE_TABLE_CLASS,
                 safeClassLoader,
                 "parseFrom",
                 ByteArray::class.java,
                 object : XC_MethodHook() {
-                    @Throws(Throwable::class)
                     override fun afterHookedMethod(param: MethodHookParam) {
                         val originalConfig = param.result ?: return
-                        XposedBridge.log("OPCameraPro: [Protobuf] Intercepted original config object.")
+                        XposedBridge.log("OPCameraPro [Protobuf]:  Intercepted original config. Starting modifications.")
 
                         try {
                             val builder = XposedHelpers.callMethod(originalConfig, "toBuilder")
+                            val strPool = getStringListField(builder, "strPool_")
+                            if (strPool.isEmpty()) {
+                                XposedBridge.log("OPCameraPro [Protobuf]:  strPool is empty, aborting.")
+                                return
+                            }
+
+                            val vendorTags = ConfigBasedAddConfig.getVendorTagSettings()
 
                             if (vendorTags.enableStyleEffect) {
-                                addFilterToProfessionalMode(builder)
+                                applyModification(builder, strPool, getFilterToProModeModification())
                             }
 
                             if (vendorTags.enableMasterModeLivePhoto) {
-                                addLivePhotoToProfessionalMode(builder)
+                                applyModification(builder, strPool, getLivePhotoToProModeModification())
+                            }
+
+                            if (vendorTags.enablePortraitRearFlash) {
+                                applyModification(builder, strPool, getFlashToPortraitModeModification())
                             }
 
                             param.result = XposedHelpers.callMethod(builder, "build")
-                            XposedBridge.log("OPCameraPro: [Protobuf] Config modification complete!")
+                            XposedBridge.log("OPCameraPro [Protobuf]:  Config modification process complete!")
 
                         } catch (e: Throwable) {
-                            XposedBridge.log("OPCameraPro: [Protobuf] Failed to modify proto object: ${e.message}")
-                            e.printStackTrace()
+                            XposedBridge.log("OPCameraPro [Protobuf]:  Failed to modify proto object.")
                         }
                     }
                 })
         } catch (e: Throwable) {
-            XposedBridge.log("OPCameraPro: [Protobuf] Failed to set up Application.onCreate hook: ${e.message}")
+            XposedBridge.log("OPCameraPro [Protobuf]:  Failed to hook FeatureTable.parseFrom.")
         }
     }
 
-    private fun addFilterToProfessionalMode(featureTableBuilder: Any) {
+    private fun getFilterToProModeModification() = FeatureModification(
+        logName = "Filter to ProMode",
+        targetMode = "professional_mode",
+        targetCameraTypes = listOf("rear_main", "rear_wide", "rear_tele"),
+        featuresToAdd = listOf(
+            FeatureInfo(
+                name = "com.oplus.camera.feature.filter",
+                key = "feature_filter_index",
+                range = "[0~100]",
+                default = "0",
+                entryType = "main_menu,other_app,video_other_app,quick_launch,watch,gimbal",
+                valueType = "int"
+            )
+        )
+    )
+
+    private fun getLivePhotoToProModeModification() = FeatureModification(
+        logName = "LivePhoto to ProMode",
+        targetMode = "professional_mode",
+        targetCameraTypes = listOf("rear_main", "rear_wide", "rear_tele"),
+        featuresToAdd = listOf(
+            FeatureInfo(
+                name = "com.oplus.camera.feature.live_photo",
+                key = "com.oplus.camera.feature.live_photo",
+                entryType = "main_menu",
+                valueType = "string"
+            )
+        )
+    )
+
+    private fun getFlashToPortraitModeModification() = FeatureModification(
+        logName = "Flash to PortraitMode",
+        targetMode = "portrait_mode",
+        targetCameraTypes = listOf("rear_sat", "rear_portrait"),
+        featuresToAdd = listOf(
+            FeatureInfo(
+                name = "com.oplus.preview.flash.mode",
+                key = "com.oplus.preview.flash.mode",
+                entryType = "main_menu,other_app,video_other_app,quick_launch,watch,gimbal",
+                valueType = "int"
+            ),
+            FeatureInfo(
+                name = "com.oplus.preview.flash.mode",
+                key = "pref_camera_flashmode_key",
+                range = "[on,off,torch,auto]",
+                default = "off",
+                entryType = "main_menu,other_app,video_other_app,quick_launch,watch,gimbal",
+                valueType = "string"
+            )
+        )
+    )
+
+    // --- 通用逻辑实现 ---
+
+    /**
+     * 应用一个指定的修改任务
+     */
+    private fun applyModification(featureTableBuilder: Any, strPool: List<String>, mod: FeatureModification) {
         try {
-            val strPool = getStringListField(featureTableBuilder, "strPool_")
-            if (strPool.isEmpty()) return
-
-            val rearMainIndex = strPool.indexOf("rear_main")
-            val rearWideIndex = strPool.indexOf("rear_wide")
-            val rearTeleIndex = strPool.indexOf("rear_tele")
-
-            val filterNameIndex = strPool.indexOf("com.oplus.camera.feature.filter")
-            val filterKeyIndex = strPool.indexOf("feature_filter_index")
-            val filterRangeIndex = strPool.indexOf("[0~100]")
-            val filterDefaultIndex = strPool.indexOf("0")
-            val entryTypeIndex = strPool.indexOf("main_menu,other_app,video_other_app,quick_launch,watch,gimbal")
-            val valueTypeIndex = strPool.indexOf("int")
-
-            val requiredIndices = listOf(rearMainIndex, rearWideIndex, rearTeleIndex, filterNameIndex, filterKeyIndex, filterRangeIndex, filterDefaultIndex, entryTypeIndex, valueTypeIndex)
-            if (requiredIndices.any { it == -1 }) {
-                XposedBridge.log("OPCameraPro: [Protobuf] Skipping 'Filter to ProMode': required indices not found.")
-                return
-            }
-
             val cameraFeatureTableBuilder = XposedHelpers.callMethod(featureTableBuilder, "getCameraFeatureTableBuilder")
             val modeFeatureTablesMap = XposedHelpers.callMethod(cameraFeatureTableBuilder, "getMutableModeFeatureTables") as MutableMap<String, Any>
-            val professionalModeTable = modeFeatureTablesMap["professional_mode"] ?: return
-            val professionalModeTableBuilder = XposedHelpers.callMethod(professionalModeTable, "toBuilder")
-            val cameraTypeFeatureTablesMap = XposedHelpers.callMethod(professionalModeTableBuilder, "getMutableCameraTypeFeatureTables") as MutableMap<Int, Any>
-            val rearMainTable = cameraTypeFeatureTablesMap[rearMainIndex] ?: return
-            val rearWideTable = cameraTypeFeatureTablesMap[rearWideIndex] ?: return
-            val rearTeleTable = cameraTypeFeatureTablesMap[rearTeleIndex] ?: return
-            val rearMainTableBuilder = XposedHelpers.callMethod(rearMainTable, "toBuilder")
-            val rearWideTableBuilder = XposedHelpers.callMethod(rearWideTable, "toBuilder")
-            val rearTeleTableBuilder = XposedHelpers.callMethod(rearTeleTable, "toBuilder")
 
-            val newFilterFeature = createNewFeature(
-                nameIndex = filterNameIndex,
-                keyIndex = filterKeyIndex,
-                rangeIndex = filterRangeIndex,
-                defaultIndex = filterDefaultIndex,
-                entryTypeIndex = entryTypeIndex,
-                valueTypeIndex = valueTypeIndex
-            )
+            val modeBuilder = getOrCreateModeBuilder(modeFeatureTablesMap, mod.targetMode) ?: return
+            val cameraTypeTablesMap = XposedHelpers.callMethod(modeBuilder, "getMutableCameraTypeFeatureTables") as MutableMap<Int, Any>
 
-            XposedHelpers.callMethod(rearMainTableBuilder, "addFeatureList", newFilterFeature)
-            XposedHelpers.callMethod(rearWideTableBuilder, "addFeatureList", newFilterFeature)
-            XposedHelpers.callMethod(rearTeleTableBuilder, "addFeatureList", newFilterFeature)
-
-            cameraTypeFeatureTablesMap[rearMainIndex] = XposedHelpers.callMethod(rearMainTableBuilder, "build")
-            cameraTypeFeatureTablesMap[rearWideIndex] = XposedHelpers.callMethod(rearWideTableBuilder, "build")
-            cameraTypeFeatureTablesMap[rearTeleIndex] = XposedHelpers.callMethod(rearTeleTableBuilder, "build")
-            modeFeatureTablesMap["professional_mode"] = XposedHelpers.callMethod(professionalModeTableBuilder, "build")
-
-            XposedBridge.log("OPCameraPro: [Protobuf] Successfully added Filter to Professional Mode.")
-        } catch (e: Throwable) {
-            XposedBridge.log("OPCameraPro: [Protobuf] Error in addFilterToProfessionalMode: ${e.message}")
-        }
-    }
-
-    private fun addLivePhotoToProfessionalMode(featureTableBuilder: Any) {
-        try {
-            val strPool = getStringListField(featureTableBuilder, "strPool_")
-            if (strPool.isEmpty()) return
-
-            val rearMainIndex = strPool.indexOf("rear_main")
-            val rearWideIndex = strPool.indexOf("rear_wide")
-            val rearTeleIndex = strPool.indexOf("rear_tele")
-
-            val filterNameIndex = strPool.indexOf("com.oplus.camera.feature.live_photo")
-            val filterKeyIndex = strPool.indexOf("com.oplus.camera.feature.live_photo")
-            val filterRangeIndex = strPool.indexOf("")
-            val filterDefaultIndex = strPool.indexOf("")
-            val entryTypeIndex = strPool.indexOf("main_menu")
-            val valueTypeIndex = strPool.indexOf("string")
-
-            val requiredIndices = listOf(rearMainIndex, rearWideIndex, rearTeleIndex, filterNameIndex, filterKeyIndex, filterRangeIndex, filterDefaultIndex, entryTypeIndex, valueTypeIndex)
-            if (requiredIndices.any { it == -1 }) {
-                XposedBridge.log("OPCameraPro: [Protobuf] Skipping 'Filter to ProMode': required indices not found.")
-                return
+            var changesMade = false
+            for (cameraType in mod.targetCameraTypes) {
+                if (addFeaturesToCameraType(cameraType, strPool, cameraTypeTablesMap, mod.featuresToAdd)) {
+                    changesMade = true
+                }
             }
 
-            val cameraFeatureTableBuilder = XposedHelpers.callMethod(featureTableBuilder, "getCameraFeatureTableBuilder")
-            val modeFeatureTablesMap = XposedHelpers.callMethod(cameraFeatureTableBuilder, "getMutableModeFeatureTables") as MutableMap<String, Any>
-            val professionalModeTable = modeFeatureTablesMap["professional_mode"] ?: return
-            val professionalModeTableBuilder = XposedHelpers.callMethod(professionalModeTable, "toBuilder")
-            val cameraTypeFeatureTablesMap = XposedHelpers.callMethod(professionalModeTableBuilder, "getMutableCameraTypeFeatureTables") as MutableMap<Int, Any>
-            val rearMainTable = cameraTypeFeatureTablesMap[rearMainIndex] ?: return
-            val rearWideTable = cameraTypeFeatureTablesMap[rearWideIndex] ?: return
-            val rearTeleTable = cameraTypeFeatureTablesMap[rearTeleIndex] ?: return
-            val rearMainTableBuilder = XposedHelpers.callMethod(rearMainTable, "toBuilder")
-            val rearWideTableBuilder = XposedHelpers.callMethod(rearWideTable, "toBuilder")
-            val rearTeleTableBuilder = XposedHelpers.callMethod(rearTeleTable, "toBuilder")
-
-            val newFilterFeature = createNewFeature(
-                nameIndex = filterNameIndex,
-                keyIndex = filterKeyIndex,
-                rangeIndex = filterRangeIndex,
-                defaultIndex = filterDefaultIndex,
-                entryTypeIndex = entryTypeIndex,
-                valueTypeIndex = valueTypeIndex
-            )
-
-            XposedHelpers.callMethod(rearMainTableBuilder, "addFeatureList", newFilterFeature)
-            XposedHelpers.callMethod(rearWideTableBuilder, "addFeatureList", newFilterFeature)
-            XposedHelpers.callMethod(rearTeleTableBuilder, "addFeatureList", newFilterFeature)
-
-            cameraTypeFeatureTablesMap[rearMainIndex] = XposedHelpers.callMethod(rearMainTableBuilder, "build")
-            cameraTypeFeatureTablesMap[rearWideIndex] = XposedHelpers.callMethod(rearWideTableBuilder, "build")
-            cameraTypeFeatureTablesMap[rearTeleIndex] = XposedHelpers.callMethod(rearTeleTableBuilder, "build")
-            modeFeatureTablesMap["professional_mode"] = XposedHelpers.callMethod(professionalModeTableBuilder, "build")
-
-            XposedBridge.log("OPCameraPro: [Protobuf] Successfully added Filter to Professional Mode.")
+            if (changesMade) {
+                modeFeatureTablesMap[mod.targetMode] = XposedHelpers.callMethod(modeBuilder, "build")
+                XposedBridge.log("OPCameraPro [Protobuf]:  Successfully applied modification: '${mod.logName}'.")
+            }
         } catch (e: Throwable) {
-            XposedBridge.log("OPCameraPro: [Protobuf] Error in addFilterToProfessionalMode: ${e.message}")
+            XposedBridge.log("OPCameraPro [Protobuf]:  Error applying modification '${mod.logName}'.")
         }
     }
 
-    private fun createNewFeature(nameIndex: Int, keyIndex: Int, rangeIndex: Int, defaultIndex: Int, entryTypeIndex: Int, valueTypeIndex: Int): Any {
-        val FEATURE_CLASS = "com.oplus.ocs.camera.configure.ProtobufFeatureConfig\$Feature"
-        val featureClass = XposedHelpers.findClass(FEATURE_CLASS, lpparam.classLoader)
+    /**
+     * 为单个相机类型添加一系列特性
+     */
+    private fun addFeaturesToCameraType(
+        cameraTypeName: String,
+        strPool: List<String>,
+        cameraTypeTablesMap: MutableMap<Int, Any>,
+        featuresToAdd: List<FeatureInfo>
+    ): Boolean {
+        val cameraTypeIndex = strPool.indexOf(cameraTypeName)
+        if (cameraTypeIndex == -1) {
+            return false
+        }
+
+        val cameraTypeTable = cameraTypeTablesMap[cameraTypeIndex] ?: run {
+            XposedBridge.log("OPCameraPro [Protobuf]:  Warning: Table for '$cameraTypeName' (index $cameraTypeIndex) not found.")
+            return false
+        }
+
+        val cameraTypeBuilder = XposedHelpers.callMethod(cameraTypeTable, "toBuilder")
+        var featureAdded = false
+        for (featureInfo in featuresToAdd) {
+            createNewFeature(strPool, featureInfo)?.let {
+                XposedHelpers.callMethod(cameraTypeBuilder, "addFeatureList", it)
+                featureAdded = true
+            }
+        }
+
+        if (featureAdded) {
+            cameraTypeTablesMap[cameraTypeIndex] = XposedHelpers.callMethod(cameraTypeBuilder, "build")
+        }
+        return featureAdded
+    }
+
+    /**
+     * 获取或创建指定模式的 Builder
+     */
+    private fun getOrCreateModeBuilder(modeFeatureTablesMap: MutableMap<String, Any>, modeName: String): Any? {
+        return modeFeatureTablesMap[modeName]?.let {
+            XposedHelpers.callMethod(it, "toBuilder")
+        } ?: run {
+            XposedBridge.log("OPCameraPro [Protobuf]:  Warning: Mode table for '$modeName' not found.")
+            null
+        }
+    }
+
+    /**
+     * 从 FeatureInfo 创建一个 Protobuf Feature 对象
+     */
+    private fun createNewFeature(strPool: List<String>, info: FeatureInfo): Any? {
+        fun getIndex(value: String): Int {
+            if (value.isEmpty()) return strPool.indexOf("")
+            return strPool.indexOf(value)
+        }
+
+        val nameIndex = getIndex(info.name)
+        val keyIndex = getIndex(info.key)
+        val rangeIndex = getIndex(info.range)
+        val defaultIndex = getIndex(info.default)
+        val entryTypeIndex = getIndex(info.entryType)
+        val valueTypeIndex = getIndex(info.valueType)
+
+        val requiredIndices = listOf(nameIndex, keyIndex, entryTypeIndex, valueTypeIndex)
+        if (requiredIndices.any { it == -1 }) {
+            XposedBridge.log("OPCameraPro [Protobuf]:  Skipping feature '${info.name}': A required string was not found in strPool.")
+            return null
+        }
+
+        val featureClass = XposedHelpers.findClass("com.oplus.ocs.camera.configure.ProtobufFeatureConfig\$Feature", safeClassLoader)
         val newFeatureBuilder = XposedHelpers.callStaticMethod(featureClass, "newBuilder")
 
         XposedHelpers.callMethod(newFeatureBuilder, "setFeatureNameIndex", nameIndex)
@@ -182,36 +238,32 @@ object ProtobufFeature: BaseHook() {
         return XposedHelpers.callMethod(newFeatureBuilder, "build")
     }
 
-    fun setLoadPackageParam(param: XC_LoadPackage.LoadPackageParam) {
-        lpparam = param
-    }
-
+    /**
+     * 通过反射获取字符串列表字段
+     */
     private fun getStringListField(obj: Any, fieldName: String): List<String> {
-        val field = XposedHelpers.findField(obj::class.java, fieldName)
-        field.isAccessible = true
-        @Suppress("UNCHECKED_CAST")
-        return field.get(obj) as List<String>
-    }
-
-    private fun MutableList<String>.addIfNotExists(element: String): Int {
-        val index = this.indexOf(element)
-        if (index != -1) {
-            return index
+        return try {
+            val field = XposedHelpers.findField(obj::class.java, fieldName)
+            field.isAccessible = true
+            @Suppress("UNCHECKED_CAST")
+            field.get(obj) as? List<String> ?: emptyList()
+        } catch (e: NoSuchFieldException) {
+            XposedBridge.log("OPCameraPro [Protobuf]:  Field '$fieldName' not found in ${obj::class.java.name}.")
+            emptyList()
         }
-        this.add(element)
-        return this.size - 1
     }
 }
 
+// BaseHook 的入口保持不变
 object ProtobufFeatureHook: BaseHook() {
     override fun init() {
-        ProtobufFeature.init()
+        // 由于现在是单例，init() 只需要被调用一次
     }
 
     fun handleLoadPackage(lpparam: XC_LoadPackage.LoadPackageParam) {
         if (lpparam.packageName == "com.oplus.camera") {
-            ProtobufFeature.setLoadPackageParam(lpparam)
-            init()
+            // 直接初始化，不再需要传递 lpparam
+            ProtobufFeature.init()
         }
     }
 }

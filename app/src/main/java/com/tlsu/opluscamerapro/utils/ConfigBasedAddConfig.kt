@@ -880,10 +880,10 @@ object ConfigBasedAddConfig {
             }
 
             // 人像模式后置闪光灯
-            if (vendorTags.enablePortraitRearFlash) {
+            if (isV16() && vendorTags.enablePortraitRearFlash) {
                 addPresetTag(
                     VendorTagInfo(
-                        "com.oplus.portrait.rear.flash.supp`ort",
+                        "com.oplus.portrait.rear.flash.support",
                         "Byte",
                         "1",
                         "1"
