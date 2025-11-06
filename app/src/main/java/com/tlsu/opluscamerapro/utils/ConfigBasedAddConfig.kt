@@ -232,13 +232,30 @@ object ConfigBasedAddConfig {
             
             // 25MP Turbo RAW Resolution Enhance
             if (vendorTags.enable25MP) {
-                XposedBridge.log("OPCameraPro: enable 25MP")
                 addPresetTag(
                     VendorTagInfo(
                         "com.oplus.turboraw.re.support",
                         "Byte",
                         "1",
                         "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.turboraw.re.open.bydefault",
+                        "Byte",
+                        "1",
+                        "1"
+                    ),
+                    MergeStrategy.OVERRIDE
+                )
+                addPresetTag(
+                    VendorTagInfo(
+                        "com.oplus.main.full.qbc.output.sizes",
+                        "Int32",
+                        "10",
+                        "5888x4416x5888x3312x5888x2704x5888x2174x4416x4416"
                     ),
                     MergeStrategy.OVERRIDE
                 )

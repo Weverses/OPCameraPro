@@ -1,9 +1,6 @@
 package com.tlsu.opluscamerapro.hook.camera
 
 import com.github.kyuubiran.ezxhelper.ClassUtils.loadClass
-import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
-import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinder
-import com.github.kyuubiran.ezxhelper.params
 import com.tlsu.opluscamerapro.hook.BaseHook
 import com.tlsu.opluscamerapro.utils.ConfigBasedAddConfig
 import com.tlsu.opluscamerapro.utils.DefaultConfigManager.isDefaultValueEnableFunction

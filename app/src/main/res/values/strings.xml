@@ -307,10 +307,11 @@
     <string name="module_introduction_label">Module Introduction</string>
     <string name="no_root_access_title">No ROOT Permission</string>
     <string name="no_root_access_message">This module requires ROOT permission to work properly. Please grant ROOT permission and restart the application.</string>
-    <string name="unsupport_camera_app_version">Your device does not support this version of the camera app.</string>
+    <string name="unsupported_camera_app_version">Your device does not support this version of the camera app.</string>
     <string name="need_wipe_camera_data">When you enable any functions, you need to wipe Camera app data.</string>
     <string name="default_value_null">The default value of the device cannot be obtained. All functions have been disabled. Please first close the OPCameraPro module, open the camera App, and then re-enter the module to obtain the default value of the device!</string>
     <string name="github">If you think OPCameraPro is good, you are welcome to give the GitHub repository a Star</string>
+    <string name="unsupported_dv">Your device may not support Dolby Video</string>
     <string name="donate_title">Donate</string>
     <string name="donate_desc">Make a donation to support the author in developing the app. (Wechat Pay or Alipay)</string>
 </resources>

@@ -528,7 +528,7 @@ fun VendorTagSettingsGroup(
         if (isNewCameraVer(45) && !isV1501()) {
             HintCard {
                 Text(
-                    text = stringResource(R.string.unsupport_camera_app_version),
+                    text = stringResource(R.string.unsupported_camera_app_version),
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
@@ -1074,6 +1074,14 @@ fun VendorTagSettingsGroup(
         }
         
         // 杜比视频设置
+        if (!isDefaultValueEnableFunction("enableDolbyVideo")) {
+            HintCard {
+                Text(
+                    text = stringResource(R.string.unsupported_dv),
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+            }
+        }
         SettingsCard(title = stringResource(R.string.camera_settings_category_dolby)) {
             SettingsSwitchItem(
                 title = stringResource(R.string.camera_settings_dolby_video_title),
