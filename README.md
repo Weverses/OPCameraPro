@@ -6,6 +6,8 @@
 <a href="http://t.me/+awg-7X5Ggrs5NzZl"><img alt="Telegram" src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"></a>
 </div>
 
+#### 自 2025 年 11 月 10 日起，主仓库已转为私有，仅保留此镜像以供参考
+
 ### 简要介绍：
 - 这是一个适用于ColorOS与realmeUI（或许还支持OxygenOS）的相机/相册增强型Xposed模块，建议ColorOS16或RealmeUI7.0，最低向下兼容ColorOS15/realmeUI6.0。
 - App是一个第三方的功能模块，使用该模块App造成的任何后果作者均不会负责。
